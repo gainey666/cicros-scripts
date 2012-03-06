@@ -206,7 +206,7 @@
       <MoveToAction Location="-5026.759, -828.7828, 495.3112" MoveType="Location" Pathing="Navigator" Entry="0" />
     </If>
   </While>
-  <While Condition="(InbagCount(3388)*2 + InbagCount(2450)) &gt;= 50 &amp;&amp; (InbagCount(2453) + InbagCount(3388)*2) &gt;= 50 &amp;&amp; (InbagCount(3355) + InbagCount(3825)) &gt;= 70 &amp;&amp; (InbagCount(1710) + InbagCount(3356)) &gt;= 30 &amp;&amp; (InbagCount(1710) + InbagCount(3357)) &gt;= 20 &amp;&amp; (InbagCount(3821) + InbagCount(3825)) &gt;= 40 &amp;&amp; Alchemy.Level &gt;= 140 &amp;&amp; Alchemy.Level &lt; 205" IgnoreCanRun="False">
+  <While Condition="(InbagCount(3388)*2 + InbagCount(2450)) &gt;= 50 &amp;&amp; (InbagCount(2453) + InbagCount(3388)*2) &gt;= 50 &amp;&amp; (InbagCount(8951) + InbagCount(3355) + InbagCount(3825)) &gt;= 80 &amp;&amp; (InbagCount(1710) + InbagCount(3356)) &gt;= 30 &amp;&amp; (InbagCount(1710) + InbagCount(3357)) &gt;= 20 &amp;&amp; (InbagCount(8951) +InbagCount(3821) + InbagCount(3825)) &gt;= 50 &amp;&amp; Alchemy.Level &gt;= 140 &amp;&amp; Alchemy.Level &lt; 215" IgnoreCanRun="False">
     <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Lets get Alchemy to lvl 205&quot;); " />
     <CallSubRoutine SubRoutineName="BuyVial" />
     <While Condition="Alchemy.Level &lt; 155" IgnoreCanRun="False">
@@ -248,6 +248,23 @@
       </If>
       <CastSpellAction RepeatType="Specific" Repeat="60" Entry="3450" CastOnItem="False" ItemType="Chest" ItemId="0" />
     </While>
+    <CallSubRoutine SubRoutineName="BuyVial" />
+    <While Condition="Alchemy.Level &lt; 215" IgnoreCanRun="False">
+      <If Condition="!HasRecipe(11450)" IgnoreCanRun="True">
+        <CallSubRoutine SubRoutineName="TrainAlchRecipe" />
+        <WaitAction Condition="false" Timeout="2000" />
+        <If Condition="!HasRecipe(11450)" IgnoreCanRun="True">
+          <CallSubRoutine SubRoutineName="TrainAlchRecipe" />
+          <WaitAction Condition="false" Timeout="2000" />
+          <If Condition="!HasRecipe(3447)" IgnoreCanRun="True">
+            <CallSubRoutine SubRoutineName="TrainAlchRecipe" />
+            <WaitAction Condition="false" Timeout="2000" />
+          </If>
+        </If>
+      </If>
+      <CastSpellAction RepeatType="Specific" Repeat="30" Entry="11450" CastOnItem="False" ItemType="Chest" ItemId="0" />
+    </While>
+    <WaitAction Condition="false" Timeout="2000" />
     <CallSubRoutine SubRoutineName="Sell" />
     <CallSubRoutine SubRoutineName="TrainAlch" />
     <If Condition="Me.ZoneId == 1537 &amp;&amp; Me.IsAlliance" IgnoreCanRun="True">
@@ -281,17 +298,22 @@
     <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Farming WildSteel and Bruiseweed.&quot;); " />
     <LoadProfileAction ProfileType="Honorbuddy" Path="Cicro\N-STW_WildSteel+Bruiseweed.xml" />
   </If>
-  <If Condition="(InbagCount(3388)*2 + InbagCount(2450)) &gt;= 50 &amp;&amp; Alchemy.Level &gt;= 140 &amp;&amp; Alchemy.Level &lt; 205 || (InbagCount(2453) + InbagCount(3388)*2) &gt;= 50 &amp;&amp; Alchemy.Level &gt;= 140 &amp;&amp; Alchemy.Level &lt; 205 || (InbagCount(3355) + InbagCount(3825)) &gt;= 70 &amp;&amp; Alchemy.Level &gt;= 140 &amp;&amp; Alchemy.Level &lt; 205 || (InbagCount(1710) + InbagCount(3356)) &lt; 30 &amp;&amp; Alchemy.Level &gt;= 140 &amp;&amp; Alchemy.Level &lt; 205" IgnoreCanRun="True">
+  <If Condition="(InbagCount(3388)*2 + InbagCount(2450)) &gt;= 50 &amp;&amp; Alchemy.Level &gt;= 140 &amp;&amp; Alchemy.Level &lt; 215 || (InbagCount(2453) + InbagCount(3388)*2) &gt;= 50 &amp;&amp; Alchemy.Level &gt;= 140 &amp;&amp; Alchemy.Level &lt; 215 || (InbagCount(3355) + InbagCount(3825)) &gt;= 70 &amp;&amp; Alchemy.Level &gt;= 140 &amp;&amp; Alchemy.Level &lt; 215 || (InbagCount(1710) + InbagCount(3356)) &lt; 30 &amp;&amp; Alchemy.Level &gt;= 140 &amp;&amp; Alchemy.Level &lt; 215" IgnoreCanRun="True">
     <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Farming Kingsblood.&quot;); " />
     <LoadProfileAction ProfileType="Honorbuddy" Path="Cicro\N-STW_Kingsblood.xml" />
   </If>
-  <If Condition="(InbagCount(3388)*2 + InbagCount(2450)) &gt;= 50 &amp;&amp; Alchemy.Level &gt;= 140 &amp;&amp; Alchemy.Level &lt; 205 || (InbagCount(2453) + InbagCount(3388)*2) &gt;= 50 &amp;&amp; Alchemy.Level &gt;= 140 &amp;&amp; Alchemy.Level &lt; 205 || (InbagCount(3355) + InbagCount(3825)) &gt;= 70 &amp;&amp; Alchemy.Level &gt;= 140 &amp;&amp; Alchemy.Level &lt; 205 || (InbagCount(1710) + InbagCount(3356)) &gt;= 30 &amp;&amp; Alchemy.Level &gt;= 140 &amp;&amp; Alchemy.Level &lt; 205 || (InbagCount(1710) + InbagCount(3357)) &lt; 20 &amp;&amp; Alchemy.Level &gt;= 140 &amp;&amp; Alchemy.Level &lt; 205" IgnoreCanRun="True">
+  <If Condition="(InbagCount(3388)*2 + InbagCount(2450)) &gt;= 50 &amp;&amp; Alchemy.Level &gt;= 140 &amp;&amp; Alchemy.Level &lt; 215 || (InbagCount(2453) + InbagCount(3388)*2) &gt;= 50 &amp;&amp; Alchemy.Level &gt;= 140 &amp;&amp; Alchemy.Level &lt; 215 || (InbagCount(3355) + InbagCount(3825)) &gt;= 70 &amp;&amp; Alchemy.Level &gt;= 140 &amp;&amp; Alchemy.Level &lt; 215 || (InbagCount(1710) + InbagCount(3356)) &gt;= 30 &amp;&amp; Alchemy.Level &gt;= 140 &amp;&amp; Alchemy.Level &lt; 215 || (InbagCount(1710) + InbagCount(3357)) &lt; 20 &amp;&amp; Alchemy.Level &gt;= 140 &amp;&amp; Alchemy.Level &lt; 215" IgnoreCanRun="True">
     <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Farming Liferoot.&quot;); " />
     <LoadProfileAction ProfileType="Honorbuddy" Path="Cicro\N-STW_Liferoot.xml" />
   </If>
-  <If Condition="(InbagCount(3388)*2 + InbagCount(2450)) &gt;= 50 &amp;&amp; Alchemy.Level &gt;= 140 &amp;&amp; Alchemy.Level &lt; 205 || (InbagCount(2453) + InbagCount(3388)*2) &gt;= 50 &amp;&amp; Alchemy.Level &gt;= 140 &amp;&amp; Alchemy.Level &lt; 205 || (InbagCount(3355) + InbagCount(3825)) &gt;= 70 &amp;&amp; Alchemy.Level &gt;= 140 &amp;&amp; Alchemy.Level &lt; 205 || (InbagCount(1710) + InbagCount(3356)) &gt;= 30 &amp;&amp; Alchemy.Level &gt;= 140 &amp;&amp; Alchemy.Level &lt; 205 || (InbagCount(1710) + InbagCount(3357)) &gt;= 20 &amp;&amp; Alchemy.Level &gt;= 140 &amp;&amp; Alchemy.Level &lt; 205 || (InbagCount(3821) + InbagCount(3825)) &lt; 40 &amp;&amp; Alchemy.Level &gt;= 140 &amp;&amp; Alchemy.Level &lt; 205" IgnoreCanRun="True">
+  <If Condition="(InbagCount(3388)*2 + InbagCount(2450)) &gt;= 50 &amp;&amp; Alchemy.Level &gt;= 140 &amp;&amp; Alchemy.Level &lt; 215 || (InbagCount(2453) + InbagCount(3388)*2) &gt;= 50 &amp;&amp; Alchemy.Level &gt;= 140 &amp;&amp; Alchemy.Level &lt; 215 || (InbagCount(3355) + InbagCount(3825)) &gt;= 70 &amp;&amp; Alchemy.Level &gt;= 140 &amp;&amp; Alchemy.Level &lt; 215 || (InbagCount(1710) + InbagCount(3356)) &gt;= 30 &amp;&amp; Alchemy.Level &gt;= 140 &amp;&amp; Alchemy.Level &lt; 215 || (InbagCount(1710) + InbagCount(3357)) &gt;= 20 &amp;&amp; Alchemy.Level &gt;= 140 &amp;&amp; Alchemy.Level &lt; 215 || (InbagCount(3821) + InbagCount(3825)) &lt; 40 &amp;&amp; Alchemy.Level &gt;= 140 &amp;&amp; Alchemy.Level &lt; 215" IgnoreCanRun="True">
     <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Farming Goldthorn.&quot;); " />
     <LoadProfileAction ProfileType="Honorbuddy" Path="Cicro\S-STW_Goldthorn.xml" />
   </If>
   <!--End-->
+  <If Condition="(InbagCount(3388)*2 + InbagCount(2450)) &lt; 50 &amp;&amp; Alchemy.Level &gt;= 140 &amp;&amp; Alchemy.Level &lt; 205" IgnoreCanRun="True">
+    <CallSubRoutine SubRoutineName="Sell" />
+    <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Farming some more Brairthron.&quot;); " />
+    <LoadProfileAction ProfileType="Honorbuddy" Path="Cicro\Duskwood_Brairthron.xml" />
+  </If>
 </Professionbuddy>
