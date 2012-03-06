@@ -706,20 +706,26 @@
     <CallSubRoutine SubRoutineName="CheckSkill" />
   </While>
   <While Condition="(InbagCount (62778) + InbagCount (62676)) &gt;= 15 &amp;&amp; Cooking.Level &gt;= 435 &amp;&amp; Cooking.Level &lt; 450" IgnoreCanRun="True">
-    <If Condition="Me.MapId == 1" IgnoreCanRun="True">
-      <CallSubRoutine SubRoutineName="Kalimdor to EK" />
-    </If>
-    <If Condition="Me.MapId == 0" IgnoreCanRun="True">
-      <If Condition="!HasRecipe(88015)" IgnoreCanRun="True">
-        <CallSubRoutine SubRoutineName="TrainCooking" />
-        <WaitAction Condition="false" Timeout="1000" />
+    <If Condition="Me.IsAlliance" IgnoreCanRun="True">
+      <If Condition="Me.MapId == 1" IgnoreCanRun="True">
+        <CallSubRoutine SubRoutineName="Kalimdor to EK" />
       </If>
-      <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Making something with the meat!!!&quot;); " />
-      <CallSubRoutine SubRoutineName="CreateFood" />
-      <While Condition="Cooking.Level &lt; 450" IgnoreCanRun="False">
-        <CastSpellAction RepeatType="Craftable" Repeat="40" Entry="88015" CastOnItem="False" ItemType="Chest" ItemId="0" />
-      </While>
-      <CallSubRoutine SubRoutineName="CheckSkill" />
+      <If Condition="Me.MapId == 0" IgnoreCanRun="True">
+        <If Condition="!HasRecipe(88006)" IgnoreCanRun="True">
+          <CallSubRoutine SubRoutineName="TrainCooking" />
+          <WaitAction Condition="false" Timeout="1000" />
+          <If Condition="!HasRecipe(88006)" IgnoreCanRun="True">
+            <CallSubRoutine SubRoutineName="TrainCooking" />
+            <WaitAction Condition="false" Timeout="1000" />
+          </If>
+        </If>
+        <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Making Blackened Surprise.&quot;); " />
+        <CallSubRoutine SubRoutineName="CreateFood" />
+        <While Condition="Cooking.Level &lt; 450" IgnoreCanRun="False">
+          <CastSpellAction RepeatType="Craftable" Repeat="15" Entry="88006" CastOnItem="False" ItemType="Chest" ItemId="0" />
+        </While>
+        <CallSubRoutine SubRoutineName="CheckSkill" />
+      </If>
     </If>
   </While>
   <!--If's for fishing-->
@@ -908,6 +914,7 @@
         <If Condition="Me.ZoneId == 1519" IgnoreCanRun="True">
           <CallSubRoutine SubRoutineName="EK to Uldum" />
           <If Condition="Me.MapId == 0" IgnoreCanRun="True">
+            <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;We dont have the portal? Taking the boat then..&quot;); " />
             <CallSubRoutine SubRoutineName="EK to Kalimdor" />
           </If>
         </If>
