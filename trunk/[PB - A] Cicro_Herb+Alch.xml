@@ -237,7 +237,7 @@
     <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Farming Mageroyal and Brairthorn.&quot;); " />
     <LoadProfileAction ProfileType="Honorbuddy" Path="Cicro\Hillsbrad_Mageroyal+Brairthorn.xml" />
   </If>
-  <If Condition="(InbagCount(929) + InbagCount(3383)*2 + InbagCount(858) + InbagCount(2450)) &gt;= 100 &amp;&amp; (InbagCount(3383) + InbagCount(785)) &gt;= 20 &amp;&amp; (InbagCount(2453) + InbagCount(929)) &lt; 34 &amp;&amp; Alchemy.Level &gt;= 60 &amp;&amp; Alchemy.Level &lt; 140" IgnoreCanRun="True">
+  <If Condition="(InbagCount(929) + InbagCount(3383)*2 + InbagCount(858) + InbagCount(2450)) &gt;= 100 || (InbagCount(3383) + InbagCount(785)) &gt;= 20 || (InbagCount(2453) + InbagCount(929)) &lt; 34 &amp;&amp; Alchemy.Level &gt;= 60 &amp;&amp; Alchemy.Level &lt; 140" IgnoreCanRun="True">
     <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Farming Bruiseweed.&quot;); " />
     <LoadProfileAction ProfileType="Honorbuddy" Path="Cicro\Wetlands_Bruiseweed.xml" />
   </If>
@@ -249,21 +249,21 @@
     </If>
     <LoadProfileAction ProfileType="Honorbuddy" Path="Cicro\Duskwood_Brairthron.xml" />
   </If>
-  <If Condition="(InbagCount(3176)*2 + InbagCount(2450)) &gt;= 50 &amp;&amp; (InbagCount(1622) + InbagCount(3176)*2) &lt; 50 &amp;&amp; (InbagCount(3355) + InbagCount(3825) + InbagCount(3825)) &lt; 70 &amp;&amp; Alchemy.Level &gt;= 140 &amp;&amp; Alchemy.Level &lt; 205" IgnoreCanRun="True">
+  <If Condition="(InbagCount(3176)*2 + InbagCount(2450)) &gt;= 50 &amp;&amp; (InbagCount(1622) + InbagCount(3176)*2) &lt; 50 &amp;&amp; Alchemy.Level &gt;= 140 &amp;&amp; Alchemy.Level &lt; 205 || (InbagCount(3355) + InbagCount(3825) + InbagCount(3825)) &lt; 70 &amp;&amp; Alchemy.Level &gt;= 140 &amp;&amp; Alchemy.Level &lt; 205" IgnoreCanRun="True">
     <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Farming WildSteel and Bruiseweed.&quot;); " />
     <LoadProfileAction ProfileType="Honorbuddy" Path="Cicro\N-STW_WildSteel+Bruiseweed.xml" />
   </If>
-  <If Condition="(InbagCount(3176)*2 + InbagCount(2450)) &gt;= 50 &amp;&amp; (InbagCount(1622) + InbagCount(3176)*2) &gt;= 50 &amp;&amp; (InbagCount(3355) + InbagCount(3825)) &gt;= 70 &amp;&amp; (InbagCount(1710) + InbagCount(3356)) &lt; 30 &amp;&amp; Alchemy.Level &gt;= 140 &amp;&amp; Alchemy.Level &lt; 205" IgnoreCanRun="True">
+  <If Condition="(InbagCount(3176)*2 + InbagCount(2450)) &gt;= 50 &amp;&amp; Alchemy.Level &gt;= 140 &amp;&amp; Alchemy.Level &lt; 205 || (InbagCount(1622) + InbagCount(3176)*2) &gt;= 50 &amp;&amp; Alchemy.Level &gt;= 140 &amp;&amp; Alchemy.Level &lt; 205 || (InbagCount(3355) + InbagCount(3825)) &gt;= 70 &amp;&amp; Alchemy.Level &gt;= 140 &amp;&amp; Alchemy.Level &lt; 205 || (InbagCount(1710) + InbagCount(3356)) &lt; 30 &amp;&amp; Alchemy.Level &gt;= 140 &amp;&amp; Alchemy.Level &lt; 205" IgnoreCanRun="True">
     <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Farming Kingsblood.&quot;); " />
     <LoadProfileAction ProfileType="Honorbuddy" Path="Cicro\N-STW_Kingsblood.xml" />
   </If>
-  <If Condition="(InbagCount(3176)*2 + InbagCount(2450)) &gt;= 50 &amp;&amp; (InbagCount(1622) + InbagCount(3176)*2) &gt;= 50 &amp;&amp; (InbagCount(3355) + InbagCount(3825)) &gt;= 70 &amp;&amp; (InbagCount(1710) + InbagCount(3356)) &gt;= 30 &amp;&amp; (InbagCount(1710) + InbagCount(3557)) &lt; 20 &amp;&amp; Alchemy.Level &gt;= 140 &amp;&amp; Alchemy.Level &lt; 205" IgnoreCanRun="True">
+  <If Condition="(InbagCount(3176)*2 + InbagCount(2450)) &gt;= 50 &amp;&amp; Alchemy.Level &gt;= 140 &amp;&amp; Alchemy.Level &lt; 205 || (InbagCount(1622) + InbagCount(3176)*2) &gt;= 50 &amp;&amp; Alchemy.Level &gt;= 140 &amp;&amp; Alchemy.Level &lt; 205 || (InbagCount(3355) + InbagCount(3825)) &gt;= 70 &amp;&amp; Alchemy.Level &gt;= 140 &amp;&amp; Alchemy.Level &lt; 205 || (InbagCount(1710) + InbagCount(3356)) &gt;= 30 &amp;&amp; Alchemy.Level &gt;= 140 &amp;&amp; Alchemy.Level &lt; 205 || (InbagCount(1710) + InbagCount(3557)) &lt; 20 &amp;&amp; Alchemy.Level &gt;= 140 &amp;&amp; Alchemy.Level &lt; 205" IgnoreCanRun="True">
     <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Farming Liferoot.&quot;); " />
     <LoadProfileAction ProfileType="Honorbuddy" Path="Cicro\N-STW_Liferoot.xml" />
   </If>
-  <If Condition="(InbagCount(3176)*2 + InbagCount(2450)) &gt;= 50 &amp;&amp; (InbagCount(1622) + InbagCount(3176)*2) &gt;= 50 &amp;&amp; (InbagCount(3355) + InbagCount(3825)) &gt;= 70 &amp;&amp; (InbagCount(1710) + InbagCount(3356)) &gt;= 30 &amp;&amp; (InbagCount(1710) + InbagCount(3557)) &gt;= 20 &amp;&amp; (InbagCount(2046) + InbagCount(3825)) &lt; 40 &amp;&amp; Alchemy.Level &gt;= 140 &amp;&amp; Alchemy.Level &lt; 205" IgnoreCanRun="True">
-    <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Farming Liferoot.&quot;); " />
-    <LoadProfileAction ProfileType="Honorbuddy" Path="Cicro\N-STW_Liferoot.xml" />
+  <If Condition="(InbagCount(3176)*2 + InbagCount(2450)) &gt;= 50 &amp;&amp; Alchemy.Level &gt;= 140 &amp;&amp; Alchemy.Level &lt; 205 || (InbagCount(1622) + InbagCount(3176)*2) &gt;= 50 &amp;&amp; Alchemy.Level &gt;= 140 &amp;&amp; Alchemy.Level &lt; 205 || (InbagCount(3355) + InbagCount(3825)) &gt;= 70 &amp;&amp; Alchemy.Level &gt;= 140 &amp;&amp; Alchemy.Level &lt; 205 || (InbagCount(1710) + InbagCount(3356)) &gt;= 30 &amp;&amp; Alchemy.Level &gt;= 140 &amp;&amp; Alchemy.Level &lt; 205 || (InbagCount(1710) + InbagCount(3557)) &gt;= 20 &amp;&amp; Alchemy.Level &gt;= 140 &amp;&amp; Alchemy.Level &lt; 205 || (InbagCount(3821) + InbagCount(3825)) &lt; 40 &amp;&amp; Alchemy.Level &gt;= 140 &amp;&amp; Alchemy.Level &lt; 205" IgnoreCanRun="True">
+    <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Farming Goldthorn.&quot;); " />
+    <LoadProfileAction ProfileType="Honorbuddy" Path="Cicro\S-STW_Goldthorn.xml" />
   </If>
   <!--End-->
 </Professionbuddy>
