@@ -262,7 +262,7 @@
       </If>
       <If Condition="Me.ZoneId == 493" IgnoreCanRun="True">
         <MoveToAction Location="7758.646, -2784.568, 457.3083" MoveType="Location" Pathing="Navigator" Entry="0" />
-        <While Condition="!Me.HasAura(7353)" IgnoreCanRun="True">
+        <While Condition="!Me.HasAura(&quot;Cozy Fire&quot;)" IgnoreCanRun="True">
           <CustomAction Code="Lua.DoString(string.Format(&quot;RunMacroText(\&quot;{0}\&quot;)&quot;, &quot;/cast Cooking Fire&quot;), 0);" />
           <WaitAction Condition="false" Timeout="2000" />
         </While>
@@ -806,10 +806,6 @@
     <CallSubRoutine SubRoutineName="DoFishing" />
   </If>
   <If Condition="Cooking.Level &gt;= 350 &amp;&amp; Cooking.Level &lt; 450" IgnoreCanRun="True">
-    <If Condition="Me.MapId == 571" IgnoreCanRun="True">
-      <SubRoutine SubRoutineName="CheckSkill" />
-      <SubRoutine SubRoutineName="Sell" />
-    </If>
     <If Condition="Me.MapId != 571" IgnoreCanRun="True">
       <If Condition="Me.MapId == 0" IgnoreCanRun="True">
         <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Going to Northernd.&quot;); " />
@@ -839,11 +835,22 @@
     <BuyItemAction NpcEntry="33026" Location="5796.559, 667.2882, 613.8835" ItemID="2596" BuyItemType="SpecificItem" Count="80" BuyAdditively="True" />
     <BuyItemAction NpcEntry="33026" Location="5796.559, 667.2882, 613.8835" ItemID="2595" BuyItemType="SpecificItem" Count="40" BuyAdditively="True" />
   </If>
-  <If Condition="Cooking.Level &gt;= 435" IgnoreCanRun="True">
+  <If Condition="Cooking.Level &gt;= 435 &amp;&amp; Cooking.Level &lt; 525 &amp;&amp; Me.MapId == 571" IgnoreCanRun="True">
+    <If Condition="Me.IsAlliance" IgnoreCanRun="True">
+      <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Flying to Valiance Keep docks for a boat to SW.&quot;); " />
+      <FlyToAction Dismount="True" Location="2232.913, 5136.488, 5.346051" />
+      <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Waiting for the boat.&quot;); " />
+      <WaitAction Condition="ObjectManager.GetObjectsOfType&lt;WoWGameObject&gt;().FirstOrDefault(o =&gt; o.Entry == 190536 ) != null &amp;&amp; ObjectManager.GetObjectsOfType&lt;WoWGameObject&gt;().FirstOrDefault(o =&gt; o.Entry == 190536 ).Location.Distance(new WoWPoint(2218.391, 5119.589, -0.03939917)) &lt; 3" Timeout="6000000" />
+      <CustomAction Code="CTM(2224.172, 5117.85, 9.493399);" />
+      <WaitAction Condition="Me.MapId == 0" Timeout="650000" />
+      <FlyToAction Dismount="True" Location="-8359.511, 640.7745, 95.25739" />
+    </If>
+  </If>
+  <!--End-->
+  <If Condition="Cooking.Level &gt;= 450" IgnoreCanRun="True">
     <CustomAction Code="Log(&quot;Starting log out in 20sec&quot;);" />
     <WaitAction Condition="false" Timeout="20000" />
     <CustomAction Code=" Lua.DoString(&quot;Logout()&quot;);TreeRoot.Stop();" />
     <WaitAction Condition="false" Timeout="35000" />
   </If>
-  <!--End-->
 </Professionbuddy>
