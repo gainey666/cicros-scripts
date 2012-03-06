@@ -21,8 +21,11 @@
       <If Condition="Me.IsAlliance" IgnoreCanRun="True">
         <If Condition="DistanceTo (-9073.915, 152.9712, 112.3703) &lt; DistanceTo (-5026.759, -828.7828, 495.3112)" IgnoreCanRun="False">
           <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;I need to train Alchemy. Going to train in Stormwind.&quot;); " />
-          <FlyToAction Dismount="True" Location="-9073.915, 152.9712, 112.3703" />
-          <TrainSkillAction NpcEntry="1215" Location="-9056.231, 152.6291, 115.0333" />
+          <If Condition="Me.ZoneId != 1519" IgnoreCanRun="True">
+            <FlyToAction Dismount="True" Location="-8969.993, 779.6597, 96.25002" />
+          </If>
+          <TrainSkillAction NpcEntry="5499" Location="-8993.051, 755.7896, 98.33161" />
+          <WaitAction Condition="false" Timeout="2000" />
         </If>
         <If Condition="DistanceTo (-5026.759, -828.7828, 495.3112) &lt; DistanceTo (-9073.915, 152.9712, 112.3703)" IgnoreCanRun="False">
           <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;I need to train Alchemy. Going to train in Ironforge.&quot;); " />
@@ -46,11 +49,13 @@
           <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;I need to train Herbalism. Going to train in Wetland.&quot;); " />
           <FlyToAction Dismount="True" Location="-3587.237, -858.5277, 4.071148" />
           <TrainSkillAction NpcEntry="1458" Location="-3584.83, -854.755, 3.760071" />
+          <WaitAction Condition="false" Timeout="2000" />
         </If>
         <If Condition="DistanceTo (-9059.666, 148.5659, 115.0341) &lt; DistanceTo (-3587.237, -858.5277, 4.071148)" IgnoreCanRun="False">
-          <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;I need to train Herbalism. Going to train outside SW.&quot;); " />
-          <FlyToAction Dismount="True" Location="-9073.915, 152.9712, 112.3703" />
-          <TrainSkillAction NpcEntry="1218" Location="-9059.666, 148.5659, 115.0341" />
+          <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;I need to train Herbalism. Going to train in Stormwind.&quot;); " />
+          <FlyToAction Dismount="True" Location="-8971.138, 777.7102, 96.30529" />
+          <TrainSkillAction NpcEntry="5566" Location="-8969.993, 779.6597, 96.25002" />
+          <WaitAction Condition="false" Timeout="2000" />
         </If>
       </If>
     </If>
@@ -60,8 +65,10 @@
       <If Condition="Me.IsAlliance" IgnoreCanRun="True">
         <If Condition="DistanceTo (-9073.915, 152.9712, 112.3703) &lt; DistanceTo (-5026.759, -828.7828, 495.3112)" IgnoreCanRun="False">
           <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;I need to train Alchemy. Going to train in Stormwind.&quot;); " />
-          <FlyToAction Dismount="True" Location="-9073.915, 152.9712, 112.3703" />
-          <TrainSkillAction NpcEntry="1215" Location="-9056.231, 152.6291, 115.0333" />
+          <If Condition="Me.ZoneId != 1519" IgnoreCanRun="True">
+            <FlyToAction Dismount="True" Location="-8969.993, 779.6597, 96.25002" />
+          </If>
+          <TrainSkillAction NpcEntry="5499" Location="-8993.051, 755.7896, 98.33161" />
         </If>
         <If Condition="DistanceTo (-5026.759, -828.7828, 495.3112) &lt; DistanceTo (-9073.915, 152.9712, 112.3703)" IgnoreCanRun="False">
           <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;I need to train Alchemy. Going to train in Ironforge.&quot;); " />
@@ -93,6 +100,11 @@
         <SellItemAction Sell="All" NpcEntry="66" Location="-9492.55, 81.4931, 56.22693" SellItemType="Specific" ItemID="2447,765,2449,929,118,3383,858,3383,2453,2452" Count="0" />
         <WaitAction Condition="false" Timeout="3000" />
       </If>
+      <If Condition="Alchemy.Level &gt;= 205 &amp;&amp; Alchemy.Level &lt; 210 &amp;&amp; InbagCount(1710) &gt;= 1" IgnoreCanRun="True">
+        <SellItemAction Sell="All" NpcEntry="0" Location="0, 0, 0" SellItemType="Greys" ItemID="" Count="0" />
+        <SellItemAction Sell="All" NpcEntry="0" Location="0, 0, 0" SellItemType="Specific" ItemID="2447,765,2449,929,118,3383,858,3383,2453,2452,3388,2450,2453,3825,1710,3356,3357,3818,3825" Count="0" />
+        <WaitAction Condition="false" Timeout="3000" />
+      </If>
     </If>
   </SubRoutine>
   <SubRoutine SubRoutineName="CheckSkill">
@@ -111,17 +123,20 @@
             <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;I need Vials!. Going to Ironforge.&quot;); " />
             <If Condition="Me.ZoneId != 1537" IgnoreCanRun="True">
               <FlyToAction Dismount="True" Location="-5026.759, -828.7828, 495.3112" />
-              <BuyItemAction NpcEntry="5178" Location="-4856.877, -1237.258, 501.724" ItemID="3371" BuyItemType="SpecificItem" Count="20" BuyAdditively="False" />
+              <BuyItemAction NpcEntry="5178" Location="-4856.877, -1237.258, 501.724" ItemID="3371" BuyItemType="SpecificItem" Count="100" BuyAdditively="False" />
               <WaitAction Condition="false" Timeout="2000" />
             </If>
             <If Condition="Me.ZoneId == 1537" IgnoreCanRun="True">
-              <BuyItemAction NpcEntry="5178" Location="-4856.877, -1237.258, 501.724" ItemID="3371" BuyItemType="SpecificItem" Count="20" BuyAdditively="False" />
+              <BuyItemAction NpcEntry="5178" Location="-4856.877, -1237.258, 501.724" ItemID="3371" BuyItemType="SpecificItem" Count="100" BuyAdditively="False" />
               <WaitAction Condition="false" Timeout="2000" />
             </If>
           </If>
           <If Condition="DistanceTo (-9073.915, 152.9712, 112.3703) &lt; DistanceTo (-5026.759, -828.7828, 495.3112)" IgnoreCanRun="False">
-            <FlyToAction Dismount="True" Location="-9492.55, 81.4931, 56.22646" />
-            <BuyItemAction NpcEntry="66" Location="-9492.55, 81.4931, 56.22646" ItemID="3371" BuyItemType="SpecificItem" Count="20" BuyAdditively="False" />
+            <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;I need Vials!. Going to Stormwind.&quot;); " />
+            <If Condition="Me.ZoneId != 1519" IgnoreCanRun="True">
+              <FlyToAction Dismount="True" Location="-8987.747, 751.751, 98.33161" />
+            </If>
+            <BuyItemAction NpcEntry="1313" Location="-8987.747, 751.751, 98.33161" ItemID="3371" BuyItemType="SpecificItem" Count="100" BuyAdditively="False" />
           </If>
         </If>
       </If>
@@ -198,6 +213,10 @@
       <If Condition="!HasRecipe(3176)" IgnoreCanRun="True">
         <CallSubRoutine SubRoutineName="TrainAlchRecipe" />
         <WaitAction Condition="false" Timeout="2000" />
+        <If Condition="!HasRecipe(3176)" IgnoreCanRun="True">
+          <CallSubRoutine SubRoutineName="TrainAlchRecipe" />
+          <WaitAction Condition="false" Timeout="2000" />
+        </If>
       </If>
       <CastSpellAction RepeatType="Craftable" Repeat="20" Entry="3176" CastOnItem="False" ItemType="Chest" ItemId="0" />
     </While>
@@ -206,21 +225,30 @@
       <If Condition="!HasRecipe(7181)" IgnoreCanRun="True">
         <CallSubRoutine SubRoutineName="TrainAlchRecipe" />
         <WaitAction Condition="false" Timeout="2000" />
+        <If Condition="!HasRecipe(7181)" IgnoreCanRun="True">
+          <CallSubRoutine SubRoutineName="TrainAlchRecipe" />
+          <WaitAction Condition="false" Timeout="2000" />
+        </If>
       </If>
       <CastSpellAction RepeatType="Craftable" Repeat="20" Entry="7181" CastOnItem="False" ItemType="Chest" ItemId="0" />
     </While>
     <CallSubRoutine SubRoutineName="BuyVial" />
     <While Condition="Alchemy.Level &lt; 205" IgnoreCanRun="False">
-      <If Condition="!HasRecipe(3825)" IgnoreCanRun="True">
+      <If Condition="!HasRecipe(3450)" IgnoreCanRun="True">
         <CallSubRoutine SubRoutineName="TrainAlchRecipe" />
         <WaitAction Condition="false" Timeout="2000" />
-        <If Condition="!HasRecipe(3447)" IgnoreCanRun="True">
+        <If Condition="!HasRecipe(3450)" IgnoreCanRun="True">
           <CallSubRoutine SubRoutineName="TrainAlchRecipe" />
           <WaitAction Condition="false" Timeout="2000" />
+          <If Condition="!HasRecipe(3447)" IgnoreCanRun="True">
+            <CallSubRoutine SubRoutineName="TrainAlchRecipe" />
+            <WaitAction Condition="false" Timeout="2000" />
+          </If>
         </If>
       </If>
-      <CastSpellAction RepeatType="Craftable" Repeat="60" Entry="3825" CastOnItem="False" ItemType="Chest" ItemId="0" />
+      <CastSpellAction RepeatType="Specific" Repeat="60" Entry="3450" CastOnItem="False" ItemType="Chest" ItemId="0" />
     </While>
+    <CallSubRoutine SubRoutineName="Sell" />
     <CallSubRoutine SubRoutineName="TrainAlch" />
     <If Condition="Me.ZoneId == 1537 &amp;&amp; Me.IsAlliance" IgnoreCanRun="True">
       <MoveToAction Location="-5026.759, -828.7828, 495.3112" MoveType="Location" Pathing="Navigator" Entry="0" />
