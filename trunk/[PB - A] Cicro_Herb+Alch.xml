@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Professionbuddy>
   <!--Intro-->
-  <CustomAction Code="Log(System.Drawing.Color.DarkOliveGreen,&quot;Cicro's Herb and Alch 1-525 v0.0&quot;);" />
+  <CustomAction Code="Log(System.Drawing.Color.DarkOliveGreen,&quot;Cicro's Herb and Alch 1-525 v0.1&quot;);" />
   <If Condition="TreeRoot.Current.Name != &quot;Gatherbuddy2&quot;" IgnoreCanRun="True">
     <CustomAction Code="SwitchToBot(&quot;Gatherbuddy2&quot;);" />
   </If>
@@ -15,6 +15,7 @@
     <WaitAction Condition="false" Timeout="3000" />
   </If>
   <CallSubRoutine SubRoutineName="CheckSkill" />
+  <CallSubRoutine SubRoutineName="CheckHerb" />
   <!--Subs-->
   <SubRoutine SubRoutineName="TrainAlchRecipe">
     <If Condition="Me.MapId == 0" IgnoreCanRun="True">
@@ -144,13 +145,17 @@
   </SubRoutine>
   <SubRoutine SubRoutineName="CheckHerb">
     <If Condition="Me.IsAlliance" IgnoreCanRun="True">
-      <If Condition="Herbalism.Level &lt; 71 &amp;&amp; Alchemy.Level &gt; 60" IgnoreCanRun="True">
+      <If Condition="Herbalism.Level &lt; 71 &amp;&amp; Alchemy.Level &gt;= 60" IgnoreCanRun="True">
         <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;We are not lvl 70 in Herb yet, farming abit&quot;); " />
         <LoadProfileAction ProfileType="Honorbuddy" Path="Cicro\Dun-Morogh_Peacebloom+Silverleaf.xml" />
       </If>
-      <If Condition="Herbalism.Level &gt;= 71 &amp;&amp; Herbalism.Level &lt; 86 &amp;&amp; Alchemy.Level &gt; 140" IgnoreCanRun="True">
-        <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;We are not lvl 85 in Herb yet, farming abit&quot;); " />
+      <If Condition="Herbalism.Level &gt;= 71 &amp;&amp; Herbalism.Level &lt; 125 &amp;&amp; Alchemy.Level &gt;= 140" IgnoreCanRun="True">
+        <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;We are not lvl 125 in Herb yet, farming abit&quot;); " />
         <LoadProfileAction ProfileType="Honorbuddy" Path="Cicro\Hillsbrad_Mageroyal+Brairthorn.xml" />
+      </If>
+      <If Condition="Herbalism.Level &gt;= 125 &amp;&amp; Herbalism.Level &lt; 175 &amp;&amp; Alchemy.Level &gt;= 215" IgnoreCanRun="True">
+        <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;We are not lvl 175 in Herb yet, farming abit&quot;); " />
+        <LoadProfileAction ProfileType="Honorbuddy" Path="Cicro\N-STW_Kingsblood.xml" />
       </If>
     </If>
   </SubRoutine>
@@ -396,7 +401,7 @@
   </If>
   <If Condition="(InbagCount(3388)*2 + InbagCount(2450)) &gt;= 50 &amp;&amp; (InbagCount(2453) + InbagCount(3388)*2) &gt;= 50 &amp;&amp; (InbagCount(3355) + InbagCount(3825)) &gt;= 70 &amp;&amp; (InbagCount(1710) + InbagCount(3356)) &gt;= 30 &amp;&amp; (InbagCount(1710) + InbagCount(3357)) &gt;= 20 &amp;&amp; (InbagCount(3821) + InbagCount(3825)) &lt; 40 &amp;&amp; Alchemy.Level &gt;= 140 &amp;&amp; Alchemy.Level &lt; 215" IgnoreCanRun="True">
     <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Farming Goldthorn.&quot;); " />
-    <LoadProfileAction ProfileType="Honorbuddy" Path="Cicro\S-STW_Goldthorn.xml" />
+    <LoadProfileAction ProfileType="Honorbuddy" Path="Cicro\ArathiHighland_Goldthorn.xml" />
   </If>
   <If Condition="(InbagCount(3928) + InbagCount(8838)) &lt; 30 &amp;&amp; Alchemy.Level &gt;= 215 &amp;&amp; Alchemy.Level &lt; 285 || (InbagCount(3928) + InbagCount(3358) + InbagCount(9179)) &lt; 50 &amp;&amp; Alchemy.Level &gt;= 215 &amp;&amp; Alchemy.Level &lt; 285" IgnoreCanRun="True">
     <CallSubRoutine SubRoutineName="Sell" />
