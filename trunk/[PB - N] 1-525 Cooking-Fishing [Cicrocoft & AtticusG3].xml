@@ -20,13 +20,17 @@
     <If Condition="Me.IsAlliance" IgnoreCanRun="True">
       <If Condition="Me.ZoneId == 12" IgnoreCanRun="True">
         <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;I need to train fishing. Going to train in near Goldshire.&quot;); " />
-        <FlyToAction Dismount="True" Location="-9382.722, -119.8093, 56.22465" />
+        <If Condition="DistanceTo (-9382.077, -117.0054, 58.77687) &gt; 30" IgnoreCanRun="True">
+          <FlyToAction Dismount="True" Location="-9382.722, -119.8093, 56.22465" />
+        </If>
         <TrainSkillAction NpcEntry="1651" Location="-9382.077, -117.0054, 58.77687" />
         <WaitAction Condition="false" Timeout="2000" />
       </If>
       <If Condition="Me.ZoneId == 1519" IgnoreCanRun="True">
         <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;I need to train fishing. Going to train in Stormwind.&quot;); " />
-        <FlyToAction Dismount="True" Location="-8800.812, 767.9769, 96.33873" />
+        <If Condition="DistanceTo (-8800.812, 767.9769, 96.33873) &gt; 30" IgnoreCanRun="True">
+          <FlyToAction Dismount="True" Location="-8800.812, 767.9769, 96.33873" />
+        </If>
         <TrainSkillAction NpcEntry="5493" Location="-8800.812, 767.9769, 96.33873" />
         <WaitAction Condition="false" Timeout="2000" />
       </If>
@@ -36,21 +40,11 @@
         <TrainSkillAction NpcEntry="1680" Location="0, 0, 0" />
         <WaitAction Condition="false" Timeout="2000" />
       </If>
-      <If Condition="Me.ZoneId == 11" IgnoreCanRun="True">
+      <If Condition="Me.ZoneId == 11 || Me.ZoneId == 28 || Me.ZoneId == 139" IgnoreCanRun="True">
         <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;I need to train fishing. Going to train in Menethill Harbor.&quot;); " />
-        <FlyToAction Dismount="False" Location="-3760.027, -725.1077, 1.920412" />
-        <TrainSkillAction NpcEntry="3179" Location="-3763.51, -723.533, 2.00382" />
-        <WaitAction Condition="false" Timeout="2000" />
-      </If>
-      <If Condition="Me.ZoneId == 28" IgnoreCanRun="True">
-        <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;I need to train fishing. Going to train in Menethill Harbor.&quot;); " />
-        <FlyToAction Dismount="False" Location="-3760.027, -725.1077, 1.920412" />
-        <TrainSkillAction NpcEntry="3179" Location="-3763.51, -723.533, 2.00382" />
-        <WaitAction Condition="false" Timeout="2000" />
-      </If>
-      <If Condition="Me.ZoneId == 139" IgnoreCanRun="True">
-        <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;I need to train fishing. Going to train in Menethill Harbor.&quot;); " />
-        <FlyToAction Dismount="False" Location="-3760.027, -725.1077, 1.920412" />
+        <If Condition="DistanceTo (-3763.51, -723.533, 2.00382) &gt; 30" IgnoreCanRun="True">
+          <FlyToAction Dismount="False" Location="-3760.027, -725.1077, 1.920412" />
+        </If>
         <TrainSkillAction NpcEntry="3179" Location="-3763.51, -723.533, 2.00382" />
         <WaitAction Condition="false" Timeout="2000" />
       </If>
@@ -61,7 +55,9 @@
       </If>
       <If Condition="Me.MapId == 571" IgnoreCanRun="True">
         <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;I need to train fishing. Going to train in Valiance Keep.&quot;); " />
-        <FlyToAction Dismount="True" Location="2147.618, 5237.519, 19.44516" />
+        <If Condition="DistanceTo (2144.236, 5234.324, 19.44593) &gt; 30" IgnoreCanRun="True">
+          <FlyToAction Dismount="True" Location="2147.618, 5237.519, 19.44516" />
+        </If>
         <TrainSkillAction NpcEntry="26993" Location="2144.236, 5234.324, 19.44593" />
         <WaitAction Condition="false" Timeout="2000" />
       </If>
@@ -108,19 +104,25 @@
       </If>
       <If Condition="Me.ZoneId == 1519" IgnoreCanRun="True">
         <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;I need to train cooking. Going to train in Stormwind.&quot;); " />
-        <FlyToAction Dismount="True" Location="-8649.063, 430.604, 101.5433" />
+        <If Condition="DistanceTo (-8612.185, 380.1146, 99.62392) &gt; 30" IgnoreCanRun="True">
+          <FlyToAction Dismount="True" Location="-8649.063, 430.604, 101.5433" />
+        </If>
         <TrainSkillAction NpcEntry="5482" Location="-8612.185, 380.1146, 99.62392" />
         <WaitAction Condition="false" Timeout="2000" />
       </If>
       <If Condition="Me.ZoneId == 44" IgnoreCanRun="True">
         <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;I need to train cooking. Going to train in Lake Everstill town.&quot;); " />
-        <FlyToAction Dismount="True" Location="-9229.114, -2067.764, 76.97263" />
+        <If Condition="DistanceTo (-9204.802, -2065.223, 78.08831) &gt; 30" IgnoreCanRun="True">
+          <FlyToAction Dismount="True" Location="-9229.114, -2067.764, 76.97263" />
+        </If>
         <TrainSkillAction NpcEntry="3087" Location="-9204.802, -2065.223, 78.08831" />
         <WaitAction Condition="false" Timeout="2000" />
       </If>
       <If Condition="Me.ZoneId == 28" IgnoreCanRun="True">
         <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;I need to train cooking. Going to train in Kharanos.&quot;); " />
-        <FlyToAction Dismount="True" Location="-5600.912, -485.818, 397.1074" />
+        <If Condition="DistanceTo (-5594.47, -545.82, 398.7681) &gt; 30" IgnoreCanRun="True">
+          <FlyToAction Dismount="True" Location="-5600.912, -485.818, 397.1074" />
+        </If>
         <TrainSkillAction NpcEntry="1699" Location="-5594.47, -545.82, 398.7681" />
         <WaitAction Condition="false" Timeout="2000" />
       </If>
@@ -131,27 +133,38 @@
       </If>
       <If Condition="Me.ZoneId == 3483" IgnoreCanRun="True">
         <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;I need to train cooking. Going to train in Honor Hold.&quot;); " />
-        <FlyToAction Dismount="True" Location="-709.1463, 2698.413, 94.34809" />
+        <If Condition="DistanceTo (-707.7498, 2749.149, 94.72163) &gt; 30" IgnoreCanRun="True">
+          <FlyToAction Dismount="True" Location="-709.1463, 2698.413, 94.34809" />
+        </If>
         <TrainSkillAction NpcEntry="18987" Location="-707.7498, 2749.149, 94.72163" />
       </If>
       <If Condition="Me.ZoneId == 3519" IgnoreCanRun="True">
         <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;I need to train cooking. Going to train in Lower City.&quot;); " />
-        <FlyToAction Dismount="True" Location="-2074.449, 5302.941, -37.32236" />
+        <If Condition="DistanceTo (-2065.71, 5311.151, -37.32356) &gt; 30" IgnoreCanRun="True">
+          <FlyToAction Dismount="True" Location="-2074.449, 5302.941, -37.32236" />
+        </If>
         <TrainSkillAction NpcEntry="19185" Location="-2065.71, 5311.151, -37.32356" />
       </If>
       <If Condition="Me.ZoneId == 3703" IgnoreCanRun="True">
         <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;I need to train cooking. Going to train in Lower City.&quot;); " />
-        <FlyToAction Dismount="True" Location="-2074.449, 5302.941, -37.32236" />
+        <If Condition="DistanceTo (-2065.71, 5311.151, -37.32356) &gt; 30" IgnoreCanRun="True">
+          <FlyToAction Dismount="True" Location="-2074.449, 5302.941, -37.32236" />
+        </If>
         <TrainSkillAction NpcEntry="19185" Location="-2065.71, 5311.151, -37.32356" />
       </If>
       <If Condition="Me.ZoneId == 3537" IgnoreCanRun="True">
         <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;I need to train cooking. Going to train in Valiance Keep.&quot;); " />
-        <FlyToAction Dismount="True" Location="2147.618, 5237.519, 19.44516" />
+        <If Condition="DistanceTo (2147.999, 5231.634, 19.44637) &gt; 30" IgnoreCanRun="True">
+          <FlyToAction Dismount="True" Location="2147.618, 5237.519, 19.44516" />
+        </If>
         <WaitAction Condition="false" Timeout="2000" />
+        <TrainSkillAction NpcEntry="26989" Location="2147.999, 5231.634, 19.44637" />
       </If>
       <If Condition="Me.ZoneId == 4395" IgnoreCanRun="True">
         <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;I need to train cooking. Going to train in Dalaran.&quot;); " />
-        <FlyToAction Dismount="True" Location="5737.577, 673.0076, 645.2578" />
+        <If Condition="DistanceTo (5707.724, 714.7145, 642.4741) &gt; 30" IgnoreCanRun="True">
+          <FlyToAction Dismount="True" Location="5737.577, 673.0076, 645.2578" />
+        </If>
         <TrainSkillAction NpcEntry="28705" Location="5707.724, 714.7145, 642.4741" />
       </If>
     </If>
@@ -191,17 +204,23 @@
     <If Condition="Me.IsAlliance" IgnoreCanRun="True">
       <If Condition="Me.ZoneId == 12" IgnoreCanRun="True">
         <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Lets find a place to cook!&quot;); " />
-        <FlyToAction Dismount="True" Location="-9386.659, -95.0334, 62.42002" />
+        <If Condition="DistanceTo (-9377.794, -70.15736, 64.43739) &gt; 30" IgnoreCanRun="True">
+          <FlyToAction Dismount="True" Location="-9386.659, -95.0334, 62.42002" />
+        </If>
         <MoveToAction Location="-9377.794, -70.15736, 64.43739" MoveType="Location" Pathing="Navigator" Entry="0" />
       </If>
       <If Condition="Me.ZoneId == 4395" IgnoreCanRun="True">
         <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Lets find a place to cook! Going to Dalaran&quot;); " />
-        <FlyToAction Dismount="True" Location="5737.577, 673.0076, 645.2578" />
+        <If Condition="DistanceTo (5700.841, 717.2857, 642.4707) &gt; 30" IgnoreCanRun="True">
+          <FlyToAction Dismount="True" Location="5737.577, 673.0076, 645.2578" />
+        </If>
         <MoveToAction Location="5700.841, 717.2857, 642.4707" MoveType="Location" Pathing="Navigator" Entry="0" />
       </If>
       <If Condition="Me.ZoneId == 3537" IgnoreCanRun="True">
         <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Lets find a place to cook! Going to Valiance Keep&quot;); " />
-        <FlyToAction Dismount="True" Location="2257.236, 5200.058, 11.32278" />
+        <If Condition="DistanceTo (2294.477, 5198.208, 11.70316) &gt; 30" IgnoreCanRun="True">
+          <FlyToAction Dismount="True" Location="2257.236, 5200.058, 11.32278" />
+        </If>
         <MoveToAction Location="2294.477, 5198.208, 11.70316" MoveType="Location" Pathing="Navigator" Entry="0" />
       </If>
       <If Condition="Me.ZoneId == 3703" IgnoreCanRun="True">
@@ -214,17 +233,23 @@
       </If>
       <If Condition="Me.ZoneId == 11" IgnoreCanRun="True">
         <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Lets find a place to cook! Going to Kharanos&quot;); " />
-        <FlyToAction Dismount="True" Location="-5600.912, -485.818, 397.1074" />
+        <If Condition="DistanceTo (-5597.276, -542.2947, 399.0965) &gt; 30" IgnoreCanRun="True">
+          <FlyToAction Dismount="True" Location="-5600.912, -485.818, 397.1074" />
+        </If>
         <MoveToAction Location="-5597.276, -542.2947, 399.0965" MoveType="Location" Pathing="Navigator" Entry="0" />
       </If>
       <If Condition="Me.ZoneId == 3483" IgnoreCanRun="True">
         <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Lets find a place to cook! Going to Honor Hold&quot;); " />
-        <FlyToAction Dismount="True" Location="-709.1463, 2698.413, 94.34809" />
+        <If Condition="DistanceTo (-705.3499, 2751.092, 94.72063) &gt; 30" IgnoreCanRun="True">
+          <FlyToAction Dismount="True" Location="-709.1463, 2698.413, 94.34809" />
+        </If>
         <MoveToAction Location="-705.3499, 2751.092, 94.72063" MoveType="Location" Pathing="Navigator" Entry="0" />
       </If>
       <If Condition="Me.ZoneId == 139" IgnoreCanRun="True">
         <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Lets find a place to cook! Going to Kharanos&quot;); " />
-        <FlyToAction Dismount="True" Location="-5600.912, -485.818, 397.1074" />
+        <If Condition="DistanceTo (-5597.276, -542.2947, 399.0965) &gt; 30" IgnoreCanRun="True">
+          <FlyToAction Dismount="True" Location="-5600.912, -485.818, 397.1074" />
+        </If>
         <MoveToAction Location="-5597.276, -542.2947, 399.0965" MoveType="Location" Pathing="Navigator" Entry="0" />
       </If>
       <If Condition="Me.ZoneId == 1" IgnoreCanRun="True">
@@ -233,17 +258,23 @@
       </If>
       <If Condition="Me.ZoneId == 28" IgnoreCanRun="True">
         <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Lets find a place to cook! Going to Kharanos&quot;); " />
-        <FlyToAction Dismount="True" Location="-5600.912, -485.818, 397.1074" />
+        <If Condition="DistanceTo (-5597.276, -542.2947, 399.0965) &gt; 30" IgnoreCanRun="True">
+          <FlyToAction Dismount="True" Location="-5600.912, -485.818, 397.1074" />
+        </If>
         <MoveToAction Location="-5597.276, -542.2947, 399.0965" MoveType="Location" Pathing="Navigator" Entry="0" />
       </If>
       <If Condition="Me.ZoneId == 44" IgnoreCanRun="True">
         <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Lets find a place to cook!&quot;); " />
-        <FlyToAction Dismount="True" Location="-9229.114, -2067.764, 76.97263" />
+        <If Condition="DistanceTo (-9207.701, -2065.184, 78.0983) &gt; 30" IgnoreCanRun="True">
+          <FlyToAction Dismount="True" Location="-9229.114, -2067.764, 76.97263" />
+        </If>
         <MoveToAction Location="-9207.701, -2065.184, 78.0983" MoveType="Location" Pathing="Navigator" Entry="0" />
       </If>
       <If Condition="Me.ZoneId == 1519" IgnoreCanRun="True">
         <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Lets find a place to cook!&quot;); " />
-        <FlyToAction Dismount="True" Location="-8649.063, 430.604, 101.5433" />
+        <If Condition="DistanceTo (-8609.85, 376.1795, 99.62276) &gt; 30" IgnoreCanRun="True">
+          <FlyToAction Dismount="True" Location="-8649.063, 430.604, 101.5433" />
+        </If>
         <MoveToAction Location="-8609.85, 376.1795, 99.62276" MoveType="Location" Pathing="Navigator" Entry="0" />
       </If>
     </If>
@@ -338,6 +369,7 @@
   </SubRoutine>
   <SubRoutine SubRoutineName="DoFishing">
     <If Condition="Me.IsAlliance" IgnoreCanRun="True">
+      <CallSubRoutine SubRoutineName="EquipFishingPole" />
       <ChangeBotAction BotName="AutoAngler" />
     </If>
     <If Condition="Me.IsHorde" IgnoreCanRun="True">
