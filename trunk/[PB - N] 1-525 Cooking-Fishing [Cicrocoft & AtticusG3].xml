@@ -745,11 +745,11 @@
         <MoveToAction Location="-11930.31, -3209.613, -1.836873" MoveType="Location" Pathing="ClickToMove" Entry="0" />
         <WaitAction Condition="Me.MapId == 530" Timeout="25000" />
       </If>
-      <If Condition="Me.ZoneId == 4" IgnoreCanRun="True">
-        <FlyToAction Dismount="False" Location="-11895.9, -3206.984, -6.04731" />
-        <MoveToAction Location="-11930.31, -3209.613, -1.836873" MoveType="Location" Pathing="ClickToMove" Entry="0" />
-        <WaitAction Condition="Me.MapId == 530" Timeout="25000" />
-      </If>
+    </If>
+    <If Condition="(Me.MapId == 0) &amp;&amp; (Me.ZoneId == 4)" IgnoreCanRun="True">
+      <FlyToAction Dismount="False" Location="-11850, -3206, -3.5" />
+      <MoveToAction Location="-11910, -3207, -1" MoveType="Location" Pathing="Navigator" Entry="0" />
+      <WaitAction Condition="Me.MapId == 530" Timeout="25000" />
     </If>
   </SubRoutine>
   <SubRoutine SubRoutineName="EK to Northern">
@@ -823,16 +823,14 @@
           <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Porting to Blasted Lands&quot;); " />
           <MoveToAction Location="1709.683, -4317.789, 31.30923" MoveType="Location" Pathing="Navigator" Entry="0" />
           <MoveToAction Location="1711.484, -4283.375, 27.86806" MoveType="Location" Pathing="Navigator" Entry="0" />
-          <MoveToAction Location="1735.798, -4282.443, 16.92819" MoveType="Location" Pathing="Navigator" Entry="0" />
-          <MoveToAction Location="1744.18, -4299.456, 14.05602" MoveType="Location" Pathing="Navigator" Entry="0" />
           <MoveToAction Location="1770.981, -4316.705, 6.252295" MoveType="Location" Pathing="Navigator" Entry="0" />
           <MoveToAction Location="1779.663, -4328.729, -8.144003" MoveType="Location" Pathing="ClickToMove" Entry="0" />
           <InteractionAction InteractType="GameObject" Entry="195142" InteractDelay="2000" GameObjectType="Transport" SpellFocus="Anvil" />
           <WaitAction Condition="false" Timeout="1000" />
         </If>
         <If Condition="(Me.MapId == 0)" IgnoreCanRun="True">
-          <FlyToAction Dismount="False" Location="-11895.9, -3206.984, -6.04731" />
-          <MoveToAction Location="-11930.31, -3209.613, -1.836873" MoveType="Location" Pathing="ClickToMove" Entry="0" />
+          <FlyToAction Dismount="False" Location="-11850, -3206, -3.5" />
+          <MoveToAction Location="-11910, -3207, -1" MoveType="Location" Pathing="Navigator" Entry="0" />
           <WaitAction Condition="Me.MapId == 530" Timeout="25000" />
         </If>
       </While>
@@ -1264,6 +1262,19 @@
           <CallSubRoutine SubRoutineName="Sell" />
           <If Condition="!HasRecipe(33284)" IgnoreCanRun="True">
             <BuyItemAction NpcEntry="16826" Location="-708.8713, 2739.131, 94.73363" ItemID="27688" BuyItemType="SpecificItem" Count="1" BuyAdditively="True" />
+            <CustomAction Code="Lua.DoString(string.Format(&quot;RunMacroText(\&quot;{0}\&quot;)&quot;, &quot;/use Recipe: Ravager Dog&quot;), 0);" />
+          </If>
+        </If>
+      </If>
+      <If Condition="Me.IsHorde" IgnoreCanRun="True">
+        <If Condition="!HasRecipe(33284)" IgnoreCanRun="True">
+          <FlyToAction Dismount="True" Location="72.61691, 2708.57, 84.48335" />
+          <BuyItemAction NpcEntry="16585" Location="95.00211, 2693.276, 86.03088" ItemID="27688" BuyItemType="SpecificItem" Count="1" BuyAdditively="True" />
+          <CustomAction Code="Lua.DoString(string.Format(&quot;RunMacroText(\&quot;{0}\&quot;)&quot;, &quot;/use Recipe: Ravager Dog&quot;), 0);" />
+          <WaitAction Condition="false" Timeout="3000" />
+          <CallSubRoutine SubRoutineName="Sell" />
+          <If Condition="!HasRecipe(33284)" IgnoreCanRun="True">
+            <BuyItemAction NpcEntry="16585" Location="95.00211, 2693.276, 86.03088" ItemID="27688" BuyItemType="SpecificItem" Count="1" BuyAdditively="True" />
             <CustomAction Code="Lua.DoString(string.Format(&quot;RunMacroText(\&quot;{0}\&quot;)&quot;, &quot;/use Recipe: Ravager Dog&quot;), 0);" />
           </If>
         </If>
