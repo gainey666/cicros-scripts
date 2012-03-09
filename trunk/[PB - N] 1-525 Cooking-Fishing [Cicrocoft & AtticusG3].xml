@@ -63,33 +63,133 @@
       </If>
     </If>
     <If Condition="Me.IsHorde" IgnoreCanRun="True">
-      <If Condition="Me.ZoneId == 1637" IgnoreCanRun="True">
-        <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;I need to train fishing. Going to train in Orgrimmar.&quot;); " />
-        <FlyToAction Dismount="True" Location="2003.417, -4664.375, 28.49254" />
-        <TrainSkillAction NpcEntry="3332" Location="2000.465, -4662.071, 28.49152" />
-        <WaitAction Condition="false" Timeout="2000" />
+      <If Condition="Me.MapId == 0" IgnoreCanRun="True">
+        <If Condition="(Me.ZoneId == 47) || (Me.ZoneId == 45) || (Me.ZoneId == 139) || (Me.ZoneId == 4922) || (Me.ZoneId == 4298)" IgnoreCanRun="True">
+          <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;I need to train fishing. Going to train in Revantusk Village.&quot;); " />
+          <FlyToAction Dismount="True" Location="-622.3551, -4670.057, 5.047304" />
+          <TrainSkillAction NpcEntry="14740" Location="-626.0715, -4667.708, 6.462718" />
+          <WaitAction Condition="false" Timeout="2000" />
+        </If>
+        <If Condition="(Me.ZoneId == 85) || (Me.ZoneId == 4714) || (Me.ZoneId == 4755) || (Me.ZoneId == 267) || (Me.ZoneId == 130) || (Me.ZoneId == 28)" IgnoreCanRun="True">
+          <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;I need to train fishing. Going to train in Tirisfal Glades.&quot;); " />
+          <FlyToAction Dismount="True" Location="2300.94, 1.237906, 23.86521" />
+          <TrainSkillAction NpcEntry="5690" Location="2301.524, -1.888889, 23.17465" />
+          <WaitAction Condition="false" Timeout="2000" />
+        </If>
+        <If Condition="(Me.ZoneId == 1497) || (Me.ZoneId == 5149) || (Me.ZoneId == 5145) || (Me.ZoneId == 4815) || (Me.ZoneId == 5144)" IgnoreCanRun="True">
+          <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;I need to train fishing. Going to train in Undercity.&quot;); " />
+          <FlyToAction Dismount="True" Location="1677.327, 93.78334, -62.14135" />
+          <TrainSkillAction NpcEntry="4573" Location="1677.83, 99.0023, -62.02907" />
+          <WaitAction Condition="false" Timeout="2000" />
+        </If>
+        <If Condition="(Me.ZoneId == 3487) || (Me.ZoneId == 3430) || (Me.ZoneId == 3433) || (Me.ZoneId == 4080)" IgnoreCanRun="True">
+          <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;I need to train fishing. Going to train in Silvermoon City.&quot;); " />
+          <MoveToAction Location="9597.451, -7334.007, 14.10801" MoveType="Location" Pathing="Navigator" Entry="0" />
+          <TrainSkillAction NpcEntry="16780" Location="9607.077, -7324.333, 14.9902" />
+          <WaitAction Condition="false" Timeout="2000" />
+        </If>
+        <If Condition="(Me.ZoneId == 5287) || (Me.ZoneId == 3) || (Me.ZoneId == 25) || (Me.ZoneId == 4) || (Me.ZoneId == 46) || (Me.ZoneId == 41) || (Me.ZoneId == 10) || (Me.ZoneId == 33) || (Me.ZoneId == 44) || (Me.ZoneId == 4706) || (Me.ZoneId == 51) || (Me.ZoneId == 5339) || (Me.ZoneId == 8) || (Me.ZoneId == 11)" IgnoreCanRun="True">
+          <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;I need to train fishing. Going to train in Booty Bay.&quot;); " />
+          <FlyToAction Dismount="True" Location="-14438.52, 469.9129, 15.35291" />
+          <TrainSkillAction NpcEntry="2834" Location="-14449.24, 468.4236, 15.27027" />
+          <WaitAction Condition="false" Timeout="2000" />
+        </If>
+        <If Condition="(Me.ZoneId == 2257) || (Me.ZoneId == 1) || (Me.ZoneId == 12) || (Me.ZoneId == 1537) || (Me.ZoneId == 38) || (Me.ZoneId == 1519) || (Me.ZoneId == 40)" IgnoreCanRun="True">
+          <CustomAction Code="Log(System.Drawing.Color.Blue,&quot;We are in an Alliance Zone, WTF!!!, Hearthing.&quot;); " />
+          <CustomAction Code="Lua.DoString(string.Format(&quot;RunMacroText(\&quot;{0}\&quot;)&quot;, &quot;/cast Hearthstone&quot;), 0);" />
+        </If>
       </If>
-      <If Condition="Me.ZoneId == 1638" IgnoreCanRun="True">
-        <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;I need to train fishing. Going to train in Thunderbluff.&quot;); " />
-        <FlyToAction Dismount="True" Location="-1180.198, -70.20613, 162.279" />
-        <TrainSkillAction NpcEntry="3028" Location="2003.417, -4664.375, 28.49254" />
-        <WaitAction Condition="false" Timeout="2000" />
+      <If Condition="Me.MapId == 1" IgnoreCanRun="True">
+        <If Condition="(Me.ZoneId == 14) || (Me.ZoneId == 15) || (Me.ZoneId == 17)" IgnoreCanRun="True">
+          <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;I need to train fishing. Going to train in Senjin Village.&quot;); " />
+          <FlyToAction Dismount="True" Location="-909.7721, -4973.791, 13.72746" />
+          <TrainSkillAction NpcEntry="5941" Location="-911.4202, -4993.247, 12.14402" />
+          <WaitAction Condition="false" Timeout="2000" />
+        </If>
+        <If Condition="(Me.ZoneId == 215) || (Me.ZoneId == 5695) || (Me.ZoneId == 4709)" IgnoreCanRun="True">
+          <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;I need to train fishing. Going to train in Bloodhoof Villiage.&quot;); " />
+          <FlyToAction Dismount="True" Location="-2356.803, -243.5095, -8.831609" />
+          <TrainSkillAction NpcEntry="5938" Location="-2350.511, -238.7157, -8.389573" />
+          <WaitAction Condition="false" Timeout="2000" />
+        </If>
+        <If Condition="(Me.ZoneId == 331) || (Me.ZoneId == 361) || (Me.ZoneId == 406)" IgnoreCanRun="True">
+          <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;I need to train fishing. Going to train in Zoram'Gar Outpost.&quot;); " />
+          <FlyToAction Dismount="False" Location="3363.01, 1073.377, 2.202503" />
+          <TrainSkillAction NpcEntry="12961" Location="3377.751, 1074.242, 1.765153" />
+          <WaitAction Condition="false" Timeout="2000" />
+        </If>
+        <If Condition="(Me.ZoneId == 405) || (Me.ZoneId == 357) || (Me.ZoneId == 1377) || (Me.ZoneId == 400)" IgnoreCanRun="True">
+          <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;I need to train fishing. Going to train in Shadowprey Village.&quot;); " />
+          <FlyToAction Dismount="False" Location="-1725.416, 3209.76, 4.811854" />
+          <TrainSkillAction NpcEntry="12032" Location="-1719.016, 3212.894, 4.297761" />
+          <WaitAction Condition="false" Timeout="2000" />
+        </If>
+        <If Condition="(Me.ZoneId == 1637) || (Me.ZoneId == 16) || (Me.ZoneId == 493)" IgnoreCanRun="True">
+          <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;I need to train fishing. Going to train from Lumak in Orgrimmar.&quot;); " />
+          <FlyToAction Dismount="True" Location="2003.417, -4664.375, 28.49254" />
+          <TrainSkillAction NpcEntry="3332" Location="2000.465, -4662.071, 28.49152" />
+          <WaitAction Condition="false" Timeout="2000" />
+        </If>
+        <If Condition="(Me.ZoneId == 616) || (Me.ZoneId == 5733) || (Me.ZoneId == 618)" IgnoreCanRun="True">
+          <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;I need to train fishing. Going to train from Old Umbehto in Orgrimmar.&quot;); " />
+          <FlyToAction Dismount="False" Location="1697.123, -4097.041, 48.69041" />
+          <TrainSkillAction NpcEntry="44975" Location="1705.74, -4118.14, 48.27918" />
+          <WaitAction Condition="false" Timeout="2000" />
+        </If>
+        <If Condition="(Me.ZoneId == 1638) || (Me.ZoneId == 457) || (Me.ZoneId == 5034) || (Me.ZoneId == 490)" IgnoreCanRun="True">
+          <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;I need to train fishing. Going to train in Thunderbluff.&quot;); " />
+          <FlyToAction Dismount="True" Location="-1180.198, -70.20613, 162.279" />
+          <TrainSkillAction NpcEntry="3028" Location="2003.417, -4664.375, 28.49254" />
+          <WaitAction Condition="false" Timeout="2000" />
+        </If>
+        <If Condition="(Me.ZoneId == 141) || (Me.ZoneId == 3557) || (Me.ZoneId == 3524) || (Me.ZoneId == 3525) || (Me.ZoneId == 148) || (Me.ZoneId == 1657) || (Me.ZoneId == 876)" IgnoreCanRun="True">
+          <CustomAction Code="Log(System.Drawing.Color.Blue,&quot;We are in an Alliance Zone, WTF!!!, Hearthing.&quot;); " />
+          <CustomAction Code="Lua.DoString(string.Format(&quot;RunMacroText(\&quot;{0}\&quot;)&quot;, &quot;/cast Hearthstone&quot;), 0);" />
+        </If>
+      </If>
+      <If Condition="Me.MapId == 530" IgnoreCanRun="True">
+        <If Condition="(Me.ZoneId == 3522)" IgnoreCanRun="True">
+          <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;I need to train fishing. Going to train in Zabra'jin.&quot;); " />
+          <FlyToAction Dismount="True" Location="264.6766, 7844.567, 23.87476" />
+          <TrainSkillAction NpcEntry="18018" Location="272.5764, 7853.817, 24.00408" />
+          <WaitAction Condition="false" Timeout="2000" />
+        </If>
+        <If Condition="(Me.ZoneId == 3521) || (Me.ZoneId == 3483) || (Me.ZoneId == 3523)" IgnoreCanRun="True">
+          <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;I need to train fishing. Going to train at the Cenarion Refuge.&quot;); " />
+          <FlyToAction Dismount="True" Location="-269.5022, 5555.138, 23.5061" />
+          <TrainSkillAction NpcEntry="18911" Location="-279.8598, 5551.557, 22.43098" />
+          <WaitAction Condition="false" Timeout="2000" />
+        </If>
+        <If Condition="(Me.ZoneId == 3703) || (Me.ZoneId == 3519) || (Me.ZoneId == 3520) || (Me.ZoneId == 3703)" IgnoreCanRun="True">
+          <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;I need to train cooking. Going to train from Old Man Barlo.&quot;); " />
+          <FlyToAction Dismount="True" Location="-1466.378, 4999.1, -7.658016" />
+          <TrainSkillAction NpcEntry="25580" Location="-1460.62, 4992.52, -9.059943" />
+          <WaitAction Condition="false" Timeout="2000" />
+        </If>
+      </If>
+      <If Condition="Me.MapId == 571" IgnoreCanRun="True">
+        <If Condition="(Me.ZoneId == 495) || (Me.ZoneId == 394)" IgnoreCanRun="True">
+          <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;I need to train fishing. Going to train in Vengeance Landing.&quot;); " />
+          <FlyToAction Dismount="True" Location="2014.778, -6206.23, 7.87717" />
+          <TrainSkillAction NpcEntry="26957" Location="2024.243, -6207.311, 7.899398" />
+          <WaitAction Condition="false" Timeout="2000" />
+        </If>
+        <If Condition="(Me.ZoneId == 3537) || (Me.ZoneId == 3711)" IgnoreCanRun="True">
+          <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;I need to train fishing. Going to train in Warsong Hold.&quot;); " />
+          <FlyToAction Dismount="True" Location="2740.423, 6096.882, 76.80517" />
+          <TrainSkillAction NpcEntry="32474" Location="2804.143, 6165.574, 85.30532" />
+          <WaitAction Condition="false" Timeout="2000" />
+        </If>
+        <If Condition="(Me.ZoneId == 4395) || (Me.ZoneId == 2817)  || (Me.ZoneId == 66) || (Me.ZoneId == 65) || (Me.ZoneId == 4197) || (Me.ZoneId == 210) || (Me.ZoneId == 4742) || (Me.ZoneId == 67)" IgnoreCanRun="True">
+          <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;I need to train fishing. Going to train in Dalaran.&quot;); " />
+          <FlyToAction Dismount="False" Location="5709.418, 626.6266, 646.272" />
+          <TrainSkillAction NpcEntry="28742" Location="5707.309, 612.2144, 646.6996" />
+          <WaitAction Condition="false" Timeout="2000" />
+        </If>
       </If>
       <If Condition="Me.ZoneId == 5861" IgnoreCanRun="True">
         <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;I need to train fishing. Going to train at the Darkmoon Faire.&quot;); " />
         <TrainSkillAction NpcEntry="56068" Location="-4421.531, 6289.183, 13.89897" />
-        <WaitAction Condition="false" Timeout="2000" />
-      </If>
-      <If Condition="Me.ZoneId == 215" IgnoreCanRun="True">
-        <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;I need to train fishing. Going to train in Bloodhoof Villiage.&quot;); " />
-        <FlyToAction Dismount="True" Location="-2356.803, -243.5095, -8.831609" />
-        <TrainSkillAction NpcEntry="5938" Location="-2350.511, -238.7157, -8.389573" />
-        <WaitAction Condition="false" Timeout="2000" />
-      </If>
-      <If Condition="Me.MapId == 1" IgnoreCanRun="True">
-        <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;I need to train fishing. Going to train in Orgrimmar.&quot;); " />
-        <FlyToAction Dismount="True" Location="2003.417, -4664.375, 28.49254" />
-        <TrainSkillAction NpcEntry="3332" Location="2000.465, -4662.071, 28.49152" />
         <WaitAction Condition="false" Timeout="2000" />
       </If>
     </If>
@@ -169,34 +269,135 @@
       </If>
     </If>
     <If Condition="Me.IsHorde" IgnoreCanRun="True">
-      <If Condition="Me.ZoneId == 1637" IgnoreCanRun="True">
-        <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;I need to train cooking. Going to train in Orgrimmar.&quot;); " />
-        <FlyToAction Dismount="True" Location="1730.109, -4471.572, 35.57816" />
-        <TrainSkillAction NpcEntry="46709" Location="1770.26, -4483.16, 45.64117" />
-        <WaitAction Condition="false" Timeout="2000" />
-      </If>
-      <If Condition="Me.ZoneId == 1638" IgnoreCanRun="True">
-        <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;I need to train Cooking. Going to train in Thunderbluff.&quot;); " />
-        <FlyToAction Dismount="True" Location="-1216.228, -19.39491, 165.7413" />
-        <TrainSkillAction NpcEntry="3026" Location="-1219.57, -12.7, 165.86" />
-        <WaitAction Condition="false" Timeout="2000" />
-      </If>
-      <If Condition="Me.ZoneId == 5861" IgnoreCanRun="True">
-        <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;I need to train cooking. Going to train in Thunderbluff.&quot;); " />
-        <TrainSkillAction NpcEntry="56068" Location="-4421.531, 6289.183, 13.89897" />
-        <WaitAction Condition="false" Timeout="2000" />
-      </If>
-      <If Condition="Me.ZoneId == 215" IgnoreCanRun="True">
-        <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;I need to train cooking. Going to train in Bloodhoof Villiage.&quot;); " />
-        <FlyToAction Dismount="True" Location="-2003.417, -4664.375, 28.49254" />
-        <TrainSkillAction NpcEntry="3067" Location="-2298.42, -352.648, -9.424882" />
-        <WaitAction Condition="false" Timeout="2000" />
+      <If Condition="Me.MapId == 0" IgnoreCanRun="True">
+        <If Condition="(Me.ZoneId == 33) || (Me.ZoneId == 3) || (Me.ZoneId == 25) || (Me.ZoneId == 4) || (Me.ZoneId == 46) || (Me.ZoneId == 41) || (Me.ZoneId == 10) || (Me.ZoneId == 44) || (Me.ZoneId == 51) || (Me.ZoneId == 8) || (Me.ZoneId == 5149) || (Me.ZoneId == 5145) || (Me.ZoneId == 4815) || (Me.ZoneId == 5144) || (Me.ZoneId == 11)" IgnoreCanRun="True">
+          <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;I need to train cooking. Going to train in Grom'gol Base Camp.&quot;); " />
+          <FlyToAction Dismount="True" Location="-12374.11, 213.2659, 3.061424" />
+          <TrainSkillAction NpcEntry="1382" Location="-12358.78, 220.8107, 4.059107" />
+          <WaitAction Condition="false" Timeout="2000" />
+        </If>
+        <If Condition="(Me.ZoneId == 85) || (Me.ZoneId == 130) || (Me.ZoneId == 45) || (Me.ZoneId == 47) || (Me.ZoneId == 267) || (Me.ZoneId == 139) || (Me.ZoneId == 28) || (Me.ZoneId == 4298)" IgnoreCanRun="True">
+          <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;I need to train cooking. Going to train in Brill.&quot;); " />
+          <FlyToAction Dismount="True" Location="2256.83, 281.4008, 33.63895" />
+          <TrainSkillAction NpcEntry="47405" Location="2257.242, 269.01, 33.69081" />
+          <WaitAction Condition="false" Timeout="2000" />
+        </If>
+        <If Condition="(Me.ZoneId == 1497) || (Me.ZoneId == 4714) || (Me.ZoneId == 4755) || (Me.ZoneId == 4706) || (Me.ZoneId == 4922)" IgnoreCanRun="True">
+          <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;I need to train cooking. Going to train in Undercity.&quot;); " />
+          <FlyToAction Dismount="True" Location="1595.444, 261.3674, -57.16106" />
+          <TrainSkillAction NpcEntry="4552" Location="1590.47, 277.014, -55.34265" />
+          <WaitAction Condition="false" Timeout="2000" />
+        </If>
+        <If Condition="(Me.ZoneId == 3430)" IgnoreCanRun="True">
+          <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;I need to train cooking. Going to train in Falconwing Square.&quot;); " />
+          <MoveToAction Location="9495.617, -6901.277, 28.3464" MoveType="Location" Pathing="Navigator" Entry="16277" />
+          <TrainSkillAction NpcEntry="16277" Location="0, 0, 0" />
+          <WaitAction Condition="false" Timeout="2000" />
+        </If>
+        <If Condition="(Me.ZoneId == 3433)" IgnoreCanRun="True">
+          <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;I need to train cooking. Going to train in Tranquillien.&quot;); " />
+          <MoveToAction Location="7584.864, -6876.722, 94.99393" MoveType="Location" Pathing="Navigator" Entry="16253" />
+          <TrainSkillAction NpcEntry="16253" Location="7586.096, -6881.415, 95.02355" />
+          <WaitAction Condition="false" Timeout="2000" />
+        </If>
+        <If Condition="(Me.ZoneId == 3487) || (Me.ZoneId == 4080)" IgnoreCanRun="True">
+          <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;I need to train cooking. Going to train in Silvermoon City.&quot;); " />
+          <MoveToAction Location="9579.946, -7243.907, 27.03057" MoveType="Location" Pathing="Navigator" Entry="16676" />
+          <TrainSkillAction NpcEntry="16676" Location="9576.276, -7244.546, 27.03158" />
+          <WaitAction Condition="false" Timeout="2000" />
+        </If>
+        <If Condition="(Me.ZoneId == 5287) || (Me.ZoneId == 5339)" IgnoreCanRun="True">
+          <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;I need to train cooking. Going to train in Booty Bay.&quot;); " />
+          <FlyToAction Dismount="True" Location="-14413.55, 432.3227, 8.96682" />
+          <TrainSkillAction NpcEntry="54232" Location="-14429.81, 423.7621, 4.162286" />
+          <WaitAction Condition="false" Timeout="2000" />
+        </If>
+        <If Condition="(Me.ZoneId == 2257) || (Me.ZoneId == 1) || (Me.ZoneId == 12) || (Me.ZoneId == 1537) || (Me.ZoneId == 38) || (Me.ZoneId == 1519) || (Me.ZoneId == 40)" IgnoreCanRun="True">
+          <CustomAction Code="Log(System.Drawing.Color.Blue,&quot;We are in an Alliance Zone, WTF!!!, Hearthing.&quot;); " />
+          <CustomAction Code="Lua.DoString(string.Format(&quot;RunMacroText(\&quot;{0}\&quot;)&quot;, &quot;/cast Hearthstone&quot;), 0);" />
+        </If>
       </If>
       <If Condition="Me.MapId == 1" IgnoreCanRun="True">
-        <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;I need to train cooking. Going to train in Orgrimmar.&quot;); " />
-        <FlyToAction Dismount="True" Location="1730.109, -4471.572, 35.57816" />
-        <TrainSkillAction NpcEntry="46709" Location="1770.26, -4483.16, 45.64117" />
-        <WaitAction Condition="false" Timeout="2000" />
+        <If Condition="(Me.ZoneId == 17) || (Me.ZoneId == 331) || (Me.ZoneId == 4709) || (Me.ZoneId == 15) || (Me.ZoneId == 406)" IgnoreCanRun="True">
+          <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;I need to train cooking. Going to train in Northern Barrens.&quot;); " />
+          <FlyToAction Dismount="False" Location="-549.2569, -2955.618, 92.68108" />
+          <TrainSkillAction NpcEntry="8306" Location="-534.552, -2979.56, 93.06387" />
+          <WaitAction Condition="false" Timeout="2000" />
+        </If>
+        <If Condition="(Me.ZoneId == 215) || (Me.ZoneId == 5695) || (Me.ZoneId == 405) || (Me.ZoneId == 1377) || (Me.ZoneId == 400) || (Me.ZoneId == 5034) || (Me.ZoneId == 490) || (Me.ZoneId == 440) || (Me.ZoneId == 357)" IgnoreCanRun="True">
+          <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;I need to train cooking. Going to train in Bloodhoof Villiage.&quot;); " />
+          <FlyToAction Dismount="True" Location="-2003.417, -4664.375, 28.49254" />
+          <TrainSkillAction NpcEntry="3067" Location="-2298.42, -352.648, -9.424882" />
+          <WaitAction Condition="false" Timeout="2000" />
+        </If>
+        <If Condition="(Me.ZoneId == 361) || (Me.ZoneId == 493) || (Me.ZoneId == 5733) || (Me.ZoneId == 616)" IgnoreCanRun="True">
+          <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;I need to train cooking. Going to train in The Valley of Spirits.&quot;); " />
+          <FlyToAction Dismount="True" Location="1702.393, -4080.626, 48.82471" />
+          <TrainSkillAction NpcEntry="3399" Location="1678.85, -4067.18, 51.43287" />
+          <WaitAction Condition="false" Timeout="2000" />
+        </If>
+        <If Condition="(Me.ZoneId == 1637) || (Me.ZoneId == 16) || (Me.ZoneId == 618) || (Me.ZoneId == 14)" IgnoreCanRun="True">
+          <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;I need to train cooking. Going to train in The Drag.&quot;); " />
+          <FlyToAction Dismount="True" Location="1730.109, -4471.572, 35.57816" />
+          <TrainSkillAction NpcEntry="46709" Location="1770.26, -4483.16, 45.64117" />
+          <WaitAction Condition="false" Timeout="2000" />
+        </If>
+        <If Condition="(Me.ZoneId == 1638) || (Me.ZoneId == 457)" IgnoreCanRun="True">
+          <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;I need to train Cooking. Going to train in Thunder Bluff.&quot;); " />
+          <FlyToAction Dismount="True" Location="-1216.228, -19.39491, 165.7413" />
+          <TrainSkillAction NpcEntry="3026" Location="-1219.57, -12.7, 165.86" />
+          <WaitAction Condition="false" Timeout="2000" />
+        </If>
+        <If Condition="(Me.ZoneId == 141) || (Me.ZoneId == 3557) || (Me.ZoneId == 3524) || (Me.ZoneId == 3525) || (Me.ZoneId == 148) || (Me.ZoneId == 1657) || (Me.ZoneId == 876)" IgnoreCanRun="True">
+          <CustomAction Code="Log(System.Drawing.Color.Blue,&quot;We are in an Alliance Zone, WTF!!!, Hearthing.&quot;); " />
+          <CustomAction Code="Lua.DoString(string.Format(&quot;RunMacroText(\&quot;{0}\&quot;)&quot;, &quot;/cast Hearthstone&quot;), 0);" />
+        </If>
+      </If>
+      <If Condition="Me.MapId == 530" IgnoreCanRun="True">
+        <If Condition="(Me.ZoneId == 3483) || (Me.ZoneId == 3523)" IgnoreCanRun="True">
+          <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;I need to train cooking. Going to train in Thrallmar.&quot;); " />
+          <FlyToAction Dismount="False" Location="170.0609, 2639.95, 86.32161" />
+          <TrainSkillAction NpcEntry="49789" Location="194.0063, 2605.807, 87.28406" />
+          <WaitAction Condition="false" Timeout="2000" />
+        </If>
+        <If Condition="(Me.ZoneId == 3521) || (Me.ZoneId == 3522)" IgnoreCanRun="True">
+          <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;I need to train cooking. Going to train at the Cenarion Refuge.&quot;); " />
+          <FlyToAction Dismount="False" Location="-209.0132, 5512.911, 21.5533" />
+          <TrainSkillAction NpcEntry="18993" Location="-178.0061, 5527.986, 29.40801" />
+          <WaitAction Condition="false" Timeout="2000" />
+        </If>
+        <If Condition="(Me.ZoneId == 3703) || (Me.ZoneId == 3519) || (Me.ZoneId == 3518) || (Me.ZoneId == 3520)" IgnoreCanRun="True">
+          <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;I need to train cooking. Going to train in Shattrath City.&quot;); " />
+          <FlyToAction Dismount="True" Location="-2076.433, 5311.324, -37.32301" />
+          <TrainSkillAction NpcEntry="19185" Location="-2069.277, 5311.1, -37.32356" />
+          <WaitAction Condition="false" Timeout="2000" />
+        </If>
+      </If>
+      <If Condition="Me.MapId == 571" IgnoreCanRun="True">
+        <If Condition="(Me.ZoneId == 210) || (Me.ZoneId == 4742) || (Me.ZoneId == 67)" IgnoreCanRun="True">
+          <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;I need to train cooking. Going to train at the Argent Tournament Grounds.&quot;); " />
+          <FlyToAction Dismount="True" Location="8564.078, 904.3974, 547.5544" />
+          <TrainSkillAction NpcEntry="33587" Location="8549.808, 906.7483, 547.356" />
+          <WaitAction Condition="false" Timeout="2000" />
+        </If>
+        <If Condition="(Me.ZoneId == 495) || (Me.ZoneId == 394)" IgnoreCanRun="True">
+          <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;I need to train cooking. Going to train in Vengeance Landing.&quot;); " />
+          <FlyToAction Dismount="True" Location="1925.946, -6164.085, 24.11885" />
+          <TrainSkillAction NpcEntry="26953" Location="1927.982, -6150.213, 22.99476" />
+          <WaitAction Condition="false" Timeout="2000" />
+        </If>
+        <If Condition="(Me.ZoneId == 4395) || (Me.ZoneId == 2817)  || (Me.ZoneId == 66) || (Me.ZoneId == 65) || (Me.ZoneId == 4197)" IgnoreCanRun="True">
+          <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;I need to train cooking. Going to train in Dalaran.&quot;); " />
+          <FlyToAction Dismount="False" Location="5883.527, 537.4774, 642.5037" />
+          <TrainSkillAction NpcEntry="29631" Location="5850.813, 471.8066, 639.7891" />
+          <WaitAction Condition="false" Timeout="2000" />
+        </If>
+        <If Condition="(Me.ZoneId == 3537) || (Me.ZoneId == 3711)" IgnoreCanRun="True">
+          <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;I need to train cooking. Going to train in Warsong Hold.&quot;); " />
+          <FlyToAction Dismount="True" Location="2740.423, 6096.882, 76.80517" />
+          <TrainSkillAction NpcEntry="26972" Location="2818.316, 6151.036, 85.32452" />
+          <WaitAction Condition="false" Timeout="2000" />
+        </If>
       </If>
     </If>
   </SubRoutine>
@@ -279,24 +480,120 @@
       </If>
     </If>
     <If Condition="Me.IsHorde" IgnoreCanRun="True">
-      <If Condition="Me.ZoneId == 1638" IgnoreCanRun="True">
-        <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Lets find a place to cook! Going to ThunderBluff&quot;); " />
-        <MoveToAction Location="-1216.649, -18.95119, 165.8196" MoveType="Location" Pathing="Navigator" Entry="0" />
+      <If Condition="Me.MapId == 0" IgnoreCanRun="True">
+        <If Condition="(Me.ZoneId == 33) || (Me.ZoneId == 3) || (Me.ZoneId == 25) || (Me.ZoneId == 4) || (Me.ZoneId == 46) || (Me.ZoneId == 41) || (Me.ZoneId == 10) || (Me.ZoneId == 44) || (Me.ZoneId == 51) || (Me.ZoneId == 8) || (Me.ZoneId == 5149) || (Me.ZoneId == 5145) || (Me.ZoneId == 4815) || (Me.ZoneId == 5144) || (Me.ZoneId == 11)" IgnoreCanRun="True">
+          <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Lets find a place to cook! Going to Grom'gol Base Camp&quot;); " />
+          <MoveToAction Location="-12358.78, 220.8107, 4.059107" MoveType="Location" Pathing="Navigator" Entry="0" />
+        </If>
+        <If Condition="(Me.ZoneId == 47)" IgnoreCanRun="True">
+          <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Lets find a place to cook! Going to Revantusk Village&quot;); " />
+          <MoveToAction Location="-573.9757, -4601.208, 10.56882" MoveType="Location" Pathing="Navigator" Entry="0" />
+        </If>
+        <If Condition="(Me.ZoneId == 85) || (Me.ZoneId == 130) || (Me.ZoneId == 45) || (Me.ZoneId == 267) || (Me.ZoneId == 139) || (Me.ZoneId == 28) || (Me.ZoneId == 4298)" IgnoreCanRun="True">
+          <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Lets find a place to cook! Going to Tirisfal Glades&quot;); " />
+          <MoveToAction Location="2258.888, 273.4745, 33.69056" MoveType="Location" Pathing="Navigator" Entry="0" />
+        </If>
+        <If Condition="(Me.ZoneId == 1497) || (Me.ZoneId == 4714) || (Me.ZoneId == 4755) || (Me.ZoneId == 4706) || (Me.ZoneId == 4922)" IgnoreCanRun="True">
+          <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Lets find a place to cook! Going to Undercity&quot;); " />
+          <MoveToAction Location="1593.153, 273.3924, -55.34291" MoveType="Location" Pathing="Navigator" Entry="0" />
+        </If>
+        <If Condition="(Me.ZoneId == 3430)" IgnoreCanRun="True">
+          <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Lets find a place to cook! Going to Falconwing Square&quot;); " />
+          <MoveToAction Location="9495.617, -6901.277, 28.3464" MoveType="Location" Pathing="Navigator" Entry="0" />
+        </If>
+        <If Condition="(Me.ZoneId == 3433)" IgnoreCanRun="True">
+          <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Lets find a place to cook! Going to Tranquillien&quot;); " />
+          <MoveToAction Location="7584.864, -6876.722, 94.99393" MoveType="Location" Pathing="Navigator" Entry="0" />
+        </If>
+        <If Condition="(Me.ZoneId == 3487) || (Me.ZoneId == 4080)" IgnoreCanRun="True">
+          <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Lets find a place to cook! Going to Silvermoon City&quot;); " />
+          <MoveToAction Location="9580.896, -7245.258, 27.03057" MoveType="Location" Pathing="Navigator" Entry="0" />
+        </If>
+        <If Condition="(Me.ZoneId == 5287) || (Me.ZoneId == 5339)" IgnoreCanRun="True">
+          <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Lets find a place to cook! Going to Booty Bay&quot;); " />
+          <MoveToAction Location="-14433.12, 428.1073, 4.177776" MoveType="Location" Pathing="Navigator" Entry="0" />
+        </If>
+        <If Condition="(Me.ZoneId == 2257) || (Me.ZoneId == 1) || (Me.ZoneId == 12) || (Me.ZoneId == 1537) || (Me.ZoneId == 38) || (Me.ZoneId == 1519) || (Me.ZoneId == 40)" IgnoreCanRun="True">
+          <CustomAction Code="Log(System.Drawing.Color.Blue,&quot;We are in an Alliance Zone, WTF!!!, Hearthing.&quot;); " />
+          <CustomAction Code="Lua.DoString(string.Format(&quot;RunMacroText(\&quot;{0}\&quot;)&quot;, &quot;/cast Hearthstone&quot;), 0);" />
+        </If>
       </If>
-      <If Condition="Me.ZoneId == 215" IgnoreCanRun="True">
-        <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Lets find a place to cook! Going to fire in Bloodhoof&quot;); " />
-        <MoveToAction Location="-2172.771, -390.8016, -3.498446" MoveType="Location" Pathing="Navigator" Entry="0" />
+      <If Condition="Me.MapId == 1" IgnoreCanRun="True">
+        <If Condition="Me.ZoneId == 14" IgnoreCanRun="True">
+          <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Lets find a place to cook! Going to Sen'jin Village&quot;); " />
+          <MoveToAction Location="-799.9962, -4905.442, 19.46228" MoveType="Location" Pathing="Navigator" Entry="0" />
+        </If>
+        <If Condition="(Me.ZoneId == 17) || (Me.ZoneId == 4709) || (Me.ZoneId == 15) || (Me.ZoneId == 406)" IgnoreCanRun="True">
+          <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Lets find a place to cook! Going at the Crossroads&quot;); " />
+          <MoveToAction Location="-403.3836, -2649.787, 96.22377" MoveType="Location" Pathing="Navigator" Entry="0" />
+        </If>
+        <If Condition="(Me.ZoneId == 215) || (Me.ZoneId == 5695) || (Me.ZoneId == 405) || (Me.ZoneId == 1377) || (Me.ZoneId == 400) || (Me.ZoneId == 5034) || (Me.ZoneId == 490) || (Me.ZoneId == 440) || (Me.ZoneId == 357)" IgnoreCanRun="True">
+          <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Lets find a place to cook! Going to fire in Bloodhoof&quot;); " />
+          <MoveToAction Location="-2172.771, -390.8016, -3.498446" MoveType="Location" Pathing="Navigator" Entry="0" />
+        </If>
+        <If Condition="Me.ZoneId == 331" IgnoreCanRun="True">
+          <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Lets find a place to cook! Going to Zoram'gar Outpost&quot;); " />
+          <MoveToAction Location="3353.166, 1013.177, 3.561315" MoveType="Location" Pathing="Navigator" Entry="0" />
+        </If>
+        <If Condition="Me.ZoneId == 493" IgnoreCanRun="True">
+          <MoveToAction Location="7758.646, -2784.568, 457.3083" MoveType="Location" Pathing="Navigator" Entry="0" />
+          <While Condition="!Me.HasAura(&quot;Cozy Fire&quot;)" IgnoreCanRun="True">
+            <CustomAction Code="Lua.DoString(string.Format(&quot;RunMacroText(\&quot;{0}\&quot;)&quot;, &quot;/cast Cooking Fire&quot;), 0);" />
+            <WaitAction Condition="false" Timeout="2000" />
+          </While>
+        </If>
+        <If Condition="(Me.ZoneId == 1637) || (Me.ZoneId == 16) || (Me.ZoneId == 618) || (Me.ZoneId == 361) || (Me.ZoneId == 5733) || (Me.ZoneId == 616)" IgnoreCanRun="True">
+          <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Lets find a place to cook! Going to Orgrimmar&quot;); " />
+          <MoveToAction Location="1931.7, -4638.487, 33.2991" MoveType="Location" Pathing="Navigator" Entry="0" />
+        </If>
+        <If Condition="(Me.ZoneId == 1638) || (Me.ZoneId == 457)" IgnoreCanRun="True">
+          <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Lets find a place to cook! Going to Thunder Bluff&quot;); " />
+          <MoveToAction Location="-1216.649, -18.95119, 165.8196" MoveType="Location" Pathing="Navigator" Entry="0" />
+        </If>
+        <If Condition="(Me.ZoneId == 141) || (Me.ZoneId == 3557) || (Me.ZoneId == 3524) || (Me.ZoneId == 3525) || (Me.ZoneId == 148) || (Me.ZoneId == 1657) || (Me.ZoneId == 876)" IgnoreCanRun="True">
+          <CustomAction Code="Log(System.Drawing.Color.Blue,&quot;We are in an Alliance Zone, WTF!!!, Hearthing.&quot;); " />
+          <CustomAction Code="Lua.DoString(string.Format(&quot;RunMacroText(\&quot;{0}\&quot;)&quot;, &quot;/cast Hearthstone&quot;), 0);" />
+        </If>
       </If>
-      <If Condition="Me.ZoneId == 1637" IgnoreCanRun="True">
-        <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Lets find a place to cook! Going to Orgrimmar&quot;); " />
-        <MoveToAction Location="1931.7, -4638.487, 33.2991" MoveType="Location" Pathing="Navigator" Entry="0" />
+      <If Condition="Me.MapId == 530" IgnoreCanRun="True">
+        <If Condition="(Me.ZoneId == 3483) || (Me.ZoneId == 3523)" IgnoreCanRun="True">
+          <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Lets find a place to cook! Going to Thrallmar&quot;); " />
+          <MoveToAction Location="189.99, 2607.818, 87.28376" MoveType="Location" Pathing="Navigator" Entry="0" />
+        </If>
+        <If Condition="(Me.ZoneId == 3522)" IgnoreCanRun="True">
+          <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Lets find a place to cook! Going to Zabra'jin&quot;); " />
+          <MoveToAction Location="267.3307, 7846.893, 24.00206" MoveType="Location" Pathing="Navigator" Entry="0" />
+        </If>
+        <If Condition="(Me.ZoneId == 3703) || (Me.ZoneId == 3519) || (Me.ZoneId == 3520) || (Me.ZoneId == 3518)" IgnoreCanRun="True">
+          <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Lets find a place to cook! Going to Shattrath City&quot;); " />
+          <MoveToAction Location="-2072.849, 5315.392, -37.32306" MoveType="Location" Pathing="Navigator" Entry="0" />
+        </If>
+        <If Condition="Me.ZoneId == 3521" IgnoreCanRun="True">
+          <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Lets find a place to cook! Going to Make a fire&quot;); " />
+          <MoveToAction Location="-178.0061, 5527.986, 29.40801" MoveType="Location" Pathing="Navigator" Entry="0" />
+          <While Condition="!Me.HasAura(&quot;Cozy Fire&quot;)" IgnoreCanRun="True">
+            <CustomAction Code="Lua.DoString(string.Format(&quot;RunMacroText(\&quot;{0}\&quot;)&quot;, &quot;/cast Cooking Fire&quot;), 0);" />
+            <WaitAction Condition="false" Timeout="2000" />
+          </While>
+        </If>
       </If>
-      <If Condition="Me.ZoneId == 493" IgnoreCanRun="True">
-        <MoveToAction Location="7758.646, -2784.568, 457.3083" MoveType="Location" Pathing="Navigator" Entry="0" />
-        <While Condition="!Me.HasAura(&quot;Cozy Fire&quot;)" IgnoreCanRun="True">
-          <CustomAction Code="Lua.DoString(string.Format(&quot;RunMacroText(\&quot;{0}\&quot;)&quot;, &quot;/cast Cooking Fire&quot;), 0);" />
-          <WaitAction Condition="false" Timeout="2000" />
-        </While>
+      <If Condition="Me.MapId == 571" IgnoreCanRun="True">
+        <If Condition="(Me.ZoneId == 210) || (Me.ZoneId == 4742) || (Me.ZoneId == 67)" IgnoreCanRun="True">
+          <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Lets find a place to cook! Going to Argent Grounds&quot;); " />
+          <MoveToAction Location="8555.828, 906.9948, 547.5632" MoveType="Location" Pathing="Navigator" Entry="0" />
+        </If>
+        <If Condition="(Me.ZoneId == 495) || (Me.ZoneId == 394)" IgnoreCanRun="True">
+          <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Lets find a place to cook! Going to Vengeance Landing&quot;); " />
+          <MoveToAction Location="1926.423, -6156.495, 23.83659" MoveType="Location" Pathing="Navigator" Entry="0" />
+        </If>
+        <If Condition="(Me.ZoneId == 3537) || (Me.ZoneId == 3711)" IgnoreCanRun="True">
+          <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Lets find a place to cook! Going to Warsong Hold&quot;); " />
+          <MoveToAction Location="2818.316, 6151.036, 85.32452" MoveType="Location" Pathing="Navigator" Entry="0" />
+        </If>
+        <If Condition="(Me.ZoneId == 4395) || (Me.ZoneId == 2817)  || (Me.ZoneId == 66) || (Me.ZoneId == 65) || (Me.ZoneId == 4197)" IgnoreCanRun="True">
+          <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Lets find a place to cook! Going to The Filthy Animal&quot;); " />
+          <MoveToAction Location="5891.007, 492.2393, 641.569" MoveType="Location" Pathing="Navigator" Entry="0" />
+        </If>
       </If>
     </If>
   </SubRoutine>
