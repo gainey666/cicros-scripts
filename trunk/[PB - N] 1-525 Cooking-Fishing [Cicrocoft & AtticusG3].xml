@@ -656,10 +656,10 @@
         <CustomAction Code="Lua.DoString(string.Format(&quot;RunMacroText(\&quot;{0}\&quot;)&quot;, &quot;/use Darkwater Clam&quot;), 0);" />
         <WaitAction Condition="false" Timeout="987" />
       </While>
-      <MoveToAction Location="0,0,0" MoveType="NearestVendor" Pathing="Navigator" Entry="0" />
+      <MoveToAction Location="0, 0, 0" MoveType="NearestVendor" Pathing="Navigator" Entry="0" />
       <SellItemAction Sell="All" NpcEntry="0" Location="0, 0, 0" SellItemType="Specific" ItemID="45932,34759,43268,42942,62790,2595,2596,13446,6149,3827,1710,3385,2455,33567,21153,2678,27699,13886,6311,6310" Count="0" />
-      <MoveToAction Location="0,0,0" MoveType="NearestAH" Pathing="Navigator" Entry="0" />
-      <SellItemOnAhAction Category="TradeGoods" SubCategoryType="WoWItemTradeGoodsClass" SubCategory="Meat" UseCategory="True" RunTime="_24_Hours" AmountType="Everything" ItemID="" MinBuyout="0g10s0c" MaxBuyout="10g0s0c" StackSize="5" IgnoreStackSizeBelow="1" Amount="10" BidPrecent="95" UndercutPrecent="0.1" AutoFindAh="True" PostIfBelowMinBuyout="True" Location="0,0,0" />
+      <MoveToAction Location="0, 0, 0" MoveType="NearestAH" Pathing="Navigator" Entry="0" />
+      <SellItemOnAhAction Category="TradeGoods" SubCategoryType="WoWItemTradeGoodsClass" SubCategory="Meat" UseCategory="True" RunTime="_24_Hours" AmountType="Everything" ItemID="" MinBuyout="0g10s0c" MaxBuyout="10g0s0c" StackSize="5" IgnoreStackSizeBelow="1" Amount="10" BidPrecent="95" UndercutPrecent="0.1" AutoFindAh="True" PostIfBelowMinBuyout="True" Location="0, 0, 0" />
     </If>
   </SubRoutine>
   <SubRoutine SubRoutineName="CheckCookingSkill">
@@ -1357,7 +1357,7 @@
   <If Condition="(InbagCount (27674) + InbagCount (27655)) &lt; 30 &amp;&amp; Cooking.Level &gt;= 300 &amp;&amp; Cooking.Level &lt; 325 &amp;&amp; HasRecipe(33284)" IgnoreCanRun="True">
     <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Need to kill some mobs for some meat, sry.&quot;); " />
     <FlyToAction Dismount="True" Location="-1369.676, 3333.705, 42.89846" />
-    <LoadProfileAction ProfileType="Honorbuddy" Path="Cicro_fish+cook\Hellfire_farm_300-325.xml" />
+    <LoadProfileAction ProfileType="Honorbuddy" Path="HBProfiles\[QO - N] 1-525 Cooking-Fishing [Cicrocoft &amp; AtticusG3].xml" />
     <ChangeBotAction BotName="Grind Bot" />
   </If>
   <If Condition="Cooking.Level &gt;= 325 &amp;&amp; Cooking.Level &lt; 350 &amp;&amp; Me.MapId != 530" IgnoreCanRun="True">
@@ -1452,9 +1452,14 @@
     </If>
     <If Condition="Me.MapId == 1" IgnoreCanRun="True">
       <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Flying to Uldum to farm some meat.&quot;); " />
-      <FlyToAction Dismount="True" Location="-9118.864, -1409.145, 122.0131" />
+      <FlyToAction Dismount="True" Location="-9118.882, -1409.889, 94.86877" />
       <ChangeBotAction BotName="Grind Bot" />
-      <LoadProfileAction ProfileType="Honorbuddy" Path="Cicro_fish+cook\Uldum_farm_435-450.xml" />
+      <If Condition="Me.IsAlliance" IgnoreCanRun="True">
+        <LoadProfileAction ProfileType="Honorbuddy" Path="HBProfiles\[QO - N] 1-525 Cooking-Fishing [Cicrocoft &amp; AtticusG3].xml" />
+      </If>
+      <If Condition="Me.IsHorde" IgnoreCanRun="True">
+        <LoadProfileAction ProfileType="Honorbuddy" Path="HBProfiles\[QO - N] 1-525 Cooking-Fishing [Cicrocoft &amp; AtticusG3].xml" />
+      </If>
     </If>
   </If>
   <!--End-->
