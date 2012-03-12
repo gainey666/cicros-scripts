@@ -7,7 +7,6 @@
 <SellGreen>False</SellGreen>
 <MinLevel>1</MinLevel>
 <MaxLevel>91</MaxLevel>
-<CustomBehavior File="UserSettings" LootMobs="True" TrainNewSkills="True" LearnFlightPaths="False" UseFlightPaths="False" PullDistance="25" GroundMountFarmingMode="False" KillBetweenHotspots="True" />
 <GrindArea>
 <TargetMinLevel>65</TargetMinLevel>
 <TargetMaxLevel>70</TargetMaxLevel>
