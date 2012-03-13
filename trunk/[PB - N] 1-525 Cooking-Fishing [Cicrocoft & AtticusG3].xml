@@ -1370,9 +1370,9 @@
   </If>
   <If Condition="(InbagCount (27674) + InbagCount (27655)) &lt; 30 &amp;&amp; Cooking.Level &gt;= 300 &amp;&amp; Cooking.Level &lt; 325 &amp;&amp; HasRecipe(33284)" IgnoreCanRun="False">
     <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Need to kill some mobs for some meat, sry.&quot;); " />
-    <FlyToAction Dismount="True" Location="-1369.676, 3333.705, 42.89846" />
+    <FlyToAction Dismount="True" Location="-1429.719, 3467.212, 45.39236" />
+    <ChangeBotAction BotName="Questing" />
     <LoadProfileAction ProfileType="Honorbuddy" Path="HBProfiles\[QO - N] 1-525 Cooking-Fishing [Cicrocoft &amp; AtticusG3].xml" />
-    <ChangeBotAction BotName="Grind Bot" />
   </If>
   <If Condition="Cooking.Level &gt;= 325 &amp;&amp; Cooking.Level &lt; 350 &amp;&amp; Me.MapId != 530" IgnoreCanRun="True">
     <CallSubRoutine SubRoutineName="EK to Outland" />
