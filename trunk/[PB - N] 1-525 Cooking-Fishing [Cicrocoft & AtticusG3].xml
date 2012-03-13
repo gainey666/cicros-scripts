@@ -344,6 +344,8 @@
           <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;I need to train cooking. Going to train in The Drag.&quot;); " />
           <FlyToAction Dismount="True" Location="1730.109, -4471.572, 35.57816" />
           <TrainSkillAction NpcEntry="46709" Location="1770.26, -4483.16, 45.64117" />
+          <TrainSkillAction NpcEntry="46709" Location="1770.26, -4483.16, 45.64117" />
+          <MoveToAction Location="1794.917, -4501.906, 45.11787" MoveType="Location" Pathing="Navigator" Entry="0" />
           <WaitAction Condition="false" Timeout="2000" />
         </If>
         <If Condition="(Me.ZoneId == 1638) || (Me.ZoneId == 457)" IgnoreCanRun="True">
@@ -551,7 +553,8 @@
         </If>
         <If Condition="(Me.ZoneId == 1637) || (Me.ZoneId == 16) || (Me.ZoneId == 618) || (Me.ZoneId == 361) || (Me.ZoneId == 5733) || (Me.ZoneId == 616)" IgnoreCanRun="True">
           <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Lets find a place to cook! Going to Orgrimmar&quot;); " />
-          <FlyToAction Dismount="True" Location="1931.7, -4638.487, 33.2991" />
+          <FlyToAction Dismount="True" Location="1753.836, -4487.239, 44.04192" />
+          <MoveToAction Location="1758.359, -4487.763, 44.73909" MoveType="Location" Pathing="Navigator" Entry="0" />
         </If>
         <If Condition="(Me.ZoneId == 1638) || (Me.ZoneId == 457)" IgnoreCanRun="True">
           <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Lets find a place to cook! Going to Thunder Bluff&quot;); " />
@@ -672,7 +675,7 @@
     </If>
   </SubRoutine>
   <SubRoutine SubRoutineName="CheckFishSkill">
-    <If Condition="Fishing.Level &gt;= Fishing.MaxLevel - 25 &amp;&amp; Fishing.Level &lt;= Fishing.MaxLevel" IgnoreCanRun="True">
+    <If Condition="Fishing.Level &gt;= Fishing.MaxLevel - 25 &amp;&amp; Fishing.Level &lt; 500" IgnoreCanRun="True">
       <CallSubRoutine SubRoutineName="TrainFishing" />
     </If>
   </SubRoutine>
@@ -1023,7 +1026,7 @@
       <CastSpellAction RepeatType="Craftable" Repeat="90" Entry="7755" CastOnItem="False" ItemType="Chest" ItemId="0" />
     </While>
   </While>
-  <While Condition="(InbagCount (8364) + InbagCount (8365)) &gt;= 90 &amp;&amp; (InbagCount (13760) + InbagCount (13932)) &gt;= 30 &amp;&amp; (InbagCount (13759) + InbagCount (13931)) &gt;= 10 &amp;&amp; Cooking.Level &gt;= 175 &amp;&amp; Cooking.Level &lt; 225" IgnoreCanRun="True">
+  <While Condition="(InbagCount (8364) + InbagCount (8365)) &gt;= 90 &amp;&amp; (InbagCount (13759) + InbagCount (13760)) &gt;= 40 &amp;&amp; Cooking.Level &gt;= 175 &amp;&amp; Cooking.Level &lt; 225" IgnoreCanRun="True">
     <CallSubRoutine SubRoutineName="CheckFishSkill" />
     <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Cooking Mithril Head Trout, mmmm&quot;); " />
     <CallSubRoutine SubRoutineName="CreateFood" />
@@ -1032,7 +1035,7 @@
     </While>
     <CallSubRoutine SubRoutineName="CheckCookingSkill" />
   </While>
-  <While Condition="(InbagCount (8364) + InbagCount (8365)) &gt;= 90 &amp;&amp; (InbagCount (13760) + InbagCount (13932)) &gt;= 40 &amp;&amp; Cooking.Level &gt;= 225 &amp;&amp; Cooking.Level &lt; 250 || (InbagCount (8364) + InbagCount (8365)) &gt;= 90 &amp;&amp; (InbagCount (13759) + InbagCount (13931)) &gt;= 40 &amp;&amp; Cooking.Level &gt;= 225 &amp;&amp; Cooking.Level &lt; 250" IgnoreCanRun="True">
+  <While Condition="(InbagCount(8364) + InbagCount(8365)) &gt;= 90 &amp;&amp; (InbagCount(13759) + InbagCount (13760)) &gt;= 40 &amp;&amp; Cooking.Level &gt;= 225 &amp;&amp; Cooking.Level &lt; 250" IgnoreCanRun="True">
     <CallSubRoutine SubRoutineName="CheckCookingSkill" />
     <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Cooking more Mithril Head Trout, mmmm&quot;); " />
     <CallSubRoutine SubRoutineName="CreateFood" />
@@ -1040,32 +1043,38 @@
       <CastSpellAction RepeatType="Craftable" Repeat="70" Entry="20916" CastOnItem="False" ItemType="Chest" ItemId="0" />
     </While>
   </While>
-  <While Condition="(InbagCount (8364) + InbagCount (8365)) &gt;= 90 &amp;&amp; (InbagCount (13759) + InbagCount (13931)) &gt;= 40 &amp;&amp; Cooking.Level &gt;= 250 &amp;&amp; Cooking.Level &lt; 275" IgnoreCanRun="True">
+  <While Condition="(InbagCount (13759) + InbagCount (13760)) &gt;= 40 &amp;&amp; Cooking.Level &gt;= 250 &amp;&amp; Cooking.Level &lt; 275" IgnoreCanRun="True">
     <CallSubRoutine SubRoutineName="CheckCookingSkill" />
-    <If Condition="!HasRecipe(18243)" IgnoreCanRun="True">
-      <CallSubRoutine SubRoutineName="TrainCooking" />
-      <WaitAction Condition="false" Timeout="2000" />
-      <CallSubRoutine SubRoutineName="TrainCooking" />
-    </If>
-    <BuyItemAction NpcEntry="1247" Location="-5601.6, -531.203, 399.654" ItemID="159" BuyItemType="SpecificItem" Count="40" BuyAdditively="True" />
-    <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Cooking Nightfin soup, mmmm&quot;); " />
-    <CallSubRoutine SubRoutineName="CreateFood" />
-    <While Condition="Cooking.Level &lt; 275" IgnoreCanRun="False">
-      <CastSpellAction RepeatType="Craftable" Repeat="40" Entry="18243" CastOnItem="False" ItemType="Chest" ItemId="0" />
+    <While Condition="InbagCount(13760) &gt;= 1" IgnoreCanRun="True">
+      <If Condition="!HasRecipe(18244)" IgnoreCanRun="True">
+        <CallSubRoutine SubRoutineName="TrainCooking" />
+        <WaitAction Condition="false" Timeout="2000" />
+        <CallSubRoutine SubRoutineName="TrainCooking" />
+      </If>
+      <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Cooking Poached Sunscale Salmon, mmmm&quot;); " />
+      <CallSubRoutine SubRoutineName="CreateFood" />
+      <While Condition="Cooking.Level &lt; 275" IgnoreCanRun="False">
+        <CastSpellAction RepeatType="Craftable" Repeat="40" Entry="18244" CastOnItem="False" ItemType="Chest" ItemId="0" />
+      </While>
     </While>
-    <CallSubRoutine SubRoutineName="CheckCookingSkill" />
-  </While>
-  <While Condition="(InbagCount (8364) + InbagCount (8365)) &gt;= 90 &amp;&amp; (InbagCount (13760) + InbagCount (13932)) &gt;= 40 &amp;&amp; Cooking.Level &gt;= 250 &amp;&amp; Cooking.Level &lt; 275" IgnoreCanRun="True">
-    <CallSubRoutine SubRoutineName="CheckCookingSkill" />
-    <If Condition="!HasRecipe(18244)" IgnoreCanRun="True">
-      <CallSubRoutine SubRoutineName="TrainCooking" />
-      <WaitAction Condition="false" Timeout="2000" />
-      <CallSubRoutine SubRoutineName="TrainCooking" />
-    </If>
-    <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Cooking Poached Sunscale Salmon, mmmm&quot;); " />
-    <CallSubRoutine SubRoutineName="CreateFood" />
-    <While Condition="Cooking.Level &lt; 275" IgnoreCanRun="False">
-      <CastSpellAction RepeatType="Craftable" Repeat="40" Entry="18244" CastOnItem="False" ItemType="Chest" ItemId="0" />
+    <While Condition="InbagCount(13759) &gt;= 1" IgnoreCanRun="False">
+      <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Cooking Nightfin soup, mmmm&quot;); " />
+      <If Condition="Me.IsHorde" IgnoreCanRun="True">
+        <FlyToAction Dismount="True" Location="1794.917, -4501.906, 45.11787" />
+        <BuyItemAction NpcEntry="46708" Location="1779.3, -4487.72, 45.64117" ItemID="159" BuyItemType="SpecificItem" Count="InbagCount(13759) - InbagCount(159)" BuyAdditively="True" />
+      </If>
+      <If Condition="Me.IsAlliance" IgnoreCanRun="True">
+        <BuyItemAction NpcEntry="1247" Location="-5601.6, -531.203, 399.654" ItemID="159" BuyItemType="SpecificItem" Count="40 - InbagCount(159)" BuyAdditively="True" />
+      </If>
+      <If Condition="!HasRecipe(18243)" IgnoreCanRun="True">
+        <CallSubRoutine SubRoutineName="TrainCooking" />
+        <WaitAction Condition="false" Timeout="2000" />
+        <CallSubRoutine SubRoutineName="TrainCooking" />
+      </If>
+      <CallSubRoutine SubRoutineName="CreateFood" />
+      <While Condition="Cooking.Level &lt; 275" IgnoreCanRun="False">
+        <CastSpellAction RepeatType="Craftable" Repeat="40" Entry="18243" CastOnItem="False" ItemType="Chest" ItemId="0" />
+      </While>
     </While>
     <CallSubRoutine SubRoutineName="CheckCookingSkill" />
   </While>
@@ -1184,7 +1193,7 @@
     </If>
   </While>
   <!--If's for fishing-->
-  <If Condition="(InbagCount (30817) + InbagCount (2678) + InbagCount (30816)) &lt; 100 &amp;&amp; Cooking.Level &gt;= 1 &amp;&amp; Cooking.Level &lt; 40" IgnoreCanRun="True">
+  <If Condition="(InbagCount (30817) + InbagCount (2678) + InbagCount (30816)) &lt; 100 &amp;&amp; Cooking.Level &gt;= 1 &amp;&amp; Cooking.Level &lt; 40" IgnoreCanRun="False">
     <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;We need supplies!! Going to buy some.&quot;); " />
     <If Condition="Me.IsAlliance" IgnoreCanRun="True">
       <FlyToAction Dismount="True" Location="-8641.277, 423.0092, 101.9676" />
@@ -1208,7 +1217,7 @@
     </If>
     <CallSubRoutine SubRoutineName="DoFishing" />
   </If>
-  <If Condition="(InbagCount (4592) + InbagCount (6289)) &lt; 60 &amp;&amp; Cooking.Level &gt;= 65 &amp;&amp; Cooking.Level &lt; 110" IgnoreCanRun="True">
+  <If Condition="(InbagCount (4592) + InbagCount (6289)) &lt; 60 &amp;&amp; Cooking.Level &gt;= 65 &amp;&amp; Cooking.Level &lt; 110" IgnoreCanRun="False">
     <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Time to catch some Raw Longjaw Mud Snapper.&quot;); " />
     <If Condition="Me.IsHorde" IgnoreCanRun="True">
       <FlyToAction Dismount="True" Location="1955.838, -4672.469, 32.69028" />
@@ -1219,7 +1228,7 @@
     </If>
     <CallSubRoutine SubRoutineName="DoFishing" />
   </If>
-  <If Condition="(InbagCount (6308) + InbagCount (4593)) &lt; 120 &amp;&amp; Cooking.Level &gt;= 110 &amp;&amp; Cooking.Level &lt; 175" IgnoreCanRun="True">
+  <If Condition="(InbagCount (6308) + InbagCount (4593)) &lt; 120 &amp;&amp; Cooking.Level &gt;= 110 &amp;&amp; Cooking.Level &lt; 175" IgnoreCanRun="False">
     <If Condition="Me.IsHorde" IgnoreCanRun="True">
       <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Time to catch some catfish, 110-175.&quot;); " />
       <FlyToAction Dismount="True" Location="962.5023, 1058.656, 106.7453" />
@@ -1246,7 +1255,7 @@
     <WaitAction Condition="false" Timeout="3000" />
     <CallSubRoutine SubRoutineName="Sell" />
   </If>
-  <If Condition="(InbagCount (8364) + InbagCount (8365)) &lt; 90 &amp;&amp; Cooking.Level &gt;= 175 &amp;&amp; Cooking.Level &lt; 250 &amp;&amp; HasRecipe(20916)" IgnoreCanRun="True">
+  <If Condition="(InbagCount (8364) + InbagCount (8365)) &lt; 90 &amp;&amp; Cooking.Level &gt;= 175 &amp;&amp; Cooking.Level &lt; 250 &amp;&amp; HasRecipe(20916)" IgnoreCanRun="False">
     <If Condition="Me.IsAlliance" IgnoreCanRun="True">
       <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Time to catch some more fish, going to WPL.&quot;); " />
       <FlyToAction Dismount="True" Location="1046.955, -2097.152, 54.91249" />
@@ -1258,7 +1267,7 @@
     </If>
     <CallSubRoutine SubRoutineName="DoFishing" />
   </If>
-  <If Condition="(InbagCount (8364) + InbagCount (8365)) &gt;= 90 &amp;&amp; ((InbagCount (13760) + InbagCount (13932)) &lt; 30 &amp;&amp; (InbagCount (13759) + InbagCount (13931)) &lt; 10) || ((InbagCount (13759) + InbagCount (13931)) &lt; 30 &amp;&amp; (InbagCount (13760) + InbagCount (13932)) &lt; 10) &amp;&amp; Cooking.Level &gt;= 175 &amp;&amp; Cooking.Level &lt; 250" IgnoreCanRun="True">
+  <If Condition="(InbagCount(8364) + InbagCount(8365)) &gt;= 90 &amp;&amp; (InbagCount(13759) + InbagCount(13760)) &lt; 40 &amp;&amp; Cooking.Level &gt;= 175 &amp;&amp; Cooking.Level &lt; 250" IgnoreCanRun="False">
     <CallSubRoutine SubRoutineName="CheckSkill" />
     <If Condition="Me.IsHorde" IgnoreCanRun="True">
       <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Time to catch some Raw Sunscale Salmon &amp; some Raw Nightfin Snapper, going to Moonglade.&quot;); " />
@@ -1309,7 +1318,7 @@
       </If>
     </If>
   </If>
-  <If Condition="(InbagCount (13935) + InbagCount (13889)) &lt; 40 &amp;&amp; Cooking.Level &gt;= 275 &amp;&amp; Cooking.Level &lt; 300 &amp;&amp; HasRecipe(18247)" IgnoreCanRun="True">
+  <If Condition="(InbagCount (13935) + InbagCount (13889)) &lt; 40 &amp;&amp; Cooking.Level &gt;= 275 &amp;&amp; Cooking.Level &lt; 300 &amp;&amp; HasRecipe(18247)" IgnoreCanRun="False">
     <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Time to catch some Raw Whitescale Salmon.&quot;); " />
     <If Condition="Me.IsHorde" IgnoreCanRun="True">
       <FlyToAction Dismount="True" Location="-7217.19, -649.2604, -236.2506" />
@@ -1359,7 +1368,7 @@
       </If>
     </If>
   </If>
-  <If Condition="(InbagCount (27674) + InbagCount (27655)) &lt; 30 &amp;&amp; Cooking.Level &gt;= 300 &amp;&amp; Cooking.Level &lt; 325 &amp;&amp; HasRecipe(33284)" IgnoreCanRun="True">
+  <If Condition="(InbagCount (27674) + InbagCount (27655)) &lt; 30 &amp;&amp; Cooking.Level &gt;= 300 &amp;&amp; Cooking.Level &lt; 325 &amp;&amp; HasRecipe(33284)" IgnoreCanRun="False">
     <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Need to kill some mobs for some meat, sry.&quot;); " />
     <FlyToAction Dismount="True" Location="-1369.676, 3333.705, 42.89846" />
     <LoadProfileAction ProfileType="Honorbuddy" Path="HBProfiles\[QO - N] 1-525 Cooking-Fishing [Cicrocoft &amp; AtticusG3].xml" />
@@ -1368,7 +1377,7 @@
   <If Condition="Cooking.Level &gt;= 325 &amp;&amp; Cooking.Level &lt; 350 &amp;&amp; Me.MapId != 530" IgnoreCanRun="True">
     <CallSubRoutine SubRoutineName="EK to Outland" />
   </If>
-  <If Condition="(InbagCount (27666) + InbagCount (27438)) &lt; 30 &amp;&amp; Cooking.Level &gt;= 325 &amp;&amp; Cooking.Level &lt; 350" IgnoreCanRun="True">
+  <If Condition="(InbagCount (27666) + InbagCount (27438)) &lt; 30 &amp;&amp; Cooking.Level &gt;= 325 &amp;&amp; Cooking.Level &lt; 350" IgnoreCanRun="False">
     <If Condition="!HasRecipe(33295)" IgnoreCanRun="True">
       <If Condition="(Me.IsHorde) &amp;&amp; (InbagCount(27699) == 0)" IgnoreCanRun="True">
         <FlyToAction Dismount="True" Location="-2648.175, 4407.692, 36.10701" />
@@ -1400,13 +1409,13 @@
       <CallSubRoutine SubRoutineName="Kalimdor to Northrend" />
     </If>
   </If>
-  <If Condition="(InbagCount (41805) + InbagCount (45932)) &gt;= 60 &amp;&amp; (InbagCount (41803) + InbagCount (34759)) &gt;= 100 &amp;&amp; (InbagCount (43268)*2 + InbagCount (36781) + InbagCount (36782)) &gt;= 30 &amp;&amp; (InbagCount (42942) + InbagCount (41802)) &gt;= 60 &amp;&amp; Cooking.Level &gt;= 350 &amp;&amp; Cooking.Level &lt; 415" IgnoreCanRun="True">
+  <If Condition="(InbagCount (41805) + InbagCount (45932)) &gt;= 60 &amp;&amp; (InbagCount (41803) + InbagCount (34759)) &gt;= 100 &amp;&amp; (InbagCount (43268)*2 + InbagCount (36781) + InbagCount (36782)) &gt;= 30 &amp;&amp; (InbagCount (42942) + InbagCount (41802)) &gt;= 60 &amp;&amp; Cooking.Level &gt;= 350 &amp;&amp; Cooking.Level &lt; 415" IgnoreCanRun="False">
     <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Time to catch some random fish.&quot;); " />
     <FlyToAction Dismount="True" Location="2614.413, 4904.752, 1.857654" />
     <MoveToAction Location="2609.038, 4904.308, 0.710155" MoveType="Location" Pathing="ClickToMove" Entry="0" />
     <CallSubRoutine SubRoutineName="DoFishing" />
   </If>
-  <If Condition="(InbagCount (62790) + InbagCount (2596) + InbagCount (2595)*2) &lt; 160 &amp;&amp; Cooking.Level &gt;= 415 &amp;&amp; Cooking.Level &lt; 435" IgnoreCanRun="True">
+  <If Condition="(InbagCount (62790) + InbagCount (2596) + InbagCount (2595)*2) &lt; 160 &amp;&amp; Cooking.Level &gt;= 415 &amp;&amp; Cooking.Level &lt; 435" IgnoreCanRun="False">
     <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;We need supplies!! Going to buy some in Dalaran.&quot;); " />
     <If Condition="Me.ZoneId != 4395" IgnoreCanRun="True">
       <FlyToAction Dismount="True" Location="5806.973, 559.2507, 650.4033" />
@@ -1415,7 +1424,7 @@
     <BuyItemAction NpcEntry="33026" Location="5796.559, 667.2882, 613.8835" ItemID="2595" BuyItemType="SpecificItem" Count="40 - InbagCount(2595)" BuyAdditively="True" />
     <BuyItemAction NpcEntry="33026" Location="5796.559, 667.2882, 613.8835" ItemID="2596" BuyItemType="SpecificItem" Count="80 - InbagCount(2596)" BuyAdditively="True" />
   </If>
-  <If Condition="(InbagCount (62778) + InbagCount (62676)) &lt; 15 &amp;&amp; Cooking.Level &gt;= 435 &amp;&amp; Cooking.Level &lt; 450" IgnoreCanRun="True">
+  <If Condition="(InbagCount (62778) + InbagCount (62676)) &lt; 15 &amp;&amp; Cooking.Level &gt;= 435 &amp;&amp; Cooking.Level &lt; 450" IgnoreCanRun="False">
     <If Condition="Me.IsAlliance" IgnoreCanRun="True">
       <If Condition="Me.MapId == 571" IgnoreCanRun="True">
         <If Condition="Me.ZoneId != 4395" IgnoreCanRun="True">
