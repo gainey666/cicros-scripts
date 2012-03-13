@@ -1409,7 +1409,7 @@
       <CallSubRoutine SubRoutineName="Kalimdor to Northrend" />
     </If>
   </If>
-  <If Condition="(InbagCount (41805) + InbagCount (45932)) &gt;= 60 &amp;&amp; (InbagCount (41803) + InbagCount (34759)) &gt;= 100 &amp;&amp; (InbagCount (43268)*2 + InbagCount (36781) + InbagCount (36782)) &gt;= 30 &amp;&amp; (InbagCount (42942) + InbagCount (41802)) &gt;= 60 &amp;&amp; Cooking.Level &gt;= 350 &amp;&amp; Cooking.Level &lt; 415" IgnoreCanRun="False">
+  <If Condition="(InbagCount (41805) + InbagCount (45932)) &lt; 60 &amp;&amp; (InbagCount (41803) + InbagCount (34759)) &lt; 100 &amp;&amp; (InbagCount (43268)*2 + InbagCount (36781) +  InbagCount (36782)) &lt; 30 &amp;&amp; (InbagCount (42942) + InbagCount (41802)) &lt; 60 &amp;&amp; Cooking.Level &gt;= 350 &amp;&amp; Cooking.Level &lt; 415" IgnoreCanRun="False">
     <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Time to catch some random fish.&quot;); " />
     <FlyToAction Dismount="True" Location="2614.413, 4904.752, 1.857654" />
     <MoveToAction Location="2609.038, 4904.308, 0.710155" MoveType="Location" Pathing="ClickToMove" Entry="0" />

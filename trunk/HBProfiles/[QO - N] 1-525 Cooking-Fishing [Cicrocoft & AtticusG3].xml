@@ -12,7 +12,7 @@
 	<MinLevel>1</MinLevel>
 	<MaxLevel>91</MaxLevel>
 	<QuestOrder>
-		<CustomBehavior File="UserSettings" LootMobs="True" PullDistance="35" TrainNewSkills="False" LearnFlightPaths="False" KillBetweenHotspots="True" LogoutForInactivity="False" SkinMobs="True" />
+		<CustomBehavior File="UserSettings" LootMobs="True" PullDistance="35" KillBetweenHotspots="True" />
 		<CustomBehavior File="Message" Text="HB: *****************************" LogColor="GreenYellow" />
 		<CustomBehavior File="Message" Text="HB: [Neutral] 1-525 Cooking-Fishing [Cicrocoft + AtticusG3]" LogColor="GreenYellow" />
 		<CustomBehavior File="Message" Text="HB: Thanks to:" LogColor="GreenYellow" />
