@@ -2,8 +2,11 @@
 <Professionbuddy>
   <!--Intro-->
   <CustomAction Code="Log(System.Drawing.Color.DarkOliveGreen,&quot;[PB - N] 1-525 Cooking-Fishing [Cicrocoft &amp; AtticusG3]&quot;);" />
-  <Settings DefaultValue="" Type="String" Name="MainHand Weapon" Summary="This is a summary of what this setting does" Category="Misc" Global="False" Hidden="True" />
-  <Settings DefaultValue="" Type="String" Name="OffHand Weapon/Shield" Summary="This is a summary of what this setting does" Category="Misc" Global="False" Hidden="True" />
+  <Settings DefaultValue="" Type="Int32" Name="Main Hand" Summary="Saves MainHand Weapon ID" Category="Weapon ID's" Global="True" Hidden="False" />
+  <Settings DefaultValue="" Type="Int32" Name="Off Hand" Summary="Saves Off-Hand Weapon ID" Category="Weapon ID's" Global="True" Hidden="False" />
+  <Declaration Code="public void SetSettings(){var mh = Me.Inventory.Equipped.GetEquippedItem(WoWInventorySlot.MainHand); var oh = Me.Inventory.Equipped.GetEquippedItem(WoWInventorySlot.OffHand); if (mh.ItemInfo.WeaponClass != WoWItemWeaponClass.FishingPole) { Settings[&quot;Main Hand&quot;] = (int)mh.ItemInfo.Id; if (oh != null) { Settings[&quot;Off Hand&quot;] = (int)oh.ItemInfo.Id; } else { Settings[&quot;Off Hand&quot;] = 0; } } }" />
+  <Declaration Code="public void EquipItems(int MH, int OH) {var inv = Me.BagItems; foreach (WoWItem item in inv) { if (item != null &amp;&amp; (int)item.ItemInfo.Id == MH) item.UseContainerItem(); } Thread.Sleep(1000); if (OH != 0) { foreach (WoWItem item in inv) { if (item != null &amp;&amp; (int) item.ItemInfo.Id == OH) { item.UseContainerItem(); } } } }" />
+  <CustomAction Code="SetSettings();" />
   <If Condition="TreeRoot.Current.Name != &quot;Combat Bot&quot;" IgnoreCanRun="True">
     <CustomAction Code="SwitchToBot(&quot;Combat Bot&quot;);" />
   </If>
@@ -908,6 +911,9 @@
       </If>
     </If>
   </SubRoutine>
+  <If Condition="Me.Inventory.Equipped.MainHand.ItemInfo.WeaponClass == WoWItemWeaponClass.FishingPole" IgnoreCanRun="True">
+    <CustomAction Code="EquipItems((int)Settings[&quot;Main Hand&quot;], (int)Settings[&quot;Off Hand&quot;]);" />
+  </If>
   <!--Whiles for cooking-->
   <While Condition="(InbagCount (30817) + InbagCount (2678) + InbagCount (30816)) &gt;= 100 &amp;&amp; Cooking.Level &gt;= 1 &amp;&amp; Cooking.Level &lt; 40" IgnoreCanRun="True">
     <If Condition="!HasRecipe(37836)" IgnoreCanRun="True">
