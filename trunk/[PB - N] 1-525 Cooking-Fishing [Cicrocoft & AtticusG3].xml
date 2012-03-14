@@ -1122,7 +1122,7 @@
       <CastSpellAction RepeatType="Craftable" Repeat="40" Entry="33284" CastOnItem="False" ItemType="Chest" ItemId="0" />
     </While>
   </While>
-  <While Condition="(InbagCount (27666) + InbagCount (27438)) &gt;= 30 &amp;&amp; Cooking.Level &gt;= 325 &amp;&amp; Cooking.Level &lt; 350" IgnoreCanRun="True">
+  <While Condition="(InbagCount (27666) + InbagCount (27438)) &gt;= 30 &amp;&amp; Cooking.Level &gt;= 325 &amp;&amp; Cooking.Level &lt; 350 &amp;&amp; HasRecipe(33295)" IgnoreCanRun="True">
     <CallSubRoutine SubRoutineName="CheckCookingSkill" />
     <CallSubRoutine SubRoutineName="CreateFood" />
     <While Condition="Cooking.Level &lt; 350" IgnoreCanRun="False">
@@ -1404,6 +1404,10 @@
       <If Condition="!HasRecipe(33295)" IgnoreCanRun="True">
         <If Condition="(Me.IsHorde) &amp;&amp; (InbagCount(27699) == 0)" IgnoreCanRun="True">
           <BuyItemAction NpcEntry="18960" Location="-2657.404, 4451.183, 36.32568" ItemID="27699" BuyItemType="SpecificItem" Count="1" BuyAdditively="True" />
+        </If>
+        <If Condition="(Me.IsAlliance) &amp;&amp; (InbagCount(27699) == 0)" IgnoreCanRun="True">
+          <FlyToAction Dismount="True" Location="-2944.534, 4005.904, -0.8709726" />
+          <BuyItemAction NpcEntry="19296" Location="-2917.881, 4021.484, 0.4274965" ItemID="27699" BuyItemType="SpecificItem" Count="1" BuyAdditively="True" />
         </If>
         <CustomAction Code="Lua.DoString(string.Format(&quot;RunMacroText(\&quot;{0}\&quot;)&quot;, &quot;/use Recipe: Golden Fish Sticks&quot;), 0);" />
       </If>
