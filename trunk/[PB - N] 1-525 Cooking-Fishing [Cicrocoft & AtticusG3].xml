@@ -2,8 +2,9 @@
 <Professionbuddy>
   <!--Intro-->
   <CustomAction Code="Log(System.Drawing.Color.DarkOliveGreen,&quot;[PB - N] 1-525 Cooking-Fishing [Cicrocoft &amp; AtticusG3]&quot;);" />
-  <Settings DefaultValue="" Type="Int32" Name="Main Hand" Summary="Saves MainHand Weapon ID" Category="Weapon ID's" Global="True" Hidden="False" />
-  <Settings DefaultValue="" Type="Int32" Name="Off Hand" Summary="Saves Off-Hand Weapon ID" Category="Weapon ID's" Global="True" Hidden="False" />
+  <Settings DefaultValue="False" Type="Boolean" Name="Auction Meat" Summary="Do you want to Auction left over meat? If False, will mail." Category="Disposal Options" Global="False" Hidden="False" />
+  <Settings DefaultValue="" Type="Int32" Name="Main Hand" Summary="Saves MainHand Weapon ID" Category="Weapon ID's" Global="False" Hidden="False" />
+  <Settings DefaultValue="" Type="Int32" Name="Off Hand" Summary="Saves Off-Hand Weapon ID" Category="Weapon ID's" Global="False" Hidden="False" />
   <Declaration Code="public void SetSettings(){var mh = Me.Inventory.Equipped.GetEquippedItem(WoWInventorySlot.MainHand); var oh = Me.Inventory.Equipped.GetEquippedItem(WoWInventorySlot.OffHand); if (mh.ItemInfo.WeaponClass != WoWItemWeaponClass.FishingPole) { Settings[&quot;Main Hand&quot;] = (int)mh.ItemInfo.Id; if (oh != null) { Settings[&quot;Off Hand&quot;] = (int)oh.ItemInfo.Id; } else { Settings[&quot;Off Hand&quot;] = 0; } } }" />
   <Declaration Code="public void EquipItems(int MH, int OH) {var inv = Me.BagItems; foreach (WoWItem item in inv) { if (item != null &amp;&amp; (int)item.ItemInfo.Id == MH) item.UseContainerItem(); } Thread.Sleep(1000); if (OH != 0) { foreach (WoWItem item in inv) { if (item != null &amp;&amp; (int) item.ItemInfo.Id == OH) { item.UseContainerItem(); } } } }" />
   <CustomAction Code="SetSettings();" />
@@ -666,10 +667,14 @@
         <CustomAction Code="Lua.DoString(string.Format(&quot;RunMacroText(\&quot;{0}\&quot;)&quot;, &quot;/use Darkwater Clam&quot;), 0);" />
         <WaitAction Condition="false" Timeout="987" />
       </While>
+      <If Condition="(bool)Settings[&quot;Auction Meat&quot;]" IgnoreCanRun="True">
+        <If Condition="(Me.IsHorde) &amp;&amp; ((Me.ZoneId == 1637) || (Me.ZoneId == 1638) || (Me.ZoneId == 4395))" IgnoreCanRun="True">
+          <MoveToAction Location="0, 0, 0" MoveType="NearestAH" Pathing="Navigator" Entry="0" />
+          <SellItemOnAhAction Category="TradeGoods" SubCategoryType="WoWItemTradeGoodsClass" SubCategory="Meat" UseCategory="True" RunTime="_24_Hours" AmountType="Everything" ItemID="" MinBuyout="0g10s0c" MaxBuyout="5g0s0c" StackSize="5" IgnoreStackSizeBelow="1" Amount="10" BidPrecent="95" UndercutPrecent="0.1" AutoFindAh="True" PostIfBelowMinBuyout="True" Location="0, 0, 0" />
+        </If>
+      </If>
       <MoveToAction Location="0, 0, 0" MoveType="NearestVendor" Pathing="Navigator" Entry="0" />
       <SellItemAction Sell="All" NpcEntry="0" Location="0, 0, 0" SellItemType="Specific" ItemID="45932,34759,43268,42942,62790,2595,2596,13446,6149,3827,1710,3385,2455,33567,21153,2678,27699,13886,6311,6310" Count="0" />
-      <MoveToAction Location="0, 0, 0" MoveType="NearestAH" Pathing="Navigator" Entry="0" />
-      <SellItemOnAhAction Category="TradeGoods" SubCategoryType="WoWItemTradeGoodsClass" SubCategory="Meat" UseCategory="True" RunTime="_24_Hours" AmountType="Everything" ItemID="" MinBuyout="0g10s0c" MaxBuyout="10g0s0c" StackSize="5" IgnoreStackSizeBelow="1" Amount="10" BidPrecent="95" UndercutPrecent="0.1" AutoFindAh="True" PostIfBelowMinBuyout="True" Location="0, 0, 0" />
     </If>
   </SubRoutine>
   <SubRoutine SubRoutineName="CheckCookingSkill">
@@ -794,7 +799,7 @@
   <SubRoutine SubRoutineName="City to Uldum">
     <If Condition="(Me.IsHorde) &amp;&amp; (Me.MapId == 1)" IgnoreCanRun="True">
       <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Flying to Uldum Portal.&quot;); " />
-      <FlyToAction Dismount="True" Location="2041.576, -4384.234, 99.1154" />
+      <FlyToAction Dismount="True" Location="2042.699, -4360.661, 98.51802" />
       <If Condition="ObjectManager.GetObjectsOfType&lt;WoWGameObject&gt;().FirstOrDefault(o =&gt; o.Entry == 207687 ) != null &amp;&amp; ObjectManager.GetObjectsOfType&lt;WoWGameObject&gt;().FirstOrDefault(o =&gt; o.Entry == 207687 ).Location.Distance(new WoWPoint(2039.67,-4356.288,98.00434)) &lt; 20" IgnoreCanRun="True">
         <InteractionAction InteractType="GameObject" Entry="207687" InteractDelay="0" GameObjectType="Transport" SpellFocus="Anvil" />
         <WaitAction Condition="Me.ZoneId == 5034" Timeout="5000" />
@@ -912,6 +917,7 @@
     </If>
   </SubRoutine>
   <If Condition="Me.Inventory.Equipped.MainHand.ItemInfo.WeaponClass == WoWItemWeaponClass.FishingPole" IgnoreCanRun="True">
+    <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Equipping Weapons&quot;); " />
     <CustomAction Code="EquipItems((int)Settings[&quot;Main Hand&quot;], (int)Settings[&quot;Off Hand&quot;]);" />
   </If>
   <!--Whiles for cooking-->
@@ -1469,7 +1475,7 @@
     <If Condition="Me.MapId == 1" IgnoreCanRun="True">
       <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Flying to Uldum to farm some meat.&quot;); " />
       <FlyToAction Dismount="True" Location="-9118.882, -1409.889, 94.86877" />
-      <ChangeBotAction BotName="Grind Bot" />
+      <ChangeBotAction BotName="Questing" />
       <If Condition="Me.IsAlliance" IgnoreCanRun="True">
         <LoadProfileAction ProfileType="Honorbuddy" Path="HBProfiles\[QO - N] 1-525 Cooking-Fishing [Cicrocoft &amp; AtticusG3].xml" />
       </If>
