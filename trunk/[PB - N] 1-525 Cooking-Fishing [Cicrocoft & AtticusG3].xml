@@ -768,7 +768,7 @@
         <WaitAction Condition="Me.MapId == 530" Timeout="25000" />
       </If>
     </If>
-    <If Condition="(Me.MapId == 0) &amp;&amp; (Me.ZoneId == 4)" IgnoreCanRun="True">
+    <If Condition="(Me.MapId == 0) &amp;&amp; (Me.ZoneId == 4)" IgnoreCanRun="False">
       <FlyToAction Dismount="False" Location="-11850, -3206, -3.5" />
       <MoveToAction Location="-11910, -3207, -1" MoveType="Location" Pathing="Navigator" Entry="0" />
       <WaitAction Condition="Me.MapId == 530" Timeout="25000" />
