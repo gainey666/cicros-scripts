@@ -1395,6 +1395,10 @@
         <FlyToAction Dismount="True" Location="-2648.175, 4407.692, 36.10701" />
         <BuyItemAction NpcEntry="18960" Location="-2657.404, 4451.183, 36.32568" ItemID="27699" BuyItemType="SpecificItem" Count="1" BuyAdditively="True" />
       </If>
+      <If Condition="(Me.IsAlliance) &amp;&amp; (InbagCount(27699) == 0)" IgnoreCanRun="True">
+        <FlyToAction Dismount="True" Location="-2944.534, 4005.904, -0.8709726" />
+        <BuyItemAction NpcEntry="19296" Location="-2917.881, 4021.484, 0.4274965" ItemID="27699" BuyItemType="SpecificItem" Count="1" BuyAdditively="True" />
+      </If>
       <CustomAction Code="Lua.DoString(string.Format(&quot;RunMacroText(\&quot;{0}\&quot;)&quot;, &quot;/use Recipe: Golden Fish Sticks&quot;), 0);" />
       <WaitAction Condition="false" Timeout="3000" />
       <If Condition="!HasRecipe(33295)" IgnoreCanRun="True">
