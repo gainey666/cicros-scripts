@@ -538,7 +538,8 @@
         </If>
         <If Condition="(Me.ZoneId == 17) || (Me.ZoneId == 4709) || (Me.ZoneId == 15) || (Me.ZoneId == 406)" IgnoreCanRun="True">
           <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Lets find a place to cook! Going at the Crossroads&quot;); " />
-          <FlyToAction Dismount="True" Location="-403.3836, -2649.787, 96.22377" />
+          <FlyToAction Dismount="True" Location="-453.0107, -2653.787, 95.62769" />
+          <MoveToAction Location="-408.2222, -2648.159, 96.22328" MoveType="Location" Pathing="Navigator" Entry="0" />
         </If>
         <If Condition="(Me.ZoneId == 215) || (Me.ZoneId == 5695) || (Me.ZoneId == 405) || (Me.ZoneId == 1377) || (Me.ZoneId == 400) || (Me.ZoneId == 5034) || (Me.ZoneId == 440) || (Me.ZoneId == 357)" IgnoreCanRun="True">
           <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Lets find a place to cook! Going to fire in Bloodhoof&quot;); " />
