@@ -997,9 +997,26 @@
       <WaitAction Condition="false" Timeout="3000" />
     </If>
     <WaitAction Condition="false" Timeout="2000" />
+    <If Condition="!HasRecipe(7753)" IgnoreCanRun="True">
+      <If Condition="Me.IsHorde &amp;&amp; InbagCount(6328) == 0" IgnoreCanRun="True">
+        <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;I need a recipe. Going to visit a vendor in Bloodhoof.&quot;); " />
+        <FlyToAction Dismount="True" Location="-2162.028, -391.8154, -3.28099" />
+        <BuyItemAction NpcEntry="5940" Location="-2158.596, -392.9482, -3.030444" ItemID="6328" BuyItemType="SpecificItem" Count="1" BuyAdditively="True" />
+        <WaitAction Condition="false" Timeout="1000" />
+      </If>
+      <If Condition="Me.IsAlliance &amp;&amp; InbagCount (6328) == 0" IgnoreCanRun="True">
+        <FlyToAction Dismount="True" Location="-9492.55, 81.4931, 56.2269" />
+        <WaitAction Condition="false" Timeout="1000" />
+        <BuyItemAction NpcEntry="66" Location="-9492.55, 81.4931, 56.2269" ItemID="6328" BuyItemType="SpecificItem" Count="1" BuyAdditively="True" />
+        <WaitAction Condition="false" Timeout="1000" />
+      </If>
+      <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Learning my new recipe.&quot;); " />
+      <CustomAction Code="Lua.DoString(string.Format(&quot;RunMacroText(\&quot;{0}\&quot;)&quot;, &quot;/use Recipe: Longjaw Mud Snapper&quot;), 0);" />
+      <WaitAction Condition="false" Timeout="3000" />
+    </If>
     <CallSubRoutine SubRoutineName="CreateFood" />
     <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Cooking Longjaw Mud Snapper mmmm&quot;); " />
-    <While Condition="Cooking.Level &lt; 110" IgnoreCanRun="False">
+    <While Condition="Cooking.Level &lt; 110 &amp;&amp; HasRecipe(7753)" IgnoreCanRun="False">
       <CastSpellAction RepeatType="Craftable" Repeat="60" Entry="7753" CastOnItem="False" ItemType="Chest" ItemId="0" />
     </While>
   </While>
@@ -1022,9 +1039,27 @@
       <CustomAction Code="Lua.DoString(string.Format(&quot;RunMacroText(\&quot;{0}\&quot;)&quot;, &quot;/use Recipe: Bristle Whisker Catfish&quot;), 0);" />
       <WaitAction Condition="false" Timeout="3000" />
     </If>
+    <WaitAction Condition="false" Timeout="2000" />
+    <If Condition="!HasRecipe(7755)" IgnoreCanRun="True">
+      <If Condition="Me.IsHorde &amp;&amp; InbagCount(6330) == 0" IgnoreCanRun="True">
+        <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;I need a recipe. Going to visit a vendor in TB.&quot;); " />
+        <FlyToAction Dismount="True" Location="-1217.266, -18.90431, 165.8523" />
+        <BuyItemAction NpcEntry="3027" Location="-1214.992, -15.53396, 165.97" ItemID="6330" BuyItemType="SpecificItem" Count="1" BuyAdditively="True" />
+        <WaitAction Condition="false" Timeout="1000" />
+      </If>
+      <If Condition="Me.IsAlliance &amp;&amp; InbagCount (6330) == 0" IgnoreCanRun="True">
+        <FlyToAction Dismount="True" Location="-8800.812, 767.9769, 96.33873" />
+        <WaitAction Condition="false" Timeout="1000" />
+        <BuyItemAction NpcEntry="5494" Location="-8800.812, 767.9769, 96.33873" ItemID="6330" BuyItemType="SpecificItem" Count="1" BuyAdditively="True" />
+        <WaitAction Condition="false" Timeout="1000" />
+      </If>
+      <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Learning my new recipe.&quot;); " />
+      <CustomAction Code="Lua.DoString(string.Format(&quot;RunMacroText(\&quot;{0}\&quot;)&quot;, &quot;/use Recipe: Bristle Whisker Catfish&quot;), 0);" />
+      <WaitAction Condition="false" Timeout="3000" />
+    </If>
     <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Cooking Bristle Whisker Catfish mmmm&quot;); " />
     <CallSubRoutine SubRoutineName="CreateFood" />
-    <While Condition="Cooking.Level &lt; 125" IgnoreCanRun="False">
+    <While Condition="Cooking.Level &lt; 125 &amp;&amp; HasRecipe(7755)" IgnoreCanRun="False">
       <CastSpellAction RepeatType="Craftable" Repeat="30" Entry="7755" CastOnItem="False" ItemType="Chest" ItemId="0" />
     </While>
     <WaitAction Condition="false" Timeout="2000" />
