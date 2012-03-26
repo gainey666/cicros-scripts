@@ -684,7 +684,7 @@
     </If>
   </SubRoutine>
   <SubRoutine SubRoutineName="CheckFishSkill">
-    <If Condition="Fishing.Level &gt;= Fishing.MaxLevel - 25 &amp;&amp; Fishing.Level &lt; 500" IgnoreCanRun="True">
+    <If Condition="Fishing.Level &gt;= Fishing.MaxLevel - 25 &amp;&amp; Fishing.Level &lt; 500 &amp;&amp; Fishing.Level != 525" IgnoreCanRun="True">
       <CallSubRoutine SubRoutineName="TrainFishing" />
     </If>
   </SubRoutine>
@@ -697,24 +697,39 @@
     </If>
   </SubRoutine>
   <SubRoutine SubRoutineName="DoFishing">
-    <If Condition="Me.IsAlliance" IgnoreCanRun="True">
-      <CallSubRoutine SubRoutineName="EquipFishingPole" />
-      <ChangeBotAction BotName="AutoAngler" />
-    </If>
-    <If Condition="Me.IsHorde" IgnoreCanRun="True">
-      <While Condition="(Fishing.Level &lt;= Fishing.MaxLevel - 25 &amp;&amp; Fishing.Level &lt;= Fishing.MaxLevel) || Fishing.MaxLevel == 525" IgnoreCanRun="True">
-        <CallSubRoutine SubRoutineName="EquipFishingPole" />
-        <CustomAction Code="var1 = ObjectManager.GetObjectsOfType&lt;WoWGameObject&gt;().FirstOrDefault(u =&gt; u.SubType == WoWGameObjectType.FishingBobber &amp;&amp; u.CreatedByGuid == Me.Guid);" />
-        <If Condition="var1 != null &amp;&amp; ((WoWGameObject)var1).IsValid &amp;&amp; ((WoWFishingBobber)((WoWGameObject)var1).SubObj).IsBobbing" IgnoreCanRun="True">
-          <CustomAction Code="((WoWGameObject)var1).Interact();" />
-        </If>
-        <If Condition="var1 == null &amp;&amp; !Me.IsCasting" IgnoreCanRun="True">
-          <CustomAction Code="SpellManager.Cast(&quot;Fishing&quot;);" />
-          <WaitAction Condition="false" Timeout="1000" />
-        </If>
-      </While>
-      <CallSubRoutine SubRoutineName="CheckSkill" />
-    </If>
+    <CallSubRoutine SubRoutineName="EquipFishingPole" />
+    <While Condition="Me.IsHorde" IgnoreCanRun="True">
+      <If Condition="Fishing.Level &gt;= Fishing.MaxLevel - 25 &amp;&amp; Fishing.Level &lt; 500 &amp;&amp; Fishing.Level != 525" IgnoreCanRun="True">
+        <CallSubRoutine SubRoutineName="TrainFishing" />
+      </If>
+      <CustomAction Code="var1 = ObjectManager.GetObjectsOfType&lt;WoWGameObject&gt;().FirstOrDefault(u =&gt; u.SubType == WoWGameObjectType.FishingBobber &amp;&amp; u.CreatedByGuid == Me.Guid);" />
+      <If Condition="var1 != null &amp;&amp; ((WoWGameObject)var1).IsValid &amp;&amp; ((WoWFishingBobber)((WoWGameObject)var1).SubObj).IsBobbing" IgnoreCanRun="True">
+        <CustomAction Code="((WoWGameObject)var1).Interact();" />
+      </If>
+      <If Condition="var1 == null &amp;&amp; !Me.IsCasting" IgnoreCanRun="True">
+        <CustomAction Code="SpellManager.Cast(&quot;Fishing&quot;);" />
+        <WaitAction Condition="false" Timeout="1000" />
+      </If>
+    </While>
+    <While Condition="Me.IsAlliance" IgnoreCanRun="True">
+      <If Condition="Fishing.Level &gt;= Fishing.MaxLevel - 25 &amp;&amp; Fishing.Level &lt; 500 &amp;&amp; Fishing.Level != 525" IgnoreCanRun="True">
+        <CallSubRoutine SubRoutineName="TrainFishing" />
+      </If>
+      <CustomAction Code="var1 = ObjectManager.GetObjectsOfType&lt;WoWGameObject&gt;().FirstOrDefault(u =&gt; u.SubType == WoWGameObjectType.FishingBobber &amp;&amp; u.CreatedByGuid == Me.Guid);" />
+      <If Condition="var1 != null &amp;&amp; ((WoWGameObject)var1).IsValid &amp;&amp; ((WoWFishingBobber)((WoWGameObject)var1).SubObj).IsBobbing" IgnoreCanRun="True">
+        <CustomAction Code="((WoWGameObject)var1).Interact();" />
+      </If>
+      <If Condition="var1 == null &amp;&amp; !Me.IsCasting" IgnoreCanRun="True">
+        <CustomAction Code="SpellManager.Cast(&quot;Fishing&quot;);" />
+        <WaitAction Condition="false" Timeout="1000" />
+      </If>
+    </While>
+  </SubRoutine>
+  <SubRoutine SubRoutineName="UF">
+    <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Updating facing, hold on 2 sec&quot;); " />
+    <CustomAction Code="WoWMovement.Move(Styx.WoWInternals.WoWMovement.MovementDirection.ForwardBackMovement);" />
+    <CustomAction Code="WoWMovement.MoveStop(Styx.WoWInternals.WoWMovement.MovementDirection.ForwardBackMovement);" />
+    <WaitAction Condition="false" Timeout="2000" />
   </SubRoutine>
   <!--Travling Subs-->
   <SubRoutine SubRoutineName="EK to Uldum">
@@ -1244,7 +1259,9 @@
   <If Condition="(InbagCount (30817) + InbagCount (2678) + InbagCount (30816)) &lt; 100 &amp;&amp; Cooking.Level &gt;= 1 &amp;&amp; Cooking.Level &lt; 40" IgnoreCanRun="False">
     <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;We need supplies!! Going to buy some.&quot;); " />
     <If Condition="Me.IsAlliance" IgnoreCanRun="True">
-      <FlyToAction Dismount="True" Location="-8641.277, 423.0092, 101.9676" />
+      <If Condition="DistanceTo (-8610.326, 374.0695, 99.62305) &gt; 20" IgnoreCanRun="True">
+        <FlyToAction Dismount="True" Location="-8641.277, 423.0092, 101.9676" />
+      </If>
       <BuyItemAction NpcEntry="5483" Location="-8610.326, 374.0695, 99.62305" ItemID="30817" BuyItemType="SpecificItem" Count="50" BuyAdditively="True" />
       <BuyItemAction NpcEntry="5483" Location="-8610.326, 374.0695, 99.62305" ItemID="2678" BuyItemType="SpecificItem" Count="50" BuyAdditively="True" />
     </If>
@@ -1258,6 +1275,8 @@
     <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Time to catch some small fish.&quot;); " />
     <If Condition="Me.IsAlliance" IgnoreCanRun="True">
       <FlyToAction Dismount="True" Location="-9401.631, -153.8076, 57.96643" />
+      <CustomAction Code="Me.SetFacing(3.2f);" />
+      <CallSubRoutine SubRoutineName="UF" />
     </If>
     <If Condition="Me.IsHorde" IgnoreCanRun="True">
       <FlyToAction Dismount="True" Location="-2210.291, -281.3118, -10.80366" />
@@ -1273,6 +1292,8 @@
     </If>
     <If Condition="Me.IsAlliance" IgnoreCanRun="True">
       <FlyToAction Dismount="True" Location="-8319.463, 782.4787, 96.67616" />
+      <CustomAction Code="Me.SetFacing(2.5f);" />
+      <CallSubRoutine SubRoutineName="UF" />
     </If>
     <CallSubRoutine SubRoutineName="DoFishing" />
   </If>
@@ -1285,6 +1306,7 @@
     <If Condition="Me.IsAlliance" IgnoreCanRun="True">
       <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Time to catch some catfish, 110-175.&quot;); " />
       <FlyToAction Dismount="True" Location="-9249.921, -2553.227, 60.21301" />
+      <CustomAction Code="Me.SetFacing(3.2f);" />
     </If>
     <CallSubRoutine SubRoutineName="DoFishing" />
   </If>
@@ -1307,6 +1329,7 @@
     <If Condition="Me.IsAlliance" IgnoreCanRun="True">
       <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Time to catch some more fish, going to WPL.&quot;); " />
       <FlyToAction Dismount="True" Location="1046.955, -2097.152, 54.91249" />
+      <CustomAction Code="Me.SetFacing(0f);" />
     </If>
     <If Condition="Me.IsHorde" IgnoreCanRun="True">
       <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Time to catch some more fish, going to Dustwallow Marsh.&quot;); " />
@@ -1325,6 +1348,7 @@
     <If Condition="Me.IsAlliance" IgnoreCanRun="True">
       <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Time to catch some more fish, going to EPL.&quot;); " />
       <FlyToAction Dismount="True" Location="1985.145, -4133.935, 73.94361" />
+      <CustomAction Code="Me.SetFacing(4.7f);" />
     </If>
     <CallSubRoutine SubRoutineName="DoFishing" />
   </If>
@@ -1374,6 +1398,7 @@
     </If>
     <If Condition="Me.IsAlliance" IgnoreCanRun="True">
       <FlyToAction Dismount="True" Location="-3044.25, 1966.953, 29.34509" />
+      <CustomAction Code="Me.SetFacing(6.2f);" />
     </If>
     <CallSubRoutine SubRoutineName="DoFishing" />
   </If>
@@ -1452,6 +1477,7 @@
     <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Time to catch some Golden Darter.&quot;); " />
     <FlyToAction Dismount="True" Location="-1855.88, 4956.156, -20.65521" />
     <MoveToAction Location="-1827.723, 4964.667, -24.62757" MoveType="Location" Pathing="ClickToMove" Entry="0" />
+    <CustomAction Code="Me.SetFacing(6f);" />
     <CallSubRoutine SubRoutineName="DoFishing" />
   </If>
   <If Condition="Cooking.Level &gt;= 350 &amp;&amp; Cooking.Level &lt; 435 &amp;&amp; Me.MapId != 571" IgnoreCanRun="True">
@@ -1469,6 +1495,7 @@
     <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Time to catch some random fish.&quot;); " />
     <FlyToAction Dismount="True" Location="2614.413, 4904.752, 1.857654" />
     <MoveToAction Location="2609.038, 4904.308, 0.710155" MoveType="Location" Pathing="ClickToMove" Entry="0" />
+    <CustomAction Code="Me.SetFacing(3.8f);" />
     <CallSubRoutine SubRoutineName="DoFishing" />
   </If>
   <If Condition="(InbagCount (62790) + InbagCount (2596) + InbagCount (2595)*2) &lt; 160 &amp;&amp; Cooking.Level &gt;= 415 &amp;&amp; Cooking.Level &lt; 435" IgnoreCanRun="False">
