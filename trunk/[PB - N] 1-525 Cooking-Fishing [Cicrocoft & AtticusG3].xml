@@ -1366,7 +1366,7 @@
       <If Condition="DistanceTo (1045.846, -2098.408, 54.68686) &gt; 5" IgnoreCanRun="True">
         <FlyToAction Dismount="True" Location="1045.846, -2098.408, 54.68686" />
       </If>
-      <If Condition="!IsFacing(0f)" IgnoreCanRun="True">
+      <If Condition="!IsFacing(5.2f)" IgnoreCanRun="True">
         <CustomAction Code="Me.SetFacing(5.2f);" />
         <CallSubRoutine SubRoutineName="UF" />
       </If>
