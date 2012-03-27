@@ -989,7 +989,7 @@
     </If>
     <CallSubRoutine SubRoutineName="CreateFood" />
     <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Cooking Brilliant Smallfish, mmmm...&quot;); " />
-    <While Condition="Cooking.Level &lt; 70" IgnoreCanRun="False">
+    <While Condition="Cooking.Level &lt; 65" IgnoreCanRun="False">
       <CastSpellAction RepeatType="Craftable" Repeat="40" Entry="7751" CastOnItem="False" ItemType="Chest" ItemId="0" />
     </While>
     <CallSubRoutine SubRoutineName="CheckCookingSkill" />
