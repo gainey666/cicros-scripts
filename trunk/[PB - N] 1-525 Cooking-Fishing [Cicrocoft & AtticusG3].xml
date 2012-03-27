@@ -1100,7 +1100,7 @@
     </While>
     <CallSubRoutine SubRoutineName="CheckCookingSkill" />
   </While>
-  <While Condition="(InbagCount(8364) + InbagCount(8365)) &gt;= 90 &amp;&amp; (InbagCount(13759) + InbagCount (13760)) &gt;= 40 &amp;&amp; Cooking.Level &gt;= 225 &amp;&amp; Cooking.Level &lt; 250" IgnoreCanRun="True">
+  <While Condition="(InbagCount(8364) + InbagCount(8365)) &gt;= 110 &amp;&amp; (InbagCount(13759) + InbagCount (13760)) &gt;= 40 &amp;&amp; Cooking.Level &gt;= 225 &amp;&amp; Cooking.Level &lt; 250" IgnoreCanRun="True">
     <CallSubRoutine SubRoutineName="CheckCookingSkill" />
     <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Cooking more Mithril Head Trout, mmmm&quot;); " />
     <CallSubRoutine SubRoutineName="CreateFood" />
@@ -1354,7 +1354,7 @@
       </If>
     </If>
   </If>
-  <If Condition="(InbagCount (8364) + InbagCount (8365)) &lt; 90 &amp;&amp; Cooking.Level &gt;= 175 &amp;&amp; Cooking.Level &lt; 250 &amp;&amp; HasRecipe(20916)" IgnoreCanRun="False">
+  <If Condition="(InbagCount (8364) + InbagCount (8365)) &lt; 110 &amp;&amp; Cooking.Level &gt;= 175 &amp;&amp; Cooking.Level &lt; 250 &amp;&amp; HasRecipe(20916)" IgnoreCanRun="False">
     <If Condition="Me.IsHorde" IgnoreCanRun="True">
       <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Time to catch some more fish, going to Dustwallow Marsh.&quot;); " />
       <FlyToAction Dismount="True" Location="-3339.349, -2898.851, 31.79146" />
