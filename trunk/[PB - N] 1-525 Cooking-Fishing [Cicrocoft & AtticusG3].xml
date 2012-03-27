@@ -416,7 +416,7 @@
   </SubRoutine>
   <SubRoutine SubRoutineName="CreateFood">
     <If Condition="Me.IsAlliance" IgnoreCanRun="True">
-      <If Condition="Me.ZoneId == 12" IgnoreCanRun="True">
+      <If Condition="Me.ZoneId == 12 || Me.ZoneId == 5287" IgnoreCanRun="True">
         <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Lets find a place to cook!&quot;); " />
         <If Condition="DistanceTo (-9377.794, -70.15736, 64.43739) &gt; 30" IgnoreCanRun="True">
           <FlyToAction Dismount="True" Location="-9386.659, -95.0334, 62.42002" />
@@ -712,7 +712,7 @@
         <WaitAction Condition="false" Timeout="1000" />
       </If>
     </While>
-    <If Condition="Me.IsAlliance" IgnoreCanRun="True">
+    <If Condition="Me.IsAlliance &amp;&amp; Fishing.Level == 885" IgnoreCanRun="True">
       <If Condition="Fishing.Level &gt;= Fishing.MaxLevel - 25 &amp;&amp; Fishing.Level &lt; 500 &amp;&amp; Fishing.Level != 525" IgnoreCanRun="True">
         <CallSubRoutine SubRoutineName="TrainFishing" />
       </If>
@@ -724,6 +724,9 @@
         <CustomAction Code="SpellManager.Cast(&quot;Fishing&quot;);" />
         <WaitAction Condition="false" Timeout="1000" />
       </If>
+    </If>
+    <If Condition="Me.IsAlliance" IgnoreCanRun="True">
+      <CustomAction Code="Fish();" />
     </If>
   </SubRoutine>
   <SubRoutine SubRoutineName="UF">
@@ -1104,11 +1107,35 @@
     <CallSubRoutine SubRoutineName="CheckCookingSkill" />
     <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Cooking more Mithril Head Trout, mmmm&quot;); " />
     <CallSubRoutine SubRoutineName="CreateFood" />
-    <While Condition="Cooking.Level &lt; 250" IgnoreCanRun="False">
+    <While Condition="Cooking.Level &lt; 250 &amp;&amp; InbagCount(8365) &gt;= 1" IgnoreCanRun="False">
       <CastSpellAction RepeatType="Craftable" Repeat="70" Entry="20916" CastOnItem="False" ItemType="Chest" ItemId="0" />
     </While>
+    <If Condition="Cooking.Level &lt; 250 &amp;&amp; InbagCount(13758) &gt;= 1 &amp;&amp; InbagCount(8365) == 0" IgnoreCanRun="True">
+      <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;We did NOT reach lvl 250. Going to plan B. Lets make Cooked Redgill.&quot;); " />
+      <If Condition="!HasRecipe(18241)" IgnoreCanRun="True">
+        <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;We do not have the recipe for Redgill Filet.. Going to Booty Bay. I hope you are friendly with them.&quot;); " />
+        <FlyToAction Dismount="True" Location="-14361.75, 434.9416, 7.371971" />
+        <WaitAction Condition="false" Timeout="1000" />
+        <MoveToAction Location="-14335.25, 420.6946, 6.626303" MoveType="Location" Pathing="Navigator" Entry="0" />
+        <WaitAction Condition="false" Timeout="1000" />
+        <BuyItemAction NpcEntry="2664" Location="-14331.23, 419.2986, 6.626091" ItemID="13941" BuyItemType="SpecificItem" Count="1" BuyAdditively="False" />
+        <WaitAction Condition="false" Timeout="1000" />
+        <If Condition="InbagCount(13941) == 0" IgnoreCanRun="True">
+          <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Dont think we bought the recipe?? Trying one more time&quot;); " />
+          <BuyItemAction NpcEntry="2664" Location="-14331.23, 419.2986, 6.626091" ItemID="13941" BuyItemType="SpecificItem" Count="1" BuyAdditively="False" />
+          <WaitAction Condition="false" Timeout="2000" />
+        </If>
+        <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Learning my new recipe.&quot;); " />
+        <CustomAction Code="Lua.DoString(string.Format(&quot;RunMacroText(\&quot;{0}\&quot;)&quot;, &quot;/use Recipe: Filet of Redgill&quot;), 0);" />
+        <WaitAction Condition="false" Timeout="4000" />
+      </If>
+      <CallSubRoutine SubRoutineName="CreateFood" />
+      <While Condition="Cooking.Level &lt; 250 &amp;&amp; HasRecipe(18241) &amp;&amp; InbagCount(13758) &gt;= 1" IgnoreCanRun="False">
+        <CastSpellAction RepeatType="Craftable" Repeat="50" Entry="18241" CastOnItem="False" ItemType="Chest" ItemId="0" />
+      </While>
+    </If>
   </While>
-  <While Condition="(InbagCount (13759) + InbagCount (13760)) &gt;= 40 &amp;&amp; Cooking.Level &gt;= 250 &amp;&amp; Cooking.Level &lt; 275" IgnoreCanRun="True">
+  <While Condition="(InbagCount (13759) + InbagCount (13760) + InbagCount(13932) + InbagCount(13931)) &gt;= 40 &amp;&amp; Cooking.Level &gt;= 250 &amp;&amp; Cooking.Level &lt; 275" IgnoreCanRun="True">
     <CallSubRoutine SubRoutineName="CheckCookingSkill" />
     <While Condition="InbagCount(13760) &gt;= 1" IgnoreCanRun="True">
       <If Condition="!HasRecipe(18244)" IgnoreCanRun="True">
@@ -1129,7 +1156,13 @@
         <BuyItemAction NpcEntry="46708" Location="1779.3, -4487.72, 45.64117" ItemID="159" BuyItemType="SpecificItem" Count="InbagCount(13759) - InbagCount(159)" BuyAdditively="True" />
       </If>
       <If Condition="Me.IsAlliance" IgnoreCanRun="True">
-        <BuyItemAction NpcEntry="1247" Location="-5601.6, -531.203, 399.654" ItemID="159" BuyItemType="SpecificItem" Count="40 - InbagCount(159)" BuyAdditively="True" />
+        <If Condition="Me.ZoneId == 1" IgnoreCanRun="True">
+          <BuyItemAction NpcEntry="1247" Location="-5601.6, -531.203, 399.654" ItemID="159" BuyItemType="SpecificItem" Count="40 - InbagCount(159)" BuyAdditively="True" />
+        </If>
+        <If Condition="Me.MapId == 0 &amp;&amp; Me.ZoneId != 1" IgnoreCanRun="True">
+          <FlyToAction Dismount="True" Location="-9465.286, 9.633138, 56.96284" />
+          <BuyItemAction NpcEntry="151" Location="-9465.286, 9.633138, 56.96284" ItemID="159" BuyItemType="SpecificItem" Count="40 - InbagCount(159)" BuyAdditively="True" />
+        </If>
       </If>
       <If Condition="!HasRecipe(18243)" IgnoreCanRun="True">
         <CallSubRoutine SubRoutineName="TrainCooking" />
@@ -1627,5 +1660,10 @@
     <CustomAction Code=" Lua.DoString(&quot;Logout()&quot;);TreeRoot.Stop();" />
     <WaitAction Condition="false" Timeout="35000" />
   </If>
+  <Declaration Code="Stopwatch PulseSW = new Stopwatch();" />
+  <Declaration Code="DateTime CastTimeStamp = DateTime.Now;" />
+  <Declaration Code="void MyErr(string fmt,params object[] args)&#xD;&#xA;{&#xD;&#xA;    Log(Color.Green,&quot;Fishing1-525: &quot;,Color.Red,fmt,args);&#xD;&#xA;}" />
+  <Declaration Code="void MyLog(string fmt,params object[] args)&#xD;&#xA;{&#xD;&#xA;    Log(Color.Green,&quot;Fishing1-525: &quot;,Color.LightGreen,fmt,args);&#xD;&#xA;}" />
+  <Declaration Code="void Fish()&#xD;&#xA;{&#xD;&#xA;  if (!PulseSW.IsRunning)&#xD;&#xA;    PulseSW.Start();&#xD;&#xA;  using (new FrameLock())&#xD;&#xA;  {&#xD;&#xA;  if (PulseSW.ElapsedMilliseconds &gt;= 1000)&#xD;&#xA;  { &#xD;&#xA;    MyErr(&quot;Warning: It took {0} milliseconds to pulse.\nThis can cause missed bites. To fix try disabling all plugins&quot;,&#xD;&#xA;        PulseSW.ElapsedMilliseconds); &#xD;&#xA;  }&#xD;&#xA;  PulseSW.Reset(); PulseSW.Start();&#xD;&#xA;  try&#xD;&#xA;  {&#xD;&#xA;    var bobber = ObjectManager.GetObjectsOfType&lt;WoWGameObject&gt;().&#xD;&#xA;           FirstOrDefault(u =&gt; u.SubType == WoWGameObjectType.FishingBobber &amp;&amp; u.CreatedByGuid == Me.Guid);&#xD;&#xA;    if (bobber != null &amp;&amp; bobber.IsValid &amp;&amp; ((WoWFishingBobber)bobber.SubObj).IsBobbing)&#xD;&#xA;    {&#xD;&#xA;       bobber.Interact();&#xD;&#xA;    }&#xD;&#xA;    else if (bobber == null &amp;&amp; !Me.IsCasting &amp;&amp; DateTime.Now -  CastTimeStamp &gt;= TimeSpan.FromSeconds(1))&#xD;&#xA;    {&#xD;&#xA;      TreeRoot.StatusText= string.Format(&quot;Fishing level: {0}&quot;,Fishing.Level);&#xD;&#xA;       SpellManager.Cast(&quot;Fishing&quot;);&#xD;&#xA;       CastTimeStamp = DateTime.Now;&#xD;&#xA;    }&#xD;&#xA;  }&#xD;&#xA;  catch(Exception ex){MyErr(ex.ToString());}&#xD;&#xA;  }&#xD;&#xA;}" />
   <Declaration Code="bool IsFacing(float dirInRadians)&#xD;&#xA;{&#xD;&#xA;  var facePoint = WoWPoint.RayCast(Me.Location, dirInRadians, 1f);&#xD;&#xA;  return WoWMathHelper.IsFacing(Me.Location, Me.RenderFacing, facePoint,0.5f);&#xD;&#xA;}&#xD;&#xA;" />
 </Professionbuddy>
