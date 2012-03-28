@@ -242,6 +242,7 @@
           <FlyToAction Dismount="True" Location="-709.1463, 2698.413, 94.34809" />
         </If>
         <TrainSkillAction NpcEntry="18987" Location="-707.7498, 2749.149, 94.72163" />
+        <WaitAction Condition="false" Timeout="2000" />
       </If>
       <If Condition="Me.ZoneId == 3519" IgnoreCanRun="True">
         <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;I need to train cooking. Going to train in Lower City.&quot;); " />
@@ -249,6 +250,7 @@
           <FlyToAction Dismount="True" Location="-2074.449, 5302.941, -37.32236" />
         </If>
         <TrainSkillAction NpcEntry="19185" Location="-2065.71, 5311.151, -37.32356" />
+        <WaitAction Condition="false" Timeout="2000" />
       </If>
       <If Condition="Me.ZoneId == 3703" IgnoreCanRun="True">
         <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;I need to train cooking. Going to train in Lower City.&quot;); " />
@@ -256,14 +258,15 @@
           <FlyToAction Dismount="True" Location="-2074.449, 5302.941, -37.32236" />
         </If>
         <TrainSkillAction NpcEntry="19185" Location="-2065.71, 5311.151, -37.32356" />
+        <WaitAction Condition="false" Timeout="2000" />
       </If>
       <If Condition="Me.ZoneId == 3537" IgnoreCanRun="True">
         <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;I need to train cooking. Going to train in Valiance Keep.&quot;); " />
         <If Condition="DistanceTo (2147.999, 5231.634, 19.44637) &gt; 30" IgnoreCanRun="True">
           <FlyToAction Dismount="True" Location="2147.618, 5237.519, 19.44516" />
         </If>
-        <WaitAction Condition="false" Timeout="2000" />
         <TrainSkillAction NpcEntry="26989" Location="2147.999, 5231.634, 19.44637" />
+        <WaitAction Condition="false" Timeout="2000" />
       </If>
       <If Condition="Me.ZoneId == 4395" IgnoreCanRun="True">
         <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;I need to train cooking. Going to train in Dalaran.&quot;); " />
@@ -271,6 +274,7 @@
           <FlyToAction Dismount="True" Location="5737.577, 673.0076, 645.2578" />
         </If>
         <TrainSkillAction NpcEntry="28705" Location="5707.724, 714.7145, 642.4741" />
+        <WaitAction Condition="false" Timeout="2000" />
       </If>
     </If>
     <If Condition="Me.IsHorde" IgnoreCanRun="True">
@@ -735,7 +739,7 @@
     <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Updating facing, hold on 2 sec&quot;); " />
     <CustomAction Code="WoWMovement.Move(Styx.WoWInternals.WoWMovement.MovementDirection.ForwardBackMovement);" />
     <CustomAction Code="WoWMovement.MoveStop(Styx.WoWInternals.WoWMovement.MovementDirection.ForwardBackMovement);" />
-    <WaitAction Condition="false" Timeout="2000" />
+    <WaitAction Condition="false" Timeout="1000" />
   </SubRoutine>
   <SubRoutine SubRoutineName="EquipWeapons">
     <If Condition="Me.Inventory.Equipped.MainHand.ItemInfo.WeaponClass == WoWItemWeaponClass.FishingPole" IgnoreCanRun="True">
