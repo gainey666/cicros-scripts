@@ -1,0 +1,28 @@
+<HBProfile>
+<Name>Uldum meat farm 435-450</Name>
+<MinDurability>0.3</MinDurability>
+<MinFreeBagSlots>2</MinFreeBagSlots>
+<SellGrey>True</SellGrey>
+<SellWhite>False</SellWhite>
+<SellGreen>False</SellGreen>
+<MinLevel>1</MinLevel>
+<MaxLevel>91</MaxLevel>
+<GrindArea>
+<TargetMinLevel>65</TargetMinLevel>
+<TargetMaxLevel>85</TargetMaxLevel>
+<Factions>38</Factions>
+<Hotspots>
+<Hotspot X="-9332.207" Y="-1444.329" Z="106.9135" />
+<Hotspot X="-9178.047" Y="-1441.235" Z="115.055" />
+<Hotspot X="-9164.056" Y="-1547.954" Z="67.40211" />
+<Hotspot X="-9172.591" Y="-1651.796" Z="65.77322" />
+<Hotspot X="-9261.723" Y="-1636.763" Z="65.54723" />
+<Hotspot X="-9365.863" Y="-1523.638" Z="65.45172" />
+<Hotspot X="-9386.913" Y="-1465.197" Z="92.75966" />
+</Hotspots>
+</GrindArea>
+</HBProfile>
+
+
+
+

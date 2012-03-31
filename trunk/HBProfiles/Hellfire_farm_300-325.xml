@@ -1,0 +1,30 @@
+<HBProfile>
+<Name>Hellfire meat farm 300-325</Name>
+<MinDurability>0.3</MinDurability>
+<MinFreeBagSlots>2</MinFreeBagSlots>
+<SellGrey>True</SellGrey>
+<SellWhite>False</SellWhite>
+<SellGreen>False</SellGreen>
+<MinLevel>1</MinLevel>
+<MaxLevel>91</MaxLevel>
+<GrindArea>
+<TargetMinLevel>65</TargetMinLevel>
+<TargetMaxLevel>70</TargetMaxLevel>
+<Factions>14 16</Factions>
+<Hotspots>
+<Hotspot X="-1429.719" Y="3467.212" Z="45.39236" />
+<Hotspot X="-1516.884" Y="3480.033" Z="29.78813" />
+<Hotspot X="-1579.275" Y="3598.41" Z="32.71389" />
+<Hotspot X="-1649.901" Y="3706.476" Z="32.02116" />
+<Hotspot X="-1607.626" Y="3723.095" Z="38.18349" />
+<Hotspot X="-1609.147" Y="3611.961" Z="30.36312" />
+<Hotspot X="-1538.186" Y="3550.772" Z="34.25781" />
+<Hotspot X="-1476.503" Y="3423.876" Z="30.38881" />
+<Hotspot X="-1389.359" Y="3365.406" Z="39.3907" />
+</Hotspots>
+</GrindArea>
+</HBProfile>
+
+
+
+
