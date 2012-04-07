@@ -226,7 +226,7 @@
     </If>
   </SubRoutine>
   <SubRoutine SubRoutineName="CheckCookingSkill">
-    <If Condition="Cooking.Level == Cooking.MaxLevel - 25 &amp;&amp; Cooking.Level &gt;= 500" IgnoreCanRun="True">
+    <If Condition="Cooking.Level &gt;= Cooking.MaxLevel - 25 &amp;&amp; Cooking.Level &lt;= Cooking.MaxLevel" IgnoreCanRun="True">
       <CallSubRoutine SubRoutineName="TrainCooking" />
     </If>
   </SubRoutine>
@@ -246,9 +246,6 @@
   <SubRoutine SubRoutineName="DoFishing">
     <CallSubRoutine SubRoutineName="EquipFishingPole" />
     <If Condition="Me.IsAlliance &amp;&amp; Fishing.Level == 885" IgnoreCanRun="True">
-      <If Condition="Fishing.Level &gt;= Fishing.MaxLevel - 25 &amp;&amp; Fishing.Level &lt; 500 &amp;&amp; Fishing.Level != 525" IgnoreCanRun="True">
-        <CallSubRoutine SubRoutineName="TrainFishing" />
-      </If>
       <CustomAction Code="var1 = ObjectManager.GetObjectsOfType&lt;WoWGameObject&gt;().FirstOrDefault(u =&gt; u.SubType == WoWGameObjectType.FishingBobber &amp;&amp; u.CreatedByGuid == Me.Guid);" />
       <If Condition="var1 != null &amp;&amp; ((WoWGameObject)var1).IsValid &amp;&amp; ((WoWFishingBobber)((WoWGameObject)var1).SubObj).IsBobbing" IgnoreCanRun="True">
         <CustomAction Code="((WoWGameObject)var1).Interact();" />
@@ -259,6 +256,9 @@
       </If>
     </If>
     <If Condition="Me.IsAlliance" IgnoreCanRun="True">
+      <If Condition="Fishing.Level &gt;= Fishing.MaxLevel - 25 &amp;&amp; Fishing.Level &lt; 500 &amp;&amp; Fishing.Level != 525" IgnoreCanRun="True">
+        <CallSubRoutine SubRoutineName="TrainFishing" />
+      </If>
       <CustomAction Code="Fish();" />
     </If>
   </SubRoutine>
@@ -319,22 +319,22 @@
     <While Condition="InbagCount (30817) &gt;= 1 &amp;&amp; InbagCount (2678) &gt;= 1 &amp;&amp; Cooking.Level &lt; 40 &amp;&amp; HasRecipe(37836)" IgnoreCanRun="False">
       <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Making Spice Bread&quot;); " />
       <CallSubRoutine SubRoutineName="CheckCookingSkill" />
-      <CastSpellAction RepeatType="Craftable" Repeat="50" Entry="37836" CastOnItem="False" ItemType="Chest" ItemId="0" />
+      <CastSpellAction RepeatType="Specific" Repeat="1" Entry="37836" CastOnItem="False" ItemType="Chest" ItemId="0" />
     </While>
     <While Condition="InbagCount(6291) &gt;= 1 &amp;&amp; Cooking.Level &lt; 85" IgnoreCanRun="False">
       <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Cooking Brilliant Smallfish.&quot;); " />
       <CallSubRoutine SubRoutineName="CheckCookingSkill" />
-      <CastSpellAction RepeatType="Craftable" Repeat="40" Entry="7751" CastOnItem="False" ItemType="Chest" ItemId="0" />
+      <CastSpellAction RepeatType="Specific" Repeat="1" Entry="7751" CastOnItem="False" ItemType="Chest" ItemId="0" />
     </While>
     <While Condition="InbagCount(6289) &gt;= 1 &amp;&amp; Cooking.Level &lt; 130" IgnoreCanRun="False">
       <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Cooking Longjaw Mud Snapper.&quot;); " />
       <CallSubRoutine SubRoutineName="CheckCookingSkill" />
-      <CastSpellAction RepeatType="Craftable" Repeat="60" Entry="7753" CastOnItem="False" ItemType="Chest" ItemId="0" />
+      <CastSpellAction RepeatType="Specific" Repeat="1" Entry="7753" CastOnItem="False" ItemType="Chest" ItemId="0" />
     </While>
     <While Condition="InbagCount(6308) &gt;= 1 &amp;&amp; Cooking.Level &lt; 180 &amp;&amp; HasRecipe(7755)" IgnoreCanRun="False">
       <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Cooking Bristle Whisker Catfish mmmm&quot;); " />
       <CallSubRoutine SubRoutineName="CheckCookingSkill" />
-      <CastSpellAction RepeatType="Craftable" Repeat="30" Entry="7755" CastOnItem="False" ItemType="Chest" ItemId="0" />
+      <CastSpellAction RepeatType="Specific" Repeat="1" Entry="7755" CastOnItem="False" ItemType="Chest" ItemId="0" />
     </While>
   </SubRoutine>
   <!--Travling Subs-->
@@ -729,11 +729,11 @@
   <If Condition="(InbagCount (4592) + InbagCount (6289)) &lt; 60 &amp;&amp; Cooking.Level &gt;= 65 &amp;&amp; Cooking.Level &lt; 110" IgnoreCanRun="False">
     <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Time to catch some Raw Longjaw Mud Snapper.&quot;); " />
     <While Condition="Me.IsAlliance" IgnoreCanRun="True">
-      <If Condition="DistanceTo (-8319.463, 782.4787, 96.67616) &gt; 5" IgnoreCanRun="True">
-        <FlyToAction Dismount="True" Location="-8319.463, 782.4787, 96.67616" />
+      <If Condition="DistanceTo (-9375.861, -2041.789, 57.27626) &gt; 5" IgnoreCanRun="True">
+        <FlyToAction Dismount="True" Location="-9375.861, -2041.789, 57.27626" />
       </If>
-      <If Condition="!IsFacing(2.5f)" IgnoreCanRun="True">
-        <CustomAction Code="Me.SetFacing(2.5f);" />
+      <If Condition="!IsFacing(6f)" IgnoreCanRun="True">
+        <CustomAction Code="Me.SetFacing(6f);" />
         <CallSubRoutine SubRoutineName="UF" />
       </If>
       <CallSubRoutine SubRoutineName="DoFishing" />
