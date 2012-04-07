@@ -1,14 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Professionbuddy>
   <If Condition="Me.IsHorde" IgnoreCanRun="True">
-    <CustomAction Code="Log(System.Drawing.Color.DarkOliveGreen,&quot;This is an Alliance only supported profile.&quot;);" />
-    <CustomAction Code="Log(&quot;Starting log out in 20sec&quot;);" />
-    <WaitAction Condition="false" Timeout="20000" />
+    <CustomAction Code="Log(System.Drawing.Color.DarkOliveGreen,&quot;This is an Alliance only supported profile. AtticusG3 fucked the whole profile up and ran away.&quot;);" />
+    <CustomAction Code="Log(&quot;Starting log out in 60sec&quot;);" />
+    <WaitAction Condition="false" Timeout="60000" />
     <CustomAction Code=" Lua.DoString(&quot;Logout()&quot;);TreeRoot.Stop();" />
     <WaitAction Condition="false" Timeout="35000" />
   </If>
   <!--Intro-->
-  <CustomAction Code="Log(System.Drawing.Color.DarkOliveGreen,&quot;[PB - N] 1-525 Cooking-Fishing [Cicrocoft]&quot;);" />
+  <CustomAction Code="Log(System.Drawing.Color.DarkOliveGreen,&quot;[PB - A] 1-525 Cooking-Fishing [Cicrocoft]&quot;);" />
+  <CustomAction Code="Log(System.Drawing.Color.DarkOliveGreen,&quot;Waiting for PB to detect your professions. Starting in 10sec&quot;);" />
+  <WaitAction Condition="false" Timeout="10000" />
   <CustomAction Code="Lua.DoString(&quot;SetCVar(\&quot;AutoLootDefault\&quot;, 1)&quot;);" />
   <If Condition="TreeRoot.Current.Name != &quot;Combat Bot&quot;" IgnoreCanRun="True">
     <CustomAction Code="SwitchToBot(&quot;Combat Bot&quot;);" />
