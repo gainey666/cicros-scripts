@@ -397,7 +397,7 @@
       <CallSubRoutine SubRoutineName="CheckCookingSkill" />
       <CastSpellAction RepeatType="Specific" Repeat="1" Entry="18244" CastOnItem="False" ItemType="Chest" ItemId="0" />
     </While>
-    <While Condition="InbagCount(13759) &gt;= 1 &amp;&amp; Cooking.Level &lt; 295 &amp;&amp; HasRecipe(18243)" IgnoreCanRun="False">
+    <While Condition="InbagCount(159) &gt;= 1 &amp;&amp; InbagCount(13759) &gt;= 1 &amp;&amp; Cooking.Level &lt; 295 &amp;&amp; HasRecipe(18243)" IgnoreCanRun="False">
       <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Cooking Nightfin Soup.&quot;); " />
       <CallSubRoutine SubRoutineName="CheckCookingSkill" />
       <CastSpellAction RepeatType="Specific" Repeat="1" Entry="18243" CastOnItem="False" ItemType="Chest" ItemId="0" />
@@ -803,6 +803,11 @@
   <If Condition="(InbagCount(8364) + InbagCount(8365)) &gt;= 110 &amp;&amp; (InbagCount (13759) + InbagCount (13760) + InbagCount(13932) + InbagCount(13931)) &lt; 40 &amp;&amp; Cooking.Level &gt;= 175 &amp;&amp; Cooking.Level &lt; 275" IgnoreCanRun="False">
     <While Condition="Me.IsAlliance" IgnoreCanRun="True">
       <CallSubRoutine SubRoutineName="BuyRecipe" />
+      <If Condition="InbagCount(159) &lt; 40" IgnoreCanRun="True">
+        <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Buying some supplies for later.&quot;); " />
+        <FlyToAction Dismount="False" Location="2153.125, -5267.709, 82.77434" />
+        <BuyItemAction NpcEntry="11038" Location="2153.125, -5267.709, 82.77434" ItemID="159" BuyItemType="SpecificItem" Count="40" BuyAdditively="False" />
+      </If>
       <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Time to catch some more fish, going to EPL.&quot;); " />
       <If Condition="DistanceTo (1985.145, -4133.935, 73.94361) &gt; 5" IgnoreCanRun="True">
         <FlyToAction Dismount="True" Location="1985.145, -4133.935, 73.94361" />
