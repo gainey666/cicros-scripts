@@ -255,9 +255,9 @@
     </If>
   </SubRoutine>
   <SubRoutine SubRoutineName="DoFishing">
-    <If Condition="Fishing.Level &gt;= Fishing.MaxLevel - 25 &amp;&amp; Fishing.Level &lt; 500 &amp;&amp; Fishing.Level != 525" IgnoreCanRun="True">
+    <While Condition="Fishing.Level &gt;= Fishing.MaxLevel - 25 &amp;&amp; Fishing.Level &lt; 500 &amp;&amp; Fishing.Level != 525" IgnoreCanRun="True">
       <CallSubRoutine SubRoutineName="TrainFishing" />
-    </If>
+    </While>
     <CustomAction Code="Fish();" />
   </SubRoutine>
   <SubRoutine SubRoutineName="UF">
