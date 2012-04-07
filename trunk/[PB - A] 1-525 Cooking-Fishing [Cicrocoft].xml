@@ -10,7 +10,7 @@
   <!--Intro-->
   <CustomAction Code="Log(System.Drawing.Color.DarkOliveGreen,&quot;[PB - A] 1-525 Cooking-Fishing [Cicrocoft]&quot;);" />
   <CustomAction Code="Log(System.Drawing.Color.DarkOliveGreen,&quot;Waiting for PB to detect your professions. Starting in 10sec&quot;);" />
-  <WaitAction Condition="false" Timeout="10000" />
+  <WaitAction Condition="false" Timeout="5000" />
   <CustomAction Code="Lua.DoString(&quot;SetCVar(\&quot;AutoLootDefault\&quot;, 1)&quot;);" />
   <If Condition="TreeRoot.Current.Name != &quot;Combat Bot&quot;" IgnoreCanRun="True">
     <CustomAction Code="SwitchToBot(&quot;Combat Bot&quot;);" />
@@ -294,7 +294,9 @@
             <FlyToAction Dismount="False" Location="-8800.812, 767.9769, 96.33873" />
           </If>
           <WaitAction Condition="false" Timeout="1000" />
-          <BuyItemAction NpcEntry="5494" Location="-8800.812, 767.9769, 96.33873" ItemID="6325" BuyItemType="SpecificItem" Count="1" BuyAdditively="True" />
+          <While Condition="InbagCount (6325) == 0" IgnoreCanRun="True">
+            <BuyItemAction NpcEntry="5494" Location="-8800.812, 767.9769, 96.33873" ItemID="6325" BuyItemType="SpecificItem" Count="1" BuyAdditively="False" />
+          </While>
           <WaitAction Condition="false" Timeout="1000" />
         </If>
         <If Condition="!HasRecipe(7755) &amp;&amp; InbagCount (6330) == 0" IgnoreCanRun="True">
@@ -302,7 +304,9 @@
             <FlyToAction Dismount="False" Location="-8800.812, 767.9769, 96.33873" />
           </If>
           <WaitAction Condition="false" Timeout="1000" />
-          <BuyItemAction NpcEntry="5494" Location="-8800.812, 767.9769, 96.33873" ItemID="6330" BuyItemType="SpecificItem" Count="1" BuyAdditively="True" />
+          <While Condition="InbagCount (6330) == 0" IgnoreCanRun="True">
+            <BuyItemAction NpcEntry="5494" Location="-8800.812, 767.9769, 96.33873" ItemID="6330" BuyItemType="SpecificItem" Count="1" BuyAdditively="False" />
+          </While>
           <WaitAction Condition="false" Timeout="1000" />
         </If>
         <If Condition="!HasRecipe(7753) &amp;&amp; InbagCount (6328) == 0" IgnoreCanRun="True">
@@ -310,23 +314,17 @@
             <FlyToAction Dismount="True" Location="-9492.55, 81.4931, 56.2269" />
           </If>
           <WaitAction Condition="false" Timeout="1000" />
-          <BuyItemAction NpcEntry="66" Location="-9492.55, 81.4931, 56.2269" ItemID="6328" BuyItemType="SpecificItem" Count="1" BuyAdditively="True" />
+          <While Condition="InbagCount (6328) == 0" IgnoreCanRun="True">
+            <BuyItemAction NpcEntry="66" Location="-9492.55, 81.4931, 56.2269" ItemID="6328" BuyItemType="SpecificItem" Count="1" BuyAdditively="True" />
+          </While>
           <WaitAction Condition="false" Timeout="1000" />
         </If>
-        <If Condition="(InbagCount (30817) + InbagCount (2678) + InbagCount (30816)) &lt; 100 &amp;&amp; Cooking.Level &lt; 40 &amp;&amp; DistanceTo (-9492.55, 81.4931, 56.2269) &gt; 30" IgnoreCanRun="True">
+        <If Condition="(InbagCount (30817) + InbagCount (2678) + InbagCount (30816)*2) &lt; 150 &amp;&amp; Cooking.Level &lt; 40 &amp;&amp; DistanceTo (-9492.55, 81.4931, 56.2269) &gt; 30" IgnoreCanRun="True">
           <If Condition="Me.IsAlliance" IgnoreCanRun="True">
             <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Lets buy these supplies for later.&quot;); " />
-            <BuyItemAction NpcEntry="66" Location="-9492.55, 81.4931, 56.22646" ItemID="30817" BuyItemType="SpecificItem" Count="50" BuyAdditively="True" />
-            <BuyItemAction NpcEntry="66" Location="-9492.55, 81.4931, 56.22646" ItemID="2678" BuyItemType="SpecificItem" Count="50" BuyAdditively="True" />
+            <BuyItemAction NpcEntry="66" Location="-9492.55, 81.4931, 56.22646" ItemID="30817" BuyItemType="SpecificItem" Count="75" BuyAdditively="True" />
+            <BuyItemAction NpcEntry="66" Location="-9492.55, 81.4931, 56.22646" ItemID="2678" BuyItemType="SpecificItem" Count="75" BuyAdditively="True" />
           </If>
-        </If>
-        <If Condition="!HasRecipe(7753) &amp;&amp; InbagCount (6328) == 0" IgnoreCanRun="True">
-          <If Condition="DistanceTo (-9492.55, 81.4931, 56.2269) &gt; 30" IgnoreCanRun="True">
-            <FlyToAction Dismount="True" Location="-9492.55, 81.4931, 56.2269" />
-          </If>
-          <WaitAction Condition="false" Timeout="1000" />
-          <BuyItemAction NpcEntry="66" Location="-9492.55, 81.4931, 56.2269" ItemID="6328" BuyItemType="SpecificItem" Count="1" BuyAdditively="False" />
-          <WaitAction Condition="false" Timeout="1000" />
         </If>
       </If>
       <If Condition="Cooking.Level &gt;= 175 &amp;&amp; Cooking.Level &lt; 275" IgnoreCanRun="True">
@@ -339,20 +337,23 @@
           <WaitAction Condition="false" Timeout="1000" />
           <MoveToAction Location="-14335.25, 420.6946, 6.626303" MoveType="Location" Pathing="Navigator" Entry="0" />
           <WaitAction Condition="false" Timeout="1000" />
-          <BuyItemAction NpcEntry="2664" Location="-14331.23, 419.2986, 6.626091" ItemID="13941" BuyItemType="SpecificItem" Count="1" BuyAdditively="False" />
+          <While Condition="InbagCount (13941) == 0" IgnoreCanRun="True">
+            <BuyItemAction NpcEntry="2664" Location="-14331.23, 419.2986, 6.626091" ItemID="13941" BuyItemType="SpecificItem" Count="1" BuyAdditively="False" />
+            <BuyItemAction NpcEntry="2664" Location="-14331.23, 419.2986, 6.626091" ItemID="17062" BuyItemType="SpecificItem" Count="1" BuyAdditively="False" />
+          </While>
           <WaitAction Condition="false" Timeout="1000" />
-          <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Learning my new recipe.&quot;); " />
-          <CustomAction Code="Lua.DoString(string.Format(&quot;RunMacroText(\&quot;{0}\&quot;)&quot;, &quot;/use Recipe: Filet of Redgill&quot;), 0);" />
-          <WaitAction Condition="false" Timeout="4000" />
+          <SellItemAction Sell="All" NpcEntry="0" Location="0, 0, 0" SellItemType="Greys" ItemID="" Count="0" />
+          <SellItemAction Sell="All" NpcEntry="0" Location="0, 0, 0" SellItemType="Specific" ItemID="30817,2678,30816,6291,7751,4592,6289,6308,4593,6290" Count="0" />
+          <WaitAction Condition="false" Timeout="1000" />
         </If>
         <If Condition="!HasRecipe(18241) &amp;&amp; InbagCount (17062) == 0" IgnoreCanRun="True">
           <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Flying to Wetlands to buy recipe for later use.&quot;); " />
           <FlyToAction Dismount="True" Location="-3730.961, -653.1401, 2.362965" />
           <WaitAction Condition="false" Timeout="2000" />
-          <BuyItemAction NpcEntry="3178" Location="-3731.31, -648.925, 2.449463" ItemID="17062" BuyItemType="SpecificItem" Count="1" BuyAdditively="False" />
+          <While Condition="InbagCount (17062) == 0" IgnoreCanRun="True">
+            <BuyItemAction NpcEntry="3178" Location="-3731.31, -648.925, 2.449463" ItemID="17062" BuyItemType="SpecificItem" Count="1" BuyAdditively="False" />
+          </While>
           <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Might aswell clean the bags. Selling greys and fish&quot;); " />
-          <SellItemAction Sell="All" NpcEntry="0" Location="0, 0, 0" SellItemType="Greys" ItemID="" Count="0" />
-          <SellItemAction Sell="All" NpcEntry="0" Location="0, 0, 0" SellItemType="Specific" ItemID="30817,2678,30816,6291,7751,4592,6289,6308,4593,6290" Count="0" />
         </If>
       </If>
       <If Condition="Cooking.Level &gt;= 275 &amp;&amp; Cooking.Level &lt; 300" IgnoreCanRun="True">
@@ -364,7 +365,9 @@
           </If>
           <If Condition="Me.MapId == 1" IgnoreCanRun="True">
             <FlyToAction Dismount="True" Location="-4298.889, 2221.899, 9.411183" />
-            <BuyItemAction NpcEntry="7947" Location="-4297.269, 2221.389, 9.4114" ItemID="13949" BuyItemType="SpecificItem" Count="1" BuyAdditively="False" />
+            <While Condition="InbagCount (13949) == 0" IgnoreCanRun="True">
+              <BuyItemAction NpcEntry="7947" Location="-4297.269, 2221.389, 9.4114" ItemID="13949" BuyItemType="SpecificItem" Count="1" BuyAdditively="False" />
+            </While>
             <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Might aswell clean the bags. Selling greys and fish&quot;); " />
             <SellItemAction Sell="All" NpcEntry="0" Location="0, 0, 0" SellItemType="Greys" ItemID="" Count="0" />
             <SellItemAction Sell="All" NpcEntry="0" Location="0, 0, 0" SellItemType="Specific" ItemID="30817,2678,30816,6291,7751,4592,6289,6308,4593,6290,8364,8365,13760,13932,13759,13931,13758" Count="0" />
