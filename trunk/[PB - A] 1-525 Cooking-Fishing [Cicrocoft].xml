@@ -315,7 +315,7 @@
         <If Condition="InbagCount (17062) == 0" IgnoreCanRun="True">
           <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Shopping time. Buying recipes for later use.&quot;); " />
         </If>
-        <If Condition="!HasRecipe(20916) &amp;&amp; InbagCount (13941) == 0" IgnoreCanRun="True">
+        <If Condition="!HasRecipe(18241) &amp;&amp; InbagCount (13941) == 0" IgnoreCanRun="True">
           <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Flying to BB to buy recipe. Hope they like you.&quot;); " />
           <FlyToAction Dismount="False" Location="-14361.75, 434.9416, 7.371971" />
           <WaitAction Condition="false" Timeout="1000" />
@@ -330,7 +330,7 @@
           <SellItemAction Sell="All" NpcEntry="0" Location="0, 0, 0" SellItemType="Specific" ItemID="30817,2678,30816,6291,7751,4592,6289,6308,4593,6290" Count="0" />
           <WaitAction Condition="false" Timeout="1000" />
         </If>
-        <If Condition="!HasRecipe(18241) &amp;&amp; InbagCount (17062) == 0" IgnoreCanRun="True">
+        <If Condition="!HasRecipe(20916) &amp;&amp; InbagCount (17062) == 0" IgnoreCanRun="True">
           <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Flying to Wetlands to buy recipe for later use.&quot;); " />
           <FlyToAction Dismount="True" Location="-3730.961, -653.1401, 2.362965" />
           <WaitAction Condition="false" Timeout="2000" />
@@ -616,7 +616,7 @@
       </If>
       <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Learning my new recipe.&quot;); " />
       <CustomAction Code="Lua.DoString(string.Format(&quot;RunMacroText(\&quot;{0}\&quot;)&quot;, &quot;/use Recipe: Mithril Head Trout&quot;), 0);" />
-      <WaitAction Condition="false" Timeout="3458" />
+      <WaitAction Condition="false" Timeout="4651" />
     </While>
     <While Condition="!HasRecipe(18241) &amp;&amp; Cooking.Level &gt;= 225" IgnoreCanRun="True">
       <If Condition="InbagCount (13941) == 0" IgnoreCanRun="True">
@@ -630,7 +630,7 @@
       </If>
       <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Learning my new recipe.&quot;); " />
       <CustomAction Code="Lua.DoString(string.Format(&quot;RunMacroText(\&quot;{0}\&quot;)&quot;, &quot;/use Recipe: Filet of Redgill&quot;), 0);" />
-      <WaitAction Condition="false" Timeout="4000" />
+      <WaitAction Condition="false" Timeout="4875" />
     </While>
     <While Condition="!HasRecipe(18244) &amp;&amp; Cooking.Level &gt;= 250 || !HasRecipe(18243) &amp;&amp; Cooking.Level &gt;= 250" IgnoreCanRun="True">
       <CallSubRoutine SubRoutineName="TrainCooking" />
