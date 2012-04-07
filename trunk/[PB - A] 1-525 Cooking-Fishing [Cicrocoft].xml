@@ -255,26 +255,10 @@
     </If>
   </SubRoutine>
   <SubRoutine SubRoutineName="DoFishing">
-    <CallSubRoutine SubRoutineName="EquipFishingPole" />
-    <If Condition="Me.IsAlliance" IgnoreCanRun="True">
-      <If Condition="Fishing.Level &gt;= Fishing.MaxLevel - 25 &amp;&amp; Fishing.Level &lt; 500 &amp;&amp; Fishing.Level != 525" IgnoreCanRun="True">
-        <CallSubRoutine SubRoutineName="TrainFishing" />
-      </If>
-      <CustomAction Code="var1 = ObjectManager.GetObjectsOfType&lt;WoWGameObject&gt;().FirstOrDefault(u =&gt; u.SubType == WoWGameObjectType.FishingBobber &amp;&amp; u.CreatedByGuid == Me.Guid);" />
-      <If Condition="var1 != null &amp;&amp; ((WoWGameObject)var1).IsValid &amp;&amp; ((WoWFishingBobber)((WoWGameObject)var1).SubObj).IsBobbing" IgnoreCanRun="True">
-        <CustomAction Code="((WoWGameObject)var1).Interact();" />
-      </If>
-      <If Condition="var1 == null &amp;&amp; !Me.IsCasting" IgnoreCanRun="True">
-        <CustomAction Code="SpellManager.Cast(&quot;Fishing&quot;);" />
-        <WaitAction Condition="false" Timeout="1000" />
-      </If>
+    <If Condition="Fishing.Level &gt;= Fishing.MaxLevel - 25 &amp;&amp; Fishing.Level &lt; 500 &amp;&amp; Fishing.Level != 525" IgnoreCanRun="True">
+      <CallSubRoutine SubRoutineName="TrainFishing" />
     </If>
-    <If Condition="Me.IsAlliance &amp;&amp; Fishing.Level == 885" IgnoreCanRun="True">
-      <If Condition="Fishing.Level &gt;= Fishing.MaxLevel - 25 &amp;&amp; Fishing.Level &lt; 500 &amp;&amp; Fishing.Level != 525" IgnoreCanRun="True">
-        <CallSubRoutine SubRoutineName="TrainFishing" />
-      </If>
-      <CustomAction Code="Fish();" />
-    </If>
+    <CustomAction Code="Fish();" />
   </SubRoutine>
   <SubRoutine SubRoutineName="UF">
     <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Updating facing, hold on 2 sec&quot;); " />
