@@ -20,16 +20,7 @@
     <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;I don't know cooking. Going to learn it&quot;); " />
     <CallSubRoutine SubRoutineName="TrainCooking" />
   </If>
-  <CallSubRoutine SubRoutineName="CheckSkill" />
   <CallSubRoutine SubRoutineName="BuyRecipe" />
-  <While Condition="Fishing.Level &gt;= Fishing.MaxLevel - 25 &amp;&amp; Fishing.Level &lt; 500 &amp;&amp; Fishing.Level != 525" IgnoreCanRun="True">
-    <CustomAction Code="Log(System.Drawing.Color.DarkOliveGreen,&quot;Looks like we can train our fishing skill&quot;);" />
-    <CallSubRoutine SubRoutineName="TrainFishing" />
-  </While>
-  <While Condition="Cooking.Level == Cooking.MaxLevel - 25 &amp;&amp; Cooking.Level &gt;= 500" IgnoreCanRun="True">
-    <CustomAction Code="Log(System.Drawing.Color.DarkOliveGreen,&quot;Looks like we can train our cooking skill&quot;);" />
-    <CallSubRoutine SubRoutineName="TrainCooking" />
-  </While>
   <!--Subs-->
   <SubRoutine SubRoutineName="TrainFishing">
     <If Condition="Me.IsAlliance" IgnoreCanRun="True">
@@ -476,14 +467,19 @@
     </If>
   </SubRoutine>
   <!--Whiles for cooking-->
+  <While Condition="Cooking.Level == Cooking.MaxLevel - 25 &amp;&amp; Cooking.Level &lt; 500" IgnoreCanRun="True">
+    <CustomAction Code="Log(System.Drawing.Color.DarkOliveGreen,&quot;Looks like we can train our cooking skill&quot;);" />
+    <CallSubRoutine SubRoutineName="TrainCooking" />
+  </While>
+  <While Condition="Fishing.Level &gt;= Fishing.MaxLevel - 25 &amp;&amp; Fishing.Level &lt; 500" IgnoreCanRun="True">
+    <CustomAction Code="Log(System.Drawing.Color.DarkOliveGreen,&quot;Looks like we can train our fishing skill&quot;);" />
+    <CallSubRoutine SubRoutineName="TrainFishing" />
+  </While>
   <While Condition="(InbagCount (30817) + InbagCount (2678) + InbagCount (30816)*2) &gt;= 150 &amp;&amp; Cooking.Level &gt;= 1 &amp;&amp; Cooking.Level &lt; 40" IgnoreCanRun="True">
-    <If Condition="!HasRecipe(37836)" IgnoreCanRun="True">
+    <While Condition="!HasRecipe(37836)" IgnoreCanRun="True">
       <CallSubRoutine SubRoutineName="TrainCooking" />
-    </If>
+    </While>
     <CallSubRoutine SubRoutineName="CreateFood" />
-    <If Condition="!HasRecipe(37836)" IgnoreCanRun="True">
-      <CallSubRoutine SubRoutineName="TrainCooking" />
-    </If>
     <CallSubRoutine SubRoutineName="WhatToCook" />
   </While>
   <While Condition="InbagCount (6291) + InbagCount (7751) &gt;= 40 &amp;&amp; Cooking.Level &gt;= 40 &amp;&amp; Cooking.Level &lt; 65" IgnoreCanRun="True">
