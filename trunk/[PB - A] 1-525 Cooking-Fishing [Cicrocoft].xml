@@ -9,36 +9,36 @@
   </If>
   <!--Intro-->
   <CustomAction Code="Log(System.Drawing.Color.DarkOliveGreen,&quot;[PB - A] 1-525 Cooking-Fishing [Cicrocoft]&quot;);" />
-  <CustomAction Code="Log(System.Drawing.Color.DarkOliveGreen,&quot;Waiting for PB to detect your professions. Starting in 10sec&quot;);" />
+  <CustomAction Code="Log(System.Drawing.Color.DarkOliveGreen,&quot;Waiting for PB to detect your professions. Starting in 5sec&quot;);" />
   <WaitAction Condition="false" Timeout="5000" />
   <CustomAction Code="Lua.DoString(&quot;SetCVar(\&quot;AutoLootDefault\&quot;, 1)&quot;);" />
   <If Condition="TreeRoot.Current.Name != &quot;Combat Bot&quot;" IgnoreCanRun="True">
     <CustomAction Code="SwitchToBot(&quot;Combat Bot&quot;);" />
   </If>
-  <If Condition="Fishing.MaxLevel == 0" IgnoreCanRun="True">
+  <While Condition="Fishing.Level &gt;= Fishing.MaxLevel - 25 &amp;&amp; Fishing.Level &lt; 500 || Fishing.MaxLevel == 0" IgnoreCanRun="True">
+    <If Condition="Fishing.Level &gt;= Fishing.MaxLevel - 25 &amp;&amp; Fishing.Level &lt; 500" IgnoreCanRun="True">
+      <CustomAction Code="Log(System.Drawing.Color.DarkOliveGreen,&quot;Looks like we can train our fishing skill&quot;);" />
+    </If>
+    <If Condition="Fishing.MaxLevel == 0" IgnoreCanRun="True">
+      <CustomAction Code="Log(System.Drawing.Color.DarkOliveGreen,&quot;We dont know fishing, lets go learn it!&quot;);" />
+    </If>
     <CallSubRoutine SubRoutineName="TrainFishing" />
-  </If>
-  <If Condition="!HasRecipe(8604)" IgnoreCanRun="True">
+  </While>
+  <While Condition="!HasRecipe(37836)" IgnoreCanRun="True">
     <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;I don't know cooking. Going to learn it&quot;); " />
     <CallSubRoutine SubRoutineName="TrainCooking" />
-  </If>
+  </While>
   <CallSubRoutine SubRoutineName="BuyRecipe" />
   <!--Subs-->
   <SubRoutine SubRoutineName="TrainFishing">
     <If Condition="Me.IsAlliance" IgnoreCanRun="True">
-      <If Condition="Me.ZoneId == 12 || Me.ZoneId == 1519" IgnoreCanRun="True">
+      <If Condition="Me.ZoneId == 12 || Me.ZoneId == 1519 || Me.ZoneId == 44" IgnoreCanRun="True">
         <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;I need to train fishing. Going to train in near Goldshire.&quot;); " />
         <If Condition="DistanceTo (-9382.077, -117.0054, 58.77687) &gt; 30" IgnoreCanRun="True">
           <FlyToAction Dismount="True" Location="-9382.722, -119.8093, 56.22465" />
         </If>
         <WaitAction Condition="false" Timeout="2000" />
         <TrainSkillAction NpcEntry="1651" Location="-9382.077, -117.0054, 58.77687" />
-        <WaitAction Condition="false" Timeout="2000" />
-      </If>
-      <If Condition="Me.ZoneId == 44" IgnoreCanRun="True">
-        <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;I need to train fishing. Going to train in Lake Everstill town.&quot;); " />
-        <FlyToAction Dismount="False" Location="-9309.401, -2149.97, 63.48383" />
-        <TrainSkillAction NpcEntry="1680" Location="0, 0, 0" />
         <WaitAction Condition="false" Timeout="2000" />
       </If>
       <If Condition="Me.ZoneId == 11 || Me.ZoneId == 28 || Me.ZoneId == 139" IgnoreCanRun="True">
@@ -540,10 +540,6 @@
     </If>
   </SubRoutine>
   <!--Whiles for cooking-->
-  <While Condition="Fishing.Level &gt;= Fishing.MaxLevel - 25 &amp;&amp; Fishing.Level &lt; 500" IgnoreCanRun="True">
-    <CustomAction Code="Log(System.Drawing.Color.DarkOliveGreen,&quot;Looks like we can train our fishing skill&quot;);" />
-    <CallSubRoutine SubRoutineName="TrainFishing" />
-  </While>
   <While Condition="(InbagCount (30817) + InbagCount (2678) + InbagCount (30816)*2) &gt;= 150 &amp;&amp; Cooking.Level &gt;= 1 &amp;&amp; Cooking.Level &lt; 40" IgnoreCanRun="True">
     <While Condition="!HasRecipe(37836)" IgnoreCanRun="True">
       <CallSubRoutine SubRoutineName="TrainCooking" />
@@ -836,38 +832,6 @@
       </If>
       <CallSubRoutine SubRoutineName="DoFishing" />
     </While>
-  </If>
-  <If Condition="Cooking.Level &gt;= 300 &amp;&amp; Cooking.Level &lt; 350" IgnoreCanRun="True">
-    <If Condition="Me.MapId != 530" IgnoreCanRun="True">
-      <If Condition="Me.MapId == 0" IgnoreCanRun="True">
-        <CallSubRoutine SubRoutineName="EK to Outland" />
-      </If>
-      <If Condition="Me.MapId == 1" IgnoreCanRun="True">
-        <CallSubRoutine SubRoutineName="Kalimdor to Outlands" />
-      </If>
-    </If>
-    <If Condition="Me.MapId == 530" IgnoreCanRun="True">
-      <CallSubRoutine SubRoutineName="CheckCookingSkill" />
-      <If Condition="Me.IsAlliance" IgnoreCanRun="True">
-        <If Condition="!HasRecipe(33284)" IgnoreCanRun="True">
-          <FlyToAction Dismount="True" Location="-709.2927, 2697.756, 94.32669" />
-          <BuyItemAction NpcEntry="16826" Location="-708.8713, 2739.131, 94.73363" ItemID="27688" BuyItemType="SpecificItem" Count="1" BuyAdditively="True" />
-          <CustomAction Code="Lua.DoString(string.Format(&quot;RunMacroText(\&quot;{0}\&quot;)&quot;, &quot;/use Recipe: Ravager Dog&quot;), 0);" />
-          <WaitAction Condition="false" Timeout="3000" />
-          <CallSubRoutine SubRoutineName="Sell" />
-          <If Condition="!HasRecipe(33284)" IgnoreCanRun="True">
-            <BuyItemAction NpcEntry="16826" Location="-708.8713, 2739.131, 94.73363" ItemID="27688" BuyItemType="SpecificItem" Count="1" BuyAdditively="True" />
-            <CustomAction Code="Lua.DoString(string.Format(&quot;RunMacroText(\&quot;{0}\&quot;)&quot;, &quot;/use Recipe: Ravager Dog&quot;), 0);" />
-          </If>
-        </If>
-      </If>
-    </If>
-  </If>
-  <If Condition="(InbagCount (27674) + InbagCount (27655)) &lt; 30 &amp;&amp; Cooking.Level &gt;= 300 &amp;&amp; Cooking.Level &lt; 325 &amp;&amp; HasRecipe(33284)" IgnoreCanRun="False">
-    <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Need to kill some mobs for some meat, sry.&quot;); " />
-    <FlyToAction Dismount="True" Location="-1429.719, 3467.212, 45.39236" />
-    <ChangeBotAction BotName="Questing" />
-    <LoadProfileAction ProfileType="Honorbuddy" Path="Cicro_fish+cook\Hellfire_farm_300-325.xml" />
   </If>
   <If Condition="Cooking.Level &gt;= 325 &amp;&amp; Cooking.Level &lt; 350 &amp;&amp; Me.MapId != 530" IgnoreCanRun="True">
     <CallSubRoutine SubRoutineName="EK to Outland" />
