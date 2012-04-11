@@ -635,22 +635,30 @@
   </SubRoutine>
   <SubRoutine SubRoutineName="EK to Outland">
     <If Condition="Me.IsAlliance" IgnoreCanRun="True">
-      <If Condition="Me.ZoneId != 4" IgnoreCanRun="True">
+      <While Condition="(Me.MapId == 0) &amp;&amp; Me.ZoneId != 4" IgnoreCanRun="True">
         <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Going to Outlands.&quot;); " />
-        <MoveToAction Location="-5603.183, -484.9108, 397.0643" MoveType="Location" Pathing="Navigator" Entry="0" />
-        <FlyToAction Dismount="False" Location="-5025.113, -829.3038, 495.3176" />
-        <MoveToAction Location="-4607.481, -926.5313, 501.0694" MoveType="Location" Pathing="Navigator" Entry="0" />
+        <FlyToAction Dismount="True" Location="-9000.289, 863.0194, 129.6055" />
+        <MoveToAction Location="-9006.661, 870.9152, 129.6924" MoveType="Location" Pathing="Navigator" Entry="0" />
+        <WaitAction Condition="false" Timeout="1898" />
         <InteractionAction InteractType="GameObject" Entry="195141" InteractDelay="2000" GameObjectType="Transport" SpellFocus="Anvil" />
-        <WaitAction Condition="false" Timeout="1000" />
-        <FlyToAction Dismount="False" Location="-11895.9, -3206.984, -6.04731" />
-        <MoveToAction Location="-11930.31, -3209.613, -1.836873" MoveType="Location" Pathing="ClickToMove" Entry="0" />
+        <WaitAction Condition="false" Timeout="1898" />
+        <FlyToAction Dismount="False" Location="-11913.81, -3209.906, -14.66823" />
+        <While Condition="Me.MapId == 530" IgnoreCanRun="True">
+          <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;We are in Outlands.&quot;); " />
+        </While>
         <WaitAction Condition="Me.MapId == 530" Timeout="25000" />
+      </While>
+      <While Condition="(Me.ZoneId == 4)" IgnoreCanRun="True">
+        <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Going to Outlands.&quot;); " />
+        <FlyToAction Dismount="False" Location="-11913.81, -3209.906, -14.66823" />
+        <While Condition="Me.MapId == 530" IgnoreCanRun="True">
+          <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;We are in Outlands.&quot;); " />
+        </While>
+        <WaitAction Condition="Me.MapId == 530" Timeout="25000" />
+      </While>
+      <If Condition="(Me.MapId == 1)" IgnoreCanRun="True">
+        <CallSubRoutine SubRoutineName="Kalimdor to EK" />
       </If>
-    </If>
-    <If Condition="(Me.MapId == 0) &amp;&amp; (Me.ZoneId == 4)" IgnoreCanRun="False">
-      <FlyToAction Dismount="False" Location="-11850, -3206, -3.5" />
-      <MoveToAction Location="-11910, -3207, -1" MoveType="Location" Pathing="Navigator" Entry="0" />
-      <WaitAction Condition="Me.MapId == 530" Timeout="25000" />
     </If>
   </SubRoutine>
   <SubRoutine SubRoutineName="Northrend to City">
@@ -717,21 +725,21 @@
   <SubRoutine SubRoutineName="Kalimdor to EK">
     <If Condition="Me.IsAlliance" IgnoreCanRun="True">
       <If Condition="Me.MapId == 1" IgnoreCanRun="True">
-        <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Going home to Eastern Kingdom to cook!&quot;); " />
-        <FlyToAction Dismount="True" Location="-4004.245, -4728.441, 4.5875" />
-        <MoveToAction Location="-4019.357, -4748.401, 6.035104" MoveType="Location" Pathing="Navigator" Entry="0" />
+        <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Going home to Eastern Kingdom!&quot;); " />
+        <FlyToAction Dismount="True" Location="-4001.157, -4728.268, 4.471069" />
         <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Waiting for the boat.&quot;); " />
         <WaitAction Condition="ObjectManager.GetObjectsOfType&lt;WoWGameObject&gt;().FirstOrDefault(o =&gt; o.Entry == 176231 ) != null &amp;&amp; ObjectManager.GetObjectsOfType&lt;WoWGameObject&gt;().FirstOrDefault(o =&gt; o.Entry == 176231 ).Location.Distance(new WoWPoint(-4016.39, -4740.588, -0.04994059)) &lt; 3" Timeout="6000000" />
         <WaitAction Condition="false" Timeout="7896" />
-        <MoveToAction Location="-4007.859, -4734.534, 6.039006" MoveType="Location" Pathing="Navigator" Entry="0" />
-        <MoveToAction Location="-4012.03, -4744.639, 6.123847" MoveType="Location" Pathing="ClickToMove" Entry="0" />
-        <MoveToAction Location="-4019.784, -4748.647, 6.087955" MoveType="Location" Pathing="ClickToMove" Entry="0" />
+        <MoveToAction Location="-4007.934, -4733.479, 5.99677" MoveType="Location" Pathing="ClickToMove" Entry="0" />
+        <MoveToAction Location="-4009.456, -4745.52, 6.097857" MoveType="Location" Pathing="ClickToMove" Entry="0" />
+        <MoveToAction Location="-4020.529, -4748.299, 6.219002" MoveType="Location" Pathing="ClickToMove" Entry="0" />
+        <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Waiting for the boat to set sail!&quot;); " />
         <WaitAction Condition="Me.MapId == 0" Timeout="650000" />
         <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Waiting for the boat to get along side!&quot;); " />
         <WaitAction Condition="ObjectManager.GetObjectsOfType&lt;WoWGameObject&gt;().FirstOrDefault(o =&gt; o.Entry == 176231 ) != null &amp;&amp; ObjectManager.GetObjectsOfType&lt;WoWGameObject&gt;().FirstOrDefault(o =&gt; o.Entry == 176231 ).Location.Distance(new WoWPoint(-3872.35, -639.9439, 0.03924475)) &lt; 20" Timeout="60000000" />
         <WaitAction Condition="false" Timeout="8997" />
         <MoveToAction Location="-3861.168, -657.361, 5.266752" MoveType="Location" Pathing="ClickToMove" Entry="0" />
-        <FlyToAction Dismount="True" Location="-3890.306, -709.368, 17.34875" />
+        <FlyToAction Dismount="False" Location="-3890.306, -709.368, 17.34875" />
       </If>
     </If>
   </SubRoutine>
@@ -910,7 +918,7 @@
           <CallSubRoutine SubRoutineName="Northren to EK" />
         </If>
         <If Condition="Me.ZoneId == 4395" IgnoreCanRun="True">
-          <BuyItemFromAhAction ItemListType="RecipeMats" ItemID="62778" MaxBuyout="30g0s0c" Amount="20" BuyAdditively="False" AutoFindAh="True" BidOnItem="False" Location="0,0,0" />
+          <BuyItemFromAhAction ItemListType="RecipeMats" ItemID="62778" MaxBuyout="30g0s0c" Amount="20" BuyAdditively="False" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
           <GetMailAction GetMailType="Specific" ItemID="62778" CheckNewMail="True" MinFreeBagSlots="1" AutoFindMailBox="False" Location="5888.736, 718.1132, 640.7516" />
           <CallSubRoutine SubRoutineName="Northrend to City" />
         </If>
