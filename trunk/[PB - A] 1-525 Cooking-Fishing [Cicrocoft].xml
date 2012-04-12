@@ -738,7 +738,7 @@
     <CallSubRoutine SubRoutineName="CreateFood" />
     <CallSubRoutine SubRoutineName="WhatToCook" />
   </While>
-  <While Condition="(((InbagCount (41805) + InbagCount (45932)) &gt;= 60 || (InbagCount (41803) + InbagCount (34759)) &gt;= 100 || (InbagCount (43268)*2 + InbagCount (36781) + InbagCount (36782)) &gt;= 30 || (InbagCount (42942) + InbagCount (41802)) &gt;= 60) &amp;&amp; Cooking.Level &gt;= 350 &amp;&amp; Cooking.Level &lt; 415 || (InbagCount (62790)*3 + InbagCount (2596)*2 + InbagCount (2595)) &gt;= 150) &amp;&amp; Cooking.Level &gt;= 415 &amp;&amp; Cooking.Level &lt; 435" IgnoreCanRun="True">
+  <While Condition="((InbagCount (41805) + InbagCount (45932)) &gt;= 60 &amp;&amp; (InbagCount (41803) + InbagCount (34759)) &gt;= 100 &amp;&amp; (InbagCount (43268)*2 + InbagCount (36781) + InbagCount (36782)) &gt;= 30 &amp;&amp; (InbagCount (42942) + InbagCount (41802)) &gt;= 60) &amp;&amp; Cooking.Level &gt;= 350 &amp;&amp; Cooking.Level &lt; 415 &amp;&amp; (InbagCount (62790)*3 + InbagCount (2596)*2 + InbagCount (2595)) &gt;= 150 &amp;&amp; Cooking.Level &gt;= 415 &amp;&amp; Cooking.Level &lt; 435" IgnoreCanRun="True">
     <!--Northern Part-->
     <CallSubRoutine SubRoutineName="LearnRecipe" />
     <CallSubRoutine SubRoutineName="CreateFood" />
