@@ -617,8 +617,10 @@
     <If Condition="Me.MapId == 530" IgnoreCanRun="True">
       <If Condition="Me.IsAlliance" IgnoreCanRun="True">
         <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Going back to SW.&quot;); " />
-        <FlyToAction Dismount="False" Location="-337.0845, 967.6913, 54.28448" />
-        <InteractionAction InteractType="GameObject" Entry="195139" InteractDelay="0" GameObjectType="Transport" SpellFocus="Anvil" />
+        <FlyToAction Dismount="False" Location="-1933.037, 5395.858, -12.42817" />
+        <MoveToAction Location="-1907.518, 5405.633, -12.42817" MoveType="Location" Pathing="Navigator" Entry="0" />
+        <MoveToAction Location="-1893.641, 5390.416, -12.42817" MoveType="Location" Pathing="Navigator" Entry="0" />
+        <InteractionAction InteractType="GameObject" Entry="183325" InteractDelay="0" GameObjectType="Transport" SpellFocus="Anvil" />
         <WaitAction Condition="Me.MapId == 0" Timeout="25000" />
       </If>
     </If>
