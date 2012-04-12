@@ -66,8 +66,8 @@
       <If Condition="Me.MapId == 571" IgnoreCanRun="True">
         <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;I need to train fishing. Going to train in Valiance Keep.&quot;); " />
         <While Condition="Fishing.Level &gt;= Fishing.MaxLevel - 25 &amp;&amp; Fishing.Level &lt; 500 || Fishing.MaxLevel == 0" IgnoreCanRun="True">
-          <If Condition="DistanceTo (2144.236, 5234.324, 19.44625) &gt; 30" IgnoreCanRun="True">
-            <FlyToAction Dismount="False" Location="2144.236, 5234.324, 19.44625" />
+          <If Condition="DistanceTo (2187.225, 5234.346, 10.57377) &gt; 45" IgnoreCanRun="True">
+            <FlyToAction Dismount="False" Location="2187.225, 5234.346, 10.57377" />
           </If>
           <TrainSkillAction NpcEntry="26993" Location="2144.236, 5234.324, 19.44625" />
         </While>
@@ -116,8 +116,8 @@
       </If>
       <If Condition="Me.MapId == 571 &amp;&amp; Me.ZoneId != 4395" IgnoreCanRun="True">
         <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;I need to train cooking. Going to train in Valiance Keep.&quot;); " />
-        <If Condition="DistanceTo (2147.999, 5231.634, 19.44573) &gt; 30" IgnoreCanRun="True">
-          <FlyToAction Dismount="True" Location="2147.999, 5231.634, 19.44573" />
+        <If Condition="DistanceTo (2147.999, 5231.634, 19.44573) &gt; 45" IgnoreCanRun="True">
+          <FlyToAction Dismount="False" Location="2187.225, 5234.346, 10.57377" />
         </If>
         <TrainSkillAction NpcEntry="26989" Location="2147.999, 5231.634, 19.44573" />
         <WaitAction Condition="false" Timeout="2000" />
@@ -143,7 +143,7 @@
       </If>
       <If Condition="Me.MapId == 571 || Me.ZoneId != 4395" IgnoreCanRun="True">
         <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Lets find a place to cook! Going to Unu'pe&quot;); " />
-        <If Condition="DistanceTo (3007.017, 4074.656, 26.3126) &gt; 30" IgnoreCanRun="True">
+        <If Condition="DistanceTo (3002.291, 4052.824, 26.36718) &gt; 30" IgnoreCanRun="True">
           <FlyToAction Dismount="True" Location="3007.017, 4074.656, 26.3126" />
         </If>
         <MoveToAction Location="3002.291, 4052.824, 26.36718" MoveType="Location" Pathing="Navigator" Entry="0" />
@@ -444,6 +444,7 @@
     </While>
     <While Condition="InbagCount(41805) &gt;= 3 &amp;&amp; Cooking.Level &lt; 425 &amp;&amp; HasRecipe(64358)" IgnoreCanRun="False">
       <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Cooking Black Jelly.&quot;); " />
+      <CallSubRoutine SubRoutineName="CreateFood" />
       <CallSubRoutine SubRoutineName="CheckCookingSkill" />
       <CastSpellAction RepeatType="Specific" Repeat="1" Entry="64358" CastOnItem="False" ItemType="Chest" ItemId="0" />
     </While>
