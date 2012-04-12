@@ -877,7 +877,7 @@
       </While>
     </If>
   </If>
-  <If Condition="(InbagCount (27666) + InbagCount (27438)) &lt; 15 &amp;&amp; (InbagCount (33048) + InbagCount (27422)) &lt; 50 &amp;&amp; Cooking.Level &gt;= 325 &amp;&amp; Cooking.Level &lt; 350" IgnoreCanRun="False">
+  <If Condition="(InbagCount (27666) + InbagCount (27438)) &lt; 15 &amp;&amp; Cooking.Level &gt;= 325 &amp;&amp; Cooking.Level &lt; 350 || (InbagCount (33048) + InbagCount (27422)) &lt; 50 &amp;&amp; Cooking.Level &gt;= 325 &amp;&amp; Cooking.Level &lt; 350" IgnoreCanRun="False">
     <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Time to catch some Golden Darter and Barbed Gill Trout.&quot;); " />
     <While Condition="Me.MapId == 530" IgnoreCanRun="True">
       <CallSubRoutine SubRoutineName="BuyRecipe" />
