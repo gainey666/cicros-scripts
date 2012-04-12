@@ -651,9 +651,6 @@
       <While Condition="(Me.ZoneId == 4)" IgnoreCanRun="True">
         <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Going to Outlands.&quot;); " />
         <FlyToAction Dismount="False" Location="-11913.81, -3209.906, -14.66823" />
-        <While Condition="Me.MapId == 530" IgnoreCanRun="True">
-          <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;We are in Outlands.&quot;); " />
-        </While>
         <WaitAction Condition="Me.MapId == 530" Timeout="25000" />
       </While>
       <If Condition="(Me.MapId == 1)" IgnoreCanRun="True">
@@ -846,22 +843,30 @@
     </While>
   </If>
   <If Condition="(InbagCount (13935) + InbagCount (13889)) &lt; 100 &amp;&amp; Cooking.Level &gt;= 275 &amp;&amp; Cooking.Level &lt; 325" IgnoreCanRun="False">
-    <While Condition="Me.IsAlliance" IgnoreCanRun="True">
-      <CallSubRoutine SubRoutineName="BuyRecipe" />
-      <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Time to catch 100x Raw Whitescale Salmon.&quot;); " />
-      <If Condition="Me.MapId == 0" IgnoreCanRun="True">
-        <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;We are not on Kalimdor. Going to Wetlands to take the boat. Sit back and enjoy the ride.&quot;); " />
-        <CallSubRoutine SubRoutineName="EK to Kalimdor" />
-      </If>
-      <If Condition="DistanceTo (-3044.25, 1966.953, 29.34509) &gt; 5" IgnoreCanRun="True">
-        <FlyToAction Dismount="True" Location="-3044.25, 1966.953, 29.34509" />
-      </If>
-      <If Condition="!IsFacing(6.2f)" IgnoreCanRun="True">
-        <CustomAction Code="Me.SetFacing(6.2f);" />
-        <CallSubRoutine SubRoutineName="UF" />
-      </If>
-      <CallSubRoutine SubRoutineName="DoFishing" />
-    </While>
+    <CallSubRoutine SubRoutineName="BuyRecipe" />
+    <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Time to catch 100x Raw Whitescale Salmon.&quot;); " />
+    <If Condition="Me.IsAlliance" IgnoreCanRun="True">
+      <While Condition="Me.MapId == 0" IgnoreCanRun="True">
+        <If Condition="DistanceTo (-12548.56, -2704.443, 1.19688) &gt; 5" IgnoreCanRun="True">
+          <FlyToAction Dismount="True" Location="-12548.56, -2704.443, 1.19688" />
+        </If>
+        <If Condition="!IsFacing(1.9f)" IgnoreCanRun="True">
+          <CustomAction Code="Me.SetFacing(1.9f);" />
+          <CallSubRoutine SubRoutineName="UF" />
+        </If>
+        <CallSubRoutine SubRoutineName="DoFishing" />
+      </While>
+      <While Condition="Me.MapId == 1" IgnoreCanRun="True">
+        <If Condition="DistanceTo (-3044.25, 1966.953, 29.34509) &gt; 5" IgnoreCanRun="True">
+          <FlyToAction Dismount="True" Location="-3044.25, 1966.953, 29.34509" />
+        </If>
+        <If Condition="!IsFacing(6.2f)" IgnoreCanRun="True">
+          <CustomAction Code="Me.SetFacing(6.2f);" />
+          <CallSubRoutine SubRoutineName="UF" />
+        </If>
+        <CallSubRoutine SubRoutineName="DoFishing" />
+      </While>
+    </If>
   </If>
   <If Condition="(InbagCount (27666) + InbagCount (27438)) &lt; 30 &amp;&amp; Cooking.Level &gt;= 325 &amp;&amp; Cooking.Level &lt; 350" IgnoreCanRun="False">
     <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Time to catch some Golden Darter.&quot;); " />
