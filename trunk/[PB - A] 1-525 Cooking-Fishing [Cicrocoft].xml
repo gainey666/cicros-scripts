@@ -881,11 +881,11 @@
     <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Time to catch some Golden Darter.&quot;); " />
     <While Condition="Me.MapId == 530" IgnoreCanRun="True">
       <CallSubRoutine SubRoutineName="BuyRecipe" />
-      <If Condition="DistanceTo (-3204.877, 3912.185, 59.18683) &gt; 5" IgnoreCanRun="True">
-        <FlyToAction Dismount="True" Location="-3204.877, 3912.185, 59.18683" />
+      <If Condition="DistanceTo (-3023.773, 3786.894, 0.5336008) &gt; 5" IgnoreCanRun="True">
+        <FlyToAction Dismount="True" Location="-3023.773, 3786.894, 0.5336008" />
       </If>
-      <If Condition="!IsFacing(4.8f)" IgnoreCanRun="True">
-        <CustomAction Code="Me.SetFacing(4.8f);" />
+      <If Condition="!IsFacing(1.25f)" IgnoreCanRun="True">
+        <CustomAction Code="Me.SetFacing(1.25f);" />
         <CallSubRoutine SubRoutineName="UF" />
       </If>
       <CallSubRoutine SubRoutineName="DoFishing" />
