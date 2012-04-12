@@ -33,39 +33,51 @@
   <!--Subs-->
   <SubRoutine SubRoutineName="TrainFishing">
     <If Condition="Me.IsAlliance" IgnoreCanRun="True">
-      <If Condition="Me.ZoneId == 12 || Me.ZoneId == 1519 || Me.ZoneId == 44" IgnoreCanRun="True">
+      <If Condition="Me.ZoneId == 12 || Me.ZoneId == 1519 || Me.ZoneId == 44 || Me.ZoneId == 4" IgnoreCanRun="True">
         <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;I need to train fishing. Going to train in near Goldshire.&quot;); " />
-        <If Condition="DistanceTo (-9382.077, -117.0054, 58.77687) &gt; 30" IgnoreCanRun="True">
-          <FlyToAction Dismount="True" Location="-9382.722, -119.8093, 56.22465" />
-        </If>
-        <WaitAction Condition="false" Timeout="2000" />
-        <TrainSkillAction NpcEntry="1651" Location="-9382.077, -117.0054, 58.77687" />
+        <While Condition="Fishing.Level &gt;= Fishing.MaxLevel - 25 &amp;&amp; Fishing.Level &lt; 500 || Fishing.MaxLevel == 0" IgnoreCanRun="True">
+          <If Condition="DistanceTo (-9382.077, -117.0054, 58.77687) &gt; 30" IgnoreCanRun="True">
+            <FlyToAction Dismount="False" Location="-9382.722, -119.8093, 56.22465" />
+          </If>
+          <TrainSkillAction NpcEntry="1651" Location="-9382.077, -117.0054, 58.77702" />
+        </While>
         <WaitAction Condition="false" Timeout="2000" />
       </If>
       <If Condition="Me.ZoneId == 11 || Me.ZoneId == 28 || Me.ZoneId == 139" IgnoreCanRun="True">
         <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;I need to train fishing. Going to train in Menethill Harbor.&quot;); " />
-        <If Condition="DistanceTo (-3763.51, -723.533, 2.00382) &gt; 30" IgnoreCanRun="True">
-          <FlyToAction Dismount="False" Location="-3760.027, -725.1077, 1.920412" />
-        </If>
-        <TrainSkillAction NpcEntry="3179" Location="-3763.51, -723.533, 2.00382" />
+        <While Condition="Fishing.Level &gt;= Fishing.MaxLevel - 25 &amp;&amp; Fishing.Level &lt; 500 || Fishing.MaxLevel == 0" IgnoreCanRun="True">
+          <If Condition="DistanceTo (-3763.51, -723.533, 2.00382) &gt; 30" IgnoreCanRun="True">
+            <FlyToAction Dismount="False" Location="-3760.027, -725.1077, 1.920412" />
+          </If>
+          <TrainSkillAction NpcEntry="3179" Location="-3763.51, -723.533, 2.00382" />
+        </While>
         <WaitAction Condition="false" Timeout="2000" />
       </If>
       <If Condition="Me.MapId == 1" IgnoreCanRun="True">
         <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;I need to train fishing. Going to train in Feathermoon Stronghold.&quot;); " />
-        <TrainSkillAction NpcEntry="7946" Location="-4286.39, 2297.86, 9.480977" />
+        <While Condition="Fishing.Level &gt;= Fishing.MaxLevel - 25 &amp;&amp; Fishing.Level &lt; 500 || Fishing.MaxLevel == 0" IgnoreCanRun="True">
+          <If Condition="DistanceTo (-4286.39, 2297.86, 9.480977) &gt; 30" IgnoreCanRun="True">
+            <FlyToAction Dismount="False" Location="-4286.39, 2297.86, 9.480977" />
+          </If>
+          <TrainSkillAction NpcEntry="7946" Location="-4286.39, 2297.86, 9.480977" />
+        </While>
         <WaitAction Condition="false" Timeout="2000" />
       </If>
       <If Condition="Me.MapId == 571" IgnoreCanRun="True">
         <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;I need to train fishing. Going to train in Valgarde.&quot;); " />
-        <If Condition="DistanceTo (533.7507, -5048.225, 10.23721) &gt; 30" IgnoreCanRun="True">
-          <FlyToAction Dismount="False" Location="533.7507, -5048.225, 10.23721" />
-        </If>
-        <TrainSkillAction NpcEntry="26909" Location="533.7507, -5048.225, 10.23721" />
+        <While Condition="Fishing.Level &gt;= Fishing.MaxLevel - 25 &amp;&amp; Fishing.Level &lt; 500 || Fishing.MaxLevel == 0" IgnoreCanRun="True">
+          <If Condition="DistanceTo (533.7507, -5048.225, 10.23721) &gt; 30" IgnoreCanRun="True">
+            <FlyToAction Dismount="False" Location="533.7507, -5048.225, 10.23721" />
+          </If>
+          <TrainSkillAction NpcEntry="26909" Location="533.7507, -5048.225, 10.23721" />
+        </While>
         <WaitAction Condition="false" Timeout="2000" />
       </If>
       <If Condition="Me.ZoneId == 5861" IgnoreCanRun="True">
         <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;I need to train fishing. Going to train at the Darkmoon Faire.&quot;); " />
-        <TrainSkillAction NpcEntry="56068" Location="-4421.531, 6289.183, 13.89897" />
+        <While Condition="Fishing.Level &gt;= Fishing.MaxLevel - 25 &amp;&amp; Fishing.Level &lt; 500 || Fishing.MaxLevel == 0" IgnoreCanRun="True">
+          <TrainSkillAction NpcEntry="56068" Location="-4421.531, 6289.183, 13.89897" />
+        </While>
         <WaitAction Condition="false" Timeout="2000" />
       </If>
     </If>
