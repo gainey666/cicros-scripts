@@ -64,12 +64,12 @@
         <WaitAction Condition="false" Timeout="2000" />
       </If>
       <If Condition="Me.MapId == 571" IgnoreCanRun="True">
-        <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;I need to train fishing. Going to train in Valgarde.&quot;); " />
+        <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;I need to train fishing. Going to train in Valiance Keep.&quot;); " />
         <While Condition="Fishing.Level &gt;= Fishing.MaxLevel - 25 &amp;&amp; Fishing.Level &lt; 500 || Fishing.MaxLevel == 0" IgnoreCanRun="True">
-          <If Condition="DistanceTo (533.7507, -5048.225, 10.23721) &gt; 30" IgnoreCanRun="True">
-            <FlyToAction Dismount="False" Location="533.7507, -5048.225, 10.23721" />
+          <If Condition="DistanceTo (2144.236, 5234.324, 19.44625) &gt; 30" IgnoreCanRun="True">
+            <FlyToAction Dismount="False" Location="2144.236, 5234.324, 19.44625" />
           </If>
-          <TrainSkillAction NpcEntry="26909" Location="533.7507, -5048.225, 10.23721" />
+          <TrainSkillAction NpcEntry="26993" Location="2144.236, 5234.324, 19.44625" />
         </While>
         <WaitAction Condition="false" Timeout="2000" />
       </If>
@@ -115,11 +115,11 @@
         <WaitAction Condition="false" Timeout="2000" />
       </If>
       <If Condition="Me.MapId == 571 &amp;&amp; Me.ZoneId != 4395" IgnoreCanRun="True">
-        <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;I need to train cooking. Going to train in Valgarde.&quot;); " />
-        <If Condition="DistanceTo (569.5176, -4944.039, 18.03039) &gt; 30" IgnoreCanRun="True">
-          <FlyToAction Dismount="True" Location="569.5176, -4944.039, 18.03039" />
+        <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;I need to train cooking. Going to train in Valiance Keep.&quot;); " />
+        <If Condition="DistanceTo (2147.999, 5231.634, 19.44573) &gt; 30" IgnoreCanRun="True">
+          <FlyToAction Dismount="True" Location="2147.999, 5231.634, 19.44573" />
         </If>
-        <TrainSkillAction NpcEntry="26905" Location="615.0577, -4916.973, 18.67833" />
+        <TrainSkillAction NpcEntry="26989" Location="2147.999, 5231.634, 19.44573" />
         <WaitAction Condition="false" Timeout="2000" />
       </If>
       <If Condition="Me.ZoneId == 4395" IgnoreCanRun="True">
@@ -141,12 +141,12 @@
         </If>
         <MoveToAction Location="5700.841, 717.2857, 642.4707" MoveType="Location" Pathing="Navigator" Entry="0" />
       </If>
-      <If Condition="Me.ZoneId == 3537" IgnoreCanRun="True">
-        <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Lets find a place to cook! Going to Valiance Keep&quot;); " />
-        <If Condition="DistanceTo (2294.477, 5198.208, 11.70316) &gt; 30" IgnoreCanRun="True">
-          <FlyToAction Dismount="True" Location="2257.236, 5200.058, 11.32278" />
+      <If Condition="Me.MapId == 571 || Me.ZoneId != 4395" IgnoreCanRun="True">
+        <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Lets find a place to cook! Going to Unu'pe&quot;); " />
+        <If Condition="DistanceTo (3007.017, 4074.656, 26.3126) &gt; 30" IgnoreCanRun="True">
+          <FlyToAction Dismount="True" Location="3007.017, 4074.656, 26.3126" />
         </If>
-        <MoveToAction Location="2294.477, 5198.208, 11.70316" MoveType="Location" Pathing="Navigator" Entry="0" />
+        <MoveToAction Location="3002.291, 4052.824, 26.36718" MoveType="Location" Pathing="Navigator" Entry="0" />
       </If>
       <If Condition="Me.MapId == 530" IgnoreCanRun="True">
         <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Lets find a place to cook! Going to Lower City&quot;); " />
@@ -738,7 +738,7 @@
     <CallSubRoutine SubRoutineName="CreateFood" />
     <CallSubRoutine SubRoutineName="WhatToCook" />
   </While>
-  <While Condition="((InbagCount (41805) + InbagCount (45932)) &gt;= 60 || (InbagCount (41803) + InbagCount (34759)) &gt;= 100 || (InbagCount (43268)*2 + InbagCount (36781) + InbagCount (36782)) &gt;= 30 || (InbagCount (42942) + InbagCount (41802)) &gt;= 60) &amp;&amp; Cooking.Level &gt;= 350 &amp;&amp; Cooking.Level &lt; 415 || (InbagCount (62790)*3 + InbagCount (2596)*2 + InbagCount (2595)) &gt;= 150 &amp;&amp; Cooking.Level &gt;= 415 &amp;&amp; Cooking.Level &lt; 435" IgnoreCanRun="True">
+  <While Condition="(((InbagCount (41805) + InbagCount (45932)) &gt;= 60 || (InbagCount (41803) + InbagCount (34759)) &gt;= 100 || (InbagCount (43268)*2 + InbagCount (36781) + InbagCount (36782)) &gt;= 30 || (InbagCount (42942) + InbagCount (41802)) &gt;= 60) &amp;&amp; Cooking.Level &gt;= 350 &amp;&amp; Cooking.Level &lt; 415 || (InbagCount (62790)*3 + InbagCount (2596)*2 + InbagCount (2595)) &gt;= 150) &amp;&amp; Cooking.Level &gt;= 415 &amp;&amp; Cooking.Level &lt; 435" IgnoreCanRun="True">
     <!--Northern Part-->
     <CallSubRoutine SubRoutineName="LearnRecipe" />
     <CallSubRoutine SubRoutineName="CreateFood" />
@@ -876,15 +876,20 @@
       <CallSubRoutine SubRoutineName="EK to Outland" />
     </While>
   </If>
-  <If Condition="(InbagCount (41805) + InbagCount (45932)) &lt; 60 &amp;&amp; (InbagCount (41803) + InbagCount (34759)) &lt; 100 &amp;&amp; (InbagCount (43268)*2 + InbagCount (36781) +  InbagCount (36782)) &lt; 30 &amp;&amp; (InbagCount (42942) + InbagCount (41802)) &lt; 60 &amp;&amp; Cooking.Level &gt;= 350 &amp;&amp; Cooking.Level &lt; 415" IgnoreCanRun="False">
+  <If Condition="(InbagCount (41805) + InbagCount (45932)) &lt; 60 &amp;&amp; Cooking.Level &gt;= 400 &amp;&amp; Cooking.Level &lt; 415 || (InbagCount (41803) + InbagCount (34759)) &lt; 100  &amp;&amp; Cooking.Level &gt;= 350 &amp;&amp; Cooking.Level &lt; 380 || (InbagCount (43268)*2 + InbagCount (36781) +  InbagCount (36782)) &lt; 30 &amp;&amp; Cooking.Level &gt;= 350 &amp;&amp; Cooking.Level &lt; 415 || (InbagCount (42942) + InbagCount (41802)) &lt; 60 &amp;&amp; Cooking.Level &gt;= 350 &amp;&amp; Cooking.Level &lt; 415" IgnoreCanRun="False">
     <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Time to catch some random fish.&quot;); " />
     <While Condition="Me.MapId == 571" IgnoreCanRun="True">
-      <If Condition="DistanceTo (786.7358, -5273.969, 2.785427) &gt; 5" IgnoreCanRun="True">
-        <FlyToAction Dismount="True" Location="786.7358, -5273.969, 2.785427" />
+      <If Condition="DistanceTo (2610.576, 4901.382, 0.7474862) &gt; 5" IgnoreCanRun="True">
+        <FlyToAction Dismount="True" Location="2610.576, 4901.382, 0.7474862" />
       </If>
-      <If Condition="!IsFacing(2.0f)" IgnoreCanRun="True">
-        <CustomAction Code="Me.SetFacing(2.0f);" />
+      <If Condition="!IsFacing(3.8f)" IgnoreCanRun="True">
+        <CustomAction Code="Me.SetFacing(3.8f);" />
         <CallSubRoutine SubRoutineName="UF" />
+      </If>
+      <If Condition="InbagCount(36781) &gt;= 1" IgnoreCanRun="True">
+        <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Opening Darkwater Clam.&quot;); " />
+        <CustomAction Code="Lua.DoString(string.Format(&quot;RunMacroText(\&quot;{0}\&quot;)&quot;, &quot;/use Darkwater Clam&quot;), 0);" />
+        <WaitAction Condition="false" Timeout="987" />
       </If>
       <CallSubRoutine SubRoutineName="DoFishing" />
     </While>
