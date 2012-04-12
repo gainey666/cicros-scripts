@@ -791,16 +791,6 @@
   </If>
   <If Condition="(InbagCount (4592) + InbagCount (6289)) &lt; 60 &amp;&amp; Cooking.Level &gt;= 65 &amp;&amp; Cooking.Level &lt; 110" IgnoreCanRun="False">
     <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Time to catch some Raw Longjaw Mud Snapper.&quot;); " />
-    <While Condition="Me.IsAlliance" IgnoreCanRun="True">
-      <If Condition="DistanceTo (-9375.861, -2041.789, 57.27626) &gt; 5" IgnoreCanRun="True">
-        <FlyToAction Dismount="True" Location="-9375.861, -2041.789, 57.27626" />
-      </If>
-      <If Condition="!IsFacing(6f)" IgnoreCanRun="True">
-        <CustomAction Code="Me.SetFacing(6f);" />
-        <CallSubRoutine SubRoutineName="UF" />
-      </If>
-      <CallSubRoutine SubRoutineName="DoFishing" />
-    </While>
   </If>
   <If Condition="(InbagCount (6308) + InbagCount (4593)) &lt; 120 &amp;&amp; Cooking.Level &gt;= 110 &amp;&amp; Cooking.Level &lt; 175" IgnoreCanRun="False">
     <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Time to catch some catfish, 110-175.&quot;); " />
@@ -972,11 +962,35 @@
     </If>
   </If>
   <!--End-->
-  <If Condition="Cooking.Level &gt;= 450" IgnoreCanRun="True">
+  <If Condition="Cooking.Level &gt;= 450 &amp;&amp; Fishing.Level == 525" IgnoreCanRun="True">
+    <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Nothing more to do.&quot;); " />
     <CustomAction Code="Log(&quot;Starting log out in 20sec&quot;);" />
     <WaitAction Condition="false" Timeout="20000" />
     <CustomAction Code=" Lua.DoString(&quot;Logout()&quot;);TreeRoot.Stop();" />
     <WaitAction Condition="false" Timeout="35000" />
+  </If>
+  <If Condition="Cooking.Level &gt;= 450 &amp;&amp; Fishing.Level != 525" IgnoreCanRun="True">
+    <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Lets fish upto lvl 525.&quot;); " />
+    <While Condition="Me.IsAlliance &amp;&amp; Me.ZoneId == 4395" IgnoreCanRun="True">
+      <If Condition="Me.FreeNormalBagSlots &lt;= 1" IgnoreCanRun="True">
+        <SellItemAction Sell="All" NpcEntry="28707" Location="5737.192, 672.8511, 613.244" SellItemType="Greys" ItemID="" Count="0" />
+      </If>
+      <If Condition="DistanceTo (5726.466, 666.5815, 613.2433) &gt; 5" IgnoreCanRun="True">
+        <FlyToAction Dismount="False" Location="5807.371, 556.9195, 650.3774" />
+        <MoveToAction Location="5726.466, 666.5815, 613.2433" MoveType="Location" Pathing="Navigator" Entry="0" />
+      </If>
+      <If Condition="!IsFacing(3.9f)" IgnoreCanRun="True">
+        <CustomAction Code="Me.SetFacing(3.9f);" />
+        <CallSubRoutine SubRoutineName="UF" />
+      </If>
+      <CallSubRoutine SubRoutineName="DoFishing" />
+    </While>
+    <If Condition="Me.ZoneId != 4395" IgnoreCanRun="True">
+      <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;We are not in Dalaran :(&quot;); " />
+      <WaitAction Condition="false" Timeout="20000" />
+      <CustomAction Code=" Lua.DoString(&quot;Logout()&quot;);TreeRoot.Stop();" />
+      <WaitAction Condition="false" Timeout="35000" />
+    </If>
   </If>
   <Declaration Code="Stopwatch PulseSW = new Stopwatch();" />
   <Declaration Code="DateTime CastTimeStamp = DateTime.Now;" />
