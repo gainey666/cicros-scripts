@@ -106,26 +106,10 @@
         <TrainSkillAction NpcEntry="1699" Location="-5594.47, -545.82, 398.7681" />
         <WaitAction Condition="false" Timeout="2000" />
       </If>
-      <If Condition="Me.ZoneId == 3483" IgnoreCanRun="True">
-        <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;I need to train cooking. Going to train in Honor Hold.&quot;); " />
-        <If Condition="DistanceTo (-707.7498, 2749.149, 94.72163) &gt; 30" IgnoreCanRun="True">
-          <FlyToAction Dismount="True" Location="-709.1463, 2698.413, 94.34809" />
-        </If>
-        <TrainSkillAction NpcEntry="18987" Location="-707.7498, 2749.149, 94.72163" />
-        <WaitAction Condition="false" Timeout="2000" />
-      </If>
-      <If Condition="Me.ZoneId == 3519" IgnoreCanRun="True">
+      <If Condition="Me.MapId == 530" IgnoreCanRun="True">
         <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;I need to train cooking. Going to train in Lower City.&quot;); " />
         <If Condition="DistanceTo (-2065.71, 5311.151, -37.32356) &gt; 30" IgnoreCanRun="True">
-          <FlyToAction Dismount="True" Location="-2074.449, 5302.941, -37.32236" />
-        </If>
-        <TrainSkillAction NpcEntry="19185" Location="-2065.71, 5311.151, -37.32356" />
-        <WaitAction Condition="false" Timeout="2000" />
-      </If>
-      <If Condition="Me.ZoneId == 3703" IgnoreCanRun="True">
-        <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;I need to train cooking. Going to train in Lower City.&quot;); " />
-        <If Condition="DistanceTo (-2065.71, 5311.151, -37.32356) &gt; 30" IgnoreCanRun="True">
-          <FlyToAction Dismount="True" Location="-2074.449, 5302.941, -37.32236" />
+          <FlyToAction Dismount="True" Location="-2082.622, 5332.535, -36.75254" />
         </If>
         <TrainSkillAction NpcEntry="19185" Location="-2065.71, 5311.151, -37.32356" />
         <WaitAction Condition="false" Timeout="2000" />
@@ -164,16 +148,12 @@
         </If>
         <MoveToAction Location="2294.477, 5198.208, 11.70316" MoveType="Location" Pathing="Navigator" Entry="0" />
       </If>
-      <If Condition="Me.ZoneId == 3703 || Me.ZoneId == 3519" IgnoreCanRun="True">
+      <If Condition="Me.MapId == 530" IgnoreCanRun="True">
         <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Lets find a place to cook! Going to Lower City&quot;); " />
-        <FlyToAction Dismount="True" Location="-2082.214, 5290.186, -37.32236" />
-      </If>
-      <If Condition="Me.ZoneId == 3483" IgnoreCanRun="True">
-        <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Lets find a place to cook! Going to Honor Hold&quot;); " />
-        <If Condition="DistanceTo (-705.3499, 2751.092, 94.72063) &gt; 30" IgnoreCanRun="True">
-          <FlyToAction Dismount="True" Location="-709.1463, 2698.413, 94.34809" />
+        <If Condition="DistanceTo (-2065.71, 5311.151, -37.32356) &gt; 30" IgnoreCanRun="True">
+          <FlyToAction Dismount="True" Location="-2082.622, 5332.535, -36.75254" />
         </If>
-        <MoveToAction Location="-705.3499, 2751.092, 94.72063" MoveType="Location" Pathing="Navigator" Entry="0" />
+        <MoveToAction Location="-2070.231, 5318.514, -37.32351" MoveType="Location" Pathing="Navigator" Entry="0" />
       </If>
       <If Condition="Me.MapId == 1" IgnoreCanRun="True">
         <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Going to Eastern Kingdom to cook. We have no more business on Kalimdor.&quot;); " />
@@ -433,7 +413,7 @@
       <CallSubRoutine SubRoutineName="CheckCookingSkill" />
       <CastSpellAction RepeatType="Specific" Repeat="1" Entry="18247" CastOnItem="False" ItemType="Chest" ItemId="0" />
     </While>
-    <While Condition="InbagCount(27422) &gt;= 1 &amp;&amp; Cooking.Level &lt; 355 &amp;&amp; HasRecipe(33048)" IgnoreCanRun="True">
+    <While Condition="InbagCount(27422) &gt;= 1 &amp;&amp; Cooking.Level &lt; 355 &amp;&amp; HasRecipe(42296)" IgnoreCanRun="True">
       <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Cooking Stewed Trout.&quot;); " />
       <CallSubRoutine SubRoutineName="CheckCookingSkill" />
       <CastSpellAction RepeatType="Specific" Repeat="1" Entry="42296" CastOnItem="False" ItemType="Chest" ItemId="0" />
