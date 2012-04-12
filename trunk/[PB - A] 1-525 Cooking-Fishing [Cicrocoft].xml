@@ -373,21 +373,19 @@
         </If>
       </If>
       <If Condition="Cooking.Level &gt;= 325 &amp;&amp; Cooking.Level &lt; 350" IgnoreCanRun="True">
-        <While Condition="Me.MapId == 530 &amp;&amp; !HasRecipe(33295)" IgnoreCanRun="True">
-          <If Condition="!HasRecipe(33295) &amp;&amp; (InbagCount(27699) == 0)" IgnoreCanRun="True">
-            <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Need Fishstick recipe. Flying to buy it.&quot;); " />
-            <FlyToAction Dismount="True" Location="-2944.534, 4005.904, -0.8709726" />
-            <While Condition="(InbagCount(27699) == 0)" IgnoreCanRun="True">
-              <BuyItemAction NpcEntry="19296" Location="-2917.881, 4021.484, 0.4274965" ItemID="27699" BuyItemType="SpecificItem" Count="1" BuyAdditively="False" />
-            </While>
-            <SellItemAction Sell="All" NpcEntry="0" Location="0, 0, 0" SellItemType="Greys" ItemID="" Count="0" />
+        <If Condition="!HasRecipe(33295) &amp;&amp; (InbagCount(27699) == 0)" IgnoreCanRun="True">
+          <If Condition="Me.MapId != 530" IgnoreCanRun="True">
+            <CallSubRoutine SubRoutineName="EK to Outland" />
           </If>
-        </While>
-        <While Condition="Me.MapId != 530 &amp;&amp; Me.MapId == 0 &amp;&amp; !HasRecipe(33295)" IgnoreCanRun="True">
-          <CallSubRoutine SubRoutineName="EK to Outland" />
-        </While>
+          <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Need Fishstick recipe. Flying to buy it.&quot;); " />
+          <FlyToAction Dismount="True" Location="-2943.885, 3998.248, -0.9770461" />
+          <While Condition="(InbagCount(27699) == 0)" IgnoreCanRun="True">
+            <BuyItemAction NpcEntry="19296" Location="-2917.881, 4021.484, 0.4274965" ItemID="27699" BuyItemType="SpecificItem" Count="1" BuyAdditively="False" />
+          </While>
+        </If>
       </If>
     </If>
+    <CallSubRoutine SubRoutineName="LearnRecipe" />
   </SubRoutine>
   <SubRoutine SubRoutineName="WhatToCook">
     <While Condition="InbagCount (30817) &gt;= 1 &amp;&amp; InbagCount (2678) &gt;= 1 &amp;&amp; Cooking.Level &lt; 40 &amp;&amp; HasRecipe(37836)" IgnoreCanRun="False">
@@ -598,7 +596,7 @@
         </While>
       </If>
       <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Learning Golden Fish Sticks recipe.&quot;); " />
-      <CustomAction Code="Lua.DoString(string.Format(&quot;RunMacroText(\&quot;{0}\&quot;)&quot;, &quot;Recipe: Golden Fish Sticks&quot;), 0);" />
+      <CustomAction Code="Lua.DoString(string.Format(&quot;RunMacroText(\&quot;{0}\&quot;)&quot;, &quot;/use Recipe: Golden Fish Sticks&quot;), 0);" />
       <WaitAction Condition="false" Timeout="3558" />
     </While>
     <While Condition="(!HasRecipe(45560) || !HasRecipe(58065) || !HasRecipe(45569)) &amp;&amp; Cooking.Level &gt;= 350 &amp;&amp; Cooking.Level &lt; 415" IgnoreCanRun="True">
@@ -647,23 +645,22 @@
   </SubRoutine>
   <SubRoutine SubRoutineName="EK to Outland">
     <If Condition="Me.IsAlliance" IgnoreCanRun="True">
-      <While Condition="(Me.MapId == 0) &amp;&amp; Me.ZoneId != 4" IgnoreCanRun="True">
+      <While Condition="(Me.MapId == 0) &amp;&amp; Me.ZoneId != 4 &amp;&amp; (Me.ZoneId != 44)" IgnoreCanRun="True">
         <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Going to Outlands.&quot;); " />
         <FlyToAction Dismount="True" Location="-9000.289, 863.0194, 129.6055" />
         <MoveToAction Location="-9006.661, 870.9152, 129.6924" MoveType="Location" Pathing="Navigator" Entry="0" />
         <WaitAction Condition="false" Timeout="1898" />
         <InteractionAction InteractType="GameObject" Entry="195141" InteractDelay="2000" GameObjectType="Transport" SpellFocus="Anvil" />
         <WaitAction Condition="false" Timeout="1898" />
-        <FlyToAction Dismount="False" Location="-11913.81, -3209.906, -14.66823" />
-        <While Condition="Me.MapId == 530" IgnoreCanRun="True">
-          <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;We are in Outlands.&quot;); " />
-        </While>
-        <WaitAction Condition="Me.MapId == 530" Timeout="25000" />
+        <FlyToAction Dismount="False" Location="-11886.8, -3205.398, -15.4392" />
+        <MoveToAction Location="-11907.7, -3207.849, -14.84385" MoveType="Location" Pathing="ClickToMove" Entry="0" />
+        <WaitAction Condition="false" Timeout="5000" />
       </While>
-      <While Condition="(Me.ZoneId == 4)" IgnoreCanRun="True">
+      <While Condition="(Me.ZoneId == 4) || (Me.ZoneId == 44)" IgnoreCanRun="True">
         <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Going to Outlands.&quot;); " />
-        <FlyToAction Dismount="False" Location="-11913.81, -3209.906, -14.66823" />
-        <WaitAction Condition="Me.MapId == 530" Timeout="25000" />
+        <FlyToAction Dismount="False" Location="-11886.8, -3205.398, -15.4392" />
+        <MoveToAction Location="-11907.7, -3207.849, -14.84385" MoveType="Location" Pathing="ClickToMove" Entry="0" />
+        <WaitAction Condition="false" Timeout="5000" />
       </While>
       <If Condition="(Me.MapId == 1)" IgnoreCanRun="True">
         <CallSubRoutine SubRoutineName="Kalimdor to EK" />
@@ -884,11 +881,11 @@
     <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Time to catch some Golden Darter.&quot;); " />
     <While Condition="Me.MapId == 530" IgnoreCanRun="True">
       <CallSubRoutine SubRoutineName="BuyRecipe" />
-      <If Condition="DistanceTo (-1827.723, 4964.667, -24.62757) &gt; 5" IgnoreCanRun="True">
-        <FlyToAction Dismount="True" Location="-1827.723, 4964.667, -24.62757" />
+      <If Condition="DistanceTo (-3204.877, 3912.185, 59.18683) &gt; 5" IgnoreCanRun="True">
+        <FlyToAction Dismount="True" Location="-3204.877, 3912.185, 59.18683" />
       </If>
-      <If Condition="!IsFacing(6f)" IgnoreCanRun="True">
-        <CustomAction Code="Me.SetFacing(6f);" />
+      <If Condition="!IsFacing(4.8f)" IgnoreCanRun="True">
+        <CustomAction Code="Me.SetFacing(4.8f);" />
         <CallSubRoutine SubRoutineName="UF" />
       </If>
       <CallSubRoutine SubRoutineName="DoFishing" />
