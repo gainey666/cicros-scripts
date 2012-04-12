@@ -135,18 +135,26 @@
   <SubRoutine SubRoutineName="CreateFood">
     <If Condition="Me.IsAlliance" IgnoreCanRun="True">
       <If Condition="Me.ZoneId == 4395" IgnoreCanRun="True">
-        <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Lets find a place to cook! Going to Dalaran&quot;); " />
+        <If Condition="DistanceTo (5700.841, 717.2857, 642.4707) &gt; 3" IgnoreCanRun="True">
+          <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Lets find a place to cook! Going to Dalaran&quot;); " />
+        </If>
         <If Condition="DistanceTo (5700.841, 717.2857, 642.4707) &gt; 30" IgnoreCanRun="True">
           <FlyToAction Dismount="True" Location="5737.577, 673.0076, 645.2578" />
         </If>
-        <MoveToAction Location="5700.841, 717.2857, 642.4707" MoveType="Location" Pathing="Navigator" Entry="0" />
+        <If Condition="DistanceTo (5700.841, 717.2857, 642.4707) &gt; 3" IgnoreCanRun="True">
+          <MoveToAction Location="5700.841, 717.2857, 642.4707" MoveType="Location" Pathing="Navigator" Entry="0" />
+        </If>
       </If>
-      <If Condition="Me.MapId == 571 || Me.ZoneId != 4395" IgnoreCanRun="True">
-        <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Lets find a place to cook! Going to Unu'pe&quot;); " />
+      <If Condition="Me.MapId == 571 &amp;&amp; Me.ZoneId != 4395" IgnoreCanRun="True">
+        <If Condition="DistanceTo (3002.291, 4052.824, 26.36718) &gt; 3" IgnoreCanRun="True">
+          <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Lets find a place to cook! Going to Unu'pe&quot;); " />
+        </If>
         <If Condition="DistanceTo (3002.291, 4052.824, 26.36718) &gt; 30" IgnoreCanRun="True">
           <FlyToAction Dismount="True" Location="3007.017, 4074.656, 26.3126" />
         </If>
-        <MoveToAction Location="3002.291, 4052.824, 26.36718" MoveType="Location" Pathing="Navigator" Entry="0" />
+        <If Condition="DistanceTo (3002.291, 4052.824, 26.36718) &gt; 3" IgnoreCanRun="True">
+          <MoveToAction Location="3002.291, 4052.824, 26.36718" MoveType="Location" Pathing="Navigator" Entry="0" />
+        </If>
       </If>
       <If Condition="Me.MapId == 530" IgnoreCanRun="True">
         <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Lets find a place to cook! Going to Lower City&quot;); " />
@@ -732,6 +740,12 @@
       </If>
     </If>
   </SubRoutine>
+  <SubRoutine SubRoutineName="Northern to Dalaran">
+    <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Using teleporter in Crystalsong Forest to get to Dalaran.&quot;); " />
+    <FlyToAction Dismount="False" Location="5732.545, 1014.044, 174.4806" />
+    <InteractionAction InteractType="GameObject" Entry="191230" InteractDelay="2000" GameObjectType="Transport" SpellFocus="Anvil" />
+    <WaitAction Condition="false" Timeout="1898" />
+  </SubRoutine>
   <!--Whiles for cooking-->
   <While Condition="(InbagCount (30817) + InbagCount (2678) + InbagCount (30816)*2) &gt;= 150 &amp;&amp; Cooking.Level &gt;= 1 &amp;&amp; Cooking.Level &lt; 40 || InbagCount (6291) + InbagCount (7751) &gt;= 40 &amp;&amp; Cooking.Level &gt;= 40 &amp;&amp; Cooking.Level &lt; 65 || (InbagCount (4592) + InbagCount (6289)) &gt;= 60 &amp;&amp; Cooking.Level &gt;= 65 &amp;&amp; Cooking.Level &lt; 110 || (InbagCount (6308) + InbagCount (4593)) &gt;= 120 &amp;&amp; Cooking.Level &gt;= 110 &amp;&amp; Cooking.Level &lt; 175 || (InbagCount (8364) + InbagCount (8365)) &gt;= 90 &amp;&amp; (InbagCount (13759) + InbagCount (13760) + InbagCount(13932) + InbagCount(13931)) &gt;= 40 &amp;&amp; Cooking.Level &gt;= 175 &amp;&amp; Cooking.Level &lt; 275 || (InbagCount (13935) + InbagCount (13889)) &gt;= 100 &amp;&amp; Cooking.Level &gt;= 275 &amp;&amp; Cooking.Level &lt; 325 || (InbagCount (27666) + InbagCount (27438)) &gt;= 15 &amp;&amp; (InbagCount (33048) + InbagCount (27422)) &gt;= 50 &amp;&amp; Cooking.Level &gt;= 325 &amp;&amp; Cooking.Level &lt; 350" IgnoreCanRun="True">
     <!--Classic + BC Part-->
@@ -906,10 +920,13 @@
   </If>
   <If Condition="(InbagCount (62790) + InbagCount (2596) + InbagCount (2595)*2) &lt; 150 &amp;&amp; Cooking.Level &gt;= 415 &amp;&amp; Cooking.Level &lt; 435" IgnoreCanRun="False">
     <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;We need supplies!! Going to buy some in Dalaran.&quot;); " />
-    <If Condition="Me.ZoneId != 4395" IgnoreCanRun="True">
-      <FlyToAction Dismount="True" Location="5806.973, 559.2507, 650.4033" />
+    <While Condition="Me.ZoneId != 4395 &amp;&amp; Me.MapId == 571" IgnoreCanRun="True">
+      <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Travling to Dalaran&quot;); " />
+      <CallSubRoutine SubRoutineName="Northern to Dalaran" />
+    </While>
+    <If Condition="DistanceTo (5796.559, 667.2882, 613.8835) &gt; 20" IgnoreCanRun="True">
+      <MoveToAction Location="5833.586, 605.7797, 622.3837" MoveType="Location" Pathing="Navigator" Entry="0" />
     </If>
-    <MoveToAction Location="5833.586, 605.7797, 622.3837" MoveType="Location" Pathing="Navigator" Entry="0" />
     <BuyItemAction NpcEntry="33026" Location="5796.559, 667.2882, 613.8835" ItemID="2595" BuyItemType="SpecificItem" Count="50" BuyAdditively="False" />
     <BuyItemAction NpcEntry="33026" Location="5796.559, 667.2882, 613.8835" ItemID="2596" BuyItemType="SpecificItem" Count="100" BuyAdditively="False" />
   </If>
@@ -917,12 +934,17 @@
     <If Condition="Me.IsAlliance" IgnoreCanRun="True">
       <If Condition="Me.MapId == 571" IgnoreCanRun="True">
         <If Condition="Me.ZoneId != 4395" IgnoreCanRun="True">
-          <CallSubRoutine SubRoutineName="Northren to EK" />
+          <CallSubRoutine SubRoutineName="Northern to Dalaran" />
         </If>
         <If Condition="Me.ZoneId == 4395" IgnoreCanRun="True">
-          <BuyItemFromAhAction ItemListType="RecipeMats" ItemID="62778" MaxBuyout="30g0s0c" Amount="20" BuyAdditively="False" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
-          <GetMailAction GetMailType="Specific" ItemID="62778" CheckNewMail="True" MinFreeBagSlots="1" AutoFindMailBox="False" Location="5888.736, 718.1132, 640.7516" />
-          <CallSubRoutine SubRoutineName="Northrend to City" />
+          <While Condition="!HasNewMail &amp;&amp; InbagCount(62778) &lt; 20" IgnoreCanRun="True">
+            <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Going to the AH to get 20x Meat.&quot;); " />
+            <BuyItemFromAhAction ItemListType="Item" ItemID="62778" MaxBuyout="30g0s0c" Amount="20" BuyAdditively="False" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+          </While>
+          <While Condition="HasNewMail" IgnoreCanRun="True">
+            <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;We have mail! Gonna empty mailbox&quot;); " />
+            <GetMailAction GetMailType="AllItems" ItemID="62778" CheckNewMail="True" MinFreeBagSlots="1" AutoFindMailBox="False" Location="5743.319, 678.8671, 644.6077" />
+          </While>
         </If>
       </If>
       <If Condition="Me.MapId == 0" IgnoreCanRun="True">
