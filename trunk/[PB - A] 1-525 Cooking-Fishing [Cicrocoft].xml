@@ -9,8 +9,6 @@
   </If>
   <!--Intro-->
   <CustomAction Code="Log(System.Drawing.Color.DarkOliveGreen,&quot;[PB - A] 1-525 Cooking-Fishing [Cicrocoft]&quot;);" />
-  <CustomAction Code="Log(System.Drawing.Color.DarkOliveGreen,&quot;Waiting for PB to detect your professions. Starting in 5sec&quot;);" />
-  <WaitAction Condition="false" Timeout="5000" />
   <CustomAction Code="Lua.DoString(&quot;SetCVar(\&quot;AutoLootDefault\&quot;, 1)&quot;);" />
   <If Condition="TreeRoot.Current.Name != &quot;Combat Bot&quot;" IgnoreCanRun="True">
     <CustomAction Code="SwitchToBot(&quot;Combat Bot&quot;);" />
@@ -24,6 +22,7 @@
     </If>
     <CallSubRoutine SubRoutineName="TrainFishing" />
   </While>
+  <CallSubRoutine SubRoutineName="EquipFishingPole" />
   <While Condition="!HasRecipe(37836)" IgnoreCanRun="True">
     <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;I don't know cooking. Going to learn it&quot;); " />
     <CallSubRoutine SubRoutineName="TrainCooking" />
@@ -450,9 +449,8 @@
       <CallSubRoutine SubRoutineName="CheckCookingSkill" />
       <CastSpellAction RepeatType="Specific" Repeat="1" Entry="45569" CastOnItem="False" ItemType="Chest" ItemId="0" />
     </While>
-    <While Condition="InbagCount(41805) &gt;= 3 &amp;&amp; Cooking.Level &lt; 425 &amp;&amp; HasRecipe(64358)" IgnoreCanRun="False">
+    <While Condition="InbagCount(41805) &gt;= 3 &amp;&amp; Cooking.Level &lt; 415 &amp;&amp; HasRecipe(64358)" IgnoreCanRun="False">
       <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Cooking Black Jelly.&quot;); " />
-      <CallSubRoutine SubRoutineName="CreateFood" />
       <CallSubRoutine SubRoutineName="CheckCookingSkill" />
       <CastSpellAction RepeatType="Specific" Repeat="1" Entry="64358" CastOnItem="False" ItemType="Chest" ItemId="0" />
     </While>
@@ -636,26 +634,20 @@
   </SubRoutine>
   <SubRoutine SubRoutineName="EK to Outland">
     <If Condition="Me.IsAlliance" IgnoreCanRun="True">
-      <While Condition="(Me.MapId == 0) &amp;&amp; Me.ZoneId != 4 &amp;&amp; (Me.ZoneId != 44)" IgnoreCanRun="True">
-        <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Going to Outlands.&quot;); " />
+      <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Going to Outlands.&quot;); " />
+      <If Condition="(Me.MapId == 1)" IgnoreCanRun="True">
+        <CallSubRoutine SubRoutineName="Kalimdor to EK" />
+      </If>
+      <If Condition="Me.ZoneId != 4 || (Me.ZoneId != 44)" IgnoreCanRun="True">
         <FlyToAction Dismount="True" Location="-9000.289, 863.0194, 129.6055" />
         <MoveToAction Location="-9006.661, 870.9152, 129.6924" MoveType="Location" Pathing="Navigator" Entry="0" />
         <WaitAction Condition="false" Timeout="1898" />
         <InteractionAction InteractType="GameObject" Entry="195141" InteractDelay="2000" GameObjectType="Transport" SpellFocus="Anvil" />
-        <WaitAction Condition="false" Timeout="1898" />
-        <FlyToAction Dismount="False" Location="-11886.8, -3205.398, -15.4392" />
-        <MoveToAction Location="-11907.7, -3207.849, -14.84385" MoveType="Location" Pathing="ClickToMove" Entry="0" />
-        <WaitAction Condition="false" Timeout="5000" />
-      </While>
-      <While Condition="(Me.ZoneId == 4) || (Me.ZoneId == 44)" IgnoreCanRun="True">
-        <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Going to Outlands.&quot;); " />
-        <FlyToAction Dismount="False" Location="-11886.8, -3205.398, -15.4392" />
-        <MoveToAction Location="-11907.7, -3207.849, -14.84385" MoveType="Location" Pathing="ClickToMove" Entry="0" />
-        <WaitAction Condition="false" Timeout="5000" />
-      </While>
-      <If Condition="(Me.MapId == 1)" IgnoreCanRun="True">
-        <CallSubRoutine SubRoutineName="Kalimdor to EK" />
+        <WaitAction Condition="Me.ZoneId == 4" Timeout="25000" />
       </If>
+      <FlyToAction Dismount="False" Location="-11895.9, -3206.984, -6.04731" />
+      <CustomAction Code="CTM(-11930.31, -3209.613, -1.836873);" />
+      <WaitAction Condition="Me.MapId == 530" Timeout="25000" />
     </If>
   </SubRoutine>
   <SubRoutine SubRoutineName="Northrend to City">
@@ -695,7 +687,7 @@
         <WaitAction Condition="Me.MapId == 571" Timeout="650000" />
         <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Waiting for boat to get along side.&quot;); " />
         <WaitAction Condition="ObjectManager.GetObjectsOfType&lt;WoWGameObject&gt;().FirstOrDefault(o =&gt; o.Entry == 190536 ) != null &amp;&amp; ObjectManager.GetObjectsOfType&lt;WoWGameObject&gt;().FirstOrDefault(o =&gt; o.Entry == 190536 ).Location.Distance(new WoWPoint(2218.391, 5119.589, -0.03280054)) &lt; 30" Timeout="6000000" />
-        <WaitAction Condition="false" Timeout="3000" />
+        <WaitAction Condition="false" Timeout="7040" />
         <MoveToAction Location="2231.335, 5132.801, 5.343085" MoveType="Location" Pathing="ClickToMove" Entry="0" />
       </If>
     </If>
@@ -883,6 +875,15 @@
   </If>
   <If Condition="(InbagCount (41805) + InbagCount (45932)) &lt; 60 &amp;&amp; Cooking.Level &gt;= 350 &amp;&amp; Cooking.Level &lt; 415 || (InbagCount (41803) + InbagCount (34759)) &lt; 100  &amp;&amp; Cooking.Level &gt;= 350 &amp;&amp; Cooking.Level &lt; 380 || (InbagCount (43268)*2 + InbagCount (36781) +  InbagCount (36782)) &lt; 30 &amp;&amp; Cooking.Level &gt;= 350 &amp;&amp; Cooking.Level &lt; 415 || (InbagCount (42942) + InbagCount (41802)) &lt; 60 &amp;&amp; Cooking.Level &gt;= 350 &amp;&amp; Cooking.Level &lt; 415" IgnoreCanRun="False">
     <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Time to catch some random fish.&quot;); " />
+    <If Condition="Me.MapId == 530" IgnoreCanRun="True">
+      <CallSubRoutine SubRoutineName="Outland to EK" />
+    </If>
+    <If Condition="Me.MapId == 1" IgnoreCanRun="True">
+      <CallSubRoutine SubRoutineName="Kalimdor to EK" />
+    </If>
+    <If Condition="Me.MapId == 0" IgnoreCanRun="True">
+      <CallSubRoutine SubRoutineName="EK to Northern" />
+    </If>
     <While Condition="Me.MapId == 571" IgnoreCanRun="True">
       <If Condition="DistanceTo (2610.576, 4901.382, 0.7474862) &gt; 5" IgnoreCanRun="True">
         <FlyToAction Dismount="True" Location="2610.576, 4901.382, 0.7474862" />
@@ -897,15 +898,6 @@
         <WaitAction Condition="false" Timeout="987" />
       </If>
       <CallSubRoutine SubRoutineName="DoFishing" />
-    </While>
-    <If Condition="Me.MapId == 530" IgnoreCanRun="True">
-      <CallSubRoutine SubRoutineName="Outland to EK" />
-    </If>
-    <If Condition="Me.MapId != 571 &amp;&amp; Me.MapId == 1" IgnoreCanRun="True">
-      <CallSubRoutine SubRoutineName="Kalimdor to EK" />
-    </If>
-    <While Condition="Me.MapId != 571 &amp;&amp; Me.MapId == 0" IgnoreCanRun="True">
-      <CallSubRoutine SubRoutineName="EK to Northern" />
     </While>
   </If>
   <If Condition="(InbagCount (62790) + InbagCount (2596) + InbagCount (2595)*2) &lt; 150 &amp;&amp; Cooking.Level &gt;= 415 &amp;&amp; Cooking.Level &lt; 435" IgnoreCanRun="False">
