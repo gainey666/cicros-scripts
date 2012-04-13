@@ -905,6 +905,12 @@
   </If>
   <If Condition="(InbagCount (62790) + InbagCount (2596) + InbagCount (2595)*2) &lt; 150 &amp;&amp; Cooking.Level &gt;= 415 &amp;&amp; Cooking.Level &lt; 435" IgnoreCanRun="False">
     <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;We need supplies!! Going to buy some in Dalaran.&quot;); " />
+    <If Condition="Me.MapId == 0" IgnoreCanRun="True">
+      <CallSubRoutine SubRoutineName="EK to Northern" />
+    </If>
+    <If Condition="Me.MapId == 1" IgnoreCanRun="True">
+      <CallSubRoutine SubRoutineName="Kalimdor to EK" />
+    </If>
     <While Condition="Me.ZoneId != 4395 &amp;&amp; Me.MapId == 571" IgnoreCanRun="True">
       <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Travling to Dalaran&quot;); " />
       <CallSubRoutine SubRoutineName="Northern to Dalaran" />
