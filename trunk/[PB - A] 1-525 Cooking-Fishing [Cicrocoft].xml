@@ -446,11 +446,13 @@
     </While>
     <While Condition="InbagCount(41802) &gt;= 1 &amp;&amp; Cooking.Level &lt; 415 &amp;&amp; HasRecipe(45569)" IgnoreCanRun="False">
       <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Cooking Baked Manta Ray.&quot;); " />
+      <CallSubRoutine SubRoutineName="CreateFood" />
       <CallSubRoutine SubRoutineName="CheckCookingSkill" />
       <CastSpellAction RepeatType="Specific" Repeat="1" Entry="45569" CastOnItem="False" ItemType="Chest" ItemId="0" />
     </While>
-    <While Condition="InbagCount(41805) &gt;= 3 &amp;&amp; Cooking.Level &lt; 415 &amp;&amp; HasRecipe(64358)" IgnoreCanRun="False">
+    <While Condition="InbagCount(41805) &gt;= 3 &amp;&amp; Cooking.Level &lt; 425 &amp;&amp; HasRecipe(64358)" IgnoreCanRun="False">
       <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Cooking Black Jelly.&quot;); " />
+      <CallSubRoutine SubRoutineName="CreateFood" />
       <CallSubRoutine SubRoutineName="CheckCookingSkill" />
       <CastSpellAction RepeatType="Specific" Repeat="1" Entry="64358" CastOnItem="False" ItemType="Chest" ItemId="0" />
     </While>
