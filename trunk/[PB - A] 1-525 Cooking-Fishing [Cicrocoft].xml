@@ -736,10 +736,14 @@
     </If>
   </SubRoutine>
   <SubRoutine SubRoutineName="Northern to Dalaran">
-    <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Using teleporter in Crystalsong Forest to get to Dalaran.&quot;); " />
-    <FlyToAction Dismount="False" Location="5732.545, 1014.044, 174.4806" />
-    <InteractionAction InteractType="GameObject" Entry="191230" InteractDelay="2000" GameObjectType="Transport" SpellFocus="Anvil" />
-    <WaitAction Condition="false" Timeout="1898" />
+    <!--Neutral travel sub-->
+    <If Condition="DistanceTo(5737.553, 659.7015, 646.6895) &gt; 100 &amp;&amp; Me.MapId == 571" IgnoreCanRun="True">
+      <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Using teleporter in Crystalsong Forest to get to Dalaran.&quot;); " />
+      <FlyToAction Dismount="False" Location="5341.598, 522.6038, 440.8728" />
+      <MoveToAction Location="5611.935, 601.7, 796.0209" MoveType="Location" Pathing="ClickToMove" Entry="0" />
+      <MoveToAction Location="5706.784, 637.7018, 722.1323" MoveType="Location" Pathing="ClickToMove" Entry="0" />
+      <FlyToAction Dismount="True" Location="5737.553, 659.7015, 646.6895" />
+    </If>
   </SubRoutine>
   <!--Whiles for cooking-->
   <While Condition="(InbagCount (30817) + InbagCount (2678) + InbagCount (30816)*2) &gt;= 150 &amp;&amp; Cooking.Level &gt;= 1 &amp;&amp; Cooking.Level &lt; 40 || InbagCount (6291) + InbagCount (7751) &gt;= 40 &amp;&amp; Cooking.Level &gt;= 40 &amp;&amp; Cooking.Level &lt; 65 || (InbagCount (4592) + InbagCount (6289)) &gt;= 60 &amp;&amp; Cooking.Level &gt;= 65 &amp;&amp; Cooking.Level &lt; 110 || (InbagCount (6308) + InbagCount (4593)) &gt;= 120 &amp;&amp; Cooking.Level &gt;= 110 &amp;&amp; Cooking.Level &lt; 175 || (InbagCount (8364) + InbagCount (8365)) &gt;= 90 &amp;&amp; (InbagCount (13759) + InbagCount (13760) + InbagCount(13932) + InbagCount(13931)) &gt;= 40 &amp;&amp; Cooking.Level &gt;= 175 &amp;&amp; Cooking.Level &lt; 275 || (InbagCount (13935) + InbagCount (13889)) &gt;= 100 &amp;&amp; Cooking.Level &gt;= 275 &amp;&amp; Cooking.Level &lt; 325 || (InbagCount (27666) + InbagCount (27438)) &gt;= 15 &amp;&amp; (InbagCount (33048) + InbagCount (27422)) &gt;= 50 &amp;&amp; Cooking.Level &gt;= 325 &amp;&amp; Cooking.Level &lt; 350" IgnoreCanRun="True">
@@ -958,7 +962,7 @@
       <FlyToAction Dismount="True" Location="-9118.882, -1409.889, 94.86877" />
       <ChangeBotAction BotName="Grind" />
       <If Condition="Me.IsAlliance" IgnoreCanRun="True">
-        <LoadProfileAction ProfileType="Honorbuddy" Path="Cicro_fish+cook\Uldum_farm_435-450.xml" />
+        <LoadProfileAction ProfileType="Honorbuddy" Path="HBProfile\Uldum_farm_435-450.xml" />
       </If>
     </If>
   </If>
