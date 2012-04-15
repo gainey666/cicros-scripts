@@ -8,7 +8,7 @@
     <WaitAction Condition="false" Timeout="35000" />
   </If>
   <!--Intro-->
-  <CustomAction Code="Log(System.Drawing.Color.DarkOliveGreen,&quot;[PB - A] 1-525 Cooking-Fishing [Cicrocoft]&quot;);" />
+  <CustomAction Code="Log(System.Drawing.Color.DarkOliveGreen,&quot;[PB - N] 1-525 Cooking-Fishing [Cicrocoft]&quot;);" />
   <CustomAction Code="Lua.DoString(&quot;SetCVar(\&quot;AutoLootDefault\&quot;, 1)&quot;);" />
   <If Condition="TreeRoot.Current.Name != &quot;Combat Bot&quot;" IgnoreCanRun="True">
     <CustomAction Code="SwitchToBot(&quot;Combat Bot&quot;);" />
@@ -193,10 +193,18 @@
       </If>
       <!--No fishing pole in bags, lets go buy one.-->
       <If Condition="var1 == null" IgnoreCanRun="True">
+        <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;I need a fishing pole.&quot;); " />
         <If Condition="Me.IsAlliance" IgnoreCanRun="True">
           <FlyToAction Dismount="True" Location="-8800.812, 767.9769, 96.33873" />
-          <BuyItemAction NpcEntry="5494" Location="-8800.812, 767.9769, 96.33873" ItemID="6256" BuyItemType="SpecificItem" Count="1" BuyAdditively="True" />
-          <WaitAction Condition="false" Timeout="3000" />
+          <BuyItemAction NpcEntry="5494" Location="-8800.812, 767.9769, 96.33873" ItemID="6256" BuyItemType="SpecificItem" Count="1" BuyAdditively="False" />
+          <WaitAction Condition="false" Timeout="2000" />
+        </If>
+        <If Condition="Me.IsHorde" IgnoreCanRun="True">
+          <If Condition="DistanceTo (-2158.596, -392.9482, -3.030381) &gt; 30" IgnoreCanRun="True">
+            <FlyToAction Dismount="False" Location="-2158.596, -392.9482, -3.030381" />
+          </If>
+          <BuyItemAction NpcEntry="5940" Location="0, 0, 0" ItemID="6256" BuyItemType="SpecificItem" Count="1" BuyAdditively="False" />
+          <WaitAction Condition="false" Timeout="2000" />
         </If>
       </If>
       <CustomAction Code="Lua.DoString(&quot;EquipItemByName(6256)&quot;);" />
@@ -368,6 +376,27 @@
         </If>
       </If>
     </If>
+    <If Condition="Me.IsHorde" IgnoreCanRun="True">
+      <If Condition="Cooking.Level &gt;= 1 &amp;&amp; Cooking.Level &lt; 110" IgnoreCanRun="True">
+        <If Condition="InbagCount (6328) == 0" IgnoreCanRun="True">
+          <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Lets shop some recipes in Mulgore.&quot;); " />
+          <CallSubRoutine SubRoutineName="EquipFishingPole" />
+        </If>
+        <If Condition="!HasRecipe(7751) &amp;&amp; InbagCount (6325) == 0 || !HasRecipe(7753) &amp;&amp; InbagCount (6328) == 0" IgnoreCanRun="True">
+          <If Condition="DistanceTo (-2158.596, -392.9482, -3.030381) &gt; 30" IgnoreCanRun="True">
+            <FlyToAction Dismount="False" Location="-2158.596, -392.9482, -3.030381" />
+          </If>
+          <WaitAction Condition="false" Timeout="1000" />
+          <While Condition="InbagCount (6325) == 0" IgnoreCanRun="True">
+            <BuyItemAction NpcEntry="5940" Location="0, 0, 0" ItemID="6325" BuyItemType="SpecificItem" Count="1" BuyAdditively="False" />
+          </While>
+          <While Condition="InbagCount (6328) == 0" IgnoreCanRun="True">
+            <BuyItemAction NpcEntry="5940" Location="0, 0, 0" ItemID="6328" BuyItemType="SpecificItem" Count="1" BuyAdditively="False" />
+          </While>
+          <WaitAction Condition="false" Timeout="1000" />
+        </If>
+      </If>
+    </If>
     <CallSubRoutine SubRoutineName="LearnRecipe" />
   </SubRoutine>
   <SubRoutine SubRoutineName="WhatToCook">
@@ -471,7 +500,13 @@
       <If Condition="Me.IsAlliance &amp;&amp; InbagCount(6325) == 0" IgnoreCanRun="True">
         <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;I need a recipe. Going to visit a vendor in SW.&quot;); " />
         <FlyToAction Dismount="True" Location="-8800.812, 767.9769, 96.33873" />
-        <BuyItemAction NpcEntry="5494" Location="-8800.812, 767.9769, 96.33873" ItemID="6325" BuyItemType="SpecificItem" Count="1" BuyAdditively="True" />
+        <BuyItemAction NpcEntry="5494" Location="-8800.812, 767.9769, 96.33873" ItemID="6325" BuyItemType="SpecificItem" Count="1" BuyAdditively="False" />
+        <WaitAction Condition="false" Timeout="1000" />
+      </If>
+      <If Condition="Me.IsHorde &amp;&amp; InbagCount(6325) == 0" IgnoreCanRun="True">
+        <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;I need a recipe. Going to visit a vendor in Mulgore.&quot;); " />
+        <FlyToAction Dismount="True" Location="-2158.596, -392.9482, -3.030381" />
+        <BuyItemAction NpcEntry="5940" Location="0, 0, 0" ItemID="6325" BuyItemType="SpecificItem" Count="1" BuyAdditively="False" />
         <WaitAction Condition="false" Timeout="1000" />
       </If>
       <If Condition="InbagCount(6325) != 0" IgnoreCanRun="True">
@@ -487,6 +522,12 @@
         <BuyItemAction NpcEntry="66" Location="-9492.55, 81.4931, 56.2269" ItemID="6328" BuyItemType="SpecificItem" Count="1" BuyAdditively="True" />
         <WaitAction Condition="false" Timeout="1000" />
       </If>
+      <If Condition="Me.IsHorde &amp;&amp; InbagCount (6328) == 0" IgnoreCanRun="True">
+        <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;I need a recipe. Going to visit a vendor in Mulgore.&quot;); " />
+        <FlyToAction Dismount="True" Location="-2158.596, -392.9482, -3.030381" />
+        <BuyItemAction NpcEntry="5940" Location="0, 0, 0" ItemID="6328" BuyItemType="SpecificItem" Count="1" BuyAdditively="False" />
+        <WaitAction Condition="false" Timeout="1000" />
+      </If>
       <If Condition="InbagCount (6328) != 0" IgnoreCanRun="True">
         <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Learning my new recipe.&quot;); " />
         <CustomAction Code="Lua.DoString(string.Format(&quot;RunMacroText(\&quot;{0}\&quot;)&quot;, &quot;/use Recipe: Longjaw Mud Snapper&quot;), 0);" />
@@ -500,6 +541,7 @@
         <BuyItemAction NpcEntry="5494" Location="-8800.812, 767.9769, 96.33873" ItemID="6330" BuyItemType="SpecificItem" Count="1" BuyAdditively="True" />
         <WaitAction Condition="false" Timeout="1000" />
       </If>
+      <If Condition="Me.IsHorde &amp;&amp; InbagCount (6330) == 0" IgnoreCanRun="True" />
       <If Condition="InbagCount (6330) != 0" IgnoreCanRun="True">
         <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Learning my new recipe.&quot;); " />
         <CustomAction Code="Lua.DoString(string.Format(&quot;RunMacroText(\&quot;{0}\&quot;)&quot;, &quot;/use Recipe: Bristle Whisker Catfish&quot;), 0);" />
@@ -517,11 +559,13 @@
         <SellItemAction Sell="All" NpcEntry="0" Location="0, 0, 0" SellItemType="Specific" ItemID="30817,2678,30816,6291,7751,4592,6289,6308,4593,6290" Count="0" />
         <WaitAction Condition="false" Timeout="2000" />
       </If>
+      <If Condition="Me.IsHorde &amp;&amp; InbagCount (17062) == 0" IgnoreCanRun="True" />
       <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Learning my new recipe.&quot;); " />
       <CustomAction Code="Lua.DoString(string.Format(&quot;RunMacroText(\&quot;{0}\&quot;)&quot;, &quot;/use Recipe: Mithril Head Trout&quot;), 0);" />
       <WaitAction Condition="false" Timeout="4651" />
     </While>
     <While Condition="!HasRecipe(18241) &amp;&amp; Cooking.Level &gt;= 225 &amp;&amp; Cooking.Level &lt; 275" IgnoreCanRun="True">
+      <!--Neutral part-->
       <If Condition="InbagCount (13941) == 0" IgnoreCanRun="True">
         <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Flying to BB to buy recipe. Hope they like you.&quot;); " />
         <FlyToAction Dismount="False" Location="-14361.75, 434.9416, 7.371971" />
@@ -555,6 +599,7 @@
           <WaitAction Condition="false" Timeout="3000" />
         </If>
       </If>
+      <If Condition="Me.IsHorde &amp;&amp; InbagCount (13949) == 0" IgnoreCanRun="True" />
       <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Learning my new recipe.&quot;); " />
       <CustomAction Code="Lua.DoString(string.Format(&quot;RunMacroText(\&quot;{0}\&quot;)&quot;, &quot;/use Recipe: Baked Salmon&quot;), 0);" />
       <WaitAction Condition="false" Timeout="3458" />
@@ -580,6 +625,7 @@
           <CallSubRoutine SubRoutineName="EK to Outland" />
         </While>
       </If>
+      <If Condition="Me.IsHorde &amp;&amp; (InbagCount(27699) == 0)" IgnoreCanRun="True" />
       <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Learning Golden Fish Sticks recipe.&quot;); " />
       <CustomAction Code="Lua.DoString(string.Format(&quot;RunMacroText(\&quot;{0}\&quot;)&quot;, &quot;/use Recipe: Golden Fish Sticks&quot;), 0);" />
       <WaitAction Condition="false" Timeout="3558" />
@@ -617,6 +663,7 @@
         <MoveToAction Location="-8295.446, 1396.995, 4.481495" MoveType="Location" Pathing="ClickToMove" Entry="0" />
       </If>
     </If>
+    <If Condition="Me.IsHorde" IgnoreCanRun="True" />
   </SubRoutine>
   <SubRoutine SubRoutineName="Outland to EK">
     <If Condition="Me.MapId == 530" IgnoreCanRun="True">
@@ -628,6 +675,7 @@
         <InteractionAction InteractType="GameObject" Entry="183325" InteractDelay="0" GameObjectType="Transport" SpellFocus="Anvil" />
         <WaitAction Condition="Me.MapId == 0" Timeout="25000" />
       </If>
+      <If Condition="Me.IsHorde" IgnoreCanRun="True" />
     </If>
   </SubRoutine>
   <SubRoutine SubRoutineName="EK to Outland">
@@ -647,6 +695,7 @@
       <CustomAction Code="CTM(-11930.31, -3209.613, -1.836873);" />
       <WaitAction Condition="Me.MapId == 530" Timeout="25000" />
     </If>
+    <If Condition="Me.IsHorde" IgnoreCanRun="True" />
   </SubRoutine>
   <SubRoutine SubRoutineName="Northrend to City">
     <If Condition="Me.MapId == 571" IgnoreCanRun="True">
@@ -658,6 +707,7 @@
         <InteractionAction InteractType="GameObject" Entry="190960" InteractDelay="0" GameObjectType="Transport" SpellFocus="Anvil" />
         <WaitAction Condition="Me.MapId == 0" Timeout="25000" />
       </If>
+      <If Condition="Me.IsHorde" IgnoreCanRun="True" />
     </If>
   </SubRoutine>
   <SubRoutine SubRoutineName="City to Uldum">
@@ -671,6 +721,7 @@
       <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Is the portal broken? Taking the ship to Kalimdor instead.&quot;); " />
       <CallSubRoutine SubRoutineName="EK to Kalimdor" />
     </If>
+    <If Condition="Me.IsHorde" IgnoreCanRun="True" />
   </SubRoutine>
   <SubRoutine SubRoutineName="EK to Northern">
     <If Condition="Me.IsAlliance" IgnoreCanRun="True">
@@ -690,6 +741,7 @@
         <MoveToAction Location="2231.335, 5132.801, 5.343085" MoveType="Location" Pathing="ClickToMove" Entry="0" />
       </If>
     </If>
+    <If Condition="Me.IsHorde" IgnoreCanRun="True" />
   </SubRoutine>
   <SubRoutine SubRoutineName="EK to Kalimdor">
     <If Condition="Me.IsAlliance" IgnoreCanRun="True">
@@ -709,6 +761,7 @@
         <MoveToAction Location="-3999.296, -4726.252, 4.38778" MoveType="Location" Pathing="ClickToMove" Entry="0" />
       </If>
     </If>
+    <If Condition="Me.IsHorde" IgnoreCanRun="True" />
   </SubRoutine>
   <SubRoutine SubRoutineName="Kalimdor to EK">
     <If Condition="Me.IsAlliance" IgnoreCanRun="True">
@@ -730,6 +783,7 @@
         <FlyToAction Dismount="False" Location="-3890.306, -709.368, 17.34875" />
       </If>
     </If>
+    <If Condition="Me.IsHorde" IgnoreCanRun="True" />
   </SubRoutine>
   <SubRoutine SubRoutineName="Northern to Dalaran">
     <!--Neutral travel sub-->
@@ -770,6 +824,13 @@
       <WaitAction Condition="false" Timeout="1000" />
       <BuyItemAction NpcEntry="66" Location="-9492.55, 81.4931, 56.22646" ItemID="2678" BuyItemType="SpecificItem" Count="75" BuyAdditively="True" />
     </If>
+    <If Condition="Me.IsHorde" IgnoreCanRun="True">
+      <FlyToAction Dismount="True" Location="-2304.416, -358.5407, -9.424746" />
+      <WaitAction Condition="false" Timeout="2000" />
+      <BuyItemAction NpcEntry="3081" Location="0, 0, 0" ItemID="30817" BuyItemType="SpecificItem" Count="75" BuyAdditively="False" />
+      <WaitAction Condition="false" Timeout="1000" />
+      <BuyItemAction NpcEntry="3081" Location="0, 0, 0" ItemID="2678" BuyItemType="SpecificItem" Count="75" BuyAdditively="False" />
+    </If>
   </If>
   <If Condition="(InbagCount (6291) + InbagCount (7751)) &lt; 40 &amp;&amp; Cooking.Level &gt;= 40 &amp;&amp; Cooking.Level &lt; 65" IgnoreCanRun="False">
     <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Time to catch some small fish.&quot;); " />
@@ -779,6 +840,16 @@
       </If>
       <If Condition="!IsFacing(3.2f)" IgnoreCanRun="True">
         <CustomAction Code="Me.SetFacing(3.2f);" />
+        <CallSubRoutine SubRoutineName="UF" />
+      </If>
+      <CallSubRoutine SubRoutineName="DoFishing" />
+    </While>
+    <While Condition="Me.IsHorde" IgnoreCanRun="True">
+      <If Condition="DistanceTo (-2376.771, -276.5453, -13.30409) &gt; 5" IgnoreCanRun="True">
+        <FlyToAction Dismount="True" Location="-2376.771, -276.5453, -13.30409" />
+      </If>
+      <If Condition="!IsFacing(3.16f)" IgnoreCanRun="True">
+        <CustomAction Code="Me.SetFacing(3.16f);" />
         <CallSubRoutine SubRoutineName="UF" />
       </If>
       <CallSubRoutine SubRoutineName="DoFishing" />
