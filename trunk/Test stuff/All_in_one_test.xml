@@ -1,0 +1,2063 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Professionbuddy>
+  <SubRoutine SubRoutineName="Settings. IF YOU TOUCH ME, I'LL GET MAD!">
+    <Settings DefaultValue="False" Type="Boolean" Name="Train Leatherworking" Summary="Will start the 1-525 Leatherworking Profile." Category="Mainprofession Leatherworking" Global="False" Hidden="False" />
+    <Settings DefaultValue="False" Type="Boolean" Name="Train Skinning plus Leatherworking" Summary="Allows you to train Skinning and gathering Stuff to get Leatherworking up to 1-525" Category="Mainprofession Leatherworking" Global="False" Hidden="False" />
+    <Settings DefaultValue="False" Type="Boolean" Name="Train Enchanting" Summary="Will start the 1-525 Enchanting Profile." Category="Mainprofession Enchanting" Global="False" Hidden="False" />
+    <Settings DefaultValue="False" Type="Boolean" Name="Train Blacksmithing" Summary="Will start the 1-525 Blacksmithing Profile." Category="Mainprofession Blacksmthing" Global="False" Hidden="False" />
+    <Settings DefaultValue="false" Type="Boolean" Name="Train Mining plus Blacksmithing" Summary="Will mine the mats you need to skill up." Category="Mainprofession Blacksmthing" Global="False" Hidden="False" />
+  </SubRoutine>
+  <SubRoutine SubRoutineName="Random Stuff i will need later, maybe.">
+    <CustomAction Code="Log(Color.GreenYellow,&quot;Does this sorcery work?&quot;);" />
+    <!--6948 HS Action-->
+    <CustomAction Code="Lua.DoString(&quot;UseItemByName(6948)&quot;);&#xD;&#xA;" />
+  </SubRoutine>
+  <SubRoutine SubRoutineName="Train">
+    <If Condition="(bool)Settings[&quot;Train Leatherworking&quot;]" IgnoreCanRun="True">
+      <If Condition="Me.IsAlliance" IgnoreCanRun="True">
+        <If Condition="Me.MapId == 0" IgnoreCanRun="True">
+          <FlyToAction Dismount="True" Location="-8712.611, 455.0812, 97.08894" />
+          <MoveToAction Location="-8725.11, 476.7533, 98.61285" MoveType="Location" Pathing="ClickToMove" Entry="0" />
+          <TrainSkillAction NpcEntry="5564" Location="0, 0, 0" />
+          <If Condition="(bool)Settings[&quot;Train Skinning plus Leatherworking&quot;]" IgnoreCanRun="True">
+            <MoveToAction Location="-8717.373, 470.102, 98.61285" MoveType="Location" Pathing="ClickToMove" Entry="0" />
+            <TrainSkillAction NpcEntry="1292" Location="0, 0, 0" />
+          </If>
+        </If>
+        <If Condition="Me.ZoneId == 3483" IgnoreCanRun="True">
+          <FlyToAction Dismount="True" Location="-741.8031, 2704.978, 107.3583" />
+          <TrainSkillAction NpcEntry="18771" Location="-721.657, 2745.256, 94.0022" />
+          <If Condition="(bool)Settings[&quot;Train Skinning plus Leatherworking&quot;]" IgnoreCanRun="True">
+            <TrainSkillAction NpcEntry="18777" Location="-693.8326, 2724.696, 94.11043" />
+          </If>
+        </If>
+        <If Condition="Me.ZoneId == 3537" IgnoreCanRun="True">
+          <FlyToAction Dismount="True" Location="2134.127, 5250.55, 19.44688" />
+          <TrainSkillAction NpcEntry="26998" Location="2132.718, 5255.874, 19.44764" />
+          <If Condition="(bool)Settings[&quot;Train Skinning plus Leatherworking&quot;]" IgnoreCanRun="True">
+            <TrainSkillAction NpcEntry="27000" Location="2136.098, 5255.882, 19.44816" />
+          </If>
+        </If>
+        <If Condition="Me.ZoneId == 616" IgnoreCanRun="True">
+          <CustomAction Code="Lua.DoString(&quot;UseItemByName(6948)&quot;);&#xD;&#xA;" />
+          <WaitAction Condition="false" Timeout="20000" />
+        </If>
+      </If>
+    </If>
+    <If Condition="(bool)Settings[&quot;Train Blacksmithing&quot;]" IgnoreCanRun="True">
+      <If Condition="Me.IsAlliance" IgnoreCanRun="True">
+        <If Condition="Me.MapId == 0" IgnoreCanRun="True">
+          <FlyToAction Dismount="True" Location="-8414.161, 623.6224, 95.65421" />
+          <TrainSkillAction NpcEntry="5511" Location="-8424.475, 616.8159, 95.46672" />
+          <If Condition="(bool)Settings[&quot;Train Mining plus Blacksmithing&quot;]" IgnoreCanRun="True">
+            <TrainSkillAction NpcEntry="5513" Location="-8433.48, 688.922, 96.31899" />
+          </If>
+        </If>
+      </If>
+    </If>
+  </SubRoutine>
+  <SubRoutine SubRoutineName="Hyjal to SW">
+    <FlyToAction Dismount="True" Location="5542.739, -3589.56, 1567.986" />
+    <InteractionAction InteractType="GameObject" Entry="209080" InteractDelay="0" GameObjectType="Transport" SpellFocus="Anvil" />
+    <WaitAction Condition="Me.MapId == 0" Timeout="250000" />
+  </SubRoutine>
+  <SubRoutine SubRoutineName="SW to Hyjal">
+    <FlyToAction Dismount="True" Location="-8210.015, 409.0066, 117.4663" />
+    <If Condition="ObjectManager.GetObjectsOfType&lt;WoWGameObject&gt;().FirstOrDefault(o =&gt; o.Entry == 207692 ) != null &amp;&amp; ObjectManager.GetObjectsOfType&lt;WoWGameObject&gt;().FirstOrDefault(o =&gt; o.Entry == 207692 ).Location.Distance(new WoWPoint(-8210.015, 409.0066, 117.4663)) &lt; 20" IgnoreCanRun="True">
+      <InteractionAction InteractType="GameObject" Entry="207692" InteractDelay="0" GameObjectType="Transport" SpellFocus="Anvil" />
+      <WaitAction Condition="Me.MapId == 1" Timeout="200000" />
+    </If>
+    <If Condition="Me.MapId == 0" IgnoreCanRun="True">
+      <FlyToAction Dismount="True" Location="-3860.002, -654.7922, 5.301855" />
+      <WaitAction Condition="ObjectManager.GetObjectsOfType&lt;WoWGameObject&gt;().FirstOrDefault(o =&gt; o.Entry == 176231 ) != null &amp;&amp; ObjectManager.GetObjectsOfType&lt;WoWGameObject&gt;().FirstOrDefault(o =&gt; o.Entry == 176231 ).Location.Distance(new WoWPoint(-3872.35, -639.9439, 0.01283023)) &lt; 3" Timeout="650000" />
+      <CustomAction Code="CTM(-3865.994, -645.5936, 6.105168);" />
+      <WaitAction Condition="Me.MapId == 1" Timeout="250000" />
+    </If>
+  </SubRoutine>
+  <SubRoutine SubRoutineName="SW to Twilight">
+    <FlyToAction Dismount="True" Location="-3581.029, -6041.342, 19.04092" />
+  </SubRoutine>
+  <SubRoutine SubRoutineName="Northrend to SW">
+    <If Condition="Me.MapId == 571" IgnoreCanRun="True">
+      <FlyToAction Dismount="True" Location="2232.188, 5135.341, 5.344332" />
+      <CustomAction Code="Log(&quot;Waiting for Boat&quot;);" />
+      <WaitAction Condition="ObjectManager.GetObjectsOfType&lt;WoWGameObject&gt;().FirstOrDefault(o =&gt; o.Entry == 190536 ) != null &amp;&amp; ObjectManager.GetObjectsOfType&lt;WoWGameObject&gt;().FirstOrDefault(o =&gt; o.Entry == 190536 ).Location.Distance(new WoWPoint(-8288.816, 1424.703, -0.01198259)) &lt; 3" Timeout="650000" />
+      <CustomAction Code="CTM(2225.18,5118.147,9.615541);" />
+      <WaitAction Condition="Me.MapId == 0" Timeout="650000" />
+      <FlyToAction Dismount="True" Location="-8825.161, 622.9095, 94.38611" />
+    </If>
+  </SubRoutine>
+  <SubRoutine SubRoutineName="SW to Northrend">
+    <If Condition="Me.MapId == 0" IgnoreCanRun="True">
+      <FlyToAction Dismount="True" Location="-8288.853, 1394.903, 4.548806" />
+      <CustomAction Code="Log(&quot;Waiting for Boat&quot;);" />
+      <WaitAction Condition="ObjectManager.GetObjectsOfType&lt;WoWGameObject&gt;().FirstOrDefault(o =&gt; o.Entry == 190536 ) != null &amp;&amp; ObjectManager.GetObjectsOfType&lt;WoWGameObject&gt;().FirstOrDefault(o =&gt; o.Entry == 190536 ).Location.Distance(new WoWPoint(-8288.816, 1424.703, -0.01198259)) &lt; 3" Timeout="650000" />
+      <CustomAction Code="CTM(-8294.051, 1424.353, 9.505318);" />
+      <WaitAction Condition="Me.MapId == 571" Timeout="650000" />
+      <FlyToAction Dismount="True" Location="2149.927, 5238.374, 19.44571" />
+    </If>
+  </SubRoutine>
+  <SubRoutine SubRoutineName="Outlands to SW">
+    <If Condition="Me.MapId == 530" IgnoreCanRun="True">
+      <CustomAction Code="Log(&quot;Using Portal back to SW&quot;);" />
+      <FlyToAction Dismount="True" Location="-335.299, 985.499, 54.29087" />
+      <MoveToAction Location="-337.2916, 962.9234, 54.28607" MoveType="Location" Pathing="Navigator" Entry="0" />
+      <InteractionAction InteractType="GameObject" Entry="195139" InteractDelay="200" GameObjectType="Transport" SpellFocus="Anvil" />
+      <WaitAction Condition="Me.MapId == 0" Timeout="25000" />
+    </If>
+  </SubRoutine>
+  <SubRoutine SubRoutineName="SW to Outlands">
+    <If Condition="Me.MapId == 0" IgnoreCanRun="True">
+      <CustomAction Code="Log(&quot;Moving to Outlands Portal&quot;);" />
+      <MoveToAction Location="-9007.162, 871.0374, 129.6926" MoveType="Location" Pathing="Navigator" Entry="0" />
+      <InteractionAction InteractType="GameObject" Entry="195141" InteractDelay="0" GameObjectType="Transport" SpellFocus="Anvil" />
+      <FlyToAction Dismount="True" Location="-11895.9, -3206.984, -6.04731" />
+      <CustomAction Code="CTM (-11930.31,-3209.613,-1.836873);" />
+      <WaitAction Condition="Me.MapId == 530" Timeout="25000" />
+    </If>
+  </SubRoutine>
+  <SubRoutine SubRoutineName="Sell">
+    <If Condition="Me.IsAlliance" IgnoreCanRun="True">
+      <If Condition="(bool)Settings[&quot;Train Leatherworking&quot;]" IgnoreCanRun="True">
+        <If Condition="Leatherworking.Level &gt;=1 &amp;&amp; Leatherworking.Level &lt;= 100" IgnoreCanRun="True">
+          <CustomAction Code="Lua.DoString(&quot;UseItemByName(6948)&quot;);&#xD;&#xA;" />
+          <WaitAction Condition="false" Timeout="250000" />
+          <SellItemAction Sell="All" NpcEntry="44236" Location="-8366.56, 575.859, 97.00243" SellItemType="Specific" ItemID="4237,2304,7276,9064,4239,3173,769,117,2672" Count="100" />
+          <SellItemAction Sell="All" NpcEntry="44236" Location="-8366.56, 575.859, 97.00243" SellItemType="Greys" ItemID="" Count="0" />
+        </If>
+        <If Condition="Leatherworking.Level &gt;= 100 &amp;&amp; Leatherworking.Level &lt; 150" IgnoreCanRun="True">
+          <CustomAction Code="Lua.DoString(&quot;UseItemByName(6948)&quot;);&#xD;&#xA;" />
+          <WaitAction Condition="false" Timeout="250000" />
+          <SellItemAction Sell="All" NpcEntry="44236" Location="-8366.56, 575.859, 97.00243" SellItemType="Greys" ItemID="" Count="0" />
+          <SellItemAction Sell="All" NpcEntry="44236" Location="-8367.365, 584.8824, 97.00045" SellItemType="Specific" ItemID="2315,4249,2316,1015,2304,7276,9064,4239,3173,769,117,2672" Count="100" />
+        </If>
+        <If Condition="Leatherworking.Level &gt;= 150 &amp;&amp; Leatherworking.Level &lt; 200" IgnoreCanRun="True">
+          <CustomAction Code="Lua.DoString(&quot;UseItemByName(6948)&quot;);&#xD;&#xA;" />
+          <WaitAction Condition="false" Timeout="250000" />
+          <SellItemAction Sell="All" NpcEntry="44236" Location="-8366.56, 575.859, 97.00243" SellItemType="Greys" ItemID="" Count="0" />
+          <SellItemAction Sell="All" NpcEntry="44236" Location="-8367.365, 584.8824, 97.00045" SellItemType="Specific" ItemID="8193,15564,8766,13443,8952,12203,4338,4306,14047,8173,3385,4606,1205,1708,1645,4599,18944,17733,12208,4265,5134,12202,2315,4249,2316,1015,2304,7276,9064,4239,3173,769,117,2672" Count="100" />
+        </If>
+        <If Condition="Leatherworking.Level &gt;= 200 &amp;&amp; Leatherworking.Level &lt; 300" IgnoreCanRun="True">
+          <CustomAction Code="Lua.DoString(&quot;UseItemByName(6948)&quot;);&#xD;&#xA;" />
+          <WaitAction Condition="false" Timeout="250000" />
+          <SellItemAction Sell="All" NpcEntry="44236" Location="-8366.56, 575.859, 97.00243" SellItemType="Greys" ItemID="" Count="0" />
+          <SellItemAction Sell="All" NpcEntry="44236" Location="-8367.365, 584.8824, 97.00045" SellItemType="Specific" ItemID="8766,13443,8952,12203,4438,4306,14047,8173,3385,4606,1205,1708,1645,4599,18944,17733,12208,4265,5134,12202,2315,4249,2316,1015,2304,7276,9064,4239,3173,769,117,2672" Count="100" />
+        </If>
+        <If Condition="Leatherworking.Level &gt;= 300 &amp;&amp; Leatherworking.Level &lt; 350" IgnoreCanRun="True">
+          <FlyToAction Dismount="True" Location="-696.8309, 2632.787, 90.01573" />
+          <SellItemAction Sell="All" NpcEntry="16823" Location="-717.3172, 2607.582, 91.01124" SellItemType="Greys" ItemID="" Count="0" />
+          <SellItemAction Sell="All" NpcEntry="16823" Location="-717.3172, 2607.582, 91.01124" SellItemType="Greens" ItemID="" Count="0" />
+          <SellItemAction Sell="All" NpcEntry="16823" Location="-717.3172, 2607.582, 91.01124" SellItemType="Specific" ItemID="27674,27678" Count="1000" />
+        </If>
+        <If Condition="Leatherworking.Level &gt;= 350 &amp;&amp; Leatherworking.Level &lt; 425" IgnoreCanRun="True">
+          <FlyToAction Dismount="True" Location="2348.835, 5256.54, 7.629225" />
+          <SellItemAction Sell="All" NpcEntry="27011" Location="2359.466, 5237.433, 7.712789" SellItemType="Greys" ItemID="" Count="0" />
+          <SellItemAction Sell="All" NpcEntry="27011" Location="2359.466, 5237.433, 7.712789" SellItemType="Greens" ItemID="" Count="0" />
+          <SellItemAction Sell="All" NpcEntry="27011" Location="2359.466, 5237.433, 7.712789" SellItemType="Specific" ItemID="25659,27674,27678,43013,43012" Count="1000" />
+        </If>
+        <If Condition="Leatherworking.Level &gt;= 425 &amp;&amp; Leatherworking.Level &lt; 525" IgnoreCanRun="True">
+          <If Condition="Me.MapId == 1" IgnoreCanRun="True">
+            <FlyToAction Dismount="True" Location="4432.816, -2077.359, 1205.964" />
+            <SellItemAction Sell="All" NpcEntry="53075" Location="4432.816, -2077.359, 1205.964" SellItemType="Greys" ItemID="" Count="0" />
+            <SellItemAction Sell="All" NpcEntry="53075" Location="4432.816, -2077.359, 1205.964" SellItemType="Greens" ItemID="" Count="0" />
+          </If>
+        </If>
+      </If>
+    </If>
+  </SubRoutine>
+  <SubRoutine SubRoutineName="Farm Leather">
+    <CustomAction Code="SwitchToBot(&quot;Grind Bot&quot;);" />
+    <If Condition="InbagCount (2318) &lt; 30 &amp;&amp; Leatherworking.Level &gt;= 1 &amp;&amp; Leatherworking.Level &lt; 30 || InbagCount (2318) &lt; 30 &amp;&amp; Leatherworking.Level &gt;= 30 &amp;&amp; Leatherworking.Level &lt; 45 || InbagCount (2318) &lt; 50 &amp;&amp; Leatherworking.Level &gt;= 45 &amp;&amp; Leatherworking.Level &lt; 55 || InbagCount (2318) &lt; 90 &amp;&amp; Leatherworking.Level &gt;= 55 &amp;&amp; Leatherworking.Level &lt; 85 || InbagCount (2318) &lt; 120 &amp;&amp; Leatherworking.Level &gt;= 85 &amp;&amp; Leatherworking.Level &lt; 100 || InbagCount (4232) &lt; 15 &amp;&amp; Leatherworking.Level &gt;= 100 &amp;&amp; Leatherworking.Level &lt; 115 || InbagCount (2319) &lt; 40 &amp;&amp; Leatherworking.Level &gt;= 115 &amp;&amp; Leatherworking.Level &lt; 125 || InbagCount (2319) &lt; 40 &amp;&amp; Leatherworking.Level &gt;= 125 &amp;&amp; Leatherworking.Level &lt; 130 || InbagCount (2319) &gt;= 40 &amp;&amp; Leatherworking.Level &gt;= 125 &amp;&amp; Leatherworking.Level &lt; 130 || InbagCount (4233) &lt; 15 &amp;&amp; Leatherworking.Level &gt;= 130 &amp;&amp; Leatherworking.Level &lt; 145 || InbagCount (2319) &lt; 70 &amp;&amp; Leatherworking.Level &gt;= 145 &amp;&amp; Leatherworking.Level &lt; 150 || InbagCount (2319) &lt; 140 &amp;&amp; Leatherworking.Level &gt;= 150 &amp;&amp; Leatherworking.Level &lt; 160 || InbagCount (4234) &lt; 75 &amp;&amp; Leatherworking.Level &gt;= 160 &amp;&amp; Leatherworking.Level &lt; 175 || InbagCount (4234) &lt; 60 &amp;&amp; Leatherworking.Level &gt;= 175 &amp;&amp; Leatherworking.Level &lt; 180 || InbagCount (4234) &lt; 80 &amp;&amp; Leatherworking.Level &gt;= 180 &amp;&amp; Leatherworking.Level &lt; 190 || InbagCount (4234) &lt; 40 &amp;&amp; Leatherworking.Level &gt;= 190 &amp;&amp; Leatherworking.Level &lt; 200 || InbagCount (4304) &lt; 100 &amp;&amp; Leatherworking.Level &gt;= 200 &amp;&amp; Leatherworking.Level &lt; 220 || InbagCount (4304) &lt; 50 &amp;&amp; Leatherworking.Level &gt;= 220 &amp;&amp; Leatherworking.Level &lt; 230 || InbagCount (4304) &lt; 280 &amp;&amp; Leatherworking.Level &gt;= 230 &amp;&amp; Leatherworking.Level &lt; 250 || InbagCount (8170) &lt; 100 &amp;&amp; Leatherworking.Level &gt;= 250 &amp;&amp; Leatherworking.Level &lt; 265 || InbagCount (8170) &lt; 160 &amp;&amp; Leatherworking.Level &gt;= 265 &amp;&amp; Leatherworking.Level &lt; 285 || InbagCount (8170) &lt; 180 &amp;&amp; Leatherworking.Level &gt;= 285 &amp;&amp; Leatherworking.Level &lt; 300 || InbagCount (21887) &lt; 60 &amp;&amp; Leatherworking.Level &gt;= 300 &amp;&amp; Leatherworking.Level &lt; 315 || InbagCount (21887) &lt; 45 &amp;&amp; Leatherworking.Level &gt;= 315 &amp;&amp; Leatherworking.Level &lt; 320 || InbagCount (21887) &lt; 50 &amp;&amp; Leatherworking.Level &gt;= 320 &amp;&amp; Leatherworking.Level &lt; 325 || InbagCount (21887) &lt; 25 &amp;&amp; Leatherworking.Level &gt;= 325 &amp;&amp; Leatherworking.Level &lt; 330 || InbagCount (23793) &lt; 30 &amp;&amp; Leatherworking.Level &gt;= 330 &amp;&amp;Leatherworking.Level &lt; 340 || InbagCount (23793) &lt; 20 &amp;&amp; Leatherworking.Level &gt;= 34 &amp;&amp; Leatherworking.Level &lt; 350 || InbagCount (33568) &lt; 100 &amp;&amp; Leatherworking.Level &gt;= 350 &amp;&amp; Leatherworking.Level &lt; 375 || InbagCount (33568) &lt; 150 &amp;&amp; Leatherworking.Level &gt;= 375 &amp;&amp; Leatherworking.Level &lt; 390 || InbagCount (33568) &lt; 60 &amp;&amp; Leatherworking.Level &gt;= 390 &amp;&amp; Leatherworking.Level &lt; 395 || InbagCount (38425) &lt; 20 &amp;&amp; Leatherworking.Level &gt;= 395 &amp;&amp; Leatherworking.Level &lt; 400 || InbagCount (38425) &lt; 60 &amp;&amp; Leatherworking.Level &gt;= 400 &amp;&amp; Leatherworking.Level &lt; 415 || InbagCount (38425) &lt; 40 &amp;&amp; Leatherworking.Level &gt;= 415 &amp;&amp; Leatherworking. Level &lt; 420 || InbagCount (38425) &lt; 40 &amp;&amp; Leatherworking.Level &gt;= 420 &amp;&amp; Leatherworking.Level &lt; 425 || InbagCount (52977) &lt; 50 &amp;&amp; Leatherworking.Level &gt;= 425 &amp;&amp; Leatherworking.Level &lt; 435 || InbagCount (52976) &lt; 75 &amp;&amp; Leatherworking.Level &gt;= 435 &amp;&amp; Leatherworking.Level &lt; 450 || InbagCount (52976) &lt; 35 &amp;&amp; Leatherworking.Level &gt;= 450 &amp;&amp; Leatherworking.Level &lt; 455 || InbagCount (52976) &lt; 35 &amp;&amp; Leatherworking.Level &gt;= 455 &amp;&amp; Leatherworking.Level &lt; 460 || InbagCount (52976) &lt; 70 &amp;&amp; Leatherworking.Level &gt;= 460 &amp;&amp; Leatherworking.Level &lt; 470 || InbagCount (52976) &lt; 120 &amp;&amp; Leatherworking.Level &gt;= 470 &amp;&amp; Leatherworking.Level &lt; 480 || InbagCount (52976) &lt; 120 &amp;&amp; Leatherworking.Level &gt;= 480 &amp;&amp; Leatherworking.Level &lt; 490 || InbagCount (56516) &lt; 50 &amp;&amp; Leatherworking.Level &gt;= 490 &amp;&amp; Leatherworking.Level &lt; 500" IgnoreCanRun="True">
+      <If Condition="Me.IsAlliance" IgnoreCanRun="True">
+        <If Condition="Me.FreeNormalBagSlots &gt; 2" IgnoreCanRun="True">
+          <If Condition="Leatherworking.Level &gt;= 1 &amp;&amp; Leatherworking.Level &lt; 100" IgnoreCanRun="True">
+            <If Condition="Me.ZoneId == 1519" IgnoreCanRun="True">
+              <MoveToAction Location="-8713.317, 454.0121, 97.11394" MoveType="Location" Pathing="ClickToMove" Entry="0" />
+            </If>
+            <FlyToAction Dismount="True" Location="-9720.43, 49.7692, 41.01646" />
+            <LoadProfileAction ProfileType="Honorbuddy" Path="HBProfiles\Skinning\30-75.xml" />
+            <CustomAction Code="Log(&quot;Load Profile for Light Leather&quot;);" />
+          </If>
+          <If Condition="Leatherworking.Level &gt;= 100 &amp;&amp; Leatherworking.Level &lt; 150" IgnoreCanRun="True">
+            <If Condition="Me.ZoneId == 1519" IgnoreCanRun="True">
+              <MoveToAction Location="-8713.317, 454.0121, 97.11394" MoveType="Location" Pathing="ClickToMove" Entry="0" />
+            </If>
+            <If Condition="Me.GetSkill(Styx.SkillLine.Skinning).CurrentValue &lt; 105" IgnoreCanRun="False">
+              <FlyToAction Dismount="True" Location="-10927.45, 682.4547, 36.27343" />
+              <LoadProfileAction ProfileType="Honorbuddy" Path="HBProfiles\Skinning\75-105.xml" />
+              <CustomAction Code="Log(&quot;Loading Profile for Light/Medium Leather&quot;);" />
+            </If>
+            <If Condition="Me.GetSkill(Styx.SkillLine.Skinning).CurrentValue &gt;105 &amp;&amp; Me.GetSkill(Styx.SkillLine.Skinning).CurrentValue &lt; 130" IgnoreCanRun="False">
+              <FlyToAction Dismount="True" Location="-9926.116, -1695.649, 22.97017" />
+              <LoadProfileAction ProfileType="Honorbuddy" Path="HBProfiles\Skinning\105-130.xml" />
+              <CustomAction Code="Log(&quot;Loading Profile for Medium Leather&quot;);" />
+            </If>
+            <If Condition="Me.GetSkill(Styx.SkillLine.Skinning).CurrentValue &gt;130 &amp;&amp; Me.GetSkill(Styx.SkillLine.Skinning).CurrentValue &lt; 175" IgnoreCanRun="False">
+              <FlyToAction Dismount="True" Location="-11486.01, 314.8814, 43.28415" />
+              <CustomAction Code="Log(&quot;Load Profile for Medium Hide&quot;);" />
+              <LoadProfileAction ProfileType="Honorbuddy" Path="HBProfiles\Skinning\130-175.xml" />
+            </If>
+          </If>
+          <If Condition="Leatherworking.Level &gt;= 150 &amp;&amp; Leatherworking.Level &lt; 175" IgnoreCanRun="True">
+            <If Condition="Me.ZoneId == 1519" IgnoreCanRun="True">
+              <MoveToAction Location="-8713.317, 454.0121, 97.11394" MoveType="Location" Pathing="ClickToMove" Entry="0" />
+            </If>
+            <FlyToAction Dismount="True" Location="-13813.25, 93.49027, 26.99422" />
+            <LoadProfileAction ProfileType="Honorbuddy" Path="HBProfiles\Skinning\175-200.xml" />
+            <CustomAction Code="Log(&quot;Load Profile for Heavy Leather&quot;);" />
+            <If Condition="Me.GetSkill(Styx.SkillLine.Skinning).CurrentValue &gt;= 200 &amp;&amp; Me.GetSkill(Styx.SkillLine.Skinning).CurrentValue &lt; 300" IgnoreCanRun="True">
+              <FlyToAction Dismount="True" Location="-14511.45, -149.2053, 4.725216" />
+              <LoadProfileAction ProfileType="Honorbuddy" Path="HBProfiles\Skinning\200-230.xml" />
+              <CustomAction Code="Log(&quot;Load Profile for Heavy Leather and Hide&quot;);" />
+            </If>
+          </If>
+          <If Condition="Leatherworking.Level &gt;= 175 &amp;&amp; Leatherworking.Level &lt; 200" IgnoreCanRun="True">
+            <If Condition="Me.ZoneId == 1519" IgnoreCanRun="True">
+              <MoveToAction Location="-8713.317, 454.0121, 97.11394" MoveType="Location" Pathing="ClickToMove" Entry="0" />
+            </If>
+            <FlyToAction Dismount="True" Location="-14511.45, -149.2053, 4.725216" />
+            <LoadProfileAction ProfileType="Honorbuddy" Path="HBProfiles\Skinning\200-230.xml" />
+            <CustomAction Code="Log(&quot;Loading Profile for Heavy Leather&quot;);" />
+          </If>
+          <If Condition="Leatherworking.Level &gt;= 200 &amp;&amp; Leatherworking.Level &lt; 300" IgnoreCanRun="True">
+            <If Condition="Me.ZoneId == 1519" IgnoreCanRun="True">
+              <MoveToAction Location="-8713.317, 454.0121, 97.11394" MoveType="Location" Pathing="ClickToMove" Entry="0" />
+            </If>
+            <FlyToAction Dismount="True" Location="-7663.138, -2729.281, 132.4882" />
+            <CustomAction Code="Log(&quot;Loading Profile for Thick/Rugged Leather&quot;);" />
+            <LoadProfileAction ProfileType="Honorbuddy" Path="HBProfiles\Skinning\275-300.xml" />
+          </If>
+          <If Condition="Leatherworking.Level &gt;= 300 &amp;&amp; Leatherworking.Level &lt; 325" IgnoreCanRun="True">
+            <CallSubRoutine SubRoutineName="SW to Outlands" />
+            <FlyToAction Dismount="True" Location="-673.42, 2717.27, 94.18" />
+            <If Condition="!HasRecipe(32454)" IgnoreCanRun="True">
+              <CallSubRoutine SubRoutineName="Train Leatherworking" />
+            </If>
+            <LoadProfileAction ProfileType="Honorbuddy" Path="HBProfiles\Skinning\310-330 skinning Hellfire.xml" />
+            <CustomAction Code="Log(&quot;Loading Profile for Knothide Leather&quot;);" />
+          </If>
+          <If Condition="Leatherworking.Level &gt;= 325 &amp;&amp; Leatherworking.Level &lt; 350" IgnoreCanRun="True">
+            <LoadProfileAction ProfileType="Honorbuddy" Path="HBProfiles\Skinning\Nagrand Alliance.xml" />
+            <CustomAction Code="Log(&quot;Loading Profile for Knothide Leather&quot;);" />
+          </If>
+          <If Condition="Leatherworking.Level &gt;= 350 &amp;&amp; Leatherworking.Level &lt; 425" IgnoreCanRun="True">
+            <If Condition="Me.MapId == 530" IgnoreCanRun="True">
+              <CallSubRoutine SubRoutineName="Outlands to SW" />
+            </If>
+            <If Condition="Me.MapId == 0" IgnoreCanRun="True">
+              <CallSubRoutine SubRoutineName="SW to Northrend" />
+            </If>
+            <If Condition="Me.MapId == 571" IgnoreCanRun="True">
+              <If Condition="!HasRecipe (44970)" IgnoreCanRun="True">
+                <CallSubRoutine SubRoutineName="Train Leatherworking" />
+              </If>
+              <FlyToAction Dismount="True" Location="3104.612, 5384.283, 59.56114" />
+              <LoadProfileAction ProfileType="Honorbuddy" Path="HBProfiles\Skinning\Northrend.xml" />
+              <CustomAction Code="Log(&quot;Loading Profile for Borean Leather&quot;);" />
+            </If>
+          </If>
+          <If Condition="Leatherworking.Level &gt;= 425 &amp;&amp; Leatherworking.Level &lt;= 525" IgnoreCanRun="True">
+            <If Condition="Me.MapId == 571" IgnoreCanRun="True">
+              <CustomAction Code="Log(&quot;Heading back from Northrend&quot;);" />
+              <CallSubRoutine SubRoutineName="Northrend to SW" />
+            </If>
+            <If Condition="Me.MapId == 1" IgnoreCanRun="True">
+              <CustomAction Code="Log(&quot;Flying to Farm Point&quot;);" />
+              <FlyToAction Dismount="True" Location="4515.462, -4144.023, 926.4802" />
+              <CustomAction Code="Log(&quot;Loading Profile for Savage Leather&quot;);" />
+              <LoadProfileAction ProfileType="Honorbuddy" Path="HBProfiles\Skinning\Mount Hyjal[GRIND] 79-83[SKINNING] (2).xml" />
+            </If>
+            <If Condition="Me.MapId == 0" IgnoreCanRun="True">
+              <CustomAction Code="Log(&quot;Using Portal to Hyjal&quot;);" />
+              <CallSubRoutine SubRoutineName="SW to Hyjal" />
+            </If>
+          </If>
+        </If>
+      </If>
+    </If>
+  </SubRoutine>
+  <SubRoutine SubRoutineName="Smelt Ores">
+    <If Condition="Me.IsAlliance" IgnoreCanRun="True">
+      <If Condition="Me.MapId == 0" IgnoreCanRun="True">
+        <FlyToAction Dismount="True" Location="-8427.122, 620.4647, 95.56905" />
+        <If Condition="Blacksmithing.Level &gt;= 1 &amp;&amp; Blacksmithing.Level &lt; 110" IgnoreCanRun="True">
+          <While Condition="InbagCount (2770) &gt;=1" IgnoreCanRun="True">
+            <CastSpellAction RepeatType="Craftable" Repeat="1" Entry="2657" CastOnItem="False" ItemType="Chest" ItemId="0" />
+          </While>
+        </If>
+        <If Condition="Blacksmithing.Level &gt;= 110 &amp;&amp; Blacksmithing.Level &lt; 155" IgnoreCanRun="True">
+          <While Condition="InbagCount (2770) &gt;=1 &amp;&amp; InbagCount (3576) &gt;=1" IgnoreCanRun="True">
+            <CastSpellAction RepeatType="Craftable" Repeat="1" Entry="2659" CastOnItem="False" ItemType="Chest" ItemId="0" />
+          </While>
+        </If>
+        <If Condition="Blacksmithing.Level &gt;= 155 &amp;&amp; Blacksmithing.Level &lt; 200" IgnoreCanRun="True">
+          <While Condition="InbagCount (2772) &gt;=1" IgnoreCanRun="True">
+            <CastSpellAction RepeatType="Craftable" Repeat="1" Entry="3307" CastOnItem="False" ItemType="Chest" ItemId="0" />
+          </While>
+        </If>
+        <If Condition="Blacksmithing.Level &gt;= 200 &amp;&amp; Blacksmithing.Level &lt; 250" IgnoreCanRun="True">
+          <While Condition="InbagCount (3858) &gt;=1" IgnoreCanRun="True">
+            <CastSpellAction RepeatType="Craftable" Repeat="1" Entry="10097" CastOnItem="False" ItemType="Chest" ItemId="0" />
+          </While>
+        </If>
+        <If Condition="Blacksmithing.Level &gt;= 250 &amp;&amp; Blacksmithing.Level &lt; 300" IgnoreCanRun="True">
+          <While Condition="InbagCount (10620) &gt;=1" IgnoreCanRun="True">
+            <CastSpellAction RepeatType="Craftable" Repeat="1" Entry="16153" CastOnItem="False" ItemType="Chest" ItemId="0" />
+          </While>
+        </If>
+      </If>
+    </If>
+  </SubRoutine>
+  <SubRoutine SubRoutineName="Mine Ores">
+    <CustomAction Code="SwitchToBot(&quot;Gatherbuddy2&quot;);" />
+    <If Condition="(bool)Settings[&quot;Train Mining plus Blacksmithing&quot;]" IgnoreCanRun="True">
+      <If Condition="Me.IsAlliance" IgnoreCanRun="True">
+        <If Condition="Me.FreeNormalBagSlots &gt; 2" IgnoreCanRun="True">
+          <If Condition="Blacksmithing.Level &gt;= 1 &amp;&amp; Blacksmithing.Level &lt; 75" IgnoreCanRun="True">
+            <LoadProfileAction ProfileType="Honorbuddy" Path="HBProfiles\(GB2 1-300)Herb&amp;Mining\Alliance\(GB2 1-75)(Elwynn.Alliance)Herb&amp;Mining.xml" />
+          </If>
+          <If Condition="Blacksmithing.Level &gt;= 75 &amp;&amp; Blacksmithing.Level &lt; 125" IgnoreCanRun="True">
+            <LoadProfileAction ProfileType="Honorbuddy" Path="HBProfiles\(GB2 1-300)Herb&amp;Mining\Alliance\(GB2 120-160)(StranglethornJungle.Alliance)Herb&amp;Mining.xml" />
+          </If>
+          <If Condition="Blacksmithing.Level &gt;= 125 &amp;&amp; Blacksmithing.Level &lt; 200" IgnoreCanRun="True">
+            <LoadProfileAction ProfileType="Honorbuddy" Path="HBProfiles\(GB2 1-300)Herb&amp;Mining\Alliance\(GB2 160-175)(TheCapeOfStranglethorn.Alliance)Herb&amp;Mining.xml" />
+          </If>
+          <If Condition="Blacksmithing.Level &gt;= 200 &amp;&amp; Blacksmithing.Level &lt; 250" IgnoreCanRun="True">
+            <LoadProfileAction ProfileType="Honorbuddy" Path="HBProfiles\(GB2 1-300)Herb&amp;Mining\Alliance\(GB2 175-235)(Badlands.Alliance)Herb&amp;Mining.xml" />
+          </If>
+          <If Condition="Blacksmithing.Level &gt;= 250 &amp;&amp; Blacksmithing.Level &lt; 300" IgnoreCanRun="True">
+            <LoadProfileAction ProfileType="Honorbuddy" Path="HBProfiles\(GB2 1-300)Herb&amp;Mining\Alliance\(GB2 235-255)(BlasstedLands.Alliance)Herb&amp;Mining.xml" />
+          </If>
+        </If>
+      </If>
+    </If>
+  </SubRoutine>
+  <While Condition="true" IgnoreCanRun="True">
+    <If Condition="(bool)Settings[&quot;Train Leatherworking&quot;]" IgnoreCanRun="True">
+      <While Condition="InbagCount (2318) &gt;= 4  &amp;&amp; Leatherworking.Level &gt;= 100" IgnoreCanRun="True">
+        <If Condition="HasRecipe (20648)" IgnoreCanRun="True">
+          <CastSpellAction RepeatType="Craftable" Repeat="1" Entry="20648" CastOnItem="False" ItemType="Chest" ItemId="0" />
+        </If>
+      </While>
+      <While Condition="InbagCount (2319) &gt;= 5 &amp;&amp; Leatherworking.Level &gt;= 160" IgnoreCanRun="True">
+        <If Condition="HasRecipe (20649)" IgnoreCanRun="True">
+          <CastSpellAction RepeatType="Specific" Repeat="1" Entry="20649" CastOnItem="False" ItemType="Chest" ItemId="0" />
+        </If>
+      </While>
+      <While Condition="InbagCount (2934) &gt;= 3" IgnoreCanRun="True">
+        <CastSpellAction RepeatType="Craftable" Repeat="1" Entry="2881" CastOnItem="False" ItemType="Chest" ItemId="0" />
+      </While>
+      <While Condition="InbagCount (25649) &gt;= 5 &amp;&amp; Leatherworking.Level &gt;= 300" IgnoreCanRun="True">
+        <CastSpellAction RepeatType="Craftable" Repeat="1" Entry="32454" CastOnItem="False" ItemType="Chest" ItemId="0" />
+      </While>
+      <While Condition="InbagCount (4234) &gt;= 6 &amp;&amp; Leatherworking.Level &gt;= 200" IgnoreCanRun="True">
+        <If Condition="HasRecipe (20650)" IgnoreCanRun="True">
+          <CastSpellAction RepeatType="Craftable" Repeat="1" Entry="20650" CastOnItem="False" ItemType="Chest" ItemId="0" />
+        </If>
+      </While>
+      <While Condition="InbagCount (21887) &gt;= 5 &amp;&amp; Leatherworking.Level &gt;= 325" IgnoreCanRun="True">
+        <If Condition="HasRecipe(32455)" IgnoreCanRun="True">
+          <CastSpellAction RepeatType="Craftable" Repeat="1" Entry="32455" CastOnItem="False" ItemType="Chest" ItemId="0" />
+        </If>
+      </While>
+      <While Condition="InbagCount (52976) &gt;= 5 &amp;&amp; Leatherworking.Level &gt;= 485" IgnoreCanRun="True">
+        <CastSpellAction RepeatType="Craftable" Repeat="1" Entry="78436" CastOnItem="False" ItemType="Chest" ItemId="0" />
+      </While>
+      <While Condition="InbagCount (33567) &gt;= 5 " IgnoreCanRun="True">
+        <CustomAction Code="Lua.DoString(&quot;UseItemByName(33567)&quot;); " />
+      </While>
+      <While Condition="InbagCount (52977) &gt;= 5 &amp;&amp; Leatherworking.Level &gt;= 425" IgnoreCanRun="True">
+        <CastSpellAction RepeatType="Craftable" Repeat="1" Entry="84950" CastOnItem="False" ItemType="Chest" ItemId="0" />
+      </While>
+      <While Condition="InbagCount (33568) &gt;= 6 &amp;&amp; Leatherworking.Level &gt;= 395" IgnoreCanRun="True">
+        <CastSpellAction RepeatType="Craftable" Repeat="1" Entry="50936" CastOnItem="False" ItemType="Chest" ItemId="0" />
+      </While>
+      <While Condition="InbagCount (4304) &gt;= 6 &amp;&amp; Leatherworking.Level &gt;= 250" IgnoreCanRun="True">
+        <If Condition="HasRecipe(22331)" IgnoreCanRun="True">
+          <CastSpellAction RepeatType="Craftable" Repeat="1" Entry="22331" CastOnItem="False" ItemType="Chest" ItemId="0" />
+        </If>
+      </While>
+      <If Condition="Leatherworking.Level &gt;=1 &amp;&amp; Leatherworking.Level &lt; 525" IgnoreCanRun="True">
+        <If Condition="Leatherworking.Level &gt;= 1 &amp;&amp; Leatherworking.Level &lt; 30" IgnoreCanRun="True">
+          <If Condition="InbagCount (2318) &gt; 29" IgnoreCanRun="True">
+            <CastSpellAction RepeatType="Specific" Repeat="30" Entry="2152" CastOnItem="False" ItemType="Chest" ItemId="0" />
+          </If>
+        </If>
+        <If Condition="Leatherworking.Level &gt;= 30 &amp;&amp; Leatherworking.Level &lt; 45" IgnoreCanRun="True">
+          <If Condition="InbagCount (2318) &gt; 29" IgnoreCanRun="True">
+            <FlyToAction Dismount="True" Location="-8713.317, 454.0121, 97.11394" />
+            <If Condition="!HasRecipe(9058)" IgnoreCanRun="True">
+              <CallSubRoutine SubRoutineName="Train Leatherworking" />
+            </If>
+            <MoveToAction Location="-8722.66, 478.2818, 98.6137" MoveType="Location" Pathing="ClickToMove" Entry="0" />
+            <BuyItemAction NpcEntry="5565" Location="0, 0, 0" ItemID="2320" BuyItemType="SpecificItem" Count="15" BuyAdditively="True" />
+            <CastSpellAction RepeatType="Specific" Repeat="15" Entry="9058" CastOnItem="False" ItemType="Chest" ItemId="0" />
+            <MoveToAction Location="-8713.317, 454.0121, 97.11394" MoveType="Location" Pathing="ClickToMove" Entry="0" />
+          </If>
+        </If>
+        <If Condition="Leatherworking.Level &gt;= 45 &amp;&amp; Leatherworking.Level &lt; 55" IgnoreCanRun="True">
+          <If Condition="InbagCount (2318) &gt; 29" IgnoreCanRun="True">
+            <FlyToAction Dismount="True" Location="-8713.317, 454.0121, 97.11394" />
+            <If Condition="!HasRecipe(3753)" IgnoreCanRun="True">
+              <CallSubRoutine SubRoutineName="Train Leatherworking" />
+            </If>
+            <MoveToAction Location="-8722.66, 478.2818, 98.6137" MoveType="Location" Pathing="ClickToMove" Entry="0" />
+            <BuyItemAction NpcEntry="5565" Location="0, 0, 0" ItemID="2320" BuyItemType="SpecificItem" Count="50" BuyAdditively="False" />
+            <CastSpellAction RepeatType="Specific" Repeat="10" Entry="3753" CastOnItem="False" ItemType="Chest" ItemId="0" />
+            <MoveToAction Location="-8713.317, 454.0121, 97.11394" MoveType="Location" Pathing="ClickToMove" Entry="0" />
+          </If>
+        </If>
+        <If Condition="Leatherworking.Level &gt;= 55 &amp;&amp; Leatherworking.Level &lt; 85" IgnoreCanRun="True">
+          <FlyToAction Dismount="True" Location="-8713.317, 454.0121, 97.11394" />
+          <If Condition="!HasRecipe(3756)" IgnoreCanRun="True">
+            <CallSubRoutine SubRoutineName="Train Leatherworking" />
+          </If>
+          <MoveToAction Location="-8722.66, 478.2818, 98.6137" MoveType="Location" Pathing="ClickToMove" Entry="0" />
+          <BuyItemAction NpcEntry="5565" Location="0, 0, 0" ItemID="2320" BuyItemType="SpecificItem" Count="60" BuyAdditively="False" />
+          <CastSpellAction RepeatType="Specific" Repeat="30" Entry="3756" CastOnItem="False" ItemType="Chest" ItemId="0" />
+          <MoveToAction Location="-8713.317, 454.0121, 97.11394" MoveType="Location" Pathing="ClickToMove" Entry="0" />
+        </If>
+        <If Condition="Leatherworking.Level &gt;= 85 &amp;&amp; Leatherworking.Level &lt; 100" IgnoreCanRun="True">
+          <FlyToAction Dismount="True" Location="-8713.317, 454.0121, 97.11394" />
+          <If Condition="!HasRecipe(3763)" IgnoreCanRun="True">
+            <CallSubRoutine SubRoutineName="Train Leatherworking" />
+          </If>
+          <MoveToAction Location="-8722.66, 478.2818, 98.6137" MoveType="Location" Pathing="ClickToMove" Entry="0" />
+          <BuyItemAction NpcEntry="5565" Location="0, 0, 0" ItemID="2320" BuyItemType="SpecificItem" Count="40" BuyAdditively="False" />
+          <CastSpellAction RepeatType="Specific" Repeat="15" Entry="3763" CastOnItem="False" ItemType="Chest" ItemId="0" />
+          <PutItemInBankAction Category="TradeGoods" SubCategoryType="WoWItemTradeGoodsClass" SubCategory="None" Deposit="All" UseCategory="False" Bank="Personal" ItemID="4246" GuildTab="0" NpcEntry="0" Amount="15" AutoFindBank="True" Location="0, 0, 0" />
+          <If Condition="!HasRecipe(20648)" IgnoreCanRun="True">
+            <CallSubRoutine SubRoutineName="Train Leatherworking" />
+          </If>
+          <MoveToAction Location="-8713.317, 454.0121, 97.11394" MoveType="Location" Pathing="ClickToMove" Entry="0" />
+        </If>
+        <If Condition="Leatherworking.Level &gt;= 100 &amp;&amp; Leatherworking.Level &lt; 115" IgnoreCanRun="True">
+          <FlyToAction Dismount="True" Location="-8713.317, 454.0121, 97.11394" />
+          <If Condition="!HasRecipe(3817)" IgnoreCanRun="True">
+            <CallSubRoutine SubRoutineName="Train Leatherworking" />
+          </If>
+          <MoveToAction Location="-8722.66, 478.2818, 98.6137" MoveType="Location" Pathing="ClickToMove" Entry="0" />
+          <BuyItemAction NpcEntry="5565" Location="0, 0, 0" ItemID="4289" BuyItemType="SpecificItem" Count="15" BuyAdditively="True" />
+          <CastSpellAction RepeatType="Craftable" Repeat="15" Entry="3817" CastOnItem="False" ItemType="Chest" ItemId="0" />
+          <MoveToAction Location="-8713.317, 454.0121, 97.11394" MoveType="Location" Pathing="ClickToMove" Entry="0" />
+        </If>
+        <If Condition="Leatherworking.Level &gt;= 115 &amp;&amp; Leatherworking.Level &lt; 125" IgnoreCanRun="True">
+          <FlyToAction Dismount="True" Location="-8713.317, 454.0121, 97.11394" />
+          <If Condition="!HasRecipe (2167)" IgnoreCanRun="True">
+            <CallSubRoutine SubRoutineName="Train Leatherworking" />
+          </If>
+          <MoveToAction Location="-8722.66, 478.2818, 98.6137" MoveType="Location" Pathing="ClickToMove" Entry="0" />
+          <BuyItemAction NpcEntry="5565" Location="0, 0, 0" ItemID="4340" BuyItemType="SpecificItem" Count="10" BuyAdditively="False" />
+          <BuyItemAction NpcEntry="5565" Location="0, 0, 0" ItemID="2321" BuyItemType="SpecificItem" Count="20" BuyAdditively="False" />
+          <CastSpellAction RepeatType="Specific" Repeat="10" Entry="2167" CastOnItem="False" ItemType="Chest" ItemId="0" />
+          <MoveToAction Location="-8713.317, 454.0121, 97.11394" MoveType="Location" Pathing="ClickToMove" Entry="0" />
+        </If>
+        <If Condition="Leatherworking.Level &gt;= 125 &amp;&amp; Leatherworking.Level &lt; 130" IgnoreCanRun="True">
+          <FlyToAction Dismount="True" Location="-8713.317, 454.0121, 97.11394" />
+          <If Condition="!HasRecipe(2168)" IgnoreCanRun="True">
+            <CallSubRoutine SubRoutineName="Train Leatherworking" />
+          </If>
+          <MoveToAction Location="-8722.66, 478.2818, 98.6137" MoveType="Location" Pathing="ClickToMove" Entry="0" />
+          <BuyItemAction NpcEntry="5565" Location="0, 0, 0" ItemID="2321" BuyItemType="SpecificItem" Count="5" BuyAdditively="False" />
+          <BuyItemAction NpcEntry="5565" Location="0, 0, 0" ItemID="4340" BuyItemType="SpecificItem" Count="5" BuyAdditively="False" />
+          <CastSpellAction RepeatType="Specific" Repeat="5" Entry="2168" CastOnItem="False" ItemType="Chest" ItemId="0" />
+          <MoveToAction Location="-8713.317, 454.0121, 97.11394" MoveType="Location" Pathing="ClickToMove" Entry="0" />
+        </If>
+        <If Condition="Leatherworking.Level &gt;= 130 &amp;&amp; Leatherworking.Level &lt; 145" IgnoreCanRun="True">
+          <If Condition="Me.FreeBagSlots &lt; 15" IgnoreCanRun="True">
+            <CallSubRoutine SubRoutineName="Sell" />
+          </If>
+          <GetItemfromBankAction Withdraw="All" Bank="Personal" MinFreeBagSlots="2" GetItemfromBankType="SpecificItem" ItemID="4246" NpcEntry="0" Amount="15" AutoFindBank="True" WithdrawAdditively="True" Location="0, 0, 0" />
+          <FlyToAction Dismount="True" Location="-8713.317, 454.0121, 97.11394" />
+          <If Condition="!HasRecipe (3766)" IgnoreCanRun="True">
+            <CallSubRoutine SubRoutineName="Train Leatherworking" />
+          </If>
+          <MoveToAction Location="-8722.66, 478.2818, 98.6137" MoveType="Location" Pathing="ClickToMove" Entry="0" />
+          <BuyItemAction NpcEntry="5565" Location="0, 0, 0" ItemID="2321" BuyItemType="SpecificItem" Count="30" BuyAdditively="False" />
+          <BuyItemAction NpcEntry="5565" Location="0, 0, 0" ItemID="4340" BuyItemType="SpecificItem" Count="15" BuyAdditively="False" />
+          <CastSpellAction RepeatType="Specific" Repeat="15" Entry="3766" CastOnItem="False" ItemType="Chest" ItemId="0" />
+          <MoveToAction Location="-8713.317, 454.0121, 97.11394" MoveType="Location" Pathing="ClickToMove" Entry="0" />
+        </If>
+        <If Condition="Leatherworking.Level &gt;= 145 &amp;&amp; Leatherworking.Level &lt; 150" IgnoreCanRun="True">
+          <FlyToAction Dismount="True" Location="-8713.317, 454.0121, 97.11394" />
+          <If Condition="!HasRecipe (3764)" IgnoreCanRun="True">
+            <CallSubRoutine SubRoutineName="Train Leatherworking" />
+          </If>
+          <MoveToAction Location="-8722.66, 478.2818, 98.6137" MoveType="Location" Pathing="ClickToMove" Entry="0" />
+          <BuyItemAction NpcEntry="5565" Location="0, 0, 0" ItemID="2321" BuyItemType="SpecificItem" Count="20" BuyAdditively="False" />
+          <CastSpellAction RepeatType="Specific" Repeat="5" Entry="3764" CastOnItem="False" ItemType="Chest" ItemId="0" />
+          <MoveToAction Location="-8713.317, 454.0121, 97.11394" MoveType="Location" Pathing="ClickToMove" Entry="0" />
+        </If>
+        <If Condition="Leatherworking.Level &gt;= 150 &amp;&amp; Leatherworking.Level &lt; 160" IgnoreCanRun="True">
+          <FlyToAction Dismount="True" Location="-8713.317, 454.0121, 97.11394" />
+          <If Condition="!HasRecipe (3764)" IgnoreCanRun="True">
+            <CallSubRoutine SubRoutineName="Train Leatherworking" />
+          </If>
+          <MoveToAction Location="-8722.66, 478.2818, 98.6137" MoveType="Location" Pathing="ClickToMove" Entry="0" />
+          <BuyItemAction NpcEntry="5565" Location="0, 0, 0" ItemID="2321" BuyItemType="SpecificItem" Count="40" BuyAdditively="True" />
+          <CastSpellAction RepeatType="Specific" Repeat="10" Entry="3764" CastOnItem="False" ItemType="Chest" ItemId="0" />
+          <MoveToAction Location="-8713.317, 454.0121, 97.11394" MoveType="Location" Pathing="ClickToMove" Entry="0" />
+        </If>
+        <If Condition="Leatherworking.Level &gt;= 160 &amp;&amp; Leatherworking.Level &lt; 180" IgnoreCanRun="True">
+          <FlyToAction Dismount="True" Location="-8713.317, 454.0121, 97.11394" />
+          <If Condition="!HasRecipe(3780)" IgnoreCanRun="True">
+            <CallSubRoutine SubRoutineName="Train Leatherworking" />
+          </If>
+          <MoveToAction Location="-8722.66, 478.2818, 98.6137" MoveType="Location" Pathing="ClickToMove" Entry="0" />
+          <BuyItemAction NpcEntry="5565" Location="0, 0, 0" ItemID="2321" BuyItemType="SpecificItem" Count="20" BuyAdditively="False" />
+          <CastSpellAction RepeatType="Specific" Repeat="20" Entry="3780" CastOnItem="False" ItemType="Chest" ItemId="0" />
+          <MoveToAction Location="-8713.317, 454.0121, 97.11394" MoveType="Location" Pathing="ClickToMove" Entry="0" />
+        </If>
+        <If Condition="Leatherworking.Level &gt;= 180 &amp;&amp; Leatherworking.Level &lt; 190" IgnoreCanRun="True">
+          <FlyToAction Dismount="True" Location="-8713.317, 454.0121, 97.11394" />
+          <If Condition="!HasRecipe (3818)" IgnoreCanRun="True">
+            <CallSubRoutine SubRoutineName="Train Leatherworking" />
+          </If>
+          <MoveToAction Location="-8722.66, 478.2818, 98.6137" MoveType="Location" Pathing="ClickToMove" Entry="0" />
+          <BuyItemAction NpcEntry="5565" Location="0, 0, 0" ItemID="4289" BuyItemType="SpecificItem" Count="60" BuyAdditively="True" />
+          <CastSpellAction RepeatType="Craftable" Repeat="1" Entry="3818" CastOnItem="False" ItemType="Chest" ItemId="0" />
+          <BuyItemAction NpcEntry="5565" Location="0, 0, 0" ItemID="2321" BuyItemType="SpecificItem" Count="20" BuyAdditively="False" />
+          <CastSpellAction RepeatType="Specific" Repeat="10" Entry="7151" CastOnItem="False" ItemType="Chest" ItemId="0" />
+          <MoveToAction Location="-8713.317, 454.0121, 97.11394" MoveType="Location" Pathing="ClickToMove" Entry="0" />
+        </If>
+        <If Condition="Leatherworking.Level &gt;= 190 &amp;&amp; Leatherworking.Level &lt; 200" IgnoreCanRun="True">
+          <FlyToAction Dismount="True" Location="-8713.317, 454.0121, 97.11394" />
+          <If Condition="!HasRecipe (7156)" IgnoreCanRun="True">
+            <CallSubRoutine SubRoutineName="Train Leatherworking" />
+          </If>
+          <MoveToAction Location="-8722.66, 478.2818, 98.6137" MoveType="Location" Pathing="ClickToMove" Entry="0" />
+          <BuyItemAction NpcEntry="5565" Location="0, 0, 0" ItemID="4291" BuyItemType="SpecificItem" Count="10" BuyAdditively="False" />
+          <CastSpellAction RepeatType="Specific" Repeat="10" Entry="7156" CastOnItem="False" ItemType="Chest" ItemId="0" />
+          <MoveToAction Location="-8713.317, 454.0121, 97.11394" MoveType="Location" Pathing="ClickToMove" Entry="0" />
+        </If>
+        <If Condition="Leatherworking.Level &gt;= 200 &amp;&amp; Leatherworking.Level &lt; 220" IgnoreCanRun="True">
+          <FlyToAction Dismount="True" Location="-8713.317, 454.0121, 97.11394" />
+          <If Condition="!HasRecipe (10487)" IgnoreCanRun="True">
+            <CallSubRoutine SubRoutineName="Train Leatherworking" />
+          </If>
+          <MoveToAction Location="-8722.66, 478.2818, 98.6137" MoveType="Location" Pathing="ClickToMove" Entry="0" />
+          <BuyItemAction NpcEntry="5565" Location="0, 0, 0" ItemID="4291" BuyItemType="SpecificItem" Count="20" BuyAdditively="False" />
+          <CastSpellAction RepeatType="Craftable" Repeat="20" Entry="10487" CastOnItem="False" ItemType="Chest" ItemId="0" />
+          <MoveToAction Location="-8713.317, 454.0121, 97.11394" MoveType="Location" Pathing="ClickToMove" Entry="0" />
+        </If>
+        <If Condition="Leatherworking.Level &gt;= 220 &amp;&amp; Leatherworking.Level &lt; 230" IgnoreCanRun="True">
+          <FlyToAction Dismount="True" Location="-8713.317, 454.0121, 97.11394" />
+          <If Condition="!HasRecipe (10507)" IgnoreCanRun="True">
+            <CallSubRoutine SubRoutineName="Train Leatherworking" />
+          </If>
+          <MoveToAction Location="-8722.66, 478.2818, 98.6137" MoveType="Location" Pathing="ClickToMove" Entry="0" />
+          <BuyItemAction NpcEntry="5565" Location="0, 0, 0" ItemID="4291" BuyItemType="SpecificItem" Count="20" BuyAdditively="True" />
+          <CastSpellAction RepeatType="Specific" Repeat="10" Entry="10507" CastOnItem="False" ItemType="Chest" ItemId="0" />
+          <MoveToAction Location="-8713.317, 454.0121, 97.11394" MoveType="Location" Pathing="ClickToMove" Entry="0" />
+        </If>
+        <If Condition="Leatherworking.Level &gt;= 230 &amp;&amp; Leatherworking.Level &lt; 250" IgnoreCanRun="True">
+          <FlyToAction Dismount="True" Location="-8713.317, 454.0121, 97.11394" />
+          <If Condition="!HasRecipe (10548)" IgnoreCanRun="True">
+            <CallSubRoutine SubRoutineName="Train Leatherworking" />
+          </If>
+          <MoveToAction Location="-8722.66, 478.2818, 98.6137" MoveType="Location" Pathing="ClickToMove" Entry="0" />
+          <BuyItemAction NpcEntry="5565" Location="0, 0, 0" ItemID="4291" BuyItemType="SpecificItem" Count="80" BuyAdditively="True" />
+          <CastSpellAction RepeatType="Craftable" Repeat="20" Entry="10548" CastOnItem="False" ItemType="Chest" ItemId="0" />
+          <MoveToAction Location="-8713.317, 454.0121, 97.11394" MoveType="Location" Pathing="ClickToMove" Entry="0" />
+        </If>
+        <If Condition="Leatherworking.Level &gt;= 250 &amp;&amp; Leatherworking.Level &lt; 265" IgnoreCanRun="True">
+          <FlyToAction Dismount="True" Location="-8713.317, 454.0121, 97.11394" />
+          <If Condition="!HasRecipe (19058)" IgnoreCanRun="True">
+            <CallSubRoutine SubRoutineName="Train Leatherworking" />
+          </If>
+          <CastSpellAction RepeatType="Specific" Repeat="20" Entry="19058" CastOnItem="False" ItemType="Chest" ItemId="0" />
+          <MoveToAction Location="-8713.317, 454.0121, 97.11394" MoveType="Location" Pathing="ClickToMove" Entry="0" />
+        </If>
+        <If Condition="Leatherworking.Level &gt;= 265 &amp;&amp; Leatherworking.Level &lt; 285" IgnoreCanRun="True">
+          <FlyToAction Dismount="True" Location="-8713.317, 454.0121, 97.11394" />
+          <If Condition="!HasRecipe (19052)" IgnoreCanRun="True">
+            <CallSubRoutine SubRoutineName="Train Leatherworking" />
+          </If>
+          <MoveToAction Location="-8722.66, 478.2818, 98.6137" MoveType="Location" Pathing="ClickToMove" Entry="0" />
+          <BuyItemAction NpcEntry="5565" Location="0, 0, 0" ItemID="2325" BuyItemType="SpecificItem" Count="20" BuyAdditively="False" />
+          <BuyItemAction NpcEntry="5565" Location="0, 0, 0" ItemID="14341" BuyItemType="SpecificItem" Count="20" BuyAdditively="False" />
+          <CastSpellAction RepeatType="Specific" Repeat="20" Entry="19052" CastOnItem="False" ItemType="Chest" ItemId="0" />
+          <MoveToAction Location="-8713.317, 454.0121, 97.11394" MoveType="Location" Pathing="ClickToMove" Entry="0" />
+        </If>
+        <If Condition="Leatherworking.Level &gt;= 285 &amp;&amp; Leatherworking.Level &lt; 300" IgnoreCanRun="True">
+          <FlyToAction Dismount="True" Location="-8713.317, 454.0121, 97.11394" />
+          <If Condition="!HasRecipe (19071)" IgnoreCanRun="True">
+            <CallSubRoutine SubRoutineName="Train Leatherworking" />
+          </If>
+          <MoveToAction Location="-8722.66, 478.2818, 98.6137" MoveType="Location" Pathing="ClickToMove" Entry="0" />
+          <BuyItemAction NpcEntry="5565" Location="0, 0, 0" ItemID="2325" BuyItemType="SpecificItem" Count="15" BuyAdditively="False" />
+          <BuyItemAction NpcEntry="5565" Location="0, 0, 0" ItemID="14341" BuyItemType="SpecificItem" Count="15" BuyAdditively="False" />
+          <CastSpellAction RepeatType="Specific" Repeat="15" Entry="19071" CastOnItem="False" ItemType="Chest" ItemId="0" />
+          <MoveToAction Location="-8713.317, 454.0121, 97.11394" MoveType="Location" Pathing="ClickToMove" Entry="0" />
+        </If>
+        <If Condition="Leatherworking.Level &gt;= 300 &amp;&amp; Leatherworking.Level &lt; 310" IgnoreCanRun="True">
+          <CastSpellAction RepeatType="Specific" Repeat="10" Entry="32456" CastOnItem="False" ItemType="Chest" ItemId="0" />
+        </If>
+        <If Condition="Leatherworking.Level &gt;= 310 &amp;&amp; Leatherworking.Level &lt; 320" IgnoreCanRun="True">
+          <If Condition="!HasRecipe(32479)" IgnoreCanRun="True">
+            <CallSubRoutine SubRoutineName="Train Leatherworking" />
+          </If>
+          <BuyItemAction NpcEntry="16826" Location="-708.8713, 2739.131, 94.73376" ItemID="14341" BuyItemType="SpecificItem" Count="15" BuyAdditively="True" />
+          <CastSpellAction RepeatType="Specific" Repeat="10" Entry="32479" CastOnItem="False" ItemType="Chest" ItemId="0" />
+        </If>
+        <If Condition="Leatherworking.Level &gt;= 320 &amp;&amp; Leatherworking.Level &lt; 325" IgnoreCanRun="True">
+          <If Condition="!HasRecipe (32471)" IgnoreCanRun="True">
+            <CallSubRoutine SubRoutineName="Train Leatherworking" />
+          </If>
+          <BuyItemAction NpcEntry="16826" Location="-708.8713, 2739.131, 94.73376" ItemID="14341" BuyItemType="SpecificItem" Count="10" BuyAdditively="True" />
+          <CastSpellAction RepeatType="Specific" Repeat="5" Entry="32471" CastOnItem="False" ItemType="Chest" ItemId="0" />
+        </If>
+        <If Condition="Leatherworking.Level &gt;= 325 &amp;&amp; Leatherworking.Level &lt; 330" IgnoreCanRun="True">
+          <If Condition="!HasRecipe(32455)" IgnoreCanRun="True">
+            <CallSubRoutine SubRoutineName="Train Leatherworking" />
+            <CastSpellAction RepeatType="Craftable" Repeat="5" Entry="32455" CastOnItem="False" ItemType="Chest" ItemId="0" />
+          </If>
+        </If>
+        <If Condition="Leatherworking.Level &gt;= 330 &amp;&amp; Leatherworking.Level &lt; 340" IgnoreCanRun="True">
+          <If Condition="!HasRecipe (32473)" IgnoreCanRun="True">
+            <CallSubRoutine SubRoutineName="Train Leatherworking" />
+          </If>
+          <BuyItemAction NpcEntry="16826" Location="-708.8713, 2739.131, 94.73376" ItemID="14341" BuyItemType="SpecificItem" Count="30" BuyAdditively="False" />
+          <CastSpellAction RepeatType="Specific" Repeat="10" Entry="32473" CastOnItem="False" ItemType="Chest" ItemId="0" />
+        </If>
+        <If Condition="Leatherworking.Level &gt;= 340 &amp;&amp; Leatherworking.Level &lt; 350" IgnoreCanRun="True">
+          <If Condition="!HasRecipe(32469)" IgnoreCanRun="True">
+            <CallSubRoutine SubRoutineName="Train Leatherworking" />
+          </If>
+          <BuyItemAction NpcEntry="16826" Location="-708.8713, 2739.131, 94.73376" ItemID="14341" BuyItemType="SpecificItem" Count="30" BuyAdditively="True" />
+          <CastSpellAction RepeatType="Specific" Repeat="10" Entry="32469" CastOnItem="False" ItemType="Chest" ItemId="0" />
+        </If>
+        <If Condition="Leatherworking.Level &gt;= 350 &amp;&amp; Leatherworking.Level &lt; 360" IgnoreCanRun="True">
+          <If Condition="!HasRecipe (50962)" IgnoreCanRun="True">
+            <CallSubRoutine SubRoutineName="Train Leatherworking" />
+          </If>
+          <CastSpellAction RepeatType="Specific" Repeat="33" Entry="50962" CastOnItem="False" ItemType="Chest" ItemId="0" />
+        </If>
+        <If Condition="Leatherworking.Level &gt;= 375 &amp;&amp; Leatherworking.Level &lt; 390" IgnoreCanRun="True">
+          <If Condition="!HasRecipe (50947)" IgnoreCanRun="True">
+            <CallSubRoutine SubRoutineName="Train Leatherworking" />
+          </If>
+          <CastSpellAction RepeatType="Specific" Repeat="15" Entry="50947" CastOnItem="False" ItemType="Chest" ItemId="0" />
+        </If>
+        <If Condition="Leatherworking.Level &gt;= 390 &amp;&amp; Leatherworking.Level &lt; 395" IgnoreCanRun="True">
+          <If Condition="!HasRecipe (50936)" IgnoreCanRun="True">
+            <CallSubRoutine SubRoutineName="Train Leatherworking" />
+          </If>
+          <CastSpellAction RepeatType="Craftable" Repeat="5" Entry="50936" CastOnItem="False" ItemType="Chest" ItemId="0" />
+        </If>
+        <If Condition="Leatherworking.Level &gt;= 395 &amp;&amp; Leatherworking.Level &lt; 400" IgnoreCanRun="True">
+          <If Condition="!HasRecipe (50963)" IgnoreCanRun="True">
+            <CallSubRoutine SubRoutineName="Train Leatherworking" />
+          </If>
+          <CastSpellAction RepeatType="Craftable" Repeat="1" Entry="50963" CastOnItem="False" ItemType="Chest" ItemId="0" />
+        </If>
+        <If Condition="Leatherworking.Level &gt;= 400 &amp;&amp; Leatherworking.Level &lt; 415" IgnoreCanRun="True">
+          <If Condition="!HasRecipe (60601)" IgnoreCanRun="True">
+            <CallSubRoutine SubRoutineName="Train Leatherworking" />
+          </If>
+          <FlyToAction Dismount="True" Location="5902.246, 727.6273, 639.8905" />
+          <BuyItemFromAhAction ItemListType="Item" ItemID="37705" MaxBuyout="100g0s0c" Amount="75" BuyAdditively="False" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+          <CallSubRoutine SubRoutineName="Mail" />
+          <CastSpellAction RepeatType="Specific" Repeat="15" Entry="60601" CastOnItem="False" ItemType="Chest" ItemId="0" />
+        </If>
+        <If Condition="Leatherworking.Level &gt;= 415 &amp;&amp; Leatherworking.Level &lt; 420" IgnoreCanRun="True">
+          <If Condition="!HasRecipe (60643)" IgnoreCanRun="True">
+            <CallSubRoutine SubRoutineName="Train Leatherworking" />
+          </If>
+          <CastSpellAction RepeatType="Specific" Repeat="5" Entry="60643" CastOnItem="False" ItemType="Chest" ItemId="0" />
+        </If>
+        <If Condition="Leatherworking.Level &gt;= 420 &amp;&amp; Leatherworking.Level &lt; 425" IgnoreCanRun="True">
+          <If Condition="!HasRecipe (60720)" IgnoreCanRun="True">
+            <CallSubRoutine SubRoutineName="Train Leatherworking" />
+          </If>
+          <FlyToAction Dismount="True" Location="5902.246, 727.6273, 639.8905" />
+          <BuyItemFromAhAction ItemListType="Item" ItemID="35622" MaxBuyout="100g0s0c" Amount="5" BuyAdditively="True" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+          <CallSubRoutine SubRoutineName="Mail" />
+          <CastSpellAction RepeatType="Specific" Repeat="5" Entry="60720" CastOnItem="False" ItemType="Chest" ItemId="0" />
+        </If>
+        <If Condition="Leatherworking.Level &gt;= 425 &amp;&amp; Leatherworking.Level &lt; 430" IgnoreCanRun="True">
+          <If Condition="!HasRecipe (84950)" IgnoreCanRun="True">
+            <CallSubRoutine SubRoutineName="Hyjal to SW" />
+            <CallSubRoutine SubRoutineName="Train Leatherworking" />
+          </If>
+          <CastSpellAction RepeatType="Specific" Repeat="10" Entry="84950" CastOnItem="False" ItemType="Chest" ItemId="0" />
+        </If>
+        <If Condition="Leatherworking.Level &gt;=435 &amp;&amp; Leatherworking.Level &lt; 450" IgnoreCanRun="True">
+          <If Condition="!HasRecipe (78379)" IgnoreCanRun="True">
+            <CallSubRoutine SubRoutineName="Hyjal to SW" />
+            <CallSubRoutine SubRoutineName="Train Leatherworking" />
+          </If>
+          <CastSpellAction RepeatType="Specific" Repeat="15" Entry="78379" CastOnItem="False" ItemType="Chest" ItemId="0" />
+        </If>
+        <If Condition="Leatherworking.Level &gt;= 450 &amp;&amp; Leatherworking.Level &lt; 455" IgnoreCanRun="True">
+          <If Condition="Me.MapId == 1" IgnoreCanRun="True">
+            <CallSubRoutine SubRoutineName="Hyjal to SW" />
+          </If>
+          <If Condition="!HasRecipe (78398)" IgnoreCanRun="True">
+            <CallSubRoutine SubRoutineName="Train Leatherworking" />
+          </If>
+          <FlyToAction Dismount="True" Location="-8718.813, 424.2958, 98.05862" />
+          <BuyItemAction NpcEntry="5565" Location="-8722.868, 479.3223, 98.61375" ItemID="38426" BuyItemType="SpecificItem" Count="5" BuyAdditively="False" />
+          <CastSpellAction RepeatType="Specific" Repeat="5" Entry="78398" CastOnItem="False" ItemType="Chest" ItemId="0" />
+        </If>
+        <If Condition="Leatherworking.Level &gt;= 455 &amp;&amp; Leatherworking.Level &lt; 460" IgnoreCanRun="True">
+          <If Condition="Me.MapId == 1" IgnoreCanRun="True">
+            <CallSubRoutine SubRoutineName="Hyjal to SW" />
+          </If>
+          <If Condition="!HasRecipe (78416)" IgnoreCanRun="True">
+            <CallSubRoutine SubRoutineName="Train Leatherworking" />
+          </If>
+          <FlyToAction Dismount="True" Location="-8718.813, 424.2958, 98.05862" />
+          <BuyItemAction NpcEntry="5565" Location="-8722.868, 479.3223, 98.61375" ItemID="38426" BuyItemType="SpecificItem" Count="5" BuyAdditively="False" />
+          <CastSpellAction RepeatType="Specific" Repeat="5" Entry="78416" CastOnItem="False" ItemType="Chest" ItemId="0" />
+        </If>
+        <If Condition="Leatherworking.Level &gt;= 460 &amp;&amp; Leatherworking.Level &lt; 470" IgnoreCanRun="True">
+          <If Condition="Me.MapId == 1" IgnoreCanRun="True">
+            <CallSubRoutine SubRoutineName="Hyjal to SW" />
+          </If>
+          <If Condition="!HasRecipe (78380)" IgnoreCanRun="True">
+            <CallSubRoutine SubRoutineName="Train Leatherworking" />
+          </If>
+          <FlyToAction Dismount="True" Location="-8718.813, 424.2958, 98.05862" />
+          <BuyItemAction NpcEntry="5565" Location="-8722.868, 479.3223, 98.61375" ItemID="38426" BuyItemType="SpecificItem" Count="10" BuyAdditively="False" />
+          <CastSpellAction RepeatType="Specific" Repeat="10" Entry="78380" CastOnItem="False" ItemType="Chest" ItemId="0" />
+        </If>
+        <If Condition="Leatherworking.Level &gt;= 470 &amp;&amp; Leatherworking.Level &lt; 480" IgnoreCanRun="True">
+          <If Condition="Me.MapId == 1" IgnoreCanRun="True">
+            <CallSubRoutine SubRoutineName="Hyjal to SW" />
+          </If>
+          <If Condition="!HasRecipe (78396)" IgnoreCanRun="True">
+            <CallSubRoutine SubRoutineName="Train Leatherworking" />
+          </If>
+          <FlyToAction Dismount="True" Location="-8718.813, 424.2958, 98.05862" />
+          <BuyItemAction NpcEntry="5565" Location="-8722.868, 479.3223, 98.61375" ItemID="38426" BuyItemType="SpecificItem" Count="10" BuyAdditively="False" />
+          <CastSpellAction RepeatType="Specific" Repeat="10" Entry="78396" CastOnItem="False" ItemType="Chest" ItemId="0" />
+        </If>
+        <If Condition="Leatherworking.Level &gt;= 480 &amp;&amp; Leatherworking.Level &lt; 490" IgnoreCanRun="True">
+          <If Condition="Me.MapId == 1" IgnoreCanRun="True">
+            <CallSubRoutine SubRoutineName="Hyjal to SW" />
+          </If>
+          <If Condition="!HasRecipe (78428)" IgnoreCanRun="True">
+            <CallSubRoutine SubRoutineName="Train Leatherworking" />
+          </If>
+          <FlyToAction Dismount="True" Location="-8718.813, 424.2958, 98.05862" />
+          <BuyItemAction NpcEntry="5565" Location="-8722.868, 479.3223, 98.61375" ItemID="38426" BuyItemType="SpecificItem" Count="10" BuyAdditively="False" />
+          <CastSpellAction RepeatType="Specific" Repeat="10" Entry="78428" CastOnItem="False" ItemType="Chest" ItemId="0" />
+        </If>
+        <If Condition="Leatherworking.Level &gt;= 490 &amp;&amp; Leatherworking.Level &lt; 500" IgnoreCanRun="True">
+          <If Condition="Me.MapId == 1" IgnoreCanRun="True">
+            <CallSubRoutine SubRoutineName="Hyjal to SW" />
+          </If>
+          <If Condition="!HasRecipe (78424)" IgnoreCanRun="True">
+            <CallSubRoutine SubRoutineName="Train Leatherworking" />
+          </If>
+          <CastSpellAction RepeatType="Specific" Repeat="10" Entry="78424" CastOnItem="False" ItemType="Chest" ItemId="0" />
+        </If>
+      </If>
+    </If>
+    <If Condition="(bool)Settings[&quot;Train Blacksmithing&quot;]" IgnoreCanRun="True">
+      <If Condition="Blacksmithing.Level &lt; 525 &amp;&amp; Blacksmithing.Level != 0" IgnoreCanRun="True">
+        <While Condition="Me.FreeBagSlots &lt; 20" IgnoreCanRun="True">
+          <CallSubRoutine SubRoutineName="Sell" />
+        </While>
+        <If Condition="Me.FreeNormalBagSlots &gt; 2" IgnoreCanRun="True">
+          <If Condition="Me.IsAlliance" IgnoreCanRun="True">
+            <If Condition="Blacksmithing.Level &gt;= 1 &amp;&amp; Blacksmithing.Level &lt; 30" IgnoreCanRun="True">
+              <While Condition="InbagCount (2835) + InbagCount(2862) &gt;= 30" IgnoreCanRun="True">
+                <CastSpellAction RepeatType="Specific" Repeat="30" Entry="2660" CastOnItem="False" ItemType="Chest" ItemId="0" />
+              </While>
+              <If Condition="InbagCount(2835) + InbagCount(2862) &lt; 30" IgnoreCanRun="True">
+                <CallSubRoutine SubRoutineName="Mine Ores" />
+              </If>
+            </If>
+            <If Condition="Blacksmithing.Level &gt;= 30 &amp;&amp; Blacksmithing.Level &lt; 65" IgnoreCanRun="True">
+              <While Condition="InbagCount(2840) + InbagCount(2770) &gt;= 60" IgnoreCanRun="True">
+                <If Condition="!HasRecipe(2661)" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="Train" />
+                </If>
+                <While Condition="InbagCount(2770) &gt;= 1" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="Smelt Ores" />
+                </While>
+                <CastSpellAction RepeatType="Specific" Repeat="10" Entry="2661" CastOnItem="False" ItemType="Chest" ItemId="0" />
+              </While>
+              <If Condition="InbagCount(2840) + InbagCount(2770) &lt; 60" IgnoreCanRun="True">
+                <CallSubRoutine SubRoutineName="Mine Ores" />
+              </If>
+            </If>
+            <If Condition="Blacksmithing.Level &gt;= 65 &amp;&amp; Blacksmithing.Level &lt; 75" IgnoreCanRun="True">
+              <While Condition="InbagCount (2835) &gt; 99" IgnoreCanRun="True">
+                <If Condition="!HasRecipe(3320)" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="Train" />
+                </If>
+                <CastSpellAction RepeatType="Specific" Repeat="50" Entry="3320" CastOnItem="False" ItemType="Chest" ItemId="0" />
+              </While>
+            </If>
+            <If Condition="Blacksmithing.Level &gt;= 75 &amp;&amp; Blacksmithing.Level &lt; 90" IgnoreCanRun="True">
+              <If Condition="(bool)Settings[&quot;Train Mining plus Blacksmithing&quot;]" IgnoreCanRun="True">
+                <If Condition="InbagCount (2770) &lt; 60" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="Mine Ores" />
+                </If>
+              </If>
+              <If Condition="(bool)Settings[&quot;Train Mining plus Blacksmithing&quot;] == false" IgnoreCanRun="True">
+                <GetMailAction GetMailType="Specific" ItemID="2770" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                <WaitAction Condition="false" Timeout="20000" />
+                <While Condition="InbagCount (2770) &lt; 60" IgnoreCanRun="True">
+                  <BuyItemFromAhAction ItemListType="Item" ItemID="2770" MaxBuyout="100g0s0c" Amount="60" BuyAdditively="True" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+                  <GetMailAction GetMailType="Specific" ItemID="2700" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                </While>
+              </If>
+            </If>
+            <If Condition="Blacksmithing.Level &gt;= 90 &amp;&amp; Blacksmithing.Level &lt; 100" IgnoreCanRun="True">
+              <If Condition="(bool)Settings[&quot;Train Mining plus Blacksmithing&quot;]" IgnoreCanRun="True">
+                <If Condition="InbagCount (2770) &lt; 100" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="Mine Ores" />
+                </If>
+              </If>
+              <If Condition="(bool)Settings[&quot;Train Mining plus Blacksmithing&quot;] == false" IgnoreCanRun="True">
+                <GetMailAction GetMailType="Specific" ItemID="2770" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                <WaitAction Condition="false" Timeout="20000" />
+                <While Condition="InbagCount (2770) &lt; 100" IgnoreCanRun="True">
+                  <BuyItemFromAhAction ItemListType="Item" ItemID="2770" MaxBuyout="100g0s0c" Amount="100" BuyAdditively="True" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+                  <GetMailAction GetMailType="Specific" ItemID="2770" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                </While>
+              </If>
+            </If>
+            <If Condition="Blacksmithing.Level &gt;= 100 &amp;&amp; Blacksmithing.Level &lt; 110" IgnoreCanRun="True">
+              <If Condition="(bool)Settings[&quot;Train Mining plus Blacksmithing&quot;]" IgnoreCanRun="True">
+                <If Condition="InbagCount (2770) &lt; 100" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="Mine Ores" />
+                </If>
+              </If>
+              <If Condition="(bool)Settings[&quot;Train Mining plus Blacksmithing&quot;] == false" IgnoreCanRun="True">
+                <GetMailAction GetMailType="Specific" ItemID="2770" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                <WaitAction Condition="false" Timeout="20000" />
+                <While Condition="InbagCount (2770) &lt; 100" IgnoreCanRun="True">
+                  <BuyItemFromAhAction ItemListType="Item" ItemID="2770" MaxBuyout="100g0s0c" Amount="100" BuyAdditively="True" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+                  <GetMailAction GetMailType="Specific" ItemID="2770" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                </While>
+              </If>
+            </If>
+            <If Condition="Blacksmithing.Level &gt;= 110 &amp;&amp; Blacksmithing.Level &lt; 125" IgnoreCanRun="True">
+              <If Condition="(bool)Settings[&quot;Train Mining plus Blacksmithing&quot;]" IgnoreCanRun="True">
+                <If Condition="InbagCount (2770) &lt; 38 &amp;&amp; InbagCount (2771) &lt; 38" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="Mine Ores" />
+                </If>
+              </If>
+              <If Condition="(bool)Settings[&quot;Train Mining plus Blacksmithing&quot;] == false" IgnoreCanRun="True">
+                <GetMailAction GetMailType="Specific" ItemID="2770, 2771" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                <WaitAction Condition="false" Timeout="20000" />
+                <While Condition="InbagCount (2770) &lt; 38" IgnoreCanRun="True">
+                  <BuyItemFromAhAction ItemListType="Item" ItemID="2770" MaxBuyout="100g0s0c" Amount="40" BuyAdditively="True" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+                  <GetMailAction GetMailType="Specific" ItemID="2770" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                </While>
+                <While Condition="InbagCount (2771) &lt; 38" IgnoreCanRun="True">
+                  <BuyItemFromAhAction ItemListType="Item" ItemID="2771" MaxBuyout="100g0s0c" Amount="40" BuyAdditively="True" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+                  <GetMailAction GetMailType="Specific" ItemID="2771" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                </While>
+              </If>
+            </If>
+            <If Condition="Blacksmithing.Level &gt;= 125 &amp;&amp; Blacksmithing.Level &lt; 140" IgnoreCanRun="True">
+              <If Condition="(bool)Settings[&quot;Train Mining plus Blacksmithing&quot;]" IgnoreCanRun="True">
+                <If Condition="InbagCount (2838) &lt; 105" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="Mine Ores" />
+                </If>
+              </If>
+              <If Condition="(bool)Settings[&quot;Train Mining plus Blacksmithing&quot;] == false" IgnoreCanRun="True">
+                <GetMailAction GetMailType="Specific" ItemID="2838" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                <WaitAction Condition="false" Timeout="20000" />
+                <While Condition="InbagCount (2838) &lt; 105" IgnoreCanRun="True">
+                  <BuyItemFromAhAction ItemListType="Item" ItemID="2838" MaxBuyout="100g0s0c" Amount="105" BuyAdditively="True" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+                  <GetMailAction GetMailType="Specific" ItemID="2838" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                </While>
+              </If>
+            </If>
+            <If Condition="Blacksmithing.Level &gt;= 140 &amp;&amp; Blacksmithing.Level &lt; 145" IgnoreCanRun="True">
+              <If Condition="(bool)Settings[&quot;Train Mining plus Blacksmithing&quot;]" IgnoreCanRun="True">
+                <If Condition="InbagCount (2770) &lt; 13 &amp;&amp; InbagCount (2771) &lt; 13" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="Mine Ores" />
+                </If>
+              </If>
+              <If Condition="(bool)Settings[&quot;Train Mining plus Blacksmithing&quot;] == false" IgnoreCanRun="True">
+                <GetMailAction GetMailType="Specific" ItemID="2770, 2771" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                <WaitAction Condition="false" Timeout="20000" />
+                <While Condition="InbagCount (2770) &lt; 13" IgnoreCanRun="True">
+                  <BuyItemFromAhAction ItemListType="Item" ItemID="2770" MaxBuyout="100g0s0c" Amount="13" BuyAdditively="True" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+                  <GetMailAction GetMailType="Specific" ItemID="2770" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                </While>
+                <While Condition="InbagCount (2771) &lt; 13" IgnoreCanRun="True">
+                  <BuyItemFromAhAction ItemListType="Item" ItemID="2771" MaxBuyout="100g0s0c" Amount="13" BuyAdditively="True" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+                  <GetMailAction GetMailType="Specific" ItemID="2771" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                </While>
+              </If>
+            </If>
+            <If Condition="Blacksmithing.Level &gt;= 145 &amp;&amp; Blacksmithing.Level &lt; 150" IgnoreCanRun="True">
+              <If Condition="(bool)Settings[&quot;Train Mining plus Blacksmithing&quot;]" IgnoreCanRun="True">
+                <If Condition="InbagCount (2770) &lt; 13 &amp;&amp; InbagCount (2771) &lt; 13" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="Mine Ores" />
+                </If>
+              </If>
+              <If Condition="(bool)Settings[&quot;Train Mining plus Blacksmithing&quot;] == false" IgnoreCanRun="True">
+                <GetMailAction GetMailType="Specific" ItemID="2770, 2771" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                <WaitAction Condition="false" Timeout="20000" />
+                <While Condition="InbagCount (2770) &lt; 13" IgnoreCanRun="True">
+                  <BuyItemFromAhAction ItemListType="Item" ItemID="2770" MaxBuyout="100g0s0c" Amount="13" BuyAdditively="True" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+                  <GetMailAction GetMailType="Specific" ItemID="2770" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                </While>
+                <While Condition="InbagCount (2771) &lt; 13" IgnoreCanRun="True">
+                  <BuyItemFromAhAction ItemListType="Item" ItemID="2771" MaxBuyout="100g0s0c" Amount="13" BuyAdditively="True" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+                  <GetMailAction GetMailType="Specific" ItemID="2771" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                </While>
+              </If>
+            </If>
+            <If Condition="Blacksmithing.Level &gt;= 150 &amp;&amp; Blacksmithing.Level &lt; 155" IgnoreCanRun="True">
+              <GetMailAction GetMailType="Specific" ItemID="3577, 2776" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+              <WaitAction Condition="false" Timeout="20000" />
+              <If Condition="InbagCount (3577) &lt; 5 &amp;&amp; InbagCount (2776) &lt; 5" IgnoreCanRun="True">
+                <BuyItemFromAhAction ItemListType="Item" ItemID="3577" MaxBuyout="100g0s0c" Amount="5" BuyAdditively="True" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+                <GetMailAction GetMailType="Specific" ItemID="3577" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                <WaitAction Condition="false" Timeout="20000" />
+              </If>
+              <If Condition="InbagCount (3577) &lt; 5 &amp;&amp; InbagCount (2776) &lt; 5" IgnoreCanRun="True">
+                <BuyItemFromAhAction ItemListType="Item" ItemID="2776" MaxBuyout="100g0s0c" Amount="5" BuyAdditively="True" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+                <GetMailAction GetMailType="Specific" ItemID="2776" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                <WaitAction Condition="false" Timeout="20000" />
+              </If>
+            </If>
+            <If Condition="Blacksmithing.Level &gt;= 155 &amp;&amp; Blacksmithing.Level &lt; 165" IgnoreCanRun="True">
+              <If Condition="(bool)Settings[&quot;Train Mining plus Blacksmithing&quot;]" IgnoreCanRun="True">
+                <If Condition="InbagCount (2772) &lt; 80" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="Mine Ores" />
+                </If>
+              </If>
+              <If Condition="(bool)Settings[&quot;Train Mining plus Blacksmithing&quot;] == false" IgnoreCanRun="True">
+                <GetMailAction GetMailType="Specific" ItemID="2772" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                <WaitAction Condition="false" Timeout="20000" />
+                <While Condition="InbagCount (2772) &lt; 80" IgnoreCanRun="True">
+                  <BuyItemFromAhAction ItemListType="Item" ItemID="2772" MaxBuyout="100g0s0c" Amount="80" BuyAdditively="True" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+                  <GetMailAction GetMailType="Specific" ItemID="2772" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                </While>
+              </If>
+            </If>
+            <If Condition="Blacksmithing.Level &gt;= 165 &amp;&amp; Blacksmithing.Level &lt; 190" IgnoreCanRun="True">
+              <If Condition="(bool)Settings[&quot;Train Mining plus Blacksmithing&quot;]" IgnoreCanRun="True">
+                <If Condition="InbagCount (2772) &lt; 150" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="Mine Ores" />
+                </If>
+              </If>
+              <If Condition="(bool)Settings[&quot;Train Mining plus Blacksmithing&quot;] == false" IgnoreCanRun="True">
+                <GetMailAction GetMailType="Specific" ItemID="2772" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                <WaitAction Condition="false" Timeout="20000" />
+                <While Condition="InbagCount (2772) &lt; 150" IgnoreCanRun="True">
+                  <BuyItemFromAhAction ItemListType="Item" ItemID="2772" MaxBuyout="100g0s0c" Amount="150" BuyAdditively="True" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+                  <GetMailAction GetMailType="Specific" ItemID="2772" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                </While>
+              </If>
+            </If>
+            <If Condition="Blacksmithing.Level &gt;= 190 &amp;&amp; Blacksmithing.Level &lt; 200" IgnoreCanRun="True">
+              <If Condition="(bool)Settings[&quot;Train Mining plus Blacksmithing&quot;]" IgnoreCanRun="True">
+                <If Condition="InbagCount (2772) &lt; 50" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="Mine Ores" />
+                </If>
+              </If>
+              <If Condition="(bool)Settings[&quot;Train Mining plus Blacksmithing&quot;] == false" IgnoreCanRun="True">
+                <GetMailAction GetMailType="Specific" ItemID="2772" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                <WaitAction Condition="false" Timeout="20000" />
+                <While Condition="InbagCount (2772) &lt; 50" IgnoreCanRun="True">
+                  <BuyItemFromAhAction ItemListType="Item" ItemID="2772" MaxBuyout="100g0s0c" Amount="50" BuyAdditively="True" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+                  <GetMailAction GetMailType="Specific" ItemID="2772" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                </While>
+              </If>
+            </If>
+            <If Condition="Blacksmithing.Level &gt;= 200 &amp;&amp; Blacksmithing.Level &lt; 210" IgnoreCanRun="True">
+              <If Condition="(bool)Settings[&quot;Train Mining plus Blacksmithing&quot;]" IgnoreCanRun="True">
+                <If Condition="InbagCount (7912) &lt; 20" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="Mine Ores" />
+                </If>
+              </If>
+              <If Condition="(bool)Settings[&quot;Train Mining plus Blacksmithing&quot;] == false" IgnoreCanRun="True">
+                <GetMailAction GetMailType="Specific" ItemID="7912" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                <WaitAction Condition="false" Timeout="20000" />
+                <While Condition="InbagCount (7912) &lt; 20" IgnoreCanRun="True">
+                  <BuyItemFromAhAction ItemListType="Item" ItemID="7912" MaxBuyout="100g0s0c" Amount="20" BuyAdditively="True" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+                  <GetMailAction GetMailType="Specific" ItemID="7912" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                </While>
+              </If>
+            </If>
+            <If Condition="Blacksmithing.Level &gt;= 210 &amp;&amp; Blacksmithing.Level &lt; 225" IgnoreCanRun="True">
+              <If Condition="(bool)Settings[&quot;Train Mining plus Blacksmithing&quot;]" IgnoreCanRun="True">
+                <While Condition="InbagCount (4338) &lt; 60" IgnoreCanRun="True">
+                  <GetMailAction GetMailType="Specific" ItemID="4338" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                  <WaitAction Condition="false" Timeout="20000" />
+                  <BuyItemFromAhAction ItemListType="Item" ItemID="4338" MaxBuyout="100g0s0c" Amount="60" BuyAdditively="True" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+                  <GetMailAction GetMailType="Specific" ItemID="4338" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                </While>
+                <If Condition="InbagCount (3858) &lt; 90" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="Mine Ores" />
+                </If>
+              </If>
+              <If Condition="(bool)Settings[&quot;Train Mining plus Blacksmithing&quot;] == false" IgnoreCanRun="True">
+                <GetMailAction GetMailType="Specific" ItemID="3858" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                <WaitAction Condition="false" Timeout="20000" />
+                <While Condition="InbagCount (3858) &lt; 90" IgnoreCanRun="True">
+                  <BuyItemFromAhAction ItemListType="Item" ItemID="3858" MaxBuyout="100g0s0c" Amount="90" BuyAdditively="True" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+                  <GetMailAction GetMailType="Specific" ItemID="3858" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                </While>
+                <While Condition="InbagCount (4338) &lt; 60" IgnoreCanRun="True">
+                  <GetMailAction GetMailType="Specific" ItemID="4338" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                  <WaitAction Condition="false" Timeout="20000" />
+                  <BuyItemFromAhAction ItemListType="Item" ItemID="4338" MaxBuyout="100g0s0c" Amount="60" BuyAdditively="True" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+                  <GetMailAction GetMailType="Specific" ItemID="4338" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                </While>
+              </If>
+            </If>
+            <If Condition="Blacksmithing.Level &gt;= 225 &amp;&amp; Blacksmithing.Level &lt; 235" IgnoreCanRun="True">
+              <If Condition="(bool)Settings[&quot;Train Mining plus Blacksmithing&quot;]" IgnoreCanRun="True">
+                <If Condition="InbagCount (3858) &lt; 120" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="Mine Ores" />
+                </If>
+              </If>
+              <If Condition="(bool)Settings[&quot;Train Mining plus Blacksmithing&quot;] == false" IgnoreCanRun="True">
+                <GetMailAction GetMailType="Specific" ItemID="3858" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                <WaitAction Condition="false" Timeout="20000" />
+                <While Condition="InbagCount (3858) &lt; 120" IgnoreCanRun="True">
+                  <BuyItemFromAhAction ItemListType="Item" ItemID="3858" MaxBuyout="100g0s0c" Amount="120" BuyAdditively="True" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+                  <GetMailAction GetMailType="Specific" ItemID="3858" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                </While>
+              </If>
+            </If>
+            <If Condition="Blacksmithing.Level &gt;= 235 &amp;&amp; Blacksmithing.Level &lt; 250" IgnoreCanRun="True">
+              <If Condition="(bool)Settings[&quot;Train Mining plus Blacksmithing&quot;]" IgnoreCanRun="True">
+                <While Condition="InbagCount (4338) &lt; 90" IgnoreCanRun="True">
+                  <GetMailAction GetMailType="Specific" ItemID="4338" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                  <WaitAction Condition="false" Timeout="20000" />
+                  <BuyItemFromAhAction ItemListType="Item" ItemID="4338" MaxBuyout="100g0s0c" Amount="90" BuyAdditively="True" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+                  <GetMailAction GetMailType="Specific" ItemID="4338" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                </While>
+                <If Condition="InbagCount (3858) &lt; 150" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="Mine Ores" />
+                </If>
+              </If>
+              <If Condition="(bool)Settings[&quot;Train Mining plus Blacksmithing&quot;] == false" IgnoreCanRun="True">
+                <GetMailAction GetMailType="Specific" ItemID="3858, 4338" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                <WaitAction Condition="false" Timeout="20000" />
+                <While Condition="InbagCount (3858) &lt; 150" IgnoreCanRun="True">
+                  <BuyItemFromAhAction ItemListType="Item" ItemID="3858" MaxBuyout="100g0s0c" Amount="150" BuyAdditively="True" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+                  <GetMailAction GetMailType="Specific" ItemID="3858" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                </While>
+                <While Condition="InbagCount (4338) &lt; 90" IgnoreCanRun="True">
+                  <BuyItemFromAhAction ItemListType="Item" ItemID="4338" MaxBuyout="100g0s0c" Amount="90" BuyAdditively="True" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+                  <GetMailAction GetMailType="Specific" ItemID="4338" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                </While>
+              </If>
+            </If>
+            <If Condition="Blacksmithing.Level &gt;= 250 &amp;&amp; Blacksmithing.Level &lt; 260" IgnoreCanRun="True">
+              <If Condition="(bool)Settings[&quot;Train Mining plus Blacksmithing&quot;]" IgnoreCanRun="True">
+                <If Condition="InbagCount (12365) &lt; 20" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="Mine Ores" />
+                </If>
+              </If>
+              <If Condition="(bool)Settings[&quot;Train Mining plus Blacksmithing&quot;] == false" IgnoreCanRun="True">
+                <GetMailAction GetMailType="Specific" ItemID="12365" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                <WaitAction Condition="false" Timeout="20000" />
+                <While Condition="InbagCount (12365) &lt; 20" IgnoreCanRun="True">
+                  <BuyItemFromAhAction ItemListType="Item" ItemID="12365" MaxBuyout="100g0s0c" Amount="20" BuyAdditively="True" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+                  <GetMailAction GetMailType="Specific" ItemID="12365" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                </While>
+              </If>
+            </If>
+            <If Condition="Blacksmithing.Level &gt;= 260 &amp;&amp; Blacksmithing.Level &lt; 275" IgnoreCanRun="True">
+              <If Condition="(bool)Settings[&quot;Train Mining plus Blacksmithing&quot;]" IgnoreCanRun="True">
+                <If Condition="InbagCount (10620) &lt; 120" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="Mine Ores" />
+                </If>
+              </If>
+              <If Condition="(bool)Settings[&quot;Train Mining plus Blacksmithing&quot;] == false" IgnoreCanRun="True">
+                <GetMailAction GetMailType="Specific" ItemID="10620" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                <WaitAction Condition="false" Timeout="20000" />
+                <While Condition="InbagCount (10620) &lt; 120" IgnoreCanRun="True">
+                  <BuyItemFromAhAction ItemListType="Item" ItemID="10620" MaxBuyout="100g0s0c" Amount="120" BuyAdditively="True" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+                  <GetMailAction GetMailType="Specific" ItemID="10620" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                </While>
+              </If>
+            </If>
+            <If Condition="Blacksmithing.Level &gt;= 275 &amp;&amp; Blacksmithing.Level &lt; 290" IgnoreCanRun="True">
+              <If Condition="(bool)Settings[&quot;Train Mining plus Blacksmithing&quot;]" IgnoreCanRun="True">
+                <If Condition="InbagCount (10620) &lt; 180" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="Mine Ores" />
+                </If>
+              </If>
+              <If Condition="(bool)Settings[&quot;Train Mining plus Blacksmithing&quot;] == false" IgnoreCanRun="True">
+                <GetMailAction GetMailType="Specific" ItemID="10620" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                <WaitAction Condition="false" Timeout="20000" />
+                <While Condition="InbagCount (10620) &lt; 180" IgnoreCanRun="True">
+                  <BuyItemFromAhAction ItemListType="Item" ItemID="10620" MaxBuyout="100g0s0c" Amount="180" BuyAdditively="True" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+                  <GetMailAction GetMailType="Specific" ItemID="10620" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                </While>
+              </If>
+            </If>
+            <If Condition="Blacksmithing.Level &gt;= 290 &amp;&amp; Blacksmithing.Level &lt; 300" IgnoreCanRun="True">
+              <If Condition="(bool)Settings[&quot;Train Mining plus Blacksmithing&quot;]" IgnoreCanRun="True">
+                <While Condition="InbagCount (7910) &lt; 10" IgnoreCanRun="True">
+                  <GetMailAction GetMailType="Specific" ItemID="7910" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                  <WaitAction Condition="false" Timeout="20000" />
+                  <BuyItemFromAhAction ItemListType="Item" ItemID="7910" MaxBuyout="100g0s0c" Amount="10" BuyAdditively="True" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+                  <GetMailAction GetMailType="Specific" ItemID="7910" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                </While>
+                <If Condition="InbagCount (10620) &lt; 120" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="Mine Ores" />
+                </If>
+              </If>
+              <If Condition="(bool)Settings[&quot;Train Mining plus Blacksmithing&quot;] == false" IgnoreCanRun="True">
+                <GetMailAction GetMailType="Specific" ItemID="10620, 7910" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                <WaitAction Condition="false" Timeout="20000" />
+                <While Condition="InbagCount (10620) &lt; 120" IgnoreCanRun="True">
+                  <BuyItemFromAhAction ItemListType="Item" ItemID="10620" MaxBuyout="100g0s0c" Amount="120" BuyAdditively="True" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+                  <GetMailAction GetMailType="Specific" ItemID="10620" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                </While>
+                <While Condition="InbagCount (7910) &lt; 10" IgnoreCanRun="True">
+                  <BuyItemFromAhAction ItemListType="Item" ItemID="7910" MaxBuyout="100g0s0c" Amount="10" BuyAdditively="True" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+                  <GetMailAction GetMailType="Specific" ItemID="7910" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                </While>
+              </If>
+            </If>
+          </If>
+        </If>
+      </If>
+    </If>
+  </While>
+  <If Condition="Me.Level &lt;80" IgnoreCanRun="True">
+    <CustomAction Code="MessageBox.Show(&quot;You need to be lvl 80 and own a flying mount with Flight Master's License!&quot;);TreeRoot.Stop();" />
+  </If>
+  <If Condition="Me.Level &gt;=80" IgnoreCanRun="True">
+    <While Condition="HasNewMail || MailCount &gt; 0" IgnoreCanRun="True">
+      <GetMailAction GetMailType="AllItems" ItemID="" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+      <WaitAction Condition="false" Timeout="6000" />
+    </While>
+    <If Condition="Me.DurabilityPercent &lt; 0.5" IgnoreCanRun="True">
+      <If Condition="Me.MapId == 571" IgnoreCanRun="True">
+        <FlyToAction Dismount="True" Location="2355.95, 5239.358, 7.833567" />
+        <InteractionAction InteractType="NPC" Entry="27011" InteractDelay="2000" GameObjectType="BarberChair" SpellFocus="Anvil" />
+        <WaitAction Condition="false" Timeout="2000" />
+        <CustomAction Code="Lua.DoString(&quot;RepairAllItems()&quot;);" />
+      </If>
+      <If Condition="Me.ZoneId == 4922" IgnoreCanRun="True">
+        <FlyToAction Dismount="True" Location="-2783.268, -5345.718, 173.8715" />
+        <MoveToAction Location="-2802.171, -5345.216, 177.0488" MoveType="Location" Pathing="Navigator" Entry="0" />
+        <InteractionAction InteractType="NPC" Entry="49575" InteractDelay="2000" GameObjectType="Mailbox" SpellFocus="Anvil" />
+        <WaitAction Condition="false" Timeout="2000" />
+        <CustomAction Code="Lua.DoString(&quot;RepairAllItems()&quot;);" />
+      </If>
+      <If Condition="Me.ZoneId == 616" IgnoreCanRun="True">
+        <FlyToAction Dismount="True" Location="4432.816, -2077.359, 1205.964" />
+        <InteractionAction InteractType="NPC" Entry="53075" InteractDelay="2000" GameObjectType="Mailbox" SpellFocus="Anvil" />
+        <WaitAction Condition="false" Timeout="2000" />
+        <CustomAction Code="Lua.DoString(&quot;RepairAllItems()&quot;);" />
+      </If>
+      <!--Repair Done, LK + CATA supported. If you die somewhere else, please, you are lvl 80 ...-->
+    </If>
+    <While Condition="Me.FreeNormalBagSlots &lt;= 2" IgnoreCanRun="True">
+      <CallSubRoutine SubRoutineName="Sell" />
+    </While>
+    <If Condition="(bool)Settings[&quot;Train Leatherworking&quot;]" IgnoreCanRun="True">
+      <If Condition="Leatherworking.Level &lt; 1" IgnoreCanRun="True">
+        <CallSubRoutine SubRoutineName="Train" />
+      </If>
+      <While Condition="Leatherworking.Level == Leatherworking.MaxLevel &amp;&amp; HasRecipe (2108) &amp;&amp; Leatherworking.Level != 525" IgnoreCanRun="True">
+        <CallSubRoutine SubRoutineName="Train" />
+      </While>
+      <If Condition="InbagCount (7005) == 0" IgnoreCanRun="True">
+        <If Condition="Me.IsAlliance" IgnoreCanRun="True">
+          <FlyToAction Dismount="True" Location="-8712.611, 455.0812, 97.08894" />
+          <MoveToAction Location="-8725.11, 476.7533, 98.61285" MoveType="Location" Pathing="ClickToMove" Entry="0" />
+          <BuyItemAction NpcEntry="5565" Location="0, 0, 0" ItemID="7005" BuyItemType="SpecificItem" Count="1" BuyAdditively="True" />
+        </If>
+      </If>
+      <If Condition="Leatherworking.Level &lt; 525 &amp;&amp; Leatherworking.Level != 0" IgnoreCanRun="True">
+        <While Condition="Me.FreeBagSlots &lt; 20" IgnoreCanRun="True">
+          <CallSubRoutine SubRoutineName="Sell" />
+        </While>
+        <If Condition="Me.FreeNormalBagSlots &gt; 2" IgnoreCanRun="True">
+          <If Condition="Me.IsAlliance" IgnoreCanRun="True">
+            <If Condition="Leatherworking.Level &gt;=1 &amp;&amp; Leatherworking.Level &lt; 525" IgnoreCanRun="True">
+              <If Condition="Leatherworking.Level &gt;= 1 &amp;&amp; Leatherworking.Level &lt; 30" IgnoreCanRun="True">
+                <If Condition="(bool)Settings[&quot;Train Skinning plus Leatherworking&quot;]" IgnoreCanRun="True">
+                  <If Condition="InbagCount (2318) &lt; 30" IgnoreCanRun="True">
+                    <CallSubRoutine SubRoutineName="Farm Leather" />
+                  </If>
+                </If>
+                <If Condition="(bool)Settings[&quot;Train Skinning plus Leatherworking&quot;] == false" IgnoreCanRun="True">
+                  <GetMailAction GetMailType="Specific" ItemID="2318" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                  <WaitAction Condition="false" Timeout="20000" />
+                  <While Condition="InbagCount (2318) &lt; 30" IgnoreCanRun="True">
+                    <BuyItemFromAhAction ItemListType="Item" ItemID="2318" MaxBuyout="100g0s0c" Amount="30" BuyAdditively="True" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+                    <GetMailAction GetMailType="AllItems" ItemID="" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                  </While>
+                </If>
+              </If>
+              <If Condition="Leatherworking.Level &gt;= 30 &amp;&amp; Leatherworking.Level &lt; 45" IgnoreCanRun="True">
+                <If Condition="(bool)Settings[&quot;Train Skinning plus Leatherworking&quot;]" IgnoreCanRun="True">
+                  <If Condition="InbagCount (2318) &lt; 30" IgnoreCanRun="True">
+                    <CallSubRoutine SubRoutineName="Farm Leather" />
+                  </If>
+                </If>
+                <If Condition="(bool)Settings[&quot;Train Skinning plus Leatherworking&quot;] == false" IgnoreCanRun="True">
+                  <GetMailAction GetMailType="Specific" ItemID="2318" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                  <WaitAction Condition="false" Timeout="20000" />
+                  <While Condition="InbagCount (2318) &lt; 30" IgnoreCanRun="True">
+                    <BuyItemFromAhAction ItemListType="Item" ItemID="2318" MaxBuyout="100g0s0c" Amount="30" BuyAdditively="True" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+                    <GetMailAction GetMailType="AllItems" ItemID="" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                  </While>
+                </If>
+              </If>
+              <If Condition="Leatherworking.Level &gt;= 45 &amp;&amp; Leatherworking.Level &lt; 55" IgnoreCanRun="True">
+                <If Condition="(bool)Settings[&quot;Train Skinning plus Leatherworking&quot;]" IgnoreCanRun="True">
+                  <If Condition="InbagCount (2318) &lt; 60" IgnoreCanRun="True">
+                    <CallSubRoutine SubRoutineName="Farm Leather" />
+                  </If>
+                </If>
+                <If Condition="(bool)Settings[&quot;Train Skinning plus Leatherworking&quot;] == false" IgnoreCanRun="True">
+                  <GetMailAction GetMailType="Specific" ItemID="2318" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                  <WaitAction Condition="false" Timeout="20000" />
+                  <While Condition="InbagCount (2318) &lt; 60" IgnoreCanRun="True">
+                    <BuyItemFromAhAction ItemListType="Item" ItemID="2318" MaxBuyout="100g0s0c" Amount="60" BuyAdditively="True" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+                    <GetMailAction GetMailType="AllItems" ItemID="" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                  </While>
+                </If>
+              </If>
+              <If Condition="Leatherworking.Level &gt;= 55 &amp;&amp; Leatherworking.Level &lt; 85" IgnoreCanRun="True">
+                <If Condition="(bool)Settings[&quot;Train Skinning plus Leatherworking&quot;]" IgnoreCanRun="True">
+                  <If Condition="InbagCount (2318) &lt; 90" IgnoreCanRun="True">
+                    <CallSubRoutine SubRoutineName="Farm Leather" />
+                  </If>
+                </If>
+                <If Condition="(bool)Settings[&quot;Train Skinning plus Leatherworking&quot;] == false" IgnoreCanRun="True">
+                  <GetMailAction GetMailType="Specific" ItemID="2318" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                  <WaitAction Condition="false" Timeout="20000" />
+                  <While Condition="InbagCount (2318) &lt; 90" IgnoreCanRun="True">
+                    <BuyItemFromAhAction ItemListType="Item" ItemID="2318" MaxBuyout="100g0s0c" Amount="90" BuyAdditively="True" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+                    <GetMailAction GetMailType="AllItems" ItemID="" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                  </While>
+                </If>
+              </If>
+              <If Condition="Leatherworking.Level &gt;= 85 &amp;&amp; Leatherworking.Level &lt; 100" IgnoreCanRun="True">
+                <If Condition="(bool)Settings[&quot;Train Skinning plus Leatherworking&quot;]" IgnoreCanRun="True">
+                  <If Condition="InbagCount (2318) &lt; 90" IgnoreCanRun="True">
+                    <CallSubRoutine SubRoutineName="Farm Leather" />
+                  </If>
+                </If>
+                <If Condition="(bool)Settings[&quot;Train Skinning plus Leatherworking&quot;] == false" IgnoreCanRun="True">
+                  <GetMailAction GetMailType="Specific" ItemID="2318" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                  <WaitAction Condition="false" Timeout="20000" />
+                  <While Condition="InbagCount (2318) &lt; 90" IgnoreCanRun="True">
+                    <BuyItemFromAhAction ItemListType="Item" ItemID="2318" MaxBuyout="100g0s0c" Amount="90" BuyAdditively="True" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+                    <GetMailAction GetMailType="AllItems" ItemID="" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                  </While>
+                </If>
+              </If>
+              <If Condition="Leatherworking.Level &gt;= 100 &amp;&amp; Leatherworking.Level &lt; 115" IgnoreCanRun="True">
+                <If Condition="(bool)Settings[&quot;Train Skinning plus Leatherworking&quot;]" IgnoreCanRun="True">
+                  <If Condition="InbagCount (4232) &lt; 15" IgnoreCanRun="True">
+                    <CallSubRoutine SubRoutineName="Farm Leather" />
+                  </If>
+                </If>
+                <If Condition="(bool)Settings[&quot;Train Skinning plus Leatherworking&quot;] == false" IgnoreCanRun="True">
+                  <GetMailAction GetMailType="Specific" ItemID="4232" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                  <WaitAction Condition="false" Timeout="20000" />
+                  <While Condition="InbagCount (4232) &lt; 15" IgnoreCanRun="True">
+                    <BuyItemFromAhAction ItemListType="Item" ItemID="4232" MaxBuyout="100g0s0c" Amount="15" BuyAdditively="True" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+                    <GetMailAction GetMailType="AllItems" ItemID="" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                  </While>
+                </If>
+              </If>
+              <If Condition="Leatherworking.Level &gt;= 115 &amp;&amp; Leatherworking.Level &lt; 125" IgnoreCanRun="True">
+                <If Condition="(bool)Settings[&quot;Train Skinning plus Leatherworking&quot;]" IgnoreCanRun="True">
+                  <If Condition="InbagCount (2319) &lt; 40" IgnoreCanRun="True">
+                    <CallSubRoutine SubRoutineName="Farm Leather" />
+                  </If>
+                </If>
+                <If Condition="(bool)Settings[&quot;Train Skinning plus Leatherworking&quot;] == false" IgnoreCanRun="True">
+                  <GetMailAction GetMailType="Specific" ItemID="2319" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                  <WaitAction Condition="false" Timeout="20000" />
+                  <While Condition="InbagCount (2319) &lt; 40" IgnoreCanRun="True">
+                    <BuyItemFromAhAction ItemListType="Item" ItemID="2319" MaxBuyout="100g0s0c" Amount="40" BuyAdditively="True" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+                    <GetMailAction GetMailType="AllItems" ItemID="" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                  </While>
+                </If>
+              </If>
+              <If Condition="Leatherworking.Level &gt;= 125 &amp;&amp; Leatherworking.Level &lt; 130" IgnoreCanRun="True">
+                <If Condition="(bool)Settings[&quot;Train Skinning plus Leatherworking&quot;]" IgnoreCanRun="True">
+                  <If Condition="InbagCount (2319) &lt; 40" IgnoreCanRun="True">
+                    <CallSubRoutine SubRoutineName="Farm Leather" />
+                  </If>
+                </If>
+                <If Condition="(bool)Settings[&quot;Train Skinning plus Leatherworking&quot;] == false" IgnoreCanRun="True">
+                  <GetMailAction GetMailType="Specific" ItemID="2319" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                  <WaitAction Condition="false" Timeout="20000" />
+                  <While Condition="InbagCount (2319) &lt; 40" IgnoreCanRun="True">
+                    <BuyItemFromAhAction ItemListType="Item" ItemID="2319" MaxBuyout="100g0s0c" Amount="40" BuyAdditively="True" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+                    <GetMailAction GetMailType="AllItems" ItemID="" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                  </While>
+                </If>
+              </If>
+              <If Condition="Leatherworking.Level &gt;= 130 &amp;&amp; Leatherworking.Level &lt; 145" IgnoreCanRun="True">
+                <If Condition="(bool)Settings[&quot;Train Skinning plus Leatherworking&quot;]" IgnoreCanRun="True">
+                  <If Condition="InbagCount (4233) &lt; 15" IgnoreCanRun="True">
+                    <GetMailAction GetMailType="Specific" ItemID="4233" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                    <WaitAction Condition="false" Timeout="20000" />
+                    <While Condition="InbagCount (4233) &lt; 15" IgnoreCanRun="True">
+                      <BuyItemFromAhAction ItemListType="Item" ItemID="4233" MaxBuyout="100g0s0c" Amount="15" BuyAdditively="True" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+                      <GetMailAction GetMailType="AllItems" ItemID="" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                    </While>
+                  </If>
+                </If>
+                <If Condition="(bool)Settings[&quot;Train Skinning plus Leatherworking&quot;] == false" IgnoreCanRun="True">
+                  <GetMailAction GetMailType="Specific" ItemID="4233" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                  <WaitAction Condition="false" Timeout="20000" />
+                  <While Condition="InbagCount (4233) &lt; 15" IgnoreCanRun="True">
+                    <BuyItemFromAhAction ItemListType="Item" ItemID="4233" MaxBuyout="100g0s0c" Amount="15" BuyAdditively="True" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+                    <GetMailAction GetMailType="AllItems" ItemID="" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                  </While>
+                </If>
+              </If>
+              <If Condition="Leatherworking.Level &gt;= 145 &amp;&amp; Leatherworking.Level &lt; 150" IgnoreCanRun="True">
+                <If Condition="(bool)Settings[&quot;Train Skinning plus Leatherworking&quot;]" IgnoreCanRun="True">
+                  <If Condition="InbagCount (2319) &lt; 70" IgnoreCanRun="True">
+                    <CallSubRoutine SubRoutineName="Farm Leather" />
+                  </If>
+                </If>
+                <If Condition="(bool)Settings[&quot;Train Skinning plus Leatherworking&quot;] == false" IgnoreCanRun="True">
+                  <GetMailAction GetMailType="Specific" ItemID="2319" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                  <WaitAction Condition="false" Timeout="20000" />
+                  <While Condition="InbagCount (2319) &lt; 70" IgnoreCanRun="True">
+                    <BuyItemFromAhAction ItemListType="Item" ItemID="2319" MaxBuyout="100g0s0c" Amount="70" BuyAdditively="True" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+                    <GetMailAction GetMailType="AllItems" ItemID="" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                  </While>
+                </If>
+              </If>
+              <If Condition="Leatherworking.Level &gt;= 150 &amp;&amp; Leatherworking.Level &lt; 160" IgnoreCanRun="True">
+                <If Condition="(bool)Settings[&quot;Train Skinning plus Leatherworking&quot;]" IgnoreCanRun="True">
+                  <If Condition="InbagCount (2319) &lt; 140" IgnoreCanRun="True">
+                    <CallSubRoutine SubRoutineName="Farm Leather" />
+                  </If>
+                </If>
+                <If Condition="(bool)Settings[&quot;Train Skinning plus Leatherworking&quot;] == false" IgnoreCanRun="True">
+                  <GetMailAction GetMailType="Specific" ItemID="2319" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                  <WaitAction Condition="false" Timeout="20000" />
+                  <While Condition="InbagCount (2319) &lt; 140" IgnoreCanRun="True">
+                    <BuyItemFromAhAction ItemListType="Item" ItemID="2319" MaxBuyout="100g0s0c" Amount="140" BuyAdditively="True" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+                    <GetMailAction GetMailType="AllItems" ItemID="" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                  </While>
+                </If>
+              </If>
+              <If Condition="Leatherworking.Level &gt;= 160 &amp;&amp; Leatherworking.Level &lt; 180" IgnoreCanRun="True">
+                <If Condition="(bool)Settings[&quot;Train Skinning plus Leatherworking&quot;]" IgnoreCanRun="True">
+                  <If Condition="InbagCount (4234) &lt; 100" IgnoreCanRun="True">
+                    <CallSubRoutine SubRoutineName="Farm Leather" />
+                  </If>
+                </If>
+                <If Condition="(bool)Settings[&quot;Train Skinning plus Leatherworking&quot;] == false" IgnoreCanRun="True">
+                  <GetMailAction GetMailType="Specific" ItemID="4234" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                  <WaitAction Condition="false" Timeout="20000" />
+                  <While Condition="InbagCount (4234) &lt; 100" IgnoreCanRun="True">
+                    <BuyItemFromAhAction ItemListType="Item" ItemID="4234" MaxBuyout="100g0s0c" Amount="100" BuyAdditively="True" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+                    <GetMailAction GetMailType="AllItems" ItemID="" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                  </While>
+                </If>
+              </If>
+              <If Condition="Leatherworking.Level &gt;= 180 &amp;&amp; Leatherworking.Level &lt; 190" IgnoreCanRun="True">
+                <If Condition="(bool)Settings[&quot;Train Skinning plus Leatherworking&quot;]" IgnoreCanRun="True">
+                  <If Condition="InbagCount (4234) &lt; 80 || InbagCount (4235) &lt; 10" IgnoreCanRun="True">
+                    <CallSubRoutine SubRoutineName="Farm Leather" />
+                  </If>
+                </If>
+                <If Condition="(bool)Settings[&quot;Train Skinning plus Leatherworking&quot;] == false" IgnoreCanRun="True">
+                  <GetMailAction GetMailType="Specific" ItemID="4234, 4235" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                  <WaitAction Condition="false" Timeout="20000" />
+                  <While Condition="InbagCount (4234) &lt; 80" IgnoreCanRun="True">
+                    <GetMailAction GetMailType="AllItems" ItemID="" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                    <BuyItemFromAhAction ItemListType="Item" ItemID="2319" MaxBuyout="100g0s0c" Amount="80" BuyAdditively="True" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+                  </While>
+                  <While Condition="InbagCount (4235) &lt; 10" IgnoreCanRun="True">
+                    <GetMailAction GetMailType="AllItems" ItemID="" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                    <BuyItemFromAhAction ItemListType="Item" ItemID="4235" MaxBuyout="100g0s0c" Amount="10" BuyAdditively="True" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+                  </While>
+                </If>
+              </If>
+              <If Condition="Leatherworking.Level &gt;= 190 &amp;&amp; Leatherworking.Level &lt; 200" IgnoreCanRun="True">
+                <If Condition="(bool)Settings[&quot;Train Skinning plus Leatherworking&quot;]" IgnoreCanRun="True">
+                  <If Condition="InbagCount (4234) &lt; 40 || InbagCount (4235) &lt; 10" IgnoreCanRun="True">
+                    <CallSubRoutine SubRoutineName="Farm Leather" />
+                  </If>
+                </If>
+                <If Condition="(bool)Settings[&quot;Train Skinning plus Leatherworking&quot;] == false" IgnoreCanRun="True">
+                  <GetMailAction GetMailType="Specific" ItemID="4234, 4235" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                  <WaitAction Condition="false" Timeout="20000" />
+                  <While Condition="InbagCount (4234) &lt; 40" IgnoreCanRun="True">
+                    <GetMailAction GetMailType="AllItems" ItemID="" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                    <BuyItemFromAhAction ItemListType="Item" ItemID="2319" MaxBuyout="100g0s0c" Amount="40" BuyAdditively="True" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+                  </While>
+                  <While Condition="InbagCount (4235) &lt; 10" IgnoreCanRun="True">
+                    <GetMailAction GetMailType="AllItems" ItemID="" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                    <BuyItemFromAhAction ItemListType="Item" ItemID="4235" MaxBuyout="100g0s0c" Amount="10" BuyAdditively="True" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+                  </While>
+                </If>
+              </If>
+              <If Condition="Leatherworking.Level &gt;= 200 &amp;&amp; Leatherworking.Level &lt; 220" IgnoreCanRun="True">
+                <If Condition="(bool)Settings[&quot;Train Skinning plus Leatherworking&quot;]" IgnoreCanRun="True">
+                  <If Condition="InbagCount (4304) &lt; 100" IgnoreCanRun="True">
+                    <CallSubRoutine SubRoutineName="Farm Leather" />
+                  </If>
+                </If>
+                <If Condition="(bool)Settings[&quot;Train Skinning plus Leatherworking&quot;] == false" IgnoreCanRun="True">
+                  <GetMailAction GetMailType="Specific" ItemID="4304" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                  <WaitAction Condition="false" Timeout="20000" />
+                  <While Condition="InbagCount (4304) &lt; 100" IgnoreCanRun="True">
+                    <BuyItemFromAhAction ItemListType="Item" ItemID="4304" MaxBuyout="100g0s0c" Amount="100" BuyAdditively="True" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+                    <GetMailAction GetMailType="AllItems" ItemID="" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                  </While>
+                </If>
+              </If>
+              <If Condition="Leatherworking.Level &gt;= 220 &amp;&amp; Leatherworking.Level &lt; 230" IgnoreCanRun="True">
+                <If Condition="(bool)Settings[&quot;Train Skinning plus Leatherworking&quot;]" IgnoreCanRun="True">
+                  <If Condition="InbagCount (4304) &lt; 50" IgnoreCanRun="True">
+                    <CallSubRoutine SubRoutineName="Farm Leather" />
+                  </If>
+                </If>
+                <If Condition="(bool)Settings[&quot;Train Skinning plus Leatherworking&quot;] == false" IgnoreCanRun="True">
+                  <GetMailAction GetMailType="Specific" ItemID="4304" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                  <WaitAction Condition="false" Timeout="20000" />
+                  <While Condition="InbagCount (4304) &lt; 50" IgnoreCanRun="True">
+                    <BuyItemFromAhAction ItemListType="Item" ItemID="4304" MaxBuyout="100g0s0c" Amount="50" BuyAdditively="True" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+                    <GetMailAction GetMailType="AllItems" ItemID="" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                  </While>
+                </If>
+              </If>
+              <If Condition="Leatherworking.Level &gt;= 230 &amp;&amp; Leatherworking.Level &lt; 250" IgnoreCanRun="True">
+                <If Condition="(bool)Settings[&quot;Train Skinning plus Leatherworking&quot;]" IgnoreCanRun="True">
+                  <If Condition="InbagCount (4304) &lt; 280" IgnoreCanRun="True">
+                    <CallSubRoutine SubRoutineName="Farm Leather" />
+                  </If>
+                </If>
+                <If Condition="(bool)Settings[&quot;Train Skinning plus Leatherworking&quot;] == false" IgnoreCanRun="True">
+                  <GetMailAction GetMailType="Specific" ItemID="4304" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                  <WaitAction Condition="false" Timeout="20000" />
+                  <While Condition="InbagCount (4304) &lt; 280" IgnoreCanRun="True">
+                    <BuyItemFromAhAction ItemListType="Item" ItemID="4304" MaxBuyout="100g0s0c" Amount="280" BuyAdditively="True" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+                    <GetMailAction GetMailType="AllItems" ItemID="" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                  </While>
+                </If>
+              </If>
+              <If Condition="Leatherworking.Level &gt;= 250 &amp;&amp; Leatherworking.Level &lt; 265" IgnoreCanRun="True">
+                <If Condition="(bool)Settings[&quot;Train Skinning plus Leatherworking&quot;]" IgnoreCanRun="True">
+                  <If Condition="InbagCount (8170) &lt; 100" IgnoreCanRun="True">
+                    <CallSubRoutine SubRoutineName="Farm Leather" />
+                  </If>
+                </If>
+                <If Condition="(bool)Settings[&quot;Train Skinning plus Leatherworking&quot;] == false" IgnoreCanRun="True">
+                  <GetMailAction GetMailType="Specific" ItemID="8170" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                  <WaitAction Condition="false" Timeout="20000" />
+                  <While Condition="InbagCount (8170) &lt; 100" IgnoreCanRun="True">
+                    <BuyItemFromAhAction ItemListType="Item" ItemID="8170" MaxBuyout="100g0s0c" Amount="100" BuyAdditively="True" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+                    <GetMailAction GetMailType="AllItems" ItemID="" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                  </While>
+                </If>
+              </If>
+              <If Condition="Leatherworking.Level &gt;= 265 &amp;&amp; Leatherworking.Level &lt; 285" IgnoreCanRun="True">
+                <If Condition="(bool)Settings[&quot;Train Skinning plus Leatherworking&quot;]" IgnoreCanRun="True">
+                  <If Condition="InbagCount (8170) &lt; 160" IgnoreCanRun="True">
+                    <CallSubRoutine SubRoutineName="Farm Leather" />
+                  </If>
+                </If>
+                <If Condition="(bool)Settings[&quot;Train Skinning plus Leatherworking&quot;] == false" IgnoreCanRun="True">
+                  <GetMailAction GetMailType="Specific" ItemID="8170" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                  <WaitAction Condition="false" Timeout="20000" />
+                  <While Condition="InbagCount (8170) &lt; 160" IgnoreCanRun="True">
+                    <BuyItemFromAhAction ItemListType="Item" ItemID="8170" MaxBuyout="100g0s0c" Amount="160" BuyAdditively="True" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+                    <GetMailAction GetMailType="AllItems" ItemID="" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                  </While>
+                </If>
+              </If>
+              <If Condition="Leatherworking.Level &gt;= 285 &amp;&amp; Leatherworking.Level &lt; 300" IgnoreCanRun="True">
+                <If Condition="(bool)Settings[&quot;Train Skinning plus Leatherworking&quot;]" IgnoreCanRun="True">
+                  <If Condition="InbagCount (8170) &lt; 180" IgnoreCanRun="True">
+                    <CallSubRoutine SubRoutineName="Farm Leather" />
+                  </If>
+                </If>
+                <If Condition="(bool)Settings[&quot;Train Skinning plus Leatherworking&quot;] == false" IgnoreCanRun="True">
+                  <GetMailAction GetMailType="Specific" ItemID="8170" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                  <WaitAction Condition="false" Timeout="20000" />
+                  <While Condition="InbagCount (8170) &lt; 180" IgnoreCanRun="True">
+                    <BuyItemFromAhAction ItemListType="Item" ItemID="8170" MaxBuyout="100g0s0c" Amount="180" BuyAdditively="True" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+                    <GetMailAction GetMailType="AllItems" ItemID="" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                  </While>
+                </If>
+              </If>
+              <If Condition="Leatherworking.Level &gt;= 300 &amp;&amp; Leatherworking.Level &lt; 310" IgnoreCanRun="True">
+                <CastSpellAction RepeatType="Specific" Repeat="10" Entry="32456" CastOnItem="False" ItemType="Chest" ItemId="0" />
+              </If>
+              <If Condition="Leatherworking.Level &gt;= 310 &amp;&amp; Leatherworking.Level &lt; 320" IgnoreCanRun="True">
+                <If Condition="!HasRecipe(32479)" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="Train Leatherworking" />
+                </If>
+                <BuyItemAction NpcEntry="16826" Location="-708.8713, 2739.131, 94.73376" ItemID="14341" BuyItemType="SpecificItem" Count="15" BuyAdditively="True" />
+                <CastSpellAction RepeatType="Specific" Repeat="10" Entry="32479" CastOnItem="False" ItemType="Chest" ItemId="0" />
+              </If>
+              <If Condition="Leatherworking.Level &gt;= 320 &amp;&amp; Leatherworking.Level &lt; 325" IgnoreCanRun="True">
+                <If Condition="!HasRecipe (32471)" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="Train Leatherworking" />
+                </If>
+                <BuyItemAction NpcEntry="16826" Location="-708.8713, 2739.131, 94.73376" ItemID="14341" BuyItemType="SpecificItem" Count="10" BuyAdditively="True" />
+                <CastSpellAction RepeatType="Specific" Repeat="5" Entry="32471" CastOnItem="False" ItemType="Chest" ItemId="0" />
+              </If>
+              <If Condition="Leatherworking.Level &gt;= 325 &amp;&amp; Leatherworking.Level &lt; 330" IgnoreCanRun="True">
+                <If Condition="!HasRecipe(32455)" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="Train Leatherworking" />
+                  <CastSpellAction RepeatType="Craftable" Repeat="5" Entry="32455" CastOnItem="False" ItemType="Chest" ItemId="0" />
+                </If>
+              </If>
+              <If Condition="Leatherworking.Level &gt;= 330 &amp;&amp; Leatherworking.Level &lt; 340" IgnoreCanRun="True">
+                <If Condition="!HasRecipe (32473)" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="Train Leatherworking" />
+                </If>
+                <BuyItemAction NpcEntry="16826" Location="-708.8713, 2739.131, 94.73376" ItemID="14341" BuyItemType="SpecificItem" Count="30" BuyAdditively="False" />
+                <CastSpellAction RepeatType="Specific" Repeat="10" Entry="32473" CastOnItem="False" ItemType="Chest" ItemId="0" />
+              </If>
+              <If Condition="Leatherworking.Level &gt;= 340 &amp;&amp; Leatherworking.Level &lt; 350" IgnoreCanRun="True">
+                <If Condition="!HasRecipe(32469)" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="Train Leatherworking" />
+                </If>
+                <BuyItemAction NpcEntry="16826" Location="-708.8713, 2739.131, 94.73376" ItemID="14341" BuyItemType="SpecificItem" Count="30" BuyAdditively="True" />
+                <CastSpellAction RepeatType="Specific" Repeat="10" Entry="32469" CastOnItem="False" ItemType="Chest" ItemId="0" />
+              </If>
+              <If Condition="Leatherworking.Level &gt;= 350 &amp;&amp; Leatherworking.Level &lt; 360" IgnoreCanRun="True">
+                <If Condition="!HasRecipe (50962)" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="Train Leatherworking" />
+                </If>
+                <CastSpellAction RepeatType="Specific" Repeat="33" Entry="50962" CastOnItem="False" ItemType="Chest" ItemId="0" />
+              </If>
+              <If Condition="Leatherworking.Level &gt;= 375 &amp;&amp; Leatherworking.Level &lt; 390" IgnoreCanRun="True">
+                <If Condition="!HasRecipe (50947)" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="Train Leatherworking" />
+                </If>
+                <CastSpellAction RepeatType="Specific" Repeat="15" Entry="50947" CastOnItem="False" ItemType="Chest" ItemId="0" />
+              </If>
+              <If Condition="Leatherworking.Level &gt;= 390 &amp;&amp; Leatherworking.Level &lt; 395" IgnoreCanRun="True">
+                <If Condition="!HasRecipe (50936)" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="Train Leatherworking" />
+                </If>
+                <CastSpellAction RepeatType="Craftable" Repeat="5" Entry="50936" CastOnItem="False" ItemType="Chest" ItemId="0" />
+              </If>
+              <If Condition="Leatherworking.Level &gt;= 395 &amp;&amp; Leatherworking.Level &lt; 400" IgnoreCanRun="True">
+                <If Condition="!HasRecipe (50963)" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="Train Leatherworking" />
+                </If>
+                <CastSpellAction RepeatType="Craftable" Repeat="1" Entry="50963" CastOnItem="False" ItemType="Chest" ItemId="0" />
+              </If>
+              <If Condition="Leatherworking.Level &gt;= 400 &amp;&amp; Leatherworking.Level &lt; 415" IgnoreCanRun="True">
+                <If Condition="!HasRecipe (60601)" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="Train Leatherworking" />
+                </If>
+                <FlyToAction Dismount="True" Location="5902.246, 727.6273, 639.8905" />
+                <BuyItemFromAhAction ItemListType="Item" ItemID="37705" MaxBuyout="100g0s0c" Amount="75" BuyAdditively="False" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+                <CallSubRoutine SubRoutineName="Mail" />
+                <CastSpellAction RepeatType="Specific" Repeat="15" Entry="60601" CastOnItem="False" ItemType="Chest" ItemId="0" />
+              </If>
+              <If Condition="Leatherworking.Level &gt;= 415 &amp;&amp; Leatherworking.Level &lt; 420" IgnoreCanRun="True">
+                <If Condition="!HasRecipe (60643)" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="Train Leatherworking" />
+                </If>
+                <CastSpellAction RepeatType="Specific" Repeat="5" Entry="60643" CastOnItem="False" ItemType="Chest" ItemId="0" />
+              </If>
+              <If Condition="Leatherworking.Level &gt;= 420 &amp;&amp; Leatherworking.Level &lt; 425" IgnoreCanRun="True">
+                <If Condition="!HasRecipe (60720)" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="Train Leatherworking" />
+                </If>
+                <FlyToAction Dismount="True" Location="5902.246, 727.6273, 639.8905" />
+                <BuyItemFromAhAction ItemListType="Item" ItemID="35622" MaxBuyout="100g0s0c" Amount="5" BuyAdditively="True" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+                <CallSubRoutine SubRoutineName="Mail" />
+                <CastSpellAction RepeatType="Specific" Repeat="5" Entry="60720" CastOnItem="False" ItemType="Chest" ItemId="0" />
+              </If>
+              <If Condition="Leatherworking.Level &gt;= 425 &amp;&amp; Leatherworking.Level &lt; 430" IgnoreCanRun="True">
+                <If Condition="!HasRecipe (84950)" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="Hyjal to SW" />
+                  <CallSubRoutine SubRoutineName="Train Leatherworking" />
+                </If>
+                <CastSpellAction RepeatType="Specific" Repeat="10" Entry="84950" CastOnItem="False" ItemType="Chest" ItemId="0" />
+              </If>
+              <If Condition="Leatherworking.Level &gt;=435 &amp;&amp; Leatherworking.Level &lt; 450" IgnoreCanRun="True">
+                <If Condition="!HasRecipe (78379)" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="Hyjal to SW" />
+                  <CallSubRoutine SubRoutineName="Train Leatherworking" />
+                </If>
+                <CastSpellAction RepeatType="Specific" Repeat="15" Entry="78379" CastOnItem="False" ItemType="Chest" ItemId="0" />
+              </If>
+              <If Condition="Leatherworking.Level &gt;= 450 &amp;&amp; Leatherworking.Level &lt; 455" IgnoreCanRun="True">
+                <If Condition="Me.MapId == 1" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="Hyjal to SW" />
+                </If>
+                <If Condition="!HasRecipe (78398)" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="Train Leatherworking" />
+                </If>
+                <FlyToAction Dismount="True" Location="-8718.813, 424.2958, 98.05862" />
+                <BuyItemAction NpcEntry="5565" Location="-8722.868, 479.3223, 98.61375" ItemID="38426" BuyItemType="SpecificItem" Count="5" BuyAdditively="False" />
+                <CastSpellAction RepeatType="Specific" Repeat="5" Entry="78398" CastOnItem="False" ItemType="Chest" ItemId="0" />
+              </If>
+              <If Condition="Leatherworking.Level &gt;= 455 &amp;&amp; Leatherworking.Level &lt; 460" IgnoreCanRun="True">
+                <If Condition="Me.MapId == 1" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="Hyjal to SW" />
+                </If>
+                <If Condition="!HasRecipe (78416)" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="Train Leatherworking" />
+                </If>
+                <FlyToAction Dismount="True" Location="-8718.813, 424.2958, 98.05862" />
+                <BuyItemAction NpcEntry="5565" Location="-8722.868, 479.3223, 98.61375" ItemID="38426" BuyItemType="SpecificItem" Count="5" BuyAdditively="False" />
+                <CastSpellAction RepeatType="Specific" Repeat="5" Entry="78416" CastOnItem="False" ItemType="Chest" ItemId="0" />
+              </If>
+              <If Condition="Leatherworking.Level &gt;= 460 &amp;&amp; Leatherworking.Level &lt; 470" IgnoreCanRun="True">
+                <If Condition="Me.MapId == 1" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="Hyjal to SW" />
+                </If>
+                <If Condition="!HasRecipe (78380)" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="Train Leatherworking" />
+                </If>
+                <FlyToAction Dismount="True" Location="-8718.813, 424.2958, 98.05862" />
+                <BuyItemAction NpcEntry="5565" Location="-8722.868, 479.3223, 98.61375" ItemID="38426" BuyItemType="SpecificItem" Count="10" BuyAdditively="False" />
+                <CastSpellAction RepeatType="Specific" Repeat="10" Entry="78380" CastOnItem="False" ItemType="Chest" ItemId="0" />
+              </If>
+              <If Condition="Leatherworking.Level &gt;= 470 &amp;&amp; Leatherworking.Level &lt; 480" IgnoreCanRun="True">
+                <If Condition="Me.MapId == 1" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="Hyjal to SW" />
+                </If>
+                <If Condition="!HasRecipe (78396)" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="Train Leatherworking" />
+                </If>
+                <FlyToAction Dismount="True" Location="-8718.813, 424.2958, 98.05862" />
+                <BuyItemAction NpcEntry="5565" Location="-8722.868, 479.3223, 98.61375" ItemID="38426" BuyItemType="SpecificItem" Count="10" BuyAdditively="False" />
+                <CastSpellAction RepeatType="Specific" Repeat="10" Entry="78396" CastOnItem="False" ItemType="Chest" ItemId="0" />
+              </If>
+              <If Condition="Leatherworking.Level &gt;= 480 &amp;&amp; Leatherworking.Level &lt; 490" IgnoreCanRun="True">
+                <If Condition="Me.MapId == 1" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="Hyjal to SW" />
+                </If>
+                <If Condition="!HasRecipe (78428)" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="Train Leatherworking" />
+                </If>
+                <FlyToAction Dismount="True" Location="-8718.813, 424.2958, 98.05862" />
+                <BuyItemAction NpcEntry="5565" Location="-8722.868, 479.3223, 98.61375" ItemID="38426" BuyItemType="SpecificItem" Count="10" BuyAdditively="False" />
+                <CastSpellAction RepeatType="Specific" Repeat="10" Entry="78428" CastOnItem="False" ItemType="Chest" ItemId="0" />
+              </If>
+              <If Condition="Leatherworking.Level &gt;= 490 &amp;&amp; Leatherworking.Level &lt; 500" IgnoreCanRun="True">
+                <If Condition="Me.MapId == 1" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="Hyjal to SW" />
+                </If>
+                <If Condition="!HasRecipe (78424)" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="Train Leatherworking" />
+                </If>
+                <CastSpellAction RepeatType="Specific" Repeat="10" Entry="78424" CastOnItem="False" ItemType="Chest" ItemId="0" />
+              </If>
+              <!--Done up to 190.-->
+            </If>
+          </If>
+        </If>
+      </If>
+    </If>
+    <If Condition="(bool)Settings[&quot;Train Blacksmithing&quot;]" IgnoreCanRun="True">
+      <If Condition="Blacksmithing.Level &lt;1" IgnoreCanRun="True">
+        <CallSubRoutine SubRoutineName="Train" />
+      </If>
+      <While Condition="Blacksmithing.Level == Blacksmithing.MaxLevel &amp;&amp; HasRecipe (2018) &amp;&amp; Blacksmithing.Level != 525" IgnoreCanRun="True">
+        <CallSubRoutine SubRoutineName="Train" />
+      </While>
+      <If Condition="(bool)Settings[&quot;Train Mining plus Blacksmithing&quot;]" IgnoreCanRun="True">
+        <If Condition="InbagCount (2901) == 0" IgnoreCanRun="True">
+          <If Condition="Me.IsAlliance" IgnoreCanRun="True">
+            <FlyToAction Dismount="True" Location="-8433.48, 688.922, 96.31899" />
+            <BuyItemAction NpcEntry="5514" Location="-8430.177, 695.1375, 96.31852" ItemID="2901" BuyItemType="SpecificItem" Count="1" BuyAdditively="True" />
+          </If>
+        </If>
+      </If>
+      <If Condition="Blacksmithing.Level &lt; 525 &amp;&amp; Blacksmithing.Level != 0" IgnoreCanRun="True">
+        <While Condition="Me.FreeBagSlots &lt; 20" IgnoreCanRun="True">
+          <CallSubRoutine SubRoutineName="Sell" />
+        </While>
+        <If Condition="Me.FreeNormalBagSlots &gt; 2" IgnoreCanRun="True">
+          <If Condition="Me.IsAlliance" IgnoreCanRun="True">
+            <If Condition="Blacksmithing.Level &gt;= 1 &amp;&amp; Blacksmithing.Level &lt; 30" IgnoreCanRun="True">
+              <If Condition="(bool)Settings[&quot;Train Mining plus Blacksmithing&quot;]" IgnoreCanRun="True">
+                <If Condition="InbagCount (2835) &lt; 33" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="Mine Ores" />
+                </If>
+              </If>
+              <If Condition="(bool)Settings[&quot;Train Mining plus Blacksmithing&quot;] == false" IgnoreCanRun="True">
+                <GetMailAction GetMailType="Specific" ItemID="2835" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                <WaitAction Condition="false" Timeout="20000" />
+                <While Condition="InbagCount (2835) &lt; 33" IgnoreCanRun="True">
+                  <BuyItemFromAhAction ItemListType="Item" ItemID="2835" MaxBuyout="100g0s0c" Amount="33" BuyAdditively="True" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+                  <GetMailAction GetMailType="Specific" ItemID="2835" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                </While>
+              </If>
+            </If>
+            <If Condition="Blacksmithing.Level &gt;= 30 &amp;&amp; Blacksmithing.Level &lt; 65" IgnoreCanRun="True">
+              <If Condition="(bool)Settings[&quot;Train Mining plus Blacksmithing&quot;]" IgnoreCanRun="True">
+                <If Condition="InbagCount (2835) &lt; 100" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="Mine Ores" />
+                </If>
+              </If>
+              <If Condition="(bool)Settings[&quot;Train Mining plus Blacksmithing&quot;] == false" IgnoreCanRun="True">
+                <GetMailAction GetMailType="Specific" ItemID="2835" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                <WaitAction Condition="false" Timeout="20000" />
+                <While Condition="InbagCount (2835) &lt; 100" IgnoreCanRun="True">
+                  <BuyItemFromAhAction ItemListType="Item" ItemID="2835" MaxBuyout="100g0s0c" Amount="100" BuyAdditively="True" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+                  <GetMailAction GetMailType="Specific" ItemID="2835" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                </While>
+              </If>
+            </If>
+            <If Condition="Blacksmithing.Level &gt;= 65 &amp;&amp; Blacksmithing.Level &lt; 75" IgnoreCanRun="True">
+              <If Condition="(bool)Settings[&quot;Train Mining plus Blacksmithing&quot;]" IgnoreCanRun="True">
+                <If Condition="InbagCount (2770) &lt; 60" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="Mine Ores" />
+                </If>
+              </If>
+              <If Condition="(bool)Settings[&quot;Train Mining plus Blacksmithing&quot;] == false" IgnoreCanRun="True">
+                <GetMailAction GetMailType="Specific" ItemID="2770" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                <WaitAction Condition="false" Timeout="20000" />
+                <While Condition="InbagCount (2770) &lt; 60" IgnoreCanRun="True">
+                  <BuyItemFromAhAction ItemListType="Item" ItemID="2770" MaxBuyout="100g0s0c" Amount="60" BuyAdditively="True" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+                  <GetMailAction GetMailType="Specific" ItemID="2700" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                </While>
+              </If>
+            </If>
+            <If Condition="Blacksmithing.Level &gt;= 75 &amp;&amp; Blacksmithing.Level &lt; 90" IgnoreCanRun="True">
+              <If Condition="(bool)Settings[&quot;Train Mining plus Blacksmithing&quot;]" IgnoreCanRun="True">
+                <If Condition="InbagCount (2770) &lt; 60" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="Mine Ores" />
+                </If>
+              </If>
+              <If Condition="(bool)Settings[&quot;Train Mining plus Blacksmithing&quot;] == false" IgnoreCanRun="True">
+                <GetMailAction GetMailType="Specific" ItemID="2770" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                <WaitAction Condition="false" Timeout="20000" />
+                <While Condition="InbagCount (2770) &lt; 60" IgnoreCanRun="True">
+                  <BuyItemFromAhAction ItemListType="Item" ItemID="2770" MaxBuyout="100g0s0c" Amount="60" BuyAdditively="True" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+                  <GetMailAction GetMailType="Specific" ItemID="2700" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                </While>
+              </If>
+            </If>
+            <If Condition="Blacksmithing.Level &gt;= 90 &amp;&amp; Blacksmithing.Level &lt; 100" IgnoreCanRun="True">
+              <If Condition="(bool)Settings[&quot;Train Mining plus Blacksmithing&quot;]" IgnoreCanRun="True">
+                <If Condition="InbagCount (2770) &lt; 100" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="Mine Ores" />
+                </If>
+              </If>
+              <If Condition="(bool)Settings[&quot;Train Mining plus Blacksmithing&quot;] == false" IgnoreCanRun="True">
+                <GetMailAction GetMailType="Specific" ItemID="2770" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                <WaitAction Condition="false" Timeout="20000" />
+                <While Condition="InbagCount (2770) &lt; 100" IgnoreCanRun="True">
+                  <BuyItemFromAhAction ItemListType="Item" ItemID="2770" MaxBuyout="100g0s0c" Amount="100" BuyAdditively="True" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+                  <GetMailAction GetMailType="Specific" ItemID="2770" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                </While>
+              </If>
+            </If>
+            <If Condition="Blacksmithing.Level &gt;= 100 &amp;&amp; Blacksmithing.Level &lt; 110" IgnoreCanRun="True">
+              <If Condition="(bool)Settings[&quot;Train Mining plus Blacksmithing&quot;]" IgnoreCanRun="True">
+                <If Condition="InbagCount (2770) &lt; 100" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="Mine Ores" />
+                </If>
+              </If>
+              <If Condition="(bool)Settings[&quot;Train Mining plus Blacksmithing&quot;] == false" IgnoreCanRun="True">
+                <GetMailAction GetMailType="Specific" ItemID="2770" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                <WaitAction Condition="false" Timeout="20000" />
+                <While Condition="InbagCount (2770) &lt; 100" IgnoreCanRun="True">
+                  <BuyItemFromAhAction ItemListType="Item" ItemID="2770" MaxBuyout="100g0s0c" Amount="100" BuyAdditively="True" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+                  <GetMailAction GetMailType="Specific" ItemID="2770" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                </While>
+              </If>
+            </If>
+            <If Condition="Blacksmithing.Level &gt;= 110 &amp;&amp; Blacksmithing.Level &lt; 125" IgnoreCanRun="True">
+              <If Condition="(bool)Settings[&quot;Train Mining plus Blacksmithing&quot;]" IgnoreCanRun="True">
+                <If Condition="InbagCount (2770) &lt; 38 &amp;&amp; InbagCount (2771) &lt; 38" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="Mine Ores" />
+                </If>
+              </If>
+              <If Condition="(bool)Settings[&quot;Train Mining plus Blacksmithing&quot;] == false" IgnoreCanRun="True">
+                <GetMailAction GetMailType="Specific" ItemID="2770, 2771" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                <WaitAction Condition="false" Timeout="20000" />
+                <While Condition="InbagCount (2770) &lt; 38" IgnoreCanRun="True">
+                  <BuyItemFromAhAction ItemListType="Item" ItemID="2770" MaxBuyout="100g0s0c" Amount="40" BuyAdditively="True" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+                  <GetMailAction GetMailType="Specific" ItemID="2770" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                </While>
+                <While Condition="InbagCount (2771) &lt; 38" IgnoreCanRun="True">
+                  <BuyItemFromAhAction ItemListType="Item" ItemID="2771" MaxBuyout="100g0s0c" Amount="40" BuyAdditively="True" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+                  <GetMailAction GetMailType="Specific" ItemID="2771" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                </While>
+              </If>
+            </If>
+            <If Condition="Blacksmithing.Level &gt;= 125 &amp;&amp; Blacksmithing.Level &lt; 140" IgnoreCanRun="True">
+              <If Condition="(bool)Settings[&quot;Train Mining plus Blacksmithing&quot;]" IgnoreCanRun="True">
+                <If Condition="InbagCount (2838) &lt; 105" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="Mine Ores" />
+                </If>
+              </If>
+              <If Condition="(bool)Settings[&quot;Train Mining plus Blacksmithing&quot;] == false" IgnoreCanRun="True">
+                <GetMailAction GetMailType="Specific" ItemID="2838" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                <WaitAction Condition="false" Timeout="20000" />
+                <While Condition="InbagCount (2838) &lt; 105" IgnoreCanRun="True">
+                  <BuyItemFromAhAction ItemListType="Item" ItemID="2838" MaxBuyout="100g0s0c" Amount="105" BuyAdditively="True" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+                  <GetMailAction GetMailType="Specific" ItemID="2838" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                </While>
+              </If>
+            </If>
+            <If Condition="Blacksmithing.Level &gt;= 140 &amp;&amp; Blacksmithing.Level &lt; 145" IgnoreCanRun="True">
+              <If Condition="(bool)Settings[&quot;Train Mining plus Blacksmithing&quot;]" IgnoreCanRun="True">
+                <If Condition="InbagCount (2770) &lt; 13 &amp;&amp; InbagCount (2771) &lt; 13" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="Mine Ores" />
+                </If>
+              </If>
+              <If Condition="(bool)Settings[&quot;Train Mining plus Blacksmithing&quot;] == false" IgnoreCanRun="True">
+                <GetMailAction GetMailType="Specific" ItemID="2770, 2771" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                <WaitAction Condition="false" Timeout="20000" />
+                <While Condition="InbagCount (2770) &lt; 13" IgnoreCanRun="True">
+                  <BuyItemFromAhAction ItemListType="Item" ItemID="2770" MaxBuyout="100g0s0c" Amount="13" BuyAdditively="True" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+                  <GetMailAction GetMailType="Specific" ItemID="2770" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                </While>
+                <While Condition="InbagCount (2771) &lt; 13" IgnoreCanRun="True">
+                  <BuyItemFromAhAction ItemListType="Item" ItemID="2771" MaxBuyout="100g0s0c" Amount="13" BuyAdditively="True" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+                  <GetMailAction GetMailType="Specific" ItemID="2771" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                </While>
+              </If>
+            </If>
+            <If Condition="Blacksmithing.Level &gt;= 145 &amp;&amp; Blacksmithing.Level &lt; 150" IgnoreCanRun="True">
+              <If Condition="(bool)Settings[&quot;Train Mining plus Blacksmithing&quot;]" IgnoreCanRun="True">
+                <If Condition="InbagCount (2770) &lt; 13 &amp;&amp; InbagCount (2771) &lt; 13" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="Mine Ores" />
+                </If>
+              </If>
+              <If Condition="(bool)Settings[&quot;Train Mining plus Blacksmithing&quot;] == false" IgnoreCanRun="True">
+                <GetMailAction GetMailType="Specific" ItemID="2770, 2771" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                <WaitAction Condition="false" Timeout="20000" />
+                <While Condition="InbagCount (2770) &lt; 13" IgnoreCanRun="True">
+                  <BuyItemFromAhAction ItemListType="Item" ItemID="2770" MaxBuyout="100g0s0c" Amount="13" BuyAdditively="True" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+                  <GetMailAction GetMailType="Specific" ItemID="2770" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                </While>
+                <While Condition="InbagCount (2771) &lt; 13" IgnoreCanRun="True">
+                  <BuyItemFromAhAction ItemListType="Item" ItemID="2771" MaxBuyout="100g0s0c" Amount="13" BuyAdditively="True" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+                  <GetMailAction GetMailType="Specific" ItemID="2771" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                </While>
+              </If>
+            </If>
+            <If Condition="Blacksmithing.Level &gt;= 150 &amp;&amp; Blacksmithing.Level &lt; 155" IgnoreCanRun="True">
+              <GetMailAction GetMailType="Specific" ItemID="3577, 2776" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+              <WaitAction Condition="false" Timeout="20000" />
+              <If Condition="InbagCount (3577) &lt; 5 &amp;&amp; InbagCount (2776) &lt; 5" IgnoreCanRun="True">
+                <BuyItemFromAhAction ItemListType="Item" ItemID="3577" MaxBuyout="100g0s0c" Amount="5" BuyAdditively="True" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+                <GetMailAction GetMailType="Specific" ItemID="3577" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                <WaitAction Condition="false" Timeout="20000" />
+              </If>
+              <If Condition="InbagCount (3577) &lt; 5 &amp;&amp; InbagCount (2776) &lt; 5" IgnoreCanRun="True">
+                <BuyItemFromAhAction ItemListType="Item" ItemID="2776" MaxBuyout="100g0s0c" Amount="5" BuyAdditively="True" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+                <GetMailAction GetMailType="Specific" ItemID="2776" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                <WaitAction Condition="false" Timeout="20000" />
+              </If>
+            </If>
+            <If Condition="Blacksmithing.Level &gt;= 155 &amp;&amp; Blacksmithing.Level &lt; 165" IgnoreCanRun="True">
+              <If Condition="(bool)Settings[&quot;Train Mining plus Blacksmithing&quot;]" IgnoreCanRun="True">
+                <If Condition="InbagCount (2772) &lt; 80" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="Mine Ores" />
+                </If>
+              </If>
+              <If Condition="(bool)Settings[&quot;Train Mining plus Blacksmithing&quot;] == false" IgnoreCanRun="True">
+                <GetMailAction GetMailType="Specific" ItemID="2772" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                <WaitAction Condition="false" Timeout="20000" />
+                <While Condition="InbagCount (2772) &lt; 80" IgnoreCanRun="True">
+                  <BuyItemFromAhAction ItemListType="Item" ItemID="2772" MaxBuyout="100g0s0c" Amount="80" BuyAdditively="True" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+                  <GetMailAction GetMailType="Specific" ItemID="2772" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                </While>
+              </If>
+            </If>
+            <If Condition="Blacksmithing.Level &gt;= 165 &amp;&amp; Blacksmithing.Level &lt; 190" IgnoreCanRun="True">
+              <If Condition="(bool)Settings[&quot;Train Mining plus Blacksmithing&quot;]" IgnoreCanRun="True">
+                <If Condition="InbagCount (2772) &lt; 150" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="Mine Ores" />
+                </If>
+              </If>
+              <If Condition="(bool)Settings[&quot;Train Mining plus Blacksmithing&quot;] == false" IgnoreCanRun="True">
+                <GetMailAction GetMailType="Specific" ItemID="2772" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                <WaitAction Condition="false" Timeout="20000" />
+                <While Condition="InbagCount (2772) &lt; 150" IgnoreCanRun="True">
+                  <BuyItemFromAhAction ItemListType="Item" ItemID="2772" MaxBuyout="100g0s0c" Amount="150" BuyAdditively="True" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+                  <GetMailAction GetMailType="Specific" ItemID="2772" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                </While>
+              </If>
+            </If>
+            <If Condition="Blacksmithing.Level &gt;= 190 &amp;&amp; Blacksmithing.Level &lt; 200" IgnoreCanRun="True">
+              <If Condition="(bool)Settings[&quot;Train Mining plus Blacksmithing&quot;]" IgnoreCanRun="True">
+                <If Condition="InbagCount (2772) &lt; 50" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="Mine Ores" />
+                </If>
+              </If>
+              <If Condition="(bool)Settings[&quot;Train Mining plus Blacksmithing&quot;] == false" IgnoreCanRun="True">
+                <GetMailAction GetMailType="Specific" ItemID="2772" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                <WaitAction Condition="false" Timeout="20000" />
+                <While Condition="InbagCount (2772) &lt; 50" IgnoreCanRun="True">
+                  <BuyItemFromAhAction ItemListType="Item" ItemID="2772" MaxBuyout="100g0s0c" Amount="50" BuyAdditively="True" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+                  <GetMailAction GetMailType="Specific" ItemID="2772" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                </While>
+              </If>
+            </If>
+            <If Condition="Blacksmithing.Level &gt;= 200 &amp;&amp; Blacksmithing.Level &lt; 210" IgnoreCanRun="True">
+              <If Condition="(bool)Settings[&quot;Train Mining plus Blacksmithing&quot;]" IgnoreCanRun="True">
+                <If Condition="InbagCount (7912) &lt; 20" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="Mine Ores" />
+                </If>
+              </If>
+              <If Condition="(bool)Settings[&quot;Train Mining plus Blacksmithing&quot;] == false" IgnoreCanRun="True">
+                <GetMailAction GetMailType="Specific" ItemID="7912" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                <WaitAction Condition="false" Timeout="20000" />
+                <While Condition="InbagCount (7912) &lt; 20" IgnoreCanRun="True">
+                  <BuyItemFromAhAction ItemListType="Item" ItemID="7912" MaxBuyout="100g0s0c" Amount="20" BuyAdditively="True" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+                  <GetMailAction GetMailType="Specific" ItemID="7912" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                </While>
+              </If>
+            </If>
+            <If Condition="Blacksmithing.Level &gt;= 210 &amp;&amp; Blacksmithing.Level &lt; 225" IgnoreCanRun="True">
+              <If Condition="(bool)Settings[&quot;Train Mining plus Blacksmithing&quot;]" IgnoreCanRun="True">
+                <While Condition="InbagCount (4338) &lt; 60" IgnoreCanRun="True">
+                  <GetMailAction GetMailType="Specific" ItemID="4338" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                  <WaitAction Condition="false" Timeout="20000" />
+                  <BuyItemFromAhAction ItemListType="Item" ItemID="4338" MaxBuyout="100g0s0c" Amount="60" BuyAdditively="True" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+                  <GetMailAction GetMailType="Specific" ItemID="4338" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                </While>
+                <If Condition="InbagCount (3858) &lt; 90" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="Mine Ores" />
+                </If>
+              </If>
+              <If Condition="(bool)Settings[&quot;Train Mining plus Blacksmithing&quot;] == false" IgnoreCanRun="True">
+                <GetMailAction GetMailType="Specific" ItemID="3858" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                <WaitAction Condition="false" Timeout="20000" />
+                <While Condition="InbagCount (3858) &lt; 90" IgnoreCanRun="True">
+                  <BuyItemFromAhAction ItemListType="Item" ItemID="3858" MaxBuyout="100g0s0c" Amount="90" BuyAdditively="True" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+                  <GetMailAction GetMailType="Specific" ItemID="3858" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                </While>
+                <While Condition="InbagCount (4338) &lt; 60" IgnoreCanRun="True">
+                  <GetMailAction GetMailType="Specific" ItemID="4338" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                  <WaitAction Condition="false" Timeout="20000" />
+                  <BuyItemFromAhAction ItemListType="Item" ItemID="4338" MaxBuyout="100g0s0c" Amount="60" BuyAdditively="True" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+                  <GetMailAction GetMailType="Specific" ItemID="4338" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                </While>
+              </If>
+            </If>
+            <If Condition="Blacksmithing.Level &gt;= 225 &amp;&amp; Blacksmithing.Level &lt; 235" IgnoreCanRun="True">
+              <If Condition="(bool)Settings[&quot;Train Mining plus Blacksmithing&quot;]" IgnoreCanRun="True">
+                <If Condition="InbagCount (3858) &lt; 120" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="Mine Ores" />
+                </If>
+              </If>
+              <If Condition="(bool)Settings[&quot;Train Mining plus Blacksmithing&quot;] == false" IgnoreCanRun="True">
+                <GetMailAction GetMailType="Specific" ItemID="3858" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                <WaitAction Condition="false" Timeout="20000" />
+                <While Condition="InbagCount (3858) &lt; 120" IgnoreCanRun="True">
+                  <BuyItemFromAhAction ItemListType="Item" ItemID="3858" MaxBuyout="100g0s0c" Amount="120" BuyAdditively="True" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+                  <GetMailAction GetMailType="Specific" ItemID="3858" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                </While>
+              </If>
+            </If>
+            <If Condition="Blacksmithing.Level &gt;= 235 &amp;&amp; Blacksmithing.Level &lt; 250" IgnoreCanRun="True">
+              <If Condition="(bool)Settings[&quot;Train Mining plus Blacksmithing&quot;]" IgnoreCanRun="True">
+                <While Condition="InbagCount (4338) &lt; 90" IgnoreCanRun="True">
+                  <GetMailAction GetMailType="Specific" ItemID="4338" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                  <WaitAction Condition="false" Timeout="20000" />
+                  <BuyItemFromAhAction ItemListType="Item" ItemID="4338" MaxBuyout="100g0s0c" Amount="90" BuyAdditively="True" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+                  <GetMailAction GetMailType="Specific" ItemID="4338" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                </While>
+                <If Condition="InbagCount (3858) &lt; 150" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="Mine Ores" />
+                </If>
+              </If>
+              <If Condition="(bool)Settings[&quot;Train Mining plus Blacksmithing&quot;] == false" IgnoreCanRun="True">
+                <GetMailAction GetMailType="Specific" ItemID="3858, 4338" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                <WaitAction Condition="false" Timeout="20000" />
+                <While Condition="InbagCount (3858) &lt; 150" IgnoreCanRun="True">
+                  <BuyItemFromAhAction ItemListType="Item" ItemID="3858" MaxBuyout="100g0s0c" Amount="150" BuyAdditively="True" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+                  <GetMailAction GetMailType="Specific" ItemID="3858" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                </While>
+                <While Condition="InbagCount (4338) &lt; 90" IgnoreCanRun="True">
+                  <BuyItemFromAhAction ItemListType="Item" ItemID="4338" MaxBuyout="100g0s0c" Amount="90" BuyAdditively="True" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+                  <GetMailAction GetMailType="Specific" ItemID="4338" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                </While>
+              </If>
+            </If>
+            <If Condition="Blacksmithing.Level &gt;= 250 &amp;&amp; Blacksmithing.Level &lt; 260" IgnoreCanRun="True">
+              <If Condition="(bool)Settings[&quot;Train Mining plus Blacksmithing&quot;]" IgnoreCanRun="True">
+                <If Condition="InbagCount (12365) &lt; 20" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="Mine Ores" />
+                </If>
+              </If>
+              <If Condition="(bool)Settings[&quot;Train Mining plus Blacksmithing&quot;] == false" IgnoreCanRun="True">
+                <GetMailAction GetMailType="Specific" ItemID="12365" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                <WaitAction Condition="false" Timeout="20000" />
+                <While Condition="InbagCount (12365) &lt; 20" IgnoreCanRun="True">
+                  <BuyItemFromAhAction ItemListType="Item" ItemID="12365" MaxBuyout="100g0s0c" Amount="20" BuyAdditively="True" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+                  <GetMailAction GetMailType="Specific" ItemID="12365" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                </While>
+              </If>
+            </If>
+            <If Condition="Blacksmithing.Level &gt;= 260 &amp;&amp; Blacksmithing.Level &lt; 275" IgnoreCanRun="True">
+              <If Condition="(bool)Settings[&quot;Train Mining plus Blacksmithing&quot;]" IgnoreCanRun="True">
+                <If Condition="InbagCount (10620) &lt; 120" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="Mine Ores" />
+                </If>
+              </If>
+              <If Condition="(bool)Settings[&quot;Train Mining plus Blacksmithing&quot;] == false" IgnoreCanRun="True">
+                <GetMailAction GetMailType="Specific" ItemID="10620" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                <WaitAction Condition="false" Timeout="20000" />
+                <While Condition="InbagCount (10620) &lt; 120" IgnoreCanRun="True">
+                  <BuyItemFromAhAction ItemListType="Item" ItemID="10620" MaxBuyout="100g0s0c" Amount="120" BuyAdditively="True" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+                  <GetMailAction GetMailType="Specific" ItemID="10620" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                </While>
+              </If>
+            </If>
+            <If Condition="Blacksmithing.Level &gt;= 275 &amp;&amp; Blacksmithing.Level &lt; 290" IgnoreCanRun="True">
+              <If Condition="(bool)Settings[&quot;Train Mining plus Blacksmithing&quot;]" IgnoreCanRun="True">
+                <If Condition="InbagCount (10620) &lt; 180" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="Mine Ores" />
+                </If>
+              </If>
+              <If Condition="(bool)Settings[&quot;Train Mining plus Blacksmithing&quot;] == false" IgnoreCanRun="True">
+                <GetMailAction GetMailType="Specific" ItemID="10620" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                <WaitAction Condition="false" Timeout="20000" />
+                <While Condition="InbagCount (10620) &lt; 180" IgnoreCanRun="True">
+                  <BuyItemFromAhAction ItemListType="Item" ItemID="10620" MaxBuyout="100g0s0c" Amount="180" BuyAdditively="True" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+                  <GetMailAction GetMailType="Specific" ItemID="10620" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                </While>
+              </If>
+            </If>
+            <If Condition="Blacksmithing.Level &gt;= 290 &amp;&amp; Blacksmithing.Level &lt; 300" IgnoreCanRun="True">
+              <If Condition="(bool)Settings[&quot;Train Mining plus Blacksmithing&quot;]" IgnoreCanRun="True">
+                <While Condition="InbagCount (7910) &lt; 10" IgnoreCanRun="True">
+                  <GetMailAction GetMailType="Specific" ItemID="7910" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                  <WaitAction Condition="false" Timeout="20000" />
+                  <BuyItemFromAhAction ItemListType="Item" ItemID="7910" MaxBuyout="100g0s0c" Amount="10" BuyAdditively="True" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+                  <GetMailAction GetMailType="Specific" ItemID="7910" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                </While>
+                <If Condition="InbagCount (10620) &lt; 120" IgnoreCanRun="True">
+                  <CallSubRoutine SubRoutineName="Mine Ores" />
+                </If>
+              </If>
+              <If Condition="(bool)Settings[&quot;Train Mining plus Blacksmithing&quot;] == false" IgnoreCanRun="True">
+                <GetMailAction GetMailType="Specific" ItemID="10620, 7910" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                <WaitAction Condition="false" Timeout="20000" />
+                <While Condition="InbagCount (10620) &lt; 120" IgnoreCanRun="True">
+                  <BuyItemFromAhAction ItemListType="Item" ItemID="10620" MaxBuyout="100g0s0c" Amount="120" BuyAdditively="True" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+                  <GetMailAction GetMailType="Specific" ItemID="10620" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                </While>
+                <While Condition="InbagCount (7910) &lt; 10" IgnoreCanRun="True">
+                  <BuyItemFromAhAction ItemListType="Item" ItemID="7910" MaxBuyout="100g0s0c" Amount="10" BuyAdditively="True" AutoFindAh="True" BidOnItem="False" Location="0, 0, 0" />
+                  <GetMailAction GetMailType="Specific" ItemID="7910" CheckNewMail="True" MinFreeBagSlots="2" AutoFindMailBox="True" Location="0, 0, 0" />
+                </While>
+              </If>
+            </If>
+          </If>
+        </If>
+      </If>
+    </If>
+  </If>
+</Professionbuddy>
