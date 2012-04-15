@@ -23,7 +23,7 @@
     <CallSubRoutine SubRoutineName="TrainFishing" />
   </While>
   <CallSubRoutine SubRoutineName="EquipFishingPole" />
-  <While Condition="!HasRecipe(37836)" IgnoreCanRun="True">
+  <While Condition="Cooking.MaxLevel &lt; 1" IgnoreCanRun="True">
     <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;I don't know cooking. Going to learn it&quot;); " />
     <CallSubRoutine SubRoutineName="TrainCooking" />
   </While>
@@ -1003,6 +1003,7 @@
       <WaitAction Condition="false" Timeout="35000" />
     </If>
   </If>
+  <CustomAction Code="Log(System.Drawing.Color.Red,&quot;If you see this line, and your bot is doing nothing, report it in the forum thread along with your cooking level and what zone you see this in.&quot;); " />
   <Declaration Code="Stopwatch PulseSW = new Stopwatch();" />
   <Declaration Code="DateTime CastTimeStamp = DateTime.Now;" />
   <Declaration Code="void MyErr(string fmt,params object[] args)&#xD;&#xA;{&#xD;&#xA;    Log(Color.Green,&quot;Fishing1-525: &quot;,Color.Red,fmt,args);&#xD;&#xA;}" />
