@@ -779,7 +779,7 @@
     </If>
   </If>
   <If Condition="(InbagCount (6291) + InbagCount (7751)) &lt; 40 &amp;&amp; Cooking.Level &gt;= 40 &amp;&amp; Cooking.Level &lt; 65" IgnoreCanRun="False">
-    <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Time to catch some small fish.&quot;); " />
+    <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Time to catch 40x small fish.&quot;); " />
     <While Condition="Me.IsAlliance" IgnoreCanRun="True">
       <If Condition="DistanceTo (-9401.631, -153.8076, 57.96643) &gt; 5" IgnoreCanRun="True">
         <FlyToAction Dismount="True" Location="-9401.631, -153.8076, 57.96643" />
@@ -792,7 +792,7 @@
     </While>
   </If>
   <If Condition="(InbagCount (4592) + InbagCount (6289)) &lt; 60 &amp;&amp; Cooking.Level &gt;= 65 &amp;&amp; Cooking.Level &lt; 110" IgnoreCanRun="False">
-    <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Time to catch some Raw Longjaw Mud Snapper.&quot;); " />
+    <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Time to catch 60x Raw Longjaw Mud Snapper.&quot;); " />
     <While Condition="Me.IsAlliance" IgnoreCanRun="True">
       <If Condition="DistanceTo (-9375.861, -2041.789, 57.27626) &gt; 5" IgnoreCanRun="True">
         <FlyToAction Dismount="True" Location="-9375.861, -2041.789, 57.27626" />
@@ -805,7 +805,7 @@
     </While>
   </If>
   <If Condition="(InbagCount (6308) + InbagCount (4593)) &lt; 120 &amp;&amp; Cooking.Level &gt;= 110 &amp;&amp; Cooking.Level &lt; 175" IgnoreCanRun="False">
-    <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Time to catch some catfish, 110-175.&quot;); " />
+    <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Time to catch 110x catfish.&quot;); " />
     <While Condition="Me.IsAlliance" IgnoreCanRun="True">
       <If Condition="DistanceTo (-9375.861, -2041.789, 57.27626) &gt; 5" IgnoreCanRun="True">
         <FlyToAction Dismount="True" Location="-9375.861, -2041.789, 57.27626" />
@@ -820,7 +820,7 @@
   <If Condition="(InbagCount (8364) + InbagCount (8365)) &lt; 110 &amp;&amp; Cooking.Level &gt;= 175 &amp;&amp; Cooking.Level &lt; 275" IgnoreCanRun="False">
     <CallSubRoutine SubRoutineName="BuyRecipe" />
     <While Condition="Me.IsAlliance" IgnoreCanRun="True">
-      <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Time to catch some more fish, going to WPL.&quot;); " />
+      <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Time to catch 110x Mithril Head Fish, going to WPL.&quot;); " />
       <If Condition="DistanceTo (1045.846, -2098.408, 54.68686) &gt; 5" IgnoreCanRun="True">
         <FlyToAction Dismount="True" Location="1045.846, -2098.408, 54.68686" />
       </If>
@@ -839,12 +839,12 @@
         <FlyToAction Dismount="False" Location="2153.125, -5267.709, 82.77434" />
         <BuyItemAction NpcEntry="11038" Location="2153.125, -5267.709, 82.77434" ItemID="159" BuyItemType="SpecificItem" Count="40" BuyAdditively="False" />
       </If>
-      <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Time to catch some more fish, going to EPL.&quot;); " />
-      <If Condition="DistanceTo (1985.145, -4133.935, 73.94361) &gt; 5" IgnoreCanRun="True">
-        <FlyToAction Dismount="True" Location="1985.145, -4133.935, 73.94361" />
+      <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Time to catch 40x Nightfin or/and Sun Scale Salmon, going to EPL.&quot;); " />
+      <If Condition="DistanceTo (2091.587, -4289.987, 75.74986) &gt; 5" IgnoreCanRun="True">
+        <FlyToAction Dismount="True" Location="2091.587, -4289.987, 75.74986" />
       </If>
-      <If Condition="!IsFacing(4.7f)" IgnoreCanRun="True">
-        <CustomAction Code="Me.SetFacing(4.7f);" />
+      <If Condition="!IsFacing(4.5f)" IgnoreCanRun="True">
+        <CustomAction Code="Me.SetFacing(4.5f);" />
         <CallSubRoutine SubRoutineName="UF" />
       </If>
       <CallSubRoutine SubRoutineName="DoFishing" />
@@ -877,7 +877,7 @@
     </If>
   </If>
   <If Condition="(InbagCount (27666) + InbagCount (27438)) &lt; 15 &amp;&amp; Cooking.Level &gt;= 325 &amp;&amp; Cooking.Level &lt; 350 || (InbagCount (33048) + InbagCount (27422)) &lt; 50 &amp;&amp; Cooking.Level &gt;= 325 &amp;&amp; Cooking.Level &lt; 350" IgnoreCanRun="False">
-    <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Time to catch some Golden Darter and Barbed Gill Trout.&quot;); " />
+    <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Time to catch some 15x Golden Darter and 50x Barbed Gill Trout.&quot;); " />
     <While Condition="Me.MapId == 530" IgnoreCanRun="True">
       <If Condition="InbagCount(27699) == 0" IgnoreCanRun="True">
         <CallSubRoutine SubRoutineName="BuyRecipe" />
@@ -896,7 +896,7 @@
     </While>
   </If>
   <If Condition="(InbagCount (41805) + InbagCount (45932)) &lt; 60 &amp;&amp; Cooking.Level &gt;= 350 &amp;&amp; Cooking.Level &lt; 415 || (InbagCount (41803) + InbagCount (34759)) &lt; 100  &amp;&amp; Cooking.Level &gt;= 350 &amp;&amp; Cooking.Level &lt; 380 || (InbagCount (43268)*2 + InbagCount (36781) +  InbagCount (36782)) &lt; 30 &amp;&amp; Cooking.Level &gt;= 350 &amp;&amp; Cooking.Level &lt; 415 || (InbagCount (42942) + InbagCount (41802)) &lt; 60 &amp;&amp; Cooking.Level &gt;= 350 &amp;&amp; Cooking.Level &lt; 415" IgnoreCanRun="False">
-    <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Time to catch some random fish.&quot;); " />
+    <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Time to catch alot of random fish. Dont mind the warning with the disable plugins etc. Its there due to the bot opening clams, so nothing dangerous.&quot;); " />
     <If Condition="Me.MapId == 530" IgnoreCanRun="True">
       <CallSubRoutine SubRoutineName="Outland to EK" />
     </If>
