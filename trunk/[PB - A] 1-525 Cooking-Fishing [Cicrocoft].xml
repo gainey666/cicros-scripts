@@ -840,11 +840,11 @@
         <BuyItemAction NpcEntry="11038" Location="2153.125, -5267.709, 82.77434" ItemID="159" BuyItemType="SpecificItem" Count="40" BuyAdditively="False" />
       </If>
       <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Time to catch 40x Nightfin or/and Sun Scale Salmon, going to EPL.&quot;); " />
-      <If Condition="DistanceTo (2091.587, -4289.987, 75.74986) &gt; 5" IgnoreCanRun="True">
-        <FlyToAction Dismount="True" Location="2091.587, -4289.987, 75.74986" />
+      <If Condition="DistanceTo (2121.706, -4414.986, 73.89479) &gt; 5" IgnoreCanRun="True">
+        <FlyToAction Dismount="True" Location="2121.706, -4414.986, 73.89479" />
       </If>
-      <If Condition="!IsFacing(4.5f)" IgnoreCanRun="True">
-        <CustomAction Code="Me.SetFacing(4.5f);" />
+      <If Condition="!IsFacing(2.2f)" IgnoreCanRun="True">
+        <CustomAction Code="Me.SetFacing(2.2f);" />
         <CallSubRoutine SubRoutineName="UF" />
       </If>
       <CallSubRoutine SubRoutineName="DoFishing" />
