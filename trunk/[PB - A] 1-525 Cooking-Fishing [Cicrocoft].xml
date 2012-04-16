@@ -166,19 +166,23 @@
         <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Going to Eastern Kingdom to cook. We have no more business on Kalimdor.&quot;); " />
         <CallSubRoutine SubRoutineName="Kalimdor to EK" />
         <If Condition="Me.MapId == 0" IgnoreCanRun="True">
-          <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Going to cook in Lake Everstill Town. So quiet there.&quot;); " />
           <If Condition="DistanceTo (-9207.701, -2065.184, 78.0983) &gt; 30" IgnoreCanRun="True">
+            <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Going to cook in Lake Everstill Town. So quiet there.&quot;); " />
             <FlyToAction Dismount="True" Location="-9229.114, -2067.764, 76.97263" />
           </If>
-          <MoveToAction Location="-9207.701, -2065.184, 78.0983" MoveType="Location" Pathing="Navigator" Entry="0" />
+          <If Condition="DistanceTo (-9207.701, -2065.184, 78.0983) &gt; 2" IgnoreCanRun="True">
+            <MoveToAction Location="-9207.701, -2065.184, 78.0983" MoveType="Location" Pathing="Navigator" Entry="0" />
+          </If>
         </If>
       </If>
       <If Condition="Me.MapId == 0" IgnoreCanRun="True">
-        <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Going to cook in Lake Everstill Town. So quiet there.&quot;); " />
         <If Condition="DistanceTo (-9207.701, -2065.184, 78.0983) &gt; 30" IgnoreCanRun="True">
+          <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Going to cook in Lake Everstill Town. So quiet there.&quot;); " />
           <FlyToAction Dismount="True" Location="-9229.114, -2067.764, 76.97263" />
         </If>
-        <MoveToAction Location="-9207.701, -2065.184, 78.0983" MoveType="Location" Pathing="Navigator" Entry="0" />
+        <If Condition="DistanceTo (-9207.701, -2065.184, 78.0983) &gt; 2" IgnoreCanRun="True">
+          <MoveToAction Location="-9207.701, -2065.184, 78.0983" MoveType="Location" Pathing="Navigator" Entry="0" />
+        </If>
       </If>
       <CallSubRoutine SubRoutineName="CheckCookingSkill" />
     </If>
@@ -379,41 +383,49 @@
     <While Condition="InbagCount(6291) &gt;= 1 &amp;&amp; Cooking.Level &lt; 85 &amp;&amp; HasRecipe(7751)" IgnoreCanRun="False">
       <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Cooking Brilliant Smallfish.&quot;); " />
       <CallSubRoutine SubRoutineName="CheckCookingSkill" />
+      <CallSubRoutine SubRoutineName="CreateFood" />
       <CastSpellAction RepeatType="Specific" Repeat="1" Entry="7751" CastOnItem="False" ItemType="Chest" ItemId="0" />
     </While>
     <While Condition="InbagCount(6289) &gt;= 1 &amp;&amp; Cooking.Level &lt; 130 &amp;&amp; HasRecipe(7753)" IgnoreCanRun="False">
       <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Cooking Longjaw Mud Snapper.&quot;); " />
       <CallSubRoutine SubRoutineName="CheckCookingSkill" />
+      <CallSubRoutine SubRoutineName="CreateFood" />
       <CastSpellAction RepeatType="Specific" Repeat="1" Entry="7753" CastOnItem="False" ItemType="Chest" ItemId="0" />
     </While>
     <While Condition="InbagCount(6308) &gt;= 1 &amp;&amp; Cooking.Level &lt; 180 &amp;&amp; HasRecipe(7755)" IgnoreCanRun="False">
       <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Cooking Bristle Whisker Catfish mmmm&quot;); " />
       <CallSubRoutine SubRoutineName="CheckCookingSkill" />
+      <CallSubRoutine SubRoutineName="CreateFood" />
       <CastSpellAction RepeatType="Specific" Repeat="1" Entry="7755" CastOnItem="False" ItemType="Chest" ItemId="0" />
     </While>
     <While Condition="InbagCount(8365) &gt;= 1 &amp;&amp; Cooking.Level &lt; 255 &amp;&amp; HasRecipe(20916)" IgnoreCanRun="False">
       <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Cooking Mithril Head Trout.&quot;); " />
       <CallSubRoutine SubRoutineName="CheckCookingSkill" />
+      <CallSubRoutine SubRoutineName="CreateFood" />
       <CastSpellAction RepeatType="Specific" Repeat="1" Entry="20916" CastOnItem="False" ItemType="Chest" ItemId="0" />
     </While>
     <While Condition="InbagCount(13758) &gt;= 1 &amp;&amp; Cooking.Level &lt; 275 &amp;&amp; HasRecipe(18241)" IgnoreCanRun="False">
       <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Cooking Redgill Filet&quot;); " />
       <CallSubRoutine SubRoutineName="CheckCookingSkill" />
+      <CallSubRoutine SubRoutineName="CreateFood" />
       <CastSpellAction RepeatType="Specific" Repeat="1" Entry="18241" CastOnItem="False" ItemType="Chest" ItemId="0" />
     </While>
     <While Condition="InbagCount(13760) &gt;= 1 &amp;&amp; Cooking.Level &lt; 295 &amp;&amp; HasRecipe(18244)" IgnoreCanRun="False">
       <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Cooking Poached Sunscale Salmon.&quot;); " />
       <CallSubRoutine SubRoutineName="CheckCookingSkill" />
+      <CallSubRoutine SubRoutineName="CreateFood" />
       <CastSpellAction RepeatType="Specific" Repeat="1" Entry="18244" CastOnItem="False" ItemType="Chest" ItemId="0" />
     </While>
     <While Condition="InbagCount(159) &gt;= 1 &amp;&amp; InbagCount(13759) &gt;= 1 &amp;&amp; Cooking.Level &lt; 295 &amp;&amp; HasRecipe(18243)" IgnoreCanRun="False">
       <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Cooking Nightfin Soup.&quot;); " />
       <CallSubRoutine SubRoutineName="CheckCookingSkill" />
+      <CallSubRoutine SubRoutineName="CreateFood" />
       <CastSpellAction RepeatType="Specific" Repeat="1" Entry="18243" CastOnItem="False" ItemType="Chest" ItemId="0" />
     </While>
     <While Condition="InbagCount(13889) &gt;= 1 &amp;&amp; Cooking.Level &lt; 325 &amp;&amp; HasRecipe(18247)" IgnoreCanRun="False">
       <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Cooking Baked Salmon.&quot;); " />
       <CallSubRoutine SubRoutineName="CheckCookingSkill" />
+      <CallSubRoutine SubRoutineName="CreateFood" />
       <CastSpellAction RepeatType="Specific" Repeat="1" Entry="18247" CastOnItem="False" ItemType="Chest" ItemId="0" />
     </While>
     <While Condition="InbagCount(27422) &gt;= 1 &amp;&amp; Cooking.Level &lt; 355 &amp;&amp; HasRecipe(42296)" IgnoreCanRun="True">
@@ -442,14 +454,14 @@
     </While>
     <While Condition="InbagCount(41802) &gt;= 1 &amp;&amp; Cooking.Level &lt; 415 &amp;&amp; HasRecipe(45569)" IgnoreCanRun="False">
       <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Cooking Baked Manta Ray.&quot;); " />
-      <CallSubRoutine SubRoutineName="CreateFood" />
       <CallSubRoutine SubRoutineName="CheckCookingSkill" />
+      <CallSubRoutine SubRoutineName="CreateFood" />
       <CastSpellAction RepeatType="Specific" Repeat="1" Entry="45569" CastOnItem="False" ItemType="Chest" ItemId="0" />
     </While>
     <While Condition="InbagCount(41805) &gt;= 3 &amp;&amp; Cooking.Level &lt; 425 &amp;&amp; HasRecipe(64358)" IgnoreCanRun="False">
       <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Cooking Black Jelly.&quot;); " />
-      <CallSubRoutine SubRoutineName="CreateFood" />
       <CallSubRoutine SubRoutineName="CheckCookingSkill" />
+      <CallSubRoutine SubRoutineName="CreateFood" />
       <CastSpellAction RepeatType="Specific" Repeat="1" Entry="64358" CastOnItem="False" ItemType="Chest" ItemId="0" />
     </While>
     <While Condition="InbagCount (2595) &gt;= 1 &amp;&amp; InbagCount (2596) &gt;= 2 &amp;&amp; Cooking.Level &lt; 435 &amp;&amp; HasRecipe(88015)" IgnoreCanRun="True">
