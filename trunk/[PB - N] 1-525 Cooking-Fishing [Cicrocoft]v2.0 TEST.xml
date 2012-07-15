@@ -1082,7 +1082,7 @@
       <MoveToAction Location="-2328.623, -365.1167, -8.742797" MoveType="Location" Pathing="ClickToMove" Entry="0" />
     </If>
   </SubRoutine>
-  <SubRoutine SubRoutineName="Kalimdor to Outlands">
+  <SubRoutine SubRoutineName="Kalimdor to Outland">
     <If Condition="Me.IsHorde" IgnoreCanRun="True">
       <While Condition="Me.MapId != 530" IgnoreCanRun="True">
         <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Going to Outlands.&quot;); " />
