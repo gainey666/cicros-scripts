@@ -424,8 +424,8 @@
         <If Condition="(InbagCount (30817) + InbagCount (2678) + InbagCount (30816)*2) &lt; 150 &amp;&amp; Cooking.Level &lt; 40 &amp;&amp; DistanceTo (-9492.55, 81.4931, 56.2269) &gt; 30" IgnoreCanRun="True">
           <If Condition="Me.IsAlliance" IgnoreCanRun="True">
             <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Lets buy these supplies for later.&quot;); " />
-            <BuyItemAction NpcEntry="66" Location="-9492.55, 81.4931, 56.22646" ItemID="30817" BuyItemType="SpecificItem" Count="75" BuyAdditively="False" />
-            <BuyItemAction NpcEntry="66" Location="-9492.55, 81.4931, 56.22646" ItemID="2678" BuyItemType="SpecificItem" Count="75" BuyAdditively="False" />
+            <BuyItemAction NpcEntry="66" Location="-9492.55, 81.4931, 56.22646" ItemID="30817" BuyItemType="SpecificItem" Count="100" BuyAdditively="False" />
+            <BuyItemAction NpcEntry="66" Location="-9492.55, 81.4931, 56.22646" ItemID="2678" BuyItemType="SpecificItem" Count="100" BuyAdditively="False" />
           </If>
         </If>
       </If>
@@ -496,13 +496,13 @@
           </While>
           <WaitAction Condition="false" Timeout="1000" />
         </If>
-        <If Condition="(InbagCount (30817) + InbagCount (2678) + InbagCount (30816)*2) &lt; 150 &amp;&amp; Cooking.Level &lt; 40 &amp;&amp; DistanceTo (-9492.55, 81.4931, 56.2269) &gt; 30" IgnoreCanRun="True">
+        <If Condition="(InbagCount (30817) + InbagCount (2678) + InbagCount (30816)*2) &lt; 150 &amp;&amp; Cooking.Level &lt; 40" IgnoreCanRun="True">
           <If Condition="Me.IsHorde" IgnoreCanRun="True">
             <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Lets buy these supplies for later.&quot;); " />
             <CallSubRoutine SubRoutineName="EnterBV" />
             <WaitAction Condition="false" Timeout="1000" />
-            <BuyItemAction NpcEntry="3081" Location="-2267.63, -324.007, -9.424726" ItemID="30817" BuyItemType="SpecificItem" Count="75" BuyAdditively="False" />
-            <BuyItemAction NpcEntry="3081" Location="-2267.63, -324.007, -9.424726" ItemID="2678" BuyItemType="SpecificItem" Count="75" BuyAdditively="False" />
+            <BuyItemAction NpcEntry="3081" Location="-2267.63, -324.007, -9.424726" ItemID="30817" BuyItemType="SpecificItem" Count="100" BuyAdditively="False" />
+            <BuyItemAction NpcEntry="3081" Location="-2267.63, -324.007, -9.424726" ItemID="2678" BuyItemType="SpecificItem" Count="100" BuyAdditively="False" />
             <WaitAction Condition="false" Timeout="1000" />
             <CallSubRoutine SubRoutineName="LeaveBV" />
           </If>
@@ -1051,15 +1051,15 @@
     <If Condition="Me.IsAlliance" IgnoreCanRun="True">
       <FlyToAction Dismount="True" Location="-9492.55, 81.4931, 56.22646" />
       <WaitAction Condition="false" Timeout="2000" />
-      <BuyItemAction NpcEntry="66" Location="-9492.55, 81.4931, 56.22646" ItemID="30817" BuyItemType="SpecificItem" Count="75" BuyAdditively="True" />
+      <BuyItemAction NpcEntry="66" Location="-9492.55, 81.4931, 56.22646" ItemID="30817" BuyItemType="SpecificItem" Count="100" BuyAdditively="True" />
       <WaitAction Condition="false" Timeout="1000" />
-      <BuyItemAction NpcEntry="66" Location="-9492.55, 81.4931, 56.22646" ItemID="2678" BuyItemType="SpecificItem" Count="75" BuyAdditively="True" />
+      <BuyItemAction NpcEntry="66" Location="-9492.55, 81.4931, 56.22646" ItemID="2678" BuyItemType="SpecificItem" Count="100" BuyAdditively="True" />
     </If>
     <If Condition="Me.IsHorde" IgnoreCanRun="True">
       <CallSubRoutine SubRoutineName="EnterBV" />
       <WaitAction Condition="false" Timeout="1000" />
-      <BuyItemAction NpcEntry="3081" Location="-2267.63, -324.007, -9.424726" ItemID="30817" BuyItemType="SpecificItem" Count="75" BuyAdditively="False" />
-      <BuyItemAction NpcEntry="3081" Location="-2267.63, -324.007, -9.424726" ItemID="2678" BuyItemType="SpecificItem" Count="75" BuyAdditively="False" />
+      <BuyItemAction NpcEntry="3081" Location="-2267.63, -324.007, -9.424726" ItemID="30817" BuyItemType="SpecificItem" Count="100" BuyAdditively="False" />
+      <BuyItemAction NpcEntry="3081" Location="-2267.63, -324.007, -9.424726" ItemID="2678" BuyItemType="SpecificItem" Count="100" BuyAdditively="False" />
       <WaitAction Condition="false" Timeout="1000" />
       <CallSubRoutine SubRoutineName="LeaveBV" />
     </If>
