@@ -213,35 +213,11 @@
       </If>
     </If>
     <If Condition="Me.IsHorde" IgnoreCanRun="True">
-      <If Condition="Me.ZoneId == 1" IgnoreCanRun="True">
+      <If Condition="Me.MapId == 1" IgnoreCanRun="True">
         <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;I need to train cooking. Going to train in Bloodhoof Village.&quot;); " />
         <CallSubRoutine SubRoutineName="EnterBV" />
         <TrainSkillAction NpcEntry="3067" Location="-2263.261, -284.9409, -9.424675" />
         <CallSubRoutine SubRoutineName="LeaveBV" />
-        <WaitAction Condition="false" Timeout="2000" />
-      </If>
-      <If Condition="Me.MapId == 530" IgnoreCanRun="True">
-        <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;I need to train cooking. Going to train in Lower City.&quot;); " />
-        <If Condition="DistanceTo (-2065.71, 5311.151, -37.32356) &gt; 30" IgnoreCanRun="True">
-          <FlyToAction Dismount="True" Location="-2082.622, 5332.535, -36.75254" />
-        </If>
-        <TrainSkillAction NpcEntry="19185" Location="-2065.71, 5311.151, -37.32356" />
-        <WaitAction Condition="false" Timeout="2000" />
-      </If>
-      <If Condition="Me.MapId == 571 &amp;&amp; Me.ZoneId != 4395" IgnoreCanRun="True">
-        <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;I need to train cooking. Going to train in Valiance Keep.&quot;); " />
-        <If Condition="DistanceTo (2147.999, 5231.634, 19.44573) &gt; 45" IgnoreCanRun="True">
-          <FlyToAction Dismount="False" Location="2187.225, 5234.346, 10.57377" />
-        </If>
-        <TrainSkillAction NpcEntry="26989" Location="2147.999, 5231.634, 19.44573" />
-        <WaitAction Condition="false" Timeout="2000" />
-      </If>
-      <If Condition="Me.ZoneId == 4395" IgnoreCanRun="True">
-        <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;I need to train cooking. Going to train in Dalaran.&quot;); " />
-        <If Condition="DistanceTo (5707.724, 714.7145, 642.4741) &gt; 30" IgnoreCanRun="True">
-          <FlyToAction Dismount="True" Location="5737.577, 673.0076, 645.2578" />
-        </If>
-        <TrainSkillAction NpcEntry="28705" Location="5707.724, 714.7145, 642.4741" />
         <WaitAction Condition="false" Timeout="2000" />
       </If>
     </If>
@@ -283,7 +259,9 @@
         <If Condition="Me.MapId == 0" IgnoreCanRun="True">
           <If Condition="DistanceTo (-9207.701, -2065.184, 78.0983) &gt; 30" IgnoreCanRun="True">
             <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Going to cook in Lake Everstill Town. So quiet there.&quot;); " />
-            <CallSubRoutine SubRoutineName="LakeshireHS" />
+            <If Condition="DistanceTo (-9207.701, -2065.184, 78.0983) &gt; 500" IgnoreCanRun="True">
+              <CallSubRoutine SubRoutineName="LakeshireHS" />
+            </If>
             <FlyToAction Dismount="True" Location="-9229.114, -2067.764, 76.97263" />
           </If>
           <If Condition="DistanceTo (-9207.701, -2065.184, 78.0983) &gt; 2" IgnoreCanRun="True">
@@ -305,14 +283,15 @@
     </If>
     <If Condition="Me.IsHorde" IgnoreCanRun="True">
       <If Condition="Me.MapId == 1" IgnoreCanRun="True">
-        <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Going to Bloodhoof Village to cook!&quot;); " />
         <If Condition="DistanceTo (-9207.701, -2065.184, 78.0983) &gt; 50" IgnoreCanRun="True">
           <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Going to cook in Bloodhoof Village. So quiet there.&quot;); " />
-          <CallSubRoutine SubRoutineName="BVHS" />
-          <FlyToAction Dismount="True" Location="-2158.596, -392.9482, -3.030381" />
+          <If Condition="DistanceTo (-9207.701, -2065.184, 78.0983) &gt; 500" IgnoreCanRun="True">
+            <CallSubRoutine SubRoutineName="BVHS" />
+          </If>
+          <FlyToAction Dismount="True" Location="-2173.634, -392.3203, -3.599042" />
         </If>
         <If Condition="DistanceTo (-2158.596, -392.9482, -3.030381) &gt; 5" IgnoreCanRun="True">
-          <MoveToAction Location="-2158.596, -392.9482, -3.030381" MoveType="Location" Pathing="Navigator" Entry="0" />
+          <MoveToAction Location="-2173.634, -392.3203, -3.599042" MoveType="Location" Pathing="Navigator" Entry="0" />
         </If>
       </If>
       <CallSubRoutine SubRoutineName="CheckCookingSkill" />
@@ -375,7 +354,7 @@
     </If>
   </SubRoutine>
   <SubRoutine SubRoutineName="CheckCookingSkill">
-    <If Condition="Cooking.Level &gt;= Cooking.MaxLevel - 25 &amp;&amp; Cooking.Level &lt;= Cooking.MaxLevel" IgnoreCanRun="True">
+    <If Condition="Cooking.Level &gt;= Cooking.MaxLevel - 25 &amp;&amp; Cooking.Level &lt; 500" IgnoreCanRun="True">
       <CallSubRoutine SubRoutineName="TrainCooking" />
     </If>
     <CallSubRoutine SubRoutineName="LearnRecipe" />
@@ -850,7 +829,7 @@
     <FlyToAction Dismount="True" Location="-2270.601, -306.3915, -9.423664" />
   </SubRoutine>
   <SubRoutine SubRoutineName="LakeshireHS">
-    <If Condition="HSCooldown() == 0 &amp;&amp; ObjectManager.Me.HearthstoneAreaId == 69 ||HSCooldown() == 0 &amp;&amp; ObjectManager.Me.HearthstoneAreaId == 222" IgnoreCanRun="True">
+    <If Condition="HSCooldown() == 0 &amp;&amp; ObjectManager.Me.HearthstoneAreaId == 69" IgnoreCanRun="True">
       <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Hearthstone is read for use! Taking the short way home!!.&quot;); " />
       <CustomAction Code="Lua.DoString(string.Format(&quot;RunMacroText(\&quot;{0}\&quot;)&quot;, &quot;/use Hearthstone&quot;), 0);" />
       <WaitAction Condition="false" Timeout="16000" />
@@ -1039,6 +1018,14 @@
       <MoveToAction Location="-994.6897, -3828.401, 5.627099" MoveType="Location" Pathing="ClickToMove" Entry="0" />
     </If>
   </SubRoutine>
+  <SubRoutine SubRoutineName="BVHS">
+    <If Condition="HSCooldown() == 0 &amp;&amp; ObjectManager.Me.HearthstoneAreaId == 222" IgnoreCanRun="True">
+      <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Hearthstone is read for use! Taking the short way home!!.&quot;); " />
+      <CustomAction Code="Lua.DoString(string.Format(&quot;RunMacroText(\&quot;{0}\&quot;)&quot;, &quot;/use Hearthstone&quot;), 0);" />
+      <WaitAction Condition="false" Timeout="17897" />
+      <MoveToAction Location="-2328.623, -365.1167, -8.742797" MoveType="Location" Pathing="ClickToMove" Entry="0" />
+    </If>
+  </SubRoutine>
   <!--Whiles for cooking-->
   <While Condition="(InbagCount (30817) + InbagCount (2678) + InbagCount (30816)*2) &gt;= 150 &amp;&amp; Cooking.Level &gt;= 1 &amp;&amp; Cooking.Level &lt; 40 || InbagCount (6291) + InbagCount (7751) &gt;= 40 &amp;&amp; Cooking.Level &gt;= 40 &amp;&amp; Cooking.Level &lt; 65 || (InbagCount (4592) + InbagCount (6289)) &gt;= 60 &amp;&amp; Cooking.Level &gt;= 65 &amp;&amp; Cooking.Level &lt; 110 || (InbagCount (6308) + InbagCount (4593)) &gt;= 120 &amp;&amp; Cooking.Level &gt;= 110 &amp;&amp; Cooking.Level &lt; 175 || (InbagCount (8364) + InbagCount (8365)) &gt;= 90 &amp;&amp; (InbagCount (13759) + InbagCount (13760) + InbagCount(13932) + InbagCount(13931)) &gt;= 40 &amp;&amp; Cooking.Level &gt;= 175 &amp;&amp; Cooking.Level &lt; 275 || (InbagCount (13935) + InbagCount (13889)) &gt;= 100 &amp;&amp; Cooking.Level &gt;= 275 &amp;&amp; Cooking.Level &lt; 325 || (InbagCount (27666) + InbagCount (27438)) &gt;= 15 &amp;&amp; (InbagCount (33048) + InbagCount (27422)) &gt;= 50 &amp;&amp; Cooking.Level &gt;= 325 &amp;&amp; Cooking.Level &lt; 350" IgnoreCanRun="True">
     <!--Classic + BC Part-->
@@ -1148,8 +1135,8 @@
   </If>
   <If Condition="(InbagCount (8364) + InbagCount (8365)) &lt; 110 &amp;&amp; Cooking.Level &gt;= 175 &amp;&amp; Cooking.Level &lt; 255" IgnoreCanRun="False">
     <CallSubRoutine SubRoutineName="BuyRecipe" />
+    <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Time to catch 110x Mithril Head Fish.&quot;); " />
     <While Condition="Me.IsAlliance" IgnoreCanRun="True">
-      <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Time to catch 110x Mithril Head Fish, going to WPL.&quot;); " />
       <If Condition="DistanceTo (1045.846, -2098.408, 54.68686) &gt; 5" IgnoreCanRun="True">
         <FlyToAction Dismount="True" Location="1045.846, -2098.408, 54.68686" />
       </If>
@@ -1160,15 +1147,14 @@
       <CallSubRoutine SubRoutineName="DoFishing" />
     </While>
     <While Condition="Me.IsHorde" IgnoreCanRun="True">
-      <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Time to catch 110x Mithril Head Fish, going to Desolace.&quot;); " />
       <If Condition="InbagCount(8364) + InbagCount(8365) == 55" IgnoreCanRun="True">
         <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Halfway! 55x Mithril Head Fish more!.&quot;); " />
       </If>
       <If Condition="DistanceTo (-1990.381, 2234.376, 51.08327) &gt; 5" IgnoreCanRun="True">
         <FlyToAction Dismount="True" Location="-1990.381, 2234.376, 51.08327" />
       </If>
-      <If Condition="!IsFacing(0.9f)" IgnoreCanRun="True">
-        <CustomAction Code="Me.SetFacing(0.9f);" />
+      <If Condition="!IsFacing(0.2f)" IgnoreCanRun="True">
+        <CustomAction Code="Me.SetFacing(0.2f);" />
         <CallSubRoutine SubRoutineName="UF" />
       </If>
       <CallSubRoutine SubRoutineName="DoFishing" />
