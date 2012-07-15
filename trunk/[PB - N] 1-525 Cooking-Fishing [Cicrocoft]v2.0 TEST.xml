@@ -1103,6 +1103,7 @@
           <WaitAction Condition="Me.MapId == 0" Timeout="650000" />
           <If Condition="(Me.MapId == 0)" IgnoreCanRun="True">
             <FlyToAction Dismount="False" Location="-11895.9, -3206.984, -6.04731" />
+            <CustomAction Code="MessageBox.Show(&quot;Please watch me while im going thru the portal. Sometimes I do crazy things here. Incase of crazyness, stop the bot and move me manually&quot;);" />
             <MoveToAction Location="-11930.31, -3209.613, -1.836873" MoveType="Location" Pathing="ClickToMove" Entry="0" />
             <WaitAction Condition="Me.MapId == 530" Timeout="25000" />
           </If>
