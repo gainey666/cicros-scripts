@@ -1241,10 +1241,10 @@
     </While>
     <While Condition="Me.IsHorde" IgnoreCanRun="True">
       <If Condition="DistanceTo (2645.376, -541.5344, 105.5158) &gt; 5" IgnoreCanRun="True">
-        <FlyToAction Dismount="True" Location="2645.376, -541.5344, 105.5158" />
+        <FlyToAction Dismount="True" Location="2763.174, 291.9485, 61.60812" />
       </If>
-      <If Condition="!IsFacing(0.8f)" IgnoreCanRun="True">
-        <CustomAction Code="Me.SetFacing(0.8f);" />
+      <If Condition="!IsFacing(4.3f)" IgnoreCanRun="True">
+        <CustomAction Code="Me.SetFacing(4.3f);" />
         <CallSubRoutine SubRoutineName="UF" />
       </If>
       <CallSubRoutine SubRoutineName="DoFishing" />
