@@ -45,7 +45,7 @@
     <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Changing bot to Combat Bot&quot;); " />
     <ChangeBotAction BotName="Combat Bot" />
   </If>
-  <While Condition="Fishing.Level &gt;= Fishing.MaxLevel - 25 &amp;&amp; Fishing.Level &lt; 500 || Fishing.MaxLevel == 0" IgnoreCanRun="True">
+  <While Condition="Fishing.Level &gt;= Fishing.MaxLevel - 25 &amp;&amp; Fishing.Level &lt; 500 &amp;&amp; Me.MapId != 530 || Fishing.MaxLevel == 0" IgnoreCanRun="True">
     <If Condition="Fishing.Level &gt;= Fishing.MaxLevel - 25 &amp;&amp; Fishing.Level &lt; 500" IgnoreCanRun="True">
       <CustomAction Code="Log(System.Drawing.Color.DarkOliveGreen,&quot;Looks like we can train our fishing skill&quot;);" />
     </If>
@@ -428,7 +428,7 @@
     </If>
   </SubRoutine>
   <SubRoutine SubRoutineName="DoFishing">
-    <While Condition="Fishing.Level &gt;= Fishing.MaxLevel - 25 &amp;&amp; Fishing.Level &lt; 500 &amp;&amp; Fishing.Level != 525" IgnoreCanRun="True">
+    <While Condition="Fishing.Level &gt;= Fishing.MaxLevel - 25 &amp;&amp; Fishing.Level &lt; 500 &amp;&amp; Fishing.Level != 525 &amp;&amp; Me.MapId != 530" IgnoreCanRun="True">
       <CallSubRoutine SubRoutineName="TrainFishing" />
     </While>
     <CustomAction Code="Fish();" />
@@ -631,6 +631,9 @@
             <CallSubRoutine SubRoutineName="Kalimdor to Outland" />
           </If>
           <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Need Fishstick recipe. Flying to buy it.&quot;); " />
+          <If Condition="Me.ZoneId == 3483" IgnoreCanRun="True">
+            <FlyToAction Dismount="False" Location="-1244.38, 3273.011, 135.0276" />
+          </If>
           <FlyToAction Dismount="False" Location="-2657.404, 4451.183, 36.3256" />
           <While Condition="!HasRecipe(33295) &amp;&amp; (InbagCount(27699) == 0)" IgnoreCanRun="True">
             <BuyItemAction NpcEntry="18960" Location="-2657.404, 4451.183, 36.3256" ItemID="27699" BuyItemType="SpecificItem" Count="1" BuyAdditively="False" />
@@ -1137,12 +1140,14 @@
   </SubRoutine>
   <SubRoutine SubRoutineName="Outland to Kalimdor">
     <CallSubRoutine SubRoutineName="BVHS" />
-    <If Condition="DistanceTo (-1825.721, 5357.493, -12.42714) &gt; 50" IgnoreCanRun="True">
-      <FlyToAction Dismount="False" Location="-1825.721, 5357.493, -12.42714" />
+    <If Condition="Me.MapId == 530" IgnoreCanRun="True">
+      <If Condition="DistanceTo (-1825.721, 5357.493, -12.42714) &gt; 50" IgnoreCanRun="True">
+        <FlyToAction Dismount="False" Location="-1825.721, 5357.493, -12.42714" />
+      </If>
+      <MoveToAction Location="-1898.235, 5395.234, -12.42779" MoveType="Location" Pathing="Navigator" Entry="0" />
+      <InteractionAction InteractType="GameObject" Entry="183323" InteractDelay="2000" GameObjectType="Transport" SpellFocus="Anvil" />
+      <WaitAction Condition="Me.MapId == 1" Timeout="25000" />
     </If>
-    <MoveToAction Location="-1898.235, 5395.234, -12.42779" MoveType="Location" Pathing="Navigator" Entry="0" />
-    <InteractionAction InteractType="GameObject" Entry="183323" InteractDelay="2000" GameObjectType="Transport" SpellFocus="Anvil" />
-    <WaitAction Condition="Me.MapId == 1" Timeout="25000" />
   </SubRoutine>
   <!--Whiles for cooking-->
   <While Condition="(InbagCount (30817) + InbagCount (2678) + InbagCount (30816)*2) &gt;= 200 &amp;&amp; Cooking.Level &gt;= 1 &amp;&amp; Cooking.Level &lt; 40 || InbagCount (6291) + InbagCount (7751) &gt;= 40 &amp;&amp; Cooking.Level &gt;= 40 &amp;&amp; Cooking.Level &lt; 65 || (InbagCount (4592) + InbagCount (6289)) &gt;= 60 &amp;&amp; Cooking.Level &gt;= 65 &amp;&amp; Cooking.Level &lt; 110 || (InbagCount (6308) + InbagCount (4593)) &gt;= 120 &amp;&amp; Cooking.Level &gt;= 110 &amp;&amp; Cooking.Level &lt; 175 || (InbagCount (8364) + InbagCount (8365)) &gt;= 90 &amp;&amp; (InbagCount (13759) + InbagCount (13760) + InbagCount(13932) + InbagCount(13931)) &gt;= 40 &amp;&amp; Cooking.Level &gt;= 175 &amp;&amp; Cooking.Level &lt; 275 || (InbagCount (13935) + InbagCount (13889)) &gt;= 100 &amp;&amp; Cooking.Level &gt;= 275 &amp;&amp; Cooking.Level &lt; 325 || (InbagCount (27666) + InbagCount (27438)) &gt;= 15 &amp;&amp; (InbagCount (33048) + InbagCount (27422)) &gt;= 50 &amp;&amp; Cooking.Level &gt;= 325 &amp;&amp; Cooking.Level &lt; 350" IgnoreCanRun="True">
@@ -1373,8 +1378,8 @@
         <If Condition="DistanceTo (-2626.952, 4273.35, 17.128) &gt; 5" IgnoreCanRun="True">
           <FlyToAction Dismount="True" Location="-2626.952, 4273.35, 17.128" />
         </If>
-        <If Condition="!IsFacing(1.9f)" IgnoreCanRun="True">
-          <CustomAction Code="Me.SetFacing(1.9f);" />
+        <If Condition="!IsFacing(1.7f)" IgnoreCanRun="True">
+          <CustomAction Code="Me.SetFacing(1.7f);" />
           <CallSubRoutine SubRoutineName="UF" />
         </If>
         <CallSubRoutine SubRoutineName="DoFishing" />
