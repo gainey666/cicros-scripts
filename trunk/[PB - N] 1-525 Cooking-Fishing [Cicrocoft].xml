@@ -743,6 +743,46 @@
       <CallSubRoutine SubRoutineName="CheckCookingSkill" />
       <CastSpellAction RepeatType="Specific" Repeat="1" Entry="88006" CastOnItem="False" ItemType="Chest" ItemId="0" />
     </While>
+    <While Condition="InbagCount(53067) &gt;= 1 &amp;&amp; Cooking.Level &lt; 490 &amp;&amp; HasRecipe(88028)" IgnoreCanRun="True">
+      <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Making Lightly Fried Lurker.&quot;); " />
+      <CallSubRoutine SubRoutineName="CheckCookingSkill" />
+      <CastSpellAction RepeatType="Specific" Repeat="1" Entry="88028" CastOnItem="False" ItemType="Chest" ItemId="0" />
+    </While>
+    <While Condition="InbagCount(53067) &gt;= 1 &amp;&amp; Cooking.Level &lt; 490 &amp;&amp; HasRecipe(88030)" IgnoreCanRun="True">
+      <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Making Lurker Lunch.&quot;); " />
+      <CallSubRoutine SubRoutineName="CheckCookingSkill" />
+      <CastSpellAction RepeatType="Specific" Repeat="1" Entry="88030" CastOnItem="False" ItemType="Chest" ItemId="0" />
+    </While>
+    <While Condition="InbagCount(53064) &gt;= 1 &amp;&amp; Cooking.Level &lt; 505 &amp;&amp; HasRecipe(88033)" IgnoreCanRun="True">
+      <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Making Pickled Guppy.&quot;); " />
+      <CallSubRoutine SubRoutineName="CheckCookingSkill" />
+      <CastSpellAction RepeatType="Specific" Repeat="1" Entry="88033" CastOnItem="False" ItemType="Chest" ItemId="0" />
+    </While>
+    <While Condition="InbagCount(53071) &gt;= 1 &amp;&amp; Cooking.Level &lt; 525 &amp;&amp; HasRecipe(88003)" IgnoreCanRun="True">
+      <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Making Baked Rockfish.&quot;); " />
+      <CallSubRoutine SubRoutineName="CheckCookingSkill" />
+      <CastSpellAction RepeatType="Specific" Repeat="1" Entry="88003" CastOnItem="False" ItemType="Chest" ItemId="0" />
+    </While>
+    <While Condition="InbagCount(53071) &gt;= 3 &amp;&amp; Cooking.Level &lt; 510 &amp;&amp; HasRecipe(88018)" IgnoreCanRun="True">
+      <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Making Delicious Fish Fry.&quot;); " />
+      <CallSubRoutine SubRoutineName="CheckCookingSkill" />
+      <CastSpellAction RepeatType="Specific" Repeat="1" Entry="88018" CastOnItem="False" ItemType="Chest" ItemId="0" />
+    </While>
+    <While Condition="InbagCount(53071) &gt;= 1 &amp;&amp; Cooking.Level &lt; 525 &amp;&amp; HasRecipe(88016)" IgnoreCanRun="True">
+      <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Making Delicious Sagefish Tail.&quot;); " />
+      <CallSubRoutine SubRoutineName="CheckCookingSkill" />
+      <CastSpellAction RepeatType="Specific" Repeat="1" Entry="88016" CastOnItem="False" ItemType="Chest" ItemId="0" />
+    </While>
+    <While Condition="InbagCount(53068) &gt;= 1 &amp;&amp; Cooking.Level &lt; 490 &amp;&amp; HasRecipe(88024)" IgnoreCanRun="True">
+      <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Making Lavascale Fillet.&quot;); " />
+      <CallSubRoutine SubRoutineName="CheckCookingSkill" />
+      <CastSpellAction RepeatType="Specific" Repeat="1" Entry="88024" CastOnItem="False" ItemType="Chest" ItemId="0" />
+    </While>
+    <While Condition="InbagCount(53068) &gt;= 1 &amp;&amp; Cooking.Level &lt; 525 &amp;&amp; HasRecipe(88025)" IgnoreCanRun="True">
+      <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Making Lavascale Minestrone.&quot;); " />
+      <CallSubRoutine SubRoutineName="CheckCookingSkill" />
+      <CastSpellAction RepeatType="Specific" Repeat="1" Entry="88025" CastOnItem="False" ItemType="Chest" ItemId="0" />
+    </While>
   </SubRoutine>
   <SubRoutine SubRoutineName="LearnRecipe">
     <While Condition="!HasRecipe(37836) &amp;&amp; Cooking.Level &gt;= 1 &amp;&amp; Cooking.Level &lt; 40" IgnoreCanRun="True">
@@ -1149,6 +1189,19 @@
       <WaitAction Condition="Me.MapId == 1" Timeout="25000" />
     </If>
   </SubRoutine>
+  <SubRoutine SubRoutineName="City to TH">
+    <If Condition="Me.MapId == 0" IgnoreCanRun="True">
+      <If Condition="Me.IsAlliance" IgnoreCanRun="True">
+        <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Flying to Twilight Highlands Portal.&quot;); " />
+        <FlyToAction Dismount="False" Location="-8190.713, 415.765, 116.8531" />
+        <If Condition="ObjectManager.GetObjectsOfType&lt;WoWGameObject&gt;().FirstOrDefault(o =&gt; o.Entry == 207694 ) != null &amp;&amp; ObjectManager.GetObjectsOfType&lt;WoWGameObject&gt;().FirstOrDefault(o =&gt; o.Entry == 207694 ).Location.Distance(new WoWPoint(-8186.149, 413.7292, 116.7497)) &lt; 20" IgnoreCanRun="True">
+          <InteractionAction InteractType="GameObject" Entry="207694" InteractDelay="0" GameObjectType="Transport" SpellFocus="Anvil" />
+          <WaitAction Condition="Me.MapId == 1" Timeout="25000" />
+        </If>
+        <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Is the portal broken? Flying to Twilight Highlands instead.&quot;); " />
+      </If>
+    </If>
+  </SubRoutine>
   <!--Whiles for cooking-->
   <While Condition="(InbagCount (30817) + InbagCount (2678) + InbagCount (30816)*2) &gt;= 200 &amp;&amp; Cooking.Level &gt;= 1 &amp;&amp; Cooking.Level &lt; 40 || InbagCount (6291) + InbagCount (7751) &gt;= 40 &amp;&amp; Cooking.Level &gt;= 40 &amp;&amp; Cooking.Level &lt; 65 || (InbagCount (4592) + InbagCount (6289)) &gt;= 60 &amp;&amp; Cooking.Level &gt;= 65 &amp;&amp; Cooking.Level &lt; 110 || (InbagCount (6308) + InbagCount (4593)) &gt;= 120 &amp;&amp; Cooking.Level &gt;= 110 &amp;&amp; Cooking.Level &lt; 175 || (InbagCount (8364) + InbagCount (8365)) &gt;= 90 &amp;&amp; (InbagCount (13759) + InbagCount (13760) + InbagCount(13932) + InbagCount(13931)) &gt;= 40 &amp;&amp; Cooking.Level &gt;= 175 &amp;&amp; Cooking.Level &lt; 275 || (InbagCount (13935) + InbagCount (13889)) &gt;= 100 &amp;&amp; Cooking.Level &gt;= 275 &amp;&amp; Cooking.Level &lt; 325 || (InbagCount (27666) + InbagCount (27438)) &gt;= 15 &amp;&amp; (InbagCount (33048) + InbagCount (27422)) &gt;= 50 &amp;&amp; Cooking.Level &gt;= 325 &amp;&amp; Cooking.Level &lt; 350" IgnoreCanRun="True">
     <!--Classic + BC Part-->
@@ -1516,14 +1569,6 @@
       </If>
     </If>
   </If>
-  <!--End-->
-  <If Condition="Cooking.Level &gt;= 450 &amp;&amp; Fishing.Level == 525" IgnoreCanRun="True">
-    <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Nothing more to do.&quot;); " />
-    <CustomAction Code="Log(&quot;Starting log out in 20sec&quot;);" />
-    <WaitAction Condition="false" Timeout="20000" />
-    <CustomAction Code=" Lua.DoString(&quot;Logout()&quot;);TreeRoot.Stop();" />
-    <WaitAction Condition="false" Timeout="35000" />
-  </If>
   <If Condition="Cooking.Level &gt;= 450 &amp;&amp; Fishing.Level != 525" IgnoreCanRun="True">
     <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Lets fish upto lvl 525.&quot;); " />
     <While Condition="Me.IsAlliance &amp;&amp; Me.ZoneId == 4395" IgnoreCanRun="True">
@@ -1546,6 +1591,169 @@
       <CustomAction Code=" Lua.DoString(&quot;Logout()&quot;);TreeRoot.Stop();" />
       <WaitAction Condition="false" Timeout="35000" />
     </If>
+  </If>
+  <!--450-525-->
+  <CustomAction Code="MessageBox.Show(&quot;Hello, Check the forum topic for what recipes to buy. When ever you start the bot and the bot detects you have learned one of these recipes, it will fish and cook the recipe&quot;);" />
+  <If Condition="Me.IsAlliance" IgnoreCanRun="True">
+    <If Condition="InbagCount(65416) == 1  &amp;&amp; Cooking.Level &gt;= 450 &amp;&amp; Cooking.Level &lt; 480 || InbagCount(65412) == 1 &amp;&amp; Cooking.Level &gt;= 450 &amp;&amp; Cooking.Level &lt; 475 || HasRecipe(88030) &amp;&amp; Cooking.Level &gt;= 450 &amp;&amp; Cooking.Level &lt; 475 || HasRecipe(88028) &amp;&amp; Cooking.Level &gt;= 450 &amp;&amp; Cooking.Level &lt; 480" IgnoreCanRun="True">
+      <If Condition="!HasRecipe(88028)" IgnoreCanRun="True">
+        <CustomAction Code="Lua.DoString(&quot;UseItemByName(65412)&quot;); " />
+        <WaitAction Condition="false" Timeout="3000" />
+      </If>
+      <If Condition="!HasRecipe(88030)" IgnoreCanRun="True">
+        <CustomAction Code="Lua.DoString(&quot;UseItemByName(65416)&quot;); " />
+        <WaitAction Condition="false" Timeout="3000" />
+      </If>
+      <While Condition="InbagCount(53067) + InbagCount(62657) + InbagCount(62651) &gt;= 65" IgnoreCanRun="True">
+        <CallSubRoutine SubRoutineName="CreateFood" />
+        <CallSubRoutine SubRoutineName="WhatToCook" />
+      </While>
+      <If Condition="InbagCount(53067) + InbagCount(62657) + InbagCount(62651) &lt; 65" IgnoreCanRun="True">
+        <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Time to catch 65x Striped Lurker.&quot;); " />
+        <While Condition="Me.IsAlliance" IgnoreCanRun="True">
+          <If Condition="DistanceTo (-3659.1, -5093.946, 29.40458) &gt; 5" IgnoreCanRun="True">
+            <FlyToAction Dismount="True" Location="-3659.1, -5093.946, 29.40458" />
+          </If>
+          <If Condition="!IsFacing(5.8f)" IgnoreCanRun="True">
+            <CustomAction Code="Me.SetFacing(5.8f);" />
+            <CallSubRoutine SubRoutineName="UF" />
+          </If>
+          <CallSubRoutine SubRoutineName="DoFishing" />
+        </While>
+      </If>
+    </If>
+    <If Condition="InbagCount(65417) == 1 &amp;&amp; Cooking.Level &gt;= 480 &amp;&amp; Cooking.Level &lt; 500 || HasRecipe(88033) &amp;&amp; Cooking.Level &gt;= 480 &amp;&amp; Cooking.Level &lt; 500" IgnoreCanRun="True">
+      <If Condition="!HasRecipe(88033)" IgnoreCanRun="True">
+        <CustomAction Code="Lua.DoString(&quot;UseItemByName(65417)&quot;); " />
+        <WaitAction Condition="false" Timeout="3000" />
+      </If>
+      <While Condition="InbagCount(53064) + InbagCount(62660) &gt;= 25" IgnoreCanRun="True">
+        <CallSubRoutine SubRoutineName="CreateFood" />
+        <CallSubRoutine SubRoutineName="WhatToCook" />
+      </While>
+      <If Condition="InbagCount(53064) + InbagCount(62660) &lt; 25" IgnoreCanRun="True">
+        <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Time to catch 25x Highland Gruppy.&quot;); " />
+        <While Condition="Me.IsAlliance" IgnoreCanRun="True">
+          <If Condition="DistanceTo (-3659.1, -5093.946, 29.40458) &gt; 5" IgnoreCanRun="True">
+            <FlyToAction Dismount="True" Location="-3659.1, -5093.946, 29.40458" />
+          </If>
+          <If Condition="!IsFacing(5.8f)" IgnoreCanRun="True">
+            <CustomAction Code="Me.SetFacing(5.8f);" />
+            <CallSubRoutine SubRoutineName="UF" />
+          </If>
+          <CallSubRoutine SubRoutineName="DoFishing" />
+        </While>
+      </If>
+    </If>
+    <If Condition="InbagCount(65422) == 1  &amp;&amp; Cooking.Level &gt;= 500 &amp;&amp; Cooking.Level &lt; 525 || InbagCount(65426) == 1 &amp;&amp; Cooking.Level &gt;= 500 &amp;&amp; Cooking.Level &lt; 525 || HasRecipe(88016) &amp;&amp; Cooking.Level &gt;= 500 &amp;&amp; Cooking.Level &lt; 525 || HasRecipe(88003) &amp;&amp; Cooking.Level &gt;= 500 &amp;&amp; Cooking.Level &lt; 525" IgnoreCanRun="True">
+      <If Condition="!HasRecipe(88003)" IgnoreCanRun="True">
+        <CustomAction Code="Lua.DoString(&quot;UseItemByName(65426)&quot;); " />
+        <WaitAction Condition="false" Timeout="3000" />
+      </If>
+      <If Condition="!HasRecipe(88016)" IgnoreCanRun="True">
+        <CustomAction Code="Lua.DoString(&quot;UseItemByName(65422)&quot;); " />
+        <WaitAction Condition="false" Timeout="3000" />
+      </If>
+      <While Condition="InbagCount(53071) + InbagCount(62661) + InbagCount(62666) &gt;= 50" IgnoreCanRun="True">
+        <CallSubRoutine SubRoutineName="CreateFood" />
+        <CallSubRoutine SubRoutineName="WhatToCook" />
+      </While>
+      <If Condition="InbagCount(53067) + InbagCount(62657) + InbagCount(62651) &lt; 50" IgnoreCanRun="True">
+        <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Time to catch 50x Deepsea Sagefish.&quot;); " />
+        <While Condition="Me.IsAlliance" IgnoreCanRun="True">
+          <If Condition="DistanceTo (-4757.501, -6598.03, 0.8528348) &gt; 5" IgnoreCanRun="True">
+            <FlyToAction Dismount="True" Location="-4757.501, -6598.03, 0.8528348" />
+          </If>
+          <If Condition="!IsFacing(1.7f)" IgnoreCanRun="True">
+            <CustomAction Code="Me.SetFacing(1.7f);" />
+            <CallSubRoutine SubRoutineName="UF" />
+          </If>
+          <CallSubRoutine SubRoutineName="DoFishing" />
+        </While>
+      </If>
+    </If>
+  </If>
+  <If Condition="Me.IsHorde" IgnoreCanRun="True">
+    <If Condition="InbagCount(65407) == 1 &amp;&amp; Cooking.Level &gt;= 450 &amp;&amp; Cooking.Level &lt; 475 || HasRecipe(88024) &amp;&amp; Cooking.Level &gt;= 450 &amp;&amp; Cooking.Level &lt; 475" IgnoreCanRun="True">
+      <If Condition="!HasRecipe(88024)" IgnoreCanRun="True">
+        <CustomAction Code="Lua.DoString(&quot;UseItemByName(65407)&quot;); " />
+        <WaitAction Condition="false" Timeout="3000" />
+      </If>
+      <While Condition="InbagCount(53068) + InbagCount(62654) &gt;= 50" IgnoreCanRun="True">
+        <CallSubRoutine SubRoutineName="CreateFood" />
+        <CallSubRoutine SubRoutineName="WhatToCook" />
+      </While>
+      <If Condition="InbagCount(53068) + InbagCount(62654) &lt; 50" IgnoreCanRun="True">
+        <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Time to catch 50x Lavescale Catfish.&quot;); " />
+        <While Condition="Me.IsHorde" IgnoreCanRun="True">
+          <If Condition="DistanceTo (-8579.35, -1338.054, 210.784) &gt; 5" IgnoreCanRun="True">
+            <FlyToAction Dismount="True" Location="-8579.35, -1338.054, 210.784" />
+          </If>
+          <If Condition="!IsFacing(3.0f)" IgnoreCanRun="True">
+            <CustomAction Code="Me.SetFacing(3.0f);" />
+            <CallSubRoutine SubRoutineName="UF" />
+          </If>
+          <CallSubRoutine SubRoutineName="DoFishing" />
+        </While>
+      </If>
+    </If>
+    <If Condition="InbagCount(65423) == 1 &amp;&amp; Cooking.Level &gt;= 475 &amp;&amp; Cooking.Level &lt; 500 || HasRecipe(88018) &amp;&amp; Cooking.Level &gt;= 475 &amp;&amp; Cooking.Level &lt; 500" IgnoreCanRun="True">
+      <If Condition="!HasRecipe(88018)" IgnoreCanRun="True">
+        <CustomAction Code="Lua.DoString(&quot;UseItemByName(65423)&quot;); " />
+        <WaitAction Condition="false" Timeout="3000" />
+      </If>
+      <While Condition="InbagCount(53062) + InbagCount(62677)*3 &gt;= 87" IgnoreCanRun="True">
+        <CallSubRoutine SubRoutineName="CreateFood" />
+        <CallSubRoutine SubRoutineName="WhatToCook" />
+      </While>
+      <If Condition="InbagCount(53062) + InbagCount(62677)*3 &lt; 87" IgnoreCanRun="True">
+        <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Time to catch 87x Sharptooth.&quot;); " />
+        <While Condition="Me.IsHorde" IgnoreCanRun="True">
+          <If Condition="DistanceTo (4114.901, -3963.583, 970.4994) &gt; 5" IgnoreCanRun="True">
+            <FlyToAction Dismount="True" Location="4114.901, -3963.583, 970.4994" />
+          </If>
+          <If Condition="!IsFacing(1.2f)" IgnoreCanRun="True">
+            <CustomAction Code="Me.SetFacing(1.2f);" />
+            <CallSubRoutine SubRoutineName="UF" />
+          </If>
+          <CallSubRoutine SubRoutineName="DoFishing" />
+        </While>
+      </If>
+    </If>
+    <If Condition="InbagCount(65409) == 1 &amp;&amp; Cooking.Level &gt;= 500 &amp;&amp; Cooking.Level &lt; 525 || HasRecipe(88025) &amp;&amp; Cooking.Level &gt;= 500 &amp;&amp; Cooking.Level &lt; 525" IgnoreCanRun="True">
+      <If Condition="!HasRecipe(88025)" IgnoreCanRun="True">
+        <CustomAction Code="Lua.DoString(&quot;UseItemByName(65409)&quot;); " />
+        <WaitAction Condition="false" Timeout="3000" />
+      </If>
+      <While Condition="InbagCount(53068) + InbagCount(62663) &gt;= 50" IgnoreCanRun="True">
+        <CallSubRoutine SubRoutineName="CreateFood" />
+        <CallSubRoutine SubRoutineName="WhatToCook" />
+      </While>
+      <If Condition="InbagCount(53068) + InbagCount(62663) &lt; 50" IgnoreCanRun="True">
+        <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Time to catch 50x Lavescale Catfish.&quot;); " />
+        <While Condition="Me.IsHorde" IgnoreCanRun="True">
+          <If Condition="DistanceTo (-8579.35, -1338.054, 210.784) &gt; 5" IgnoreCanRun="True">
+            <FlyToAction Dismount="True" Location="-8579.35, -1338.054, 210.784" />
+          </If>
+          <If Condition="!IsFacing(3.0f)" IgnoreCanRun="True">
+            <CustomAction Code="Me.SetFacing(3.0f);" />
+            <CallSubRoutine SubRoutineName="UF" />
+          </If>
+          <CallSubRoutine SubRoutineName="DoFishing" />
+        </While>
+      </If>
+    </If>
+  </If>
+  <If Condition="Cooking.Level != 525" IgnoreCanRun="True">
+    <CustomAction Code="MessageBox.Show(&quot;We do not have the needed recipes for continue leveling cooking. Complete daily cooking quests and buy the needed recipes, then restart me.&quot;);" />
+  </If>
+  <!--End-->
+  <If Condition="Cooking.Level &gt;= 525 &amp;&amp; Fishing.Level == 525" IgnoreCanRun="True">
+    <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Nothing more to do.&quot;); " />
+    <CustomAction Code="Log(&quot;Starting log out in 20sec&quot;);" />
+    <WaitAction Condition="false" Timeout="20000" />
+    <CustomAction Code=" Lua.DoString(&quot;Logout()&quot;);TreeRoot.Stop();" />
+    <WaitAction Condition="false" Timeout="35000" />
   </If>
   <CustomAction Code="Log(System.Drawing.Color.Red,&quot;If you see this line, and your bot is doing nothing, report it in the forum thread along with your cooking level and what zone you see this in.&quot;); " />
   <Declaration Code="int HSCooldown() &#xD;&#xA;{&#xD;&#xA;int cooldown = Lua.GetReturnVal&lt;int&gt;(&quot;for b=0,4 do for s=0,GetContainerNumSlots(b) do itemID=GetContainerItemID(b,s) _,cd,_=GetContainerItemCooldown(b,s) if itemID==6948 or itemID==64488 then start,duration,_ = GetContainerItemCooldown(0,1) cd=start+duration-GetTime() if cd&gt;0 then return math.ceil(cd) else return 0 end end end end&quot;, 0); &#xD;&#xA;return cooldown; &#xD;&#xA;}" />
