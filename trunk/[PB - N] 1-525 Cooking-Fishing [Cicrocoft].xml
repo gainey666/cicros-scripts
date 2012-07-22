@@ -1556,9 +1556,9 @@
       <If Condition="Me.FreeNormalBagSlots &lt;= 1" IgnoreCanRun="True">
         <SellItemAction Sell="All" NpcEntry="28707" Location="5737.192, 672.8511, 613.2435" SellItemType="Greys" ItemID="" Count="0" />
       </If>
-      <If Condition="DistanceTo (5726.466, 666.5815, 613.2433) &gt; 5" IgnoreCanRun="True">
+      <If Condition="DistanceTo (5726.154, 666.8792, 613.2435) &gt; 5" IgnoreCanRun="True">
         <FlyToAction Dismount="False" Location="5807.371, 556.9195, 650.3774" />
-        <MoveToAction Location="5726.466, 666.5815, 613.2433" MoveType="Location" Pathing="Navigator" Entry="0" />
+        <MoveToAction Location="5726.154, 666.8792, 613.2435" MoveType="Location" Pathing="Navigator" Entry="0" />
       </If>
       <If Condition="!IsFacing(3.9f)" IgnoreCanRun="True">
         <CustomAction Code="Me.SetFacing(3.9f);" />
