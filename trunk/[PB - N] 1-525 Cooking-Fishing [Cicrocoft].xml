@@ -1574,7 +1574,7 @@
     </If>
   </If>
   <!--450-525-->
-  <If Condition="Cooking.Level &lt;= 450 &amp;&amp; Cooking.Level != 525" IgnoreCanRun="True">
+  <If Condition="Cooking.Level &gt;= 450 &amp;&amp; Cooking.Level != 525" IgnoreCanRun="True">
     <CustomAction Code="MessageBox.Show(&quot;Hello, Check the forum topic for what recipes to buy. When ever you start the bot and the bot detects you have learned one of these recipes, it will fish and cook the recipe&quot;);" />
     <If Condition="Me.IsAlliance" IgnoreCanRun="True">
       <If Condition="InbagCount(65416) == 1  &amp;&amp; Cooking.Level &gt;= 450 &amp;&amp; Cooking.Level &lt; 480 || InbagCount(65412) == 1 &amp;&amp; Cooking.Level &gt;= 450 &amp;&amp; Cooking.Level &lt; 475 || HasRecipe(88030) &amp;&amp; Cooking.Level &gt;= 450 &amp;&amp; Cooking.Level &lt; 475 || HasRecipe(88028) &amp;&amp; Cooking.Level &gt;= 450 &amp;&amp; Cooking.Level &lt; 480" IgnoreCanRun="True">
