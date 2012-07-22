@@ -114,16 +114,14 @@
     </If>
     <If Condition="Me.IsHorde" IgnoreCanRun="True">
       <If Condition="Me.MapId == 571" IgnoreCanRun="True">
-        <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;I need to train fishing. Going to train in Warsong Hold.&quot;); " />
+        <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;I need to train fishing. Going to train in Vengeance Landing.&quot;); " />
         <While Condition="Fishing.Level &gt;= Fishing.MaxLevel - 25 &amp;&amp; Fishing.Level &lt; 500 || Fishing.MaxLevel == 0" IgnoreCanRun="True">
-          <If Condition="DistanceTo (2804.143, 6165.574, 85.30498) &gt; 45" IgnoreCanRun="True">
-            <FlyToAction Dismount="False" Location="2804.143, 6165.574, 85.30498" />
+          <If Condition="DistanceTo (2020.405, -6206.805, 7.91421) &gt; 45" IgnoreCanRun="True">
+            <FlyToAction Dismount="False" Location="2020.405, -6206.805, 7.91421" />
           </If>
-          <TrainSkillAction NpcEntry="32474" Location="2804.143, 6165.574, 85.30498" />
+          <TrainSkillAction NpcEntry="26957" Location="2024.243, -6207.311, 7.899282" />
+          <WaitAction Condition="false" Timeout="2000" />
         </While>
-        <WaitAction Condition="false" Timeout="2000" />
-        <MoveToAction Location="2804.143, 6165.574, 85.30498" MoveType="Location" Pathing="Navigator" Entry="0" />
-        <WaitAction Condition="false" Timeout="2000" />
       </If>
       <If Condition="Me.ZoneId == 5861" IgnoreCanRun="True">
         <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;I need to train fishing. Going to train at the Darkmoon Faire.&quot;); " />
@@ -210,11 +208,11 @@
         <WaitAction Condition="false" Timeout="2000" />
       </If>
       <If Condition="Me.MapId == 571 &amp;&amp; Me.ZoneId != 4395" IgnoreCanRun="True">
-        <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;I need to cooking. Going to train in Warsong Hold.&quot;); " />
-        <If Condition="DistanceTo (2818.316, 6151.036, 85.32488) &gt; 100" IgnoreCanRun="True">
-          <FlyToAction Dismount="False" Location="2804.143, 6165.574, 85.30498" />
+        <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;I need to cooking. Going to train in Vengeance Landing.&quot;); " />
+        <If Condition="DistanceTo (1931.651, -6152.933, 23.8739) &gt; 25" IgnoreCanRun="True">
+          <FlyToAction Dismount="False" Location="1931.651, -6152.933, 23.8739" />
         </If>
-        <TrainSkillAction NpcEntry="26972" Location="2818.316, 6151.036, 85.32488" />
+        <TrainSkillAction NpcEntry="26953" Location="1927.982, -6150.213, 22.9944" />
         <WaitAction Condition="false" Timeout="2000" />
       </If>
       <If Condition="Me.ZoneId == 4395" IgnoreCanRun="True">
@@ -308,13 +306,13 @@
       </If>
       <If Condition="Me.MapId == 571 &amp;&amp; Me.ZoneId != 4395" IgnoreCanRun="True">
         <If Condition="DistanceTo (2818.316, 6151.036, 85.32488) &gt; 3" IgnoreCanRun="True">
-          <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Lets find a place to cook! Going to Warsong Hold&quot;); " />
+          <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Lets find a place to cook! Going to Vengeance Landing&quot;); " />
         </If>
-        <If Condition="DistanceTo (2818.316, 6151.036, 85.32488) &gt; 30" IgnoreCanRun="True">
-          <FlyToAction Dismount="False" Location="2804.143, 6165.574, 85.30498" />
+        <If Condition="DistanceTo (1931.459, -6152.688, 23.82828) &gt; 30" IgnoreCanRun="True">
+          <FlyToAction Dismount="True" Location="1931.459, -6152.688, 23.82828" />
         </If>
-        <If Condition="DistanceTo (2818.316, 6151.036, 85.32488) &gt; 3" IgnoreCanRun="True">
-          <MoveToAction Location="2818.316, 6151.036, 85.32488" MoveType="Location" Pathing="Navigator" Entry="0" />
+        <If Condition="DistanceTo (1931.459, -6152.688, 23.82828) &gt; 3" IgnoreCanRun="True">
+          <MoveToAction Location="1931.459, -6152.688, 23.82828" MoveType="Location" Pathing="Navigator" Entry="0" />
         </If>
       </If>
       <If Condition="Me.ZoneId == 4395" IgnoreCanRun="True">
@@ -1101,7 +1099,7 @@
       <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Hearthstone is read for use! Taking the short way home!!.&quot;); " />
       <CustomAction Code="Lua.DoString(string.Format(&quot;RunMacroText(\&quot;{0}\&quot;)&quot;, &quot;/use Hearthstone&quot;), 0);" />
       <WaitAction Condition="false" Timeout="17897" />
-      <MoveToAction Location="-2328.623, -365.1167, -8.742797" MoveType="Location" Pathing="ClickToMove" Entry="0" />
+      <MoveToAction Location="-2338.931, -360.2547, -8.603874" MoveType="Location" Pathing="ClickToMove" Entry="0" />
     </If>
   </SubRoutine>
   <SubRoutine SubRoutineName="Kalimdor to Outland">
@@ -1152,8 +1150,12 @@
         <WaitAction Condition="Me.MapId == 571" Timeout="650000" />
         <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Waiting for zeppelin to get along side.&quot;); " />
         <WaitAction Condition="ObjectManager.GetObjectsOfType&lt;WoWGameObject&gt;().FirstOrDefault(o =&gt; o.Entry == 186238 ) != null &amp;&amp; ObjectManager.GetObjectsOfType&lt;WoWGameObject&gt;().FirstOrDefault(o =&gt; o.Entry == 186238 ).Location.Distance(new WoWPoint(2837.908, 6187.443, 140.1648)) &lt; 30" Timeout="6000000" />
-        <WaitAction Condition="false" Timeout="3000" />
+        <WaitAction Condition="false" Timeout="7000" />
         <MoveToAction Location="2836.831, 6185.15, 121.9923" MoveType="Location" Pathing="ClickToMove" Entry="0" />
+        <FlyToAction Dismount="False" Location="2866.424, 6160.346, 132.6067" />
+        <FlyToAction Dismount="False" Location="3059.67, 5965.498, 175.1905" />
+        <FlyToAction Dismount="False" Location="3115.914, -845.5838, 256.6535" />
+        <FlyToAction Dismount="False" Location="2081.376, -6081.792, 85.40586" />
       </If>
     </If>
   </SubRoutine>
@@ -1459,17 +1461,17 @@
         <CallSubRoutine SubRoutineName="Kalimdor to Northrend" />
       </If>
       <While Condition="Me.MapId == 571" IgnoreCanRun="True">
-        <If Condition="DistanceTo (2162.601, 6522.914, 0.1491248) &gt; 5" IgnoreCanRun="True">
-          <FlyToAction Dismount="True" Location="2162.601, 6522.914, 0.1491248" />
-        </If>
-        <If Condition="!IsFacing(0.3f)" IgnoreCanRun="True">
-          <CustomAction Code="Me.SetFacing(0.3f);" />
-          <CallSubRoutine SubRoutineName="UF" />
+        <If Condition="DistanceTo (2050.568, -6166.026, 0.5428119) &gt; 5" IgnoreCanRun="True">
+          <FlyToAction Dismount="True" Location="2050.568, -6166.026, 0.5428119" />
         </If>
         <If Condition="InbagCount(36781) &gt;= 1" IgnoreCanRun="True">
           <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Opening Darkwater Clam. Ignore the 'missed bite' warning&quot;); " />
           <CustomAction Code="Lua.DoString(string.Format(&quot;RunMacroText(\&quot;{0}\&quot;)&quot;, &quot;/use Darkwater Clam&quot;), 0);" />
           <WaitAction Condition="false" Timeout="987" />
+        </If>
+        <If Condition="!IsFacing(5.0f)" IgnoreCanRun="True">
+          <CustomAction Code="Me.SetFacing(5.0f);" />
+          <CallSubRoutine SubRoutineName="UF" />
         </If>
         <CallSubRoutine SubRoutineName="DoFishing" />
       </While>
