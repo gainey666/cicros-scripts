@@ -1544,9 +1544,9 @@
     <If Condition="Me.MapId == 1" IgnoreCanRun="True">
       <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Flying to Uldum to farm some meat.&quot;); " />
       <FlyToAction Dismount="True" Location="-9118.882, -1409.889, 94.86877" />
-      <ChangeBotAction BotName="Grind" />
+      <ChangeBotAction BotName="Questing" />
       <If Condition="Me.IsAlliance || Me.IsHorde" IgnoreCanRun="True">
-        <LoadProfileAction ProfileType="Honorbuddy" Path="HBProfile\Uldum_farm_435-450.xml" />
+        <LoadProfileAction ProfileType="Honorbuddy" Path="HBProfiles\Uldum_farm_435-450.xml" />
       </If>
     </If>
   </If>
