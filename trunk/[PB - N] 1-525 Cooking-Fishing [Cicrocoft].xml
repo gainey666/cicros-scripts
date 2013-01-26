@@ -1,24 +1,24 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Professionbuddy>
   <!--Intro-->
-  <CustomAction Code="Log(System.Drawing.Color.Orange,&quot;Welcome to [PB - N] 1-525 Cooking and Fishing by Cicrocoft v2.0&quot;);" />
+  <CustomAction Code="Log(System.Drawing.Color.Orange,&quot;Welcome to [PB - N] 1-525 Cooking and Fishing by Cicrocoft v2.0 Giwin fix&quot;);" />
   <CustomAction Code="Lua.DoString(&quot;SetCVar(\&quot;AutoLootDefault\&quot;, 1)&quot;);" />
-  <If Condition="ObjectManager.Me.HearthstoneAreaId != 69 &amp;&amp; Me.MapId == 0 &amp;&amp; Cooking.Level &gt; 300 &amp;&amp; Me.IsAlliance || ObjectManager.Me.HearthstoneAreaId != 222 &amp;&amp; Me.MapId == 1 &amp;&amp; Me.IsHorde" IgnoreCanRun="True">
+  <If Condition="StyxWoW.Me.HearthstoneAreaId != 69 &amp;&amp; Me.MapId == 0 &amp;&amp; Cooking.Level &gt; 300 &amp;&amp; Me.IsAlliance || StyxWoW.Me.HearthstoneAreaId != 222 &amp;&amp; Me.MapId == 1 &amp;&amp; Me.IsHorde" IgnoreCanRun="True">
     <If Condition="Me.IsAlliance" IgnoreCanRun="True">
       <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Seems like our Hearthstone not are set for Lakeshire.. Lets do that before we do anything else.&quot;); " />
       <If Condition="DistanceTo (-9254.536, -2147.145, 64.07043) &gt; 40" IgnoreCanRun="True">
         <FlyToAction Dismount="True" Location="-9254.536, -2147.145, 64.07043" />
       </If>
-      <While Condition="DistanceTo (-9254.536, -2147.145, 64.07043) &lt; 40 &amp;&amp; ObjectManager.Me.HearthstoneAreaId != 69" IgnoreCanRun="True">
+      <While Condition="DistanceTo (-9254.536, -2147.145, 64.07043) &lt; 40 &amp;&amp; StyxWoW.Me.HearthstoneAreaId != 69" IgnoreCanRun="True">
         <ChangeBotAction BotName="Questing" />
         <LoadProfileAction ProfileType="Honorbuddy" Path="HBProfiles\[A - Cooking]Set_HS.xml" />
-        <If Condition="ObjectManager.Me.HearthstoneAreaId == 69" IgnoreCanRun="True">
+        <If Condition="StyxWoW.Me.HearthstoneAreaId == 69" IgnoreCanRun="True">
           <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;The hearthstone is now set for Lakeshire, lets level some fishing and cooking&quot;); " />
           <ChangeBotAction BotName="Combat Bot" />
           <LoadProfileAction ProfileType="Professionbuddy" Path="[PB - N] 1-525 Cooking-Fishing [Cicrocoft].xml" />
         </If>
       </While>
-      <If Condition="ObjectManager.Me.HearthstoneAreaId == 69" IgnoreCanRun="True">
+      <If Condition="StyxWoW.Me.HearthstoneAreaId == 69" IgnoreCanRun="True">
         <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;The hearthstone is now set for Lakeshire, lets level some fishing and cooking&quot;); " />
         <ChangeBotAction BotName="Combat Bot" />
         <LoadProfileAction ProfileType="Professionbuddy" Path="[PB - A] 1-525 Cooking-Fishing [Cicrocoft].xml" />
@@ -30,10 +30,10 @@
         <FlyToAction Dismount="False" Location="-2328.344, -366.3402, -8.755398" />
         <MoveToAction Location="-2363.075, -348.9611, -8.956995" MoveType="Location" Pathing="ClickToMove" Entry="0" />
       </If>
-      <While Condition="DistanceTo (-2363.075, -348.9611, -8.956995) &lt; 5 &amp;&amp; ObjectManager.Me.HearthstoneAreaId != 222" IgnoreCanRun="True">
+      <While Condition="DistanceTo (-2363.075, -348.9611, -8.956995) &lt; 5 &amp;&amp; StyxWoW.Me.HearthstoneAreaId != 222" IgnoreCanRun="True">
         <ChangeBotAction BotName="Questing" />
         <LoadProfileAction ProfileType="Honorbuddy" Path="HBProfiles\[H - Cooking]Set_HS.xml" />
-        <If Condition="ObjectManager.Me.HearthstoneAreaId == 222" IgnoreCanRun="True">
+        <If Condition="StyxWoW.Me.HearthstoneAreaId == 222" IgnoreCanRun="True">
           <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;The hearthstone is now set for Bloodhoof Village, lets level some fishing and cooking&quot;); " />
           <ChangeBotAction BotName="Combat Bot" />
           <LoadProfileAction ProfileType="Professionbuddy" Path="[PB - N] 1-525 Cooking-Fishing [Cicrocoft].xml" />
@@ -903,7 +903,7 @@
     <FlyToAction Dismount="True" Location="-2270.601, -306.3915, -9.423664" />
   </SubRoutine>
   <SubRoutine SubRoutineName="LakeshireHS">
-    <If Condition="HSCooldown() == 0 &amp;&amp; ObjectManager.Me.HearthstoneAreaId == 69" IgnoreCanRun="True">
+    <If Condition="HSCooldown() == 0 &amp;&amp; StyxWoW.Me.HearthstoneAreaId == 69" IgnoreCanRun="True">
       <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Hearthstone is read for use! Taking the short way home!!.&quot;); " />
       <CustomAction Code="Lua.DoString(string.Format(&quot;RunMacroText(\&quot;{0}\&quot;)&quot;, &quot;/use Hearthstone&quot;), 0);" />
       <WaitAction Condition="false" Timeout="16000" />
@@ -1095,7 +1095,7 @@
     </If>
   </SubRoutine>
   <SubRoutine SubRoutineName="BVHS">
-    <If Condition="HSCooldown() == 0 &amp;&amp; ObjectManager.Me.HearthstoneAreaId == 222" IgnoreCanRun="True">
+    <If Condition="HSCooldown() == 0 &amp;&amp; StyxWoW.Me.HearthstoneAreaId == 222" IgnoreCanRun="True">
       <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Hearthstone is read for use! Taking the short way home!!.&quot;); " />
       <CustomAction Code="Lua.DoString(string.Format(&quot;RunMacroText(\&quot;{0}\&quot;)&quot;, &quot;/use Hearthstone&quot;), 0);" />
       <WaitAction Condition="false" Timeout="17897" />
@@ -1744,6 +1744,6 @@
   <Declaration Code="DateTime CastTimeStamp = DateTime.Now;" />
   <Declaration Code="void MyErr(string fmt,params object[] args)&#xD;&#xA;{&#xD;&#xA;    Log(Color.Green,&quot;Fishing1-525: &quot;,Color.Red,fmt,args);&#xD;&#xA;}" />
   <Declaration Code="void MyLog(string fmt,params object[] args)&#xD;&#xA;{&#xD;&#xA;    Log(Color.Green,&quot;Fishing1-525: &quot;,Color.LightGreen,fmt,args);&#xD;&#xA;}" />
-  <Declaration Code="void Fish()&#xD;&#xA;{&#xD;&#xA;  if (!PulseSW.IsRunning)&#xD;&#xA;    PulseSW.Start();&#xD;&#xA;  using (new FrameLock())&#xD;&#xA;  {&#xD;&#xA;  if (PulseSW.ElapsedMilliseconds &gt;= 1000)&#xD;&#xA;  { &#xD;&#xA;    MyErr(&quot;Warning: It took {0} milliseconds to pulse.\nThis can cause missed bites. To fix try disabling all plugins&quot;,&#xD;&#xA;        PulseSW.ElapsedMilliseconds); &#xD;&#xA;  }&#xD;&#xA;  PulseSW.Reset(); PulseSW.Start();&#xD;&#xA;  try&#xD;&#xA;  {&#xD;&#xA;    var bobber = ObjectManager.GetObjectsOfType&lt;WoWGameObject&gt;().&#xD;&#xA;           FirstOrDefault(u =&gt; u.SubType == WoWGameObjectType.FishingBobber &amp;&amp; u.CreatedByGuid == Me.Guid);&#xD;&#xA;    if (bobber != null &amp;&amp; bobber.IsValid &amp;&amp; ((WoWFishingBobber)bobber.SubObj).IsBobbing)&#xD;&#xA;    {&#xD;&#xA;       bobber.Interact();&#xD;&#xA;    }&#xD;&#xA;    else if (bobber == null &amp;&amp; !Me.IsCasting &amp;&amp; DateTime.Now -  CastTimeStamp &gt;= TimeSpan.FromSeconds(1))&#xD;&#xA;    {&#xD;&#xA;      TreeRoot.StatusText= string.Format(&quot;Fishing level: {0}&quot;,Fishing.Level);&#xD;&#xA;       SpellManager.Cast(&quot;Fishing&quot;);&#xD;&#xA;       CastTimeStamp = DateTime.Now;&#xD;&#xA;    }&#xD;&#xA;  }&#xD;&#xA;  catch(Exception ex){MyErr(ex.ToString());}&#xD;&#xA;  }&#xD;&#xA;}" />
+  <Declaration Code="void Fish()&#xD;&#xA;{&#xD;&#xA;  if (!PulseSW.IsRunning)&#xD;&#xA;    PulseSW.Start();&#xD;&#xA;  using (StyxWoW.Memory.AcquireFrame())&#xD;&#xA;  {&#xD;&#xA;  if (PulseSW.ElapsedMilliseconds &gt;= 1000)&#xD;&#xA;  { &#xD;&#xA;    MyErr(&quot;Warning: It took {0} milliseconds to pulse.\nThis can cause missed bites. To fix try disabling all plugins&quot;,&#xD;&#xA;        PulseSW.ElapsedMilliseconds); &#xD;&#xA;  }&#xD;&#xA;  PulseSW.Reset(); PulseSW.Start();&#xD;&#xA;  try&#xD;&#xA;  {&#xD;&#xA;    var bobber = ObjectManager.GetObjectsOfType&lt;Styx.WoWInternals.WoWObjects.WoWGameObject&gt;().&#xD;&#xA;           FirstOrDefault(u =&gt; u.SubType == WoWGameObjectType.FishingNode &amp;&amp; u.CreatedByGuid == Me.Guid);&#xD;&#xA;    if (bobber != null &amp;&amp; bobber.IsValid &amp;&amp; bobber.AnimationState != 0)&#xD;&#xA;    {&#xD;&#xA;       bobber.Interact();&#xD;&#xA;    }&#xD;&#xA;    else if (bobber == null &amp;&amp; !Me.IsCasting &amp;&amp; DateTime.Now -  CastTimeStamp &gt;= TimeSpan.FromSeconds(1))&#xD;&#xA;    {&#xD;&#xA;      TreeRoot.StatusText= string.Format(&quot;Fishing level: {0}&quot;,Fishing.Level);&#xD;&#xA;       SpellManager.Cast(&quot;Fishing&quot;);&#xD;&#xA;       CastTimeStamp = DateTime.Now;&#xD;&#xA;    }&#xD;&#xA;  }&#xD;&#xA;  catch(Exception ex){MyErr(ex.ToString());}&#xD;&#xA;  }&#xD;&#xA;}" />
   <Declaration Code="bool IsFacing(float dirInRadians)&#xD;&#xA;{&#xD;&#xA;  var facePoint = WoWPoint.RayCast(Me.Location, dirInRadians, 1f);&#xD;&#xA;  return WoWMathHelper.IsFacing(Me.Location, Me.RenderFacing, facePoint,0.5f);&#xD;&#xA;}&#xD;&#xA;" />
 </Professionbuddy>
