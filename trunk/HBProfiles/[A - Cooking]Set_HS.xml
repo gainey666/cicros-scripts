@@ -1,7 +1,7 @@
 <HBProfile>
 	<Name>Set HS for Cicro's Cooking+Fishing PB profile</Name>
 	<MinLevel>1</MinLevel>
-	<MaxLevel>86</MaxLevel>
+	<MaxLevel>91</MaxLevel>
 
 	<QuestOrder>
 	<CustomBehavior File="SetHearthstone" NpcId="6727" X="-9224.593" Y="-2155.82" Z="63.73054" />
