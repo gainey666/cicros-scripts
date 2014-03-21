@@ -24,14 +24,305 @@
   </SubRoutine>
   <SubRoutine SubRoutineName="Train">
     <If Condition="Me.IsAlliance" IgnoreCanRun="True">
-      <CustomAction Code="Log(Colors.Blue,&quot;Going to Stormwind to train Skinning&quot;);" />
-      <FlyToAction Dismount="True" Location="-8722.357, 428.8217, 98.0647" />
-      <TrainSkillAction NpcEntry="1292" Location="-8716.408, 469.4141, 98.61302" />
-      <MoveToAction Location="-8722.741, 438.8223, 97.70684" MoveType="Location" Pathing="Navigator" Entry="0" />
+      <If Condition="Me.MapId != 0 &amp;&amp; Me.MapId == 1" IgnoreCanRun="True">
+        <CallSubRoutine SubRoutineName="Kalimdor to EK" />
+      </If>
+      <If Condition="Me.MapId == 0" IgnoreCanRun="True">
+        <CustomAction Code="Log(Colors.Blue,&quot;Going to Stormwind to train Skinning&quot;);" />
+        <FlyToAction Dismount="True" Location="-8722.357, 428.8217, 98.0647" />
+        <TrainSkillAction NpcEntry="1292" Location="-8716.408, 469.4141, 98.61302" />
+        <MoveToAction Location="-8722.741, 438.8223, 97.70684" MoveType="Location" Pathing="Navigator" Entry="0" />
+      </If>
+      <If Condition="Me.MapId != 0 &amp;&amp; Me.MapId != 1" IgnoreCanRun="True">
+        <CustomAction Code="Log(Colors.Orange,&quot;Move the bot to Eastern Kingdom&quot;);" />
+      </If>
+    </If>
+  </SubRoutine>
+  <!--Travling Subs-->
+  <SubRoutine SubRoutineName="LeaveBV">
+    <!--Bloodhoof Village-->
+    <MoveToAction Location="-2278.096, -324.9188, -9.423664" MoveType="Location" Pathing="Navigator" Entry="0" />
+    <MoveToAction Location="-2312.164, -370.3129, -9.423664" MoveType="Location" Pathing="ClickToMove" Entry="0" />
+  </SubRoutine>
+  <SubRoutine SubRoutineName="EnterBV">
+    <!--Bloodhoof Village-->
+    <FlyToAction Dismount="False" Location="-2237.091, -347.711, 66.91583" />
+    <MoveToAction Location="-2264.797, -306.1289, 48.58779" MoveType="Location" Pathing="ClickToMove" Entry="0" />
+    <MoveToAction Location="-2266.557, -304.4045, -3.17372" MoveType="Location" Pathing="ClickToMove" Entry="0" />
+    <FlyToAction Dismount="True" Location="-2270.601, -306.3915, -9.423664" />
+  </SubRoutine>
+  <SubRoutine SubRoutineName="EK to Uldum">
+    <CallSubRoutine SubRoutineName="City to Uldum" />
+  </SubRoutine>
+  <SubRoutine SubRoutineName="Northren to EK">
+    <If Condition="Me.IsAlliance" IgnoreCanRun="True">
+      <If Condition="Me.MapId == 571" IgnoreCanRun="True">
+        <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Flying to Valiance Keep docks for a boat to SW.&quot;); " />
+        <FlyToAction Dismount="True" Location="2232.913, 5136.488, 5.346051" />
+        <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Waiting for the boat.&quot;); " />
+        <WaitAction Condition="ObjectManager.GetObjectsOfType&lt;WoWGameObject&gt;().FirstOrDefault(o =&gt; o.Entry == 190536 ) != null &amp;&amp; ObjectManager.GetObjectsOfType&lt;WoWGameObject&gt;().FirstOrDefault(o =&gt; o.Entry == 190536 ).Location.Distance(new WoWPoint(2218.391, 5119.589, -0.03939917)) &lt; 3" Timeout="6000000" />
+        <WaitAction Condition="false" Timeout="6987" />
+        <MoveToAction Location="2224.172, 5117.85, 9.493399" MoveType="Location" Pathing="ClickToMove" Entry="0" />
+        <WaitAction Condition="Me.MapId == 0" Timeout="650000" />
+        <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Waiting for the boat to get along side.&quot;); " />
+        <WaitAction Condition="ObjectManager.GetObjectsOfType&lt;WoWGameObject&gt;().FirstOrDefault(o =&gt; o.Entry == 190536 ) != null &amp;&amp; ObjectManager.GetObjectsOfType&lt;WoWGameObject&gt;().FirstOrDefault(o =&gt; o.Entry == 190536 ).Location.Distance(new WoWPoint(-8288.816, 1424.703, 0.01983927)) &lt; 30" Timeout="6000000" />
+        <WaitAction Condition="false" Timeout="9000" />
+        <MoveToAction Location="-8295.446, 1396.995, 4.481495" MoveType="Location" Pathing="ClickToMove" Entry="0" />
+      </If>
+    </If>
+  </SubRoutine>
+  <SubRoutine SubRoutineName="Outland to EK">
+    <If Condition="Me.MapId == 530" IgnoreCanRun="True">
+      <If Condition="Me.IsAlliance" IgnoreCanRun="True">
+        <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Going back to SW.&quot;); " />
+        <FlyToAction Dismount="False" Location="-1933.037, 5395.858, -12.42817" />
+        <MoveToAction Location="-1907.518, 5405.633, -12.42817" MoveType="Location" Pathing="Navigator" Entry="0" />
+        <MoveToAction Location="-1893.641, 5390.416, -12.42817" MoveType="Location" Pathing="Navigator" Entry="0" />
+        <InteractionAction InteractType="GameObject" Entry="183325" InteractDelay="0" GameObjectType="Transport" SpellFocus="Anvil" />
+        <WaitAction Condition="Me.MapId == 0" Timeout="25000" />
+      </If>
+    </If>
+  </SubRoutine>
+  <SubRoutine SubRoutineName="EK to Outland">
+    <If Condition="Me.IsAlliance" IgnoreCanRun="True">
+      <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Going to Outlands.&quot;); " />
+      <If Condition="(Me.MapId == 1)" IgnoreCanRun="True">
+        <CallSubRoutine SubRoutineName="Kalimdor to EK" />
+      </If>
+      <If Condition="Me.ZoneId != 4 || (Me.ZoneId != 44)" IgnoreCanRun="True">
+        <FlyToAction Dismount="True" Location="-9000.289, 863.0194, 129.6055" />
+        <MoveToAction Location="-9006.661, 870.9152, 129.6924" MoveType="Location" Pathing="Navigator" Entry="0" />
+        <WaitAction Condition="false" Timeout="1898" />
+        <InteractionAction InteractType="GameObject" Entry="195141" InteractDelay="2000" GameObjectType="Transport" SpellFocus="Anvil" />
+        <WaitAction Condition="Me.ZoneId == 4" Timeout="25000" />
+      </If>
+      <FlyToAction Dismount="False" Location="-11895.9, -3206.984, -6.04731" />
+      <CustomAction Code="MessageBox.Show(&quot;Please watch me while im going thru the portal. Sometimes I do crazy things here. Incase of crazyness, stop the bot and move me manually&quot;);" />
+      <MoveToAction Location="-11930.31, -3209.613, -1.836873" MoveType="Location" Pathing="ClickToMove" Entry="0" />
+      <WaitAction Condition="Me.MapId == 530" Timeout="25000" />
+    </If>
+  </SubRoutine>
+  <SubRoutine SubRoutineName="Northrend to City">
+    <If Condition="Me.MapId == 571" IgnoreCanRun="True">
+      <If Condition="Me.IsAlliance" IgnoreCanRun="True">
+        <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Going back to SW.&quot;); " />
+        <If Condition="Me.ZoneId != 4395" IgnoreCanRun="True">
+          <FlyToAction Dismount="False" Location="5721.083, 713.4098, 654.6246" />
+        </If>
+        <InteractionAction InteractType="GameObject" Entry="190960" InteractDelay="0" GameObjectType="Transport" SpellFocus="Anvil" />
+        <WaitAction Condition="Me.MapId == 0" Timeout="25000" />
+      </If>
+    </If>
+  </SubRoutine>
+  <SubRoutine SubRoutineName="City to Uldum">
+    <If Condition="Me.IsAlliance" IgnoreCanRun="True">
+      <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Flying to Uldum Portal.&quot;); " />
+      <FlyToAction Dismount="True" Location="-8231.306, 417.2011, 117.4756" />
+      <If Condition="ObjectManager.GetObjectsOfType&lt;WoWGameObject&gt;().FirstOrDefault(o =&gt; o.Entry == 207695 ) != null &amp;&amp; ObjectManager.GetObjectsOfType&lt;WoWGameObject&gt;().FirstOrDefault(o =&gt; o.Entry == 207695 ).Location.Distance(new WoWPoint(-8231.306, 417.2011, 117.4756)) &lt; 20" IgnoreCanRun="True">
+        <InteractionAction InteractType="GameObject" Entry="207695" InteractDelay="0" GameObjectType="Transport" SpellFocus="Anvil" />
+        <WaitAction Condition="Me.MapId == 1" Timeout="5000" />
+      </If>
+      <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Is the portal broken? Taking the ship to Kalimdor instead.&quot;); " />
+      <CallSubRoutine SubRoutineName="EK to Kalimdor" />
+    </If>
+  </SubRoutine>
+  <SubRoutine SubRoutineName="EK to Northern">
+    <If Condition="Me.IsAlliance" IgnoreCanRun="True">
+      <If Condition="Me.MapId == 0" IgnoreCanRun="True">
+        <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Going to Northern.&quot;); " />
+        <FlyToAction Dismount="True" Location="-8295.954, 1405.365, 4.412278" />
+        <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Waiting for the boat.&quot;); " />
+        <WaitAction Condition="ObjectManager.GetObjectsOfType&lt;WoWGameObject&gt;().FirstOrDefault(o =&gt; o.Entry == 190536 ) != null &amp;&amp; ObjectManager.GetObjectsOfType&lt;WoWGameObject&gt;().FirstOrDefault(o =&gt; o.Entry == 190536 ).Location.Distance(new WoWPoint(-8288.816, 1424.703, 0.01983927)) &lt; 30" Timeout="6000000" />
+        <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Boat is here! Wake up.&quot;); " />
+        <WaitAction Condition="false" Timeout="6987" />
+        <MoveToAction Location="-8294.362, 1423.174, 9.456192" MoveType="Location" Pathing="ClickToMove" Entry="0" />
+        <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Lets hope we dont meet any Somlian pirates :(&quot;); " />
+        <WaitAction Condition="Me.MapId == 571" Timeout="650000" />
+        <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Waiting for boat to get along side.&quot;); " />
+        <WaitAction Condition="ObjectManager.GetObjectsOfType&lt;WoWGameObject&gt;().FirstOrDefault(o =&gt; o.Entry == 190536 ) != null &amp;&amp; ObjectManager.GetObjectsOfType&lt;WoWGameObject&gt;().FirstOrDefault(o =&gt; o.Entry == 190536 ).Location.Distance(new WoWPoint(2218.391, 5119.589, -0.03280054)) &lt; 30" Timeout="6000000" />
+        <WaitAction Condition="false" Timeout="7040" />
+        <MoveToAction Location="2231.335, 5132.801, 5.343085" MoveType="Location" Pathing="ClickToMove" Entry="0" />
+      </If>
+    </If>
+  </SubRoutine>
+  <SubRoutine SubRoutineName="EK to Kalimdor">
+    <If Condition="Me.IsAlliance" IgnoreCanRun="True">
+      <If Condition="Me.MapId == 0" IgnoreCanRun="True">
+        <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Going to Kalimdor,&quot;); " />
+        <FlyToAction Dismount="True" Location="-3859.799, -658.565, 5.186935" />
+        <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Waiting for the boat.&quot;); " />
+        <WaitAction Condition="ObjectManager.GetObjectsOfType&lt;WoWGameObject&gt;().FirstOrDefault(o =&gt; o.Entry == 176231 ) != null &amp;&amp; ObjectManager.GetObjectsOfType&lt;WoWGameObject&gt;().FirstOrDefault(o =&gt; o.Entry == 176231 ).Location.Distance(new WoWPoint(-3872.35, -639.9439, 0.03924475)) &lt; 20" Timeout="60000000" />
+        <WaitAction Condition="false" Timeout="7832" />
+        <MoveToAction Location="-3866.206, -647.1971, 6.05872" MoveType="Location" Pathing="ClickToMove" Entry="0" />
+        <MoveToAction Location="-3864.247, -636.9529, 6.129509" MoveType="Location" Pathing="ClickToMove" Entry="0" />
+        <MoveToAction Location="-3874.158, -629.8268, 6.014582" MoveType="Location" Pathing="ClickToMove" Entry="0" />
+        <WaitAction Condition="Me.MapId == 1" Timeout="650000" />
+        <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Waiting for the boat to get along side!&quot;); " />
+        <WaitAction Condition="ObjectManager.GetObjectsOfType&lt;WoWGameObject&gt;().FirstOrDefault(o =&gt; o.Entry == 176231 ) != null &amp;&amp; ObjectManager.GetObjectsOfType&lt;WoWGameObject&gt;().FirstOrDefault(o =&gt; o.Entry == 176231 ).Location.Distance(new WoWPoint(-4016.39, -4740.588, -0.04994059)) &lt; 3" Timeout="6000000" />
+        <WaitAction Condition="false" Timeout="9854" />
+        <MoveToAction Location="-3999.296, -4726.252, 4.38778" MoveType="Location" Pathing="ClickToMove" Entry="0" />
+      </If>
+    </If>
+  </SubRoutine>
+  <SubRoutine SubRoutineName="Kalimdor to EK">
+    <If Condition="Me.IsAlliance" IgnoreCanRun="True">
+      <If Condition="Me.MapId == 1" IgnoreCanRun="True">
+        <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Going home to Eastern Kingdom!&quot;); " />
+        <FlyToAction Dismount="True" Location="-4001.157, -4728.268, 4.471069" />
+        <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Waiting for the boat.&quot;); " />
+        <WaitAction Condition="ObjectManager.GetObjectsOfType&lt;WoWGameObject&gt;().FirstOrDefault(o =&gt; o.Entry == 176231 ) != null &amp;&amp; ObjectManager.GetObjectsOfType&lt;WoWGameObject&gt;().FirstOrDefault(o =&gt; o.Entry == 176231 ).Location.Distance(new WoWPoint(-4016.39, -4740.588, -0.04994059)) &lt; 3" Timeout="6000000" />
+        <WaitAction Condition="false" Timeout="7896" />
+        <MoveToAction Location="-4007.934, -4733.479, 5.99677" MoveType="Location" Pathing="ClickToMove" Entry="0" />
+        <MoveToAction Location="-4009.456, -4745.52, 6.097857" MoveType="Location" Pathing="ClickToMove" Entry="0" />
+        <MoveToAction Location="-4020.529, -4748.299, 6.219002" MoveType="Location" Pathing="ClickToMove" Entry="0" />
+        <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Waiting for the boat to set sail!&quot;); " />
+        <WaitAction Condition="Me.MapId == 0" Timeout="650000" />
+        <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Waiting for the boat to get along side!&quot;); " />
+        <WaitAction Condition="ObjectManager.GetObjectsOfType&lt;WoWGameObject&gt;().FirstOrDefault(o =&gt; o.Entry == 176231 ) != null &amp;&amp; ObjectManager.GetObjectsOfType&lt;WoWGameObject&gt;().FirstOrDefault(o =&gt; o.Entry == 176231 ).Location.Distance(new WoWPoint(-3872.35, -639.9439, 0.03924475)) &lt; 20" Timeout="60000000" />
+        <WaitAction Condition="false" Timeout="8997" />
+        <MoveToAction Location="-3861.168, -657.361, 5.266752" MoveType="Location" Pathing="ClickToMove" Entry="0" />
+        <FlyToAction Dismount="False" Location="-3890.306, -709.368, 17.34875" />
+      </If>
+    </If>
+  </SubRoutine>
+  <SubRoutine SubRoutineName="Northern to Dalaran">
+    <!--Neutral travel sub-->
+    <If Condition="DistanceTo(5737.553, 659.7015, 646.6895) &gt; 100 &amp;&amp; Me.MapId == 571" IgnoreCanRun="True">
+      <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Initiate Dalaran travel protocol... beeep.&quot;); " />
+      <FlyToAction Dismount="False" Location="5341.598, 522.6038, 440.8728" />
+      <MoveToAction Location="5611.935, 601.7, 796.0209" MoveType="Location" Pathing="ClickToMove" Entry="0" />
+      <MoveToAction Location="5706.784, 637.7018, 722.1323" MoveType="Location" Pathing="ClickToMove" Entry="0" />
+      <FlyToAction Dismount="True" Location="5737.553, 659.7015, 646.6895" />
+      <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Landed in Dalaran with succes!.&quot;); " />
+    </If>
+  </SubRoutine>
+  <SubRoutine SubRoutineName="Rachet to BB">
+    <If Condition="Me.MapId == 1" IgnoreCanRun="True">
+      <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Going to Booty Bay,&quot;); " />
+      <FlyToAction Dismount="True" Location="-997.0228, -3824.336, 5.498193" />
+      <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Waiting for the boat.&quot;); " />
+      <WaitAction Condition="ObjectManager.GetObjectsOfType&lt;WoWGameObject&gt;().FirstOrDefault(o =&gt; o.Entry == 20808 ) != null &amp;&amp; ObjectManager.GetObjectsOfType&lt;WoWGameObject&gt;().FirstOrDefault(o =&gt; o.Entry == 20808 ).Location.Distance(new WoWPoint(-1005.613, -3841.648, 0.03624475)) &lt; 20" Timeout="60000000" />
+      <WaitAction Condition="false" Timeout="7832" />
+      <MoveToAction Location="-998.1533, -3834.83, 6.116212" MoveType="Location" Pathing="ClickToMove" Entry="0" />
+      <MoveToAction Location="-998.3066, -3843.987, 6.155065" MoveType="Location" Pathing="ClickToMove" Entry="0" />
+      <MoveToAction Location="-1009.104, -3850.717, 6.087852" MoveType="Location" Pathing="ClickToMove" Entry="0" />
+      <WaitAction Condition="Me.MapId == 0" Timeout="650000" />
+      <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Waiting for the boat to get along side!&quot;); " />
+      <WaitAction Condition="ObjectManager.GetObjectsOfType&lt;WoWGameObject&gt;().FirstOrDefault(o =&gt; o.Entry == 20808 ) != null &amp;&amp; ObjectManager.GetObjectsOfType&lt;WoWGameObject&gt;().FirstOrDefault(o =&gt; o.Entry == 20808 ).Location.Distance(new WoWPoint(-14277.75, 582.8661, -0.06804029)) &lt; 3" Timeout="6000000" />
+      <WaitAction Condition="false" Timeout="17236" />
+      <MoveToAction Location="-14284.53, 558.7117, 8.686271" MoveType="Location" Pathing="ClickToMove" Entry="0" />
+    </If>
+  </SubRoutine>
+  <SubRoutine SubRoutineName="BB to Rachet">
+    <If Condition="Me.MapId == 0" IgnoreCanRun="True">
+      <CallSubRoutine SubRoutineName="BVHS" />
+      <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Going to Rachet,&quot;); " />
+      <FlyToAction Dismount="True" Location="-14284.88, 556.8063, 8.685333" />
+      <MoveToAction Location="-14284.13, 559.3175, 8.686168" MoveType="Location" Pathing="ClickToMove" Entry="0" />
+      <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Waiting for the boat.&quot;); " />
+      <WaitAction Condition="ObjectManager.GetObjectsOfType&lt;WoWGameObject&gt;().FirstOrDefault(o =&gt; o.Entry == 20808 ) != null &amp;&amp; ObjectManager.GetObjectsOfType&lt;WoWGameObject&gt;().FirstOrDefault(o =&gt; o.Entry == 20808 ).Location.Distance(new WoWPoint(-14277.75, 582.8661, -0.06804029)) &lt; 3" Timeout="6000000" />
+      <WaitAction Condition="false" Timeout="7832" />
+      <MoveToAction Location="-14278.06, 572.9883, 6.158577" MoveType="Location" Pathing="ClickToMove" Entry="0" />
+      <MoveToAction Location="-14269.81, 584.2465, 6.043634" MoveType="Location" Pathing="ClickToMove" Entry="0" />
+      <MoveToAction Location="-14271.97, 592.5333, 6.03444" MoveType="Location" Pathing="ClickToMove" Entry="0" />
+      <WaitAction Condition="Me.MapId == 1" Timeout="650000" />
+      <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Waiting for the boat to get along side!&quot;); " />
+      <WaitAction Condition="ObjectManager.GetObjectsOfType&lt;WoWGameObject&gt;().FirstOrDefault(o =&gt; o.Entry == 20808 ) != null &amp;&amp; ObjectManager.GetObjectsOfType&lt;WoWGameObject&gt;().FirstOrDefault(o =&gt; o.Entry == 20808 ).Location.Distance(new WoWPoint(-1005.613, -3841.648, 0.03624475)) &lt; 20" Timeout="60000000" />
+      <WaitAction Condition="false" Timeout="12000" />
+      <MoveToAction Location="-994.6897, -3828.401, 5.627099" MoveType="Location" Pathing="ClickToMove" Entry="0" />
+    </If>
+  </SubRoutine>
+  <SubRoutine SubRoutineName="BVHS">
+    <If Condition="HSCooldown() == 0 &amp;&amp; StyxWoW.Me.HearthstoneAreaId == 222" IgnoreCanRun="True">
+      <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Hearthstone is read for use! Taking the short way home!!.&quot;); " />
+      <CustomAction Code="Lua.DoString(string.Format(&quot;RunMacroText(\&quot;{0}\&quot;)&quot;, &quot;/use item:6948&quot;), 0);" />
+      <WaitAction Condition="false" Timeout="17897" />
+      <MoveToAction Location="-2338.931, -360.2547, -8.603874" MoveType="Location" Pathing="ClickToMove" Entry="0" />
+    </If>
+  </SubRoutine>
+  <SubRoutine SubRoutineName="Kalimdor to Outland">
+    <If Condition="Me.IsHorde" IgnoreCanRun="True">
+      <While Condition="Me.MapId != 530" IgnoreCanRun="True">
+        <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Going to Outlands.&quot;); " />
+        <If Condition="(Me.MapId == 0)" IgnoreCanRun="True">
+          <FlyToAction Dismount="False" Location="-11895.9, -3206.984, -6.04731" />
+          <CustomAction Code="MessageBox.Show(&quot;Please watch me while im going thru the portal. Sometimes I do crazy things here. Incase of crazyness, stop the bot and move me manually&quot;);" />
+          <MoveToAction Location="-11930.31, -3209.613, -1.836873" MoveType="Location" Pathing="ClickToMove" Entry="0" />
+          <WaitAction Condition="Me.MapId == 530" Timeout="25000" />
+        </If>
+        <If Condition="(Me.MapId == 1)" IgnoreCanRun="True">
+          <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Taking the portal to Blasted Lands&quot;); " />
+          <If Condition="DistanceTo (-1068.424, 188.8265, 107.6125) &gt; 50" IgnoreCanRun="True">
+            <FlyToAction Dismount="False" Location="-1068.424, 188.8265, 107.6125" />
+          </If>
+          <MoveToAction Location="-944.6468, 276.4798, 111.232" MoveType="Location" Pathing="Navigator" Entry="0" />
+          <InteractionAction InteractType="GameObject" Entry="195142" InteractDelay="2000" GameObjectType="Transport" SpellFocus="Anvil" />
+          <WaitAction Condition="false" Timeout="1000" />
+          <WaitAction Condition="Me.MapId == 0" Timeout="650000" />
+          <If Condition="(Me.MapId == 0)" IgnoreCanRun="True">
+            <FlyToAction Dismount="False" Location="-11895.9, -3206.984, -6.04731" />
+            <CustomAction Code="MessageBox.Show(&quot;Please watch me while im going thru the portal. Sometimes I do crazy things here. Incase of crazyness, stop the bot and move me manually&quot;);" />
+            <MoveToAction Location="-11930.31, -3209.613, -1.836873" MoveType="Location" Pathing="ClickToMove" Entry="0" />
+            <WaitAction Condition="Me.MapId == 530" Timeout="25000" />
+          </If>
+        </If>
+      </While>
+    </If>
+  </SubRoutine>
+  <SubRoutine SubRoutineName="Kalimdor to Northrend">
+    <If Condition="Me.IsHorde" IgnoreCanRun="True">
+      <If Condition="Me.MapId == 0" IgnoreCanRun="True">
+        <CallSubRoutine SubRoutineName="BB to Rachet" />
+      </If>
+      <If Condition="Me.MapId == 530" IgnoreCanRun="True">
+        <CallSubRoutine SubRoutineName="Outland to Kalimdor" />
+      </If>
+      <If Condition="Me.MapId == 1" IgnoreCanRun="True">
+        <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Going to Northernd.&quot;); " />
+        <FlyToAction Dismount="True" Location="1760.425, -4279.274, 133.1068" />
+        <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Waiting for the zeppelin.&quot;); " />
+        <WaitAction Condition="ObjectManager.GetObjectsOfType&lt;WoWGameObject&gt;().FirstOrDefault(o =&gt; o.Entry == 186238 ) != null &amp;&amp; ObjectManager.GetObjectsOfType&lt;WoWGameObject&gt;().FirstOrDefault(o =&gt; o.Entry == 186238 ).Location.Distance(new WoWPoint(1775.066, -4299.745, 151.0326)) &lt; 30" Timeout="6000000" />
+        <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Zeppelin is here! Wake up.&quot;); " />
+        <WaitAction Condition="false" Timeout="6987" />
+        <MoveToAction Location="1770.22, -4292.056, 133.1872" MoveType="Location" Pathing="ClickToMove" Entry="0" />
+        <WaitAction Condition="Me.MapId == 571" Timeout="650000" />
+        <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Waiting for zeppelin to get along side.&quot;); " />
+        <WaitAction Condition="ObjectManager.GetObjectsOfType&lt;WoWGameObject&gt;().FirstOrDefault(o =&gt; o.Entry == 186238 ) != null &amp;&amp; ObjectManager.GetObjectsOfType&lt;WoWGameObject&gt;().FirstOrDefault(o =&gt; o.Entry == 186238 ).Location.Distance(new WoWPoint(2837.908, 6187.443, 140.1648)) &lt; 30" Timeout="6000000" />
+        <WaitAction Condition="false" Timeout="7000" />
+        <MoveToAction Location="2836.831, 6185.15, 121.9923" MoveType="Location" Pathing="ClickToMove" Entry="0" />
+        <FlyToAction Dismount="False" Location="2866.424, 6160.346, 132.6067" />
+        <FlyToAction Dismount="False" Location="3059.67, 5965.498, 175.1905" />
+        <FlyToAction Dismount="False" Location="3115.914, -845.5838, 256.6535" />
+        <FlyToAction Dismount="False" Location="2081.376, -6081.792, 85.40586" />
+      </If>
+    </If>
+  </SubRoutine>
+  <SubRoutine SubRoutineName="Outland to Kalimdor">
+    <CallSubRoutine SubRoutineName="BVHS" />
+    <If Condition="Me.MapId == 530" IgnoreCanRun="True">
+      <If Condition="DistanceTo (-1825.721, 5357.493, -12.42714) &gt; 50" IgnoreCanRun="True">
+        <FlyToAction Dismount="False" Location="-1825.721, 5357.493, -12.42714" />
+      </If>
+      <MoveToAction Location="-1898.235, 5395.234, -12.42779" MoveType="Location" Pathing="Navigator" Entry="0" />
+      <InteractionAction InteractType="GameObject" Entry="183323" InteractDelay="2000" GameObjectType="Transport" SpellFocus="Anvil" />
+      <WaitAction Condition="Me.MapId == 1" Timeout="25000" />
+    </If>
+  </SubRoutine>
+  <SubRoutine SubRoutineName="City to TH">
+    <If Condition="Me.MapId == 0" IgnoreCanRun="True">
+      <If Condition="Me.IsAlliance" IgnoreCanRun="True">
+        <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Flying to Twilight Highlands Portal.&quot;); " />
+        <FlyToAction Dismount="False" Location="-8190.713, 415.765, 116.8531" />
+        <If Condition="ObjectManager.GetObjectsOfType&lt;WoWGameObject&gt;().FirstOrDefault(o =&gt; o.Entry == 207694 ) != null &amp;&amp; ObjectManager.GetObjectsOfType&lt;WoWGameObject&gt;().FirstOrDefault(o =&gt; o.Entry == 207694 ).Location.Distance(new WoWPoint(-8186.149, 413.7292, 116.7497)) &lt; 20" IgnoreCanRun="True">
+          <InteractionAction InteractType="GameObject" Entry="207694" InteractDelay="0" GameObjectType="Transport" SpellFocus="Anvil" />
+          <WaitAction Condition="Me.MapId == 1" Timeout="25000" />
+        </If>
+        <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Is the portal broken? Flying to Twilight Highlands instead.&quot;); " />
+      </If>
     </If>
   </SubRoutine>
   <!--While-->
-  <While Condition="Skinning.Level &gt;= Skinning.MaxLevel &amp;&amp; Skinning.Level != 600 &amp;&amp; Me.MapId != 530 || Skinning.MaxLevel == 0" IgnoreCanRun="True">
+  <While Condition="Skinning.Level &gt;= Skinning.MaxLevel &amp;&amp; Skinning.Level != 600 &amp;&amp; Me.MapId != 530 &amp;&amp; Skinning.Level != 300 || Skinning.MaxLevel == 0" IgnoreCanRun="True">
     <If Condition="Skinning.Level &gt;= Skinning.MaxLevel &amp;&amp; Skinning.Level &lt; 500 &amp;&amp; Skinning.Level != 0" IgnoreCanRun="True">
       <CustomAction Code="Log(System.Drawing.Color.DarkOliveGreen,&quot;Skinning needs to be force trained. What went wrong??&quot;);" />
     </If>
@@ -70,23 +361,65 @@
     </If>
     <CustomAction Code="Log(Colors.Orange,&quot;Going to Wetlands to level from 110-150&quot;);" />
     <If Condition="Me.ZoneId != 11" IgnoreCanRun="True">
-      <FlyToAction Dismount="True" Location="-3450.899, -1309.91, 9.642357" />
+      <FlyToAction Dismount="True" Location="9.642357, -1309.91, -3450.899" />
     </If>
     <ChangeBotAction BotName="Grind Bot" />
     <LoadProfileAction ProfileType="Honorbuddy" Path="Profiles\[Alliance] Cicro's Skinning 110-150 Wetlands.xml" IsLocal="True" />
   </If>
-  <If Condition="Skinning.Level &gt;= 150 &amp;&amp; Skinning.Level &lt; 185" IgnoreCanRun="True">
+  <If Condition="Skinning.Level &gt;= 150 &amp;&amp; Skinning.Level &lt; 205" IgnoreCanRun="True">
     <CustomAction Code="Log(Colors.Orange,&quot;Next step.&quot;);" />
     <If Condition="Skinning.Level &gt;= Skinning.MaxLevel - 25 &amp;&amp; Skinning.Level != 600" IgnoreCanRun="True">
       <CustomAction Code="Log(Colors.Orange,&quot;Lets start with some training&quot;);" />
       <CallSubRoutine SubRoutineName="Train" />
     </If>
-    <CustomAction Code="Log(Colors.Orange,&quot;Going to Wetlands to level from 150-185&quot;);" />
+    <CustomAction Code="Log(Colors.Orange,&quot;Going to Wetlands to level from 150-205&quot;);" />
     <If Condition="Me.ZoneId != 11" IgnoreCanRun="True">
-      <FlyToAction Dismount="True" Location="-3450.899, -1309.91, 9.642357" />
+      <FlyToAction Dismount="True" Location="22.13968, -2983.342, -3471.694" />
     </If>
     <ChangeBotAction BotName="Grind Bot" />
     <LoadProfileAction ProfileType="Honorbuddy" Path="Profiles\[Alliance] Cicro's Skinning 150-185 Wetlands.xml" IsLocal="True" />
+  </If>
+  <If Condition="Skinning.Level &gt;= 205 &amp;&amp; Skinning.Level &lt; 265" IgnoreCanRun="True">
+    <CustomAction Code="Log(Colors.Orange,&quot;Next step.&quot;);" />
+    <If Condition="Skinning.Level &gt;= Skinning.MaxLevel - 25 &amp;&amp; Skinning.Level != 600" IgnoreCanRun="True">
+      <CustomAction Code="Log(Colors.Orange,&quot;Lets start with some training&quot;);" />
+      <CallSubRoutine SubRoutineName="Train" />
+    </If>
+    <CustomAction Code="Log(Colors.Orange,&quot;Going to Thousand Needles to level from 205-265&quot;);" />
+    <If Condition="Me.ZoneId != 400" IgnoreCanRun="True">
+      <If Condition="Me.MapId != 1" IgnoreCanRun="True">
+        <CallSubRoutine SubRoutineName="EK to Kalimdor" />
+      </If>
+      <If Condition="Me.MapId == 1" IgnoreCanRun="True">
+        <FlyToAction Dismount="True" Location="86.07233, -3908.033, -5363.449" />
+      </If>
+    </If>
+    <ChangeBotAction BotName="Grind Bot" />
+    <LoadProfileAction ProfileType="Honorbuddy" Path="Profiles\[Alliance] Cicro's Skinning 205-265 Thousand Needles.xml" IsLocal="True" />
+  </If>
+  <If Condition="Skinning.Level &gt;= 265 &amp;&amp; Skinning.Level &lt; 300" IgnoreCanRun="True">
+    <CustomAction Code="Log(Colors.Orange,&quot;Next step.&quot;);" />
+    <CustomAction Code="Log(Colors.Orange,&quot;Going to Thousand Needles to level from 205-265&quot;);" />
+    <If Condition="Me.ZoneId != 400" IgnoreCanRun="True">
+      <If Condition="Me.MapId != 1" IgnoreCanRun="True">
+        <CallSubRoutine SubRoutineName="EK to Kalimdor" />
+      </If>
+      <If Condition="Me.MapId == 1" IgnoreCanRun="True">
+        <FlyToAction Dismount="True" Location="86.07233, -3908.033, -5363.449" />
+      </If>
+    </If>
+    <ChangeBotAction BotName="Grind Bot" />
+    <LoadProfileAction ProfileType="Honorbuddy" Path="Profiles\[Alliance] Cicro's Skinning 205-265 Thousand Needles.xml" IsLocal="True" />
+  </If>
+  <If Condition="Skinning.Level == 300 &amp;&amp; Skinning.Level == Skinning.MaxLevel" IgnoreCanRun="True">
+    <CallSubRoutine SubRoutineName="Train" />
+  </If>
+  <If Condition="Skinning.Level == 300 &amp;&amp; Skinning.Level != Skinning.MaxLevel" IgnoreCanRun="True">
+    <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Nothing more to do.&quot;); " />
+    <CustomAction Code="Log(&quot;Starting log out in 20sec&quot;);" />
+    <WaitAction Condition="false" Timeout="20000" />
+    <CustomAction Code=" Lua.DoString(&quot;Logout()&quot;);TreeRoot.Stop();" />
+    <WaitAction Condition="false" Timeout="35000" />
   </If>
   <!--End-->
 </Professionbuddy>
