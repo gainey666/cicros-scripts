@@ -62,5 +62,31 @@
     <ChangeBotAction BotName="Grind Bot" />
     <LoadProfileAction ProfileType="Honorbuddy" Path="Profiles\[Alliance] Cicro's Skinning 60-110 Loch Modan.xml" IsLocal="True" />
   </If>
+  <If Condition="Skinning.Level &gt;= 110 &amp;&amp; Skinning.Level &lt; 150" IgnoreCanRun="True">
+    <CustomAction Code="Log(Colors.Orange,&quot;Next step.&quot;);" />
+    <If Condition="Skinning.Level &gt;= Skinning.MaxLevel - 25 &amp;&amp; Skinning.Level != 600" IgnoreCanRun="True">
+      <CustomAction Code="Log(Colors.Orange,&quot;Lets start with some training&quot;);" />
+      <CallSubRoutine SubRoutineName="Train" />
+    </If>
+    <CustomAction Code="Log(Colors.Orange,&quot;Going to Wetlands to level from 110-150&quot;);" />
+    <If Condition="Me.ZoneId != 11" IgnoreCanRun="True">
+      <FlyToAction Dismount="True" Location="-3450.899, -1309.91, 9.642357" />
+    </If>
+    <ChangeBotAction BotName="Grind Bot" />
+    <LoadProfileAction ProfileType="Honorbuddy" Path="Profiles\[Alliance] Cicro's Skinning 110-150 Wetlands.xml" IsLocal="True" />
+  </If>
+  <If Condition="Skinning.Level &gt;= 150 &amp;&amp; Skinning.Level &lt; 185" IgnoreCanRun="True">
+    <CustomAction Code="Log(Colors.Orange,&quot;Next step.&quot;);" />
+    <If Condition="Skinning.Level &gt;= Skinning.MaxLevel - 25 &amp;&amp; Skinning.Level != 600" IgnoreCanRun="True">
+      <CustomAction Code="Log(Colors.Orange,&quot;Lets start with some training&quot;);" />
+      <CallSubRoutine SubRoutineName="Train" />
+    </If>
+    <CustomAction Code="Log(Colors.Orange,&quot;Going to Wetlands to level from 150-185&quot;);" />
+    <If Condition="Me.ZoneId != 11" IgnoreCanRun="True">
+      <FlyToAction Dismount="True" Location="-3450.899, -1309.91, 9.642357" />
+    </If>
+    <ChangeBotAction BotName="Grind Bot" />
+    <LoadProfileAction ProfileType="Honorbuddy" Path="Profiles\[Alliance] Cicro's Skinning 150-185 Wetlands.xml" IsLocal="True" />
+  </If>
   <!--End-->
 </Professionbuddy>
