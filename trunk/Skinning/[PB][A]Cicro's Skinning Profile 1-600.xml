@@ -31,7 +31,7 @@
     </If>
   </SubRoutine>
   <!--While-->
-  <While Condition="Skinning.Level &gt;= Skinning.MaxLevel &amp;&amp; Skinning.Level &lt; 500 &amp;&amp; Me.MapId != 530 || Skinning.MaxLevel == 0" IgnoreCanRun="True">
+  <While Condition="Skinning.Level &gt;= Skinning.MaxLevel &amp;&amp; Skinning.Level != 600 &amp;&amp; Me.MapId != 530 || Skinning.MaxLevel == 0" IgnoreCanRun="True">
     <If Condition="Skinning.Level &gt;= Skinning.MaxLevel &amp;&amp; Skinning.Level &lt; 500 &amp;&amp; Skinning.Level != 0" IgnoreCanRun="True">
       <CustomAction Code="Log(System.Drawing.Color.DarkOliveGreen,&quot;Skinning needs to be force trained. What went wrong??&quot;);" />
     </If>
@@ -50,8 +50,10 @@
     <LoadProfileAction ProfileType="Honorbuddy" Path="Profiles\[Alliance] Cicro's Skinning 1-60 Dun Morogh.xml" IsLocal="True" />
   </If>
   <If Condition="Skinning.Level &gt;= 65 &amp;&amp; Skinning.Level &lt; 110" IgnoreCanRun="True">
-    <While Condition="Skinning.Level &gt;= Skinning.MaxLevel - 25 &amp;&amp; Skinning.Level &lt; 500" IgnoreCanRun="True">
-      <SubRoutine SubRoutineName="Train" />
+    <CustomAction Code="Log(Colors.Orange,&quot;Next step.&quot;);" />
+    <While Condition="Skinning.Level &gt;= Skinning.MaxLevel - 25 &amp;&amp; Skinning.Level != 600" IgnoreCanRun="True">
+      <CustomAction Code="Log(Colors.Orange,&quot;Lets start with some training&quot;);" />
+      <CallSubRoutine SubRoutineName="Train" />
     </While>
     <CustomAction Code="Log(Colors.Orange,&quot;Going to Loch Modan to level from 65-110&quot;);" />
     <If Condition="Me.ZoneId != 38" IgnoreCanRun="True">
