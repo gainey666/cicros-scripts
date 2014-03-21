@@ -1,27 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Professionbuddy>
   <CustomAction Code="Log(Colors.Orange,&quot;Welcome to Cicro's Skinning profile 1-110 BETA v0.01&quot;);" />
+  <Settings DefaultValue="false" Type="Boolean" Name="Sell Items" Summary="If set to true this profile will sell leather on AH, and sell grey and other white items to a vendor" Category="Profile" Global="False" Hidden="False" />
   <ChangeBotAction BotName="Combat Bot" />
   <CustomAction Code="CharacterSettings.Instance.LootMobs = true;" />
-  <SubRoutine SubRoutineName="EmptyBagsInIronforge">
-    <CustomAction Code="Log(Colors.Green,&quot;Bags are getting full. Going to sell the leather on the AH in Ironforge&quot;);" />
-    <!--Front of Ironforge gates-->
-    <FlyToAction Dismount="False" Location="-5043.242, -805.4196, 504.7747" />
-    <FlyToAction Dismount="False" Location="-4982.075, -879.6846, 512.5381" />
-    <FlyToAction Dismount="False" Location="-5021.301, -943.3182, 509.3302" />
-    <FlyToAction Dismount="True" Location="-4908.107, -974.3073, 501.4522" />
-    <If Condition="(bool)Settings[&quot;AH Items&quot;]" IgnoreCanRun="True">
-      <SellItemOnAhAction Category="TradeGoods" SubCategoryType="WoWItemTradeGoodsClass" SubCategory="None" UseCategory="True" RunTime="_24_Hours" AmountType="Everything" ItemID="13466" MinBuyout="0g10s0c" MaxBuyout="60g0s0c" StackSize="20" IgnoreStackSizeBelow="1" Amount="10" BidPrecent="95" UndercutPrecent="0.001" AutoFindAh="True" PostPartialStacks="True" PostIfBelowMinBuyout="True" Location="0, 0, 0" />
-    </If>
-    <If Condition="!(bool)Settings[&quot;AH Items&quot;]" IgnoreCanRun="True">
-      <MailItemAction Category="TradeGoods" SubCategoryType="WoWItemTradeGoodsClass" SubCategory="None" Mail="All" UseCategory="True" ItemID="0" Amount="0" AutoFindMailBox="True" Location="0, 0, 0" />
-    </If>
-  </SubRoutine>
-  <SubRoutine SubRoutineName="EmptyBagsInStormwind">
-    <CustomAction Code="Log(Colors.Green,&quot;Bags are getting full. Going to sell the leather on the AH in Stormwind&quot;);" />
-    <!--Front of AH area-->
-    <FlyToAction Dismount="True" Location="-8355.722, 641.4622, 95.28886" />
-  </SubRoutine>
+  <CustomAction Code="var1 = false;" />
   <SubRoutine SubRoutineName="Train">
     <If Condition="Me.IsAlliance" IgnoreCanRun="True">
       <If Condition="Me.MapId != 0 &amp;&amp; Me.MapId == 1" IgnoreCanRun="True">
@@ -32,6 +15,21 @@
         <FlyToAction Dismount="True" Location="-8722.357, 428.8217, 98.0647" />
         <TrainSkillAction NpcEntry="1292" Location="-8716.408, 469.4141, 98.61302" />
         <MoveToAction Location="-8722.741, 438.8223, 97.70684" MoveType="Location" Pathing="Navigator" Entry="0" />
+        <CallSubRoutine SubRoutineName="Sell" />
+      </If>
+    </If>
+  </SubRoutine>
+  <SubRoutine SubRoutineName="Sell">
+    <If Condition="Me.ZoneId == 1519" IgnoreCanRun="True">
+      <If Condition="(bool)Settings[&quot;Sell Items&quot;]" IgnoreCanRun="True">
+        <FlyToAction Dismount="True" Location="-8361.241, 639.803, 95.22509" />
+        <SellItemOnAhAction Category="TradeGoods" SubCategoryType="WoWItemTradeGoodsClass" SubCategory="Leather" UseCategory="True" RunTime="_24_Hours" AmountType="Everything" ItemID="" MinBuyout="2g0s0c" MaxBuyout="5g0s0c" StackSize="20" IgnoreStackSizeBelow="1" Amount="10" BidPrecent="90" UndercutPrecent="1" AutoFindAh="True" PostPartialStacks="True" PostIfBelowMinBuyout="True" Location="0, 0, 0" />
+        <MoveToAction Location="-8366.22, 627.099, 95.19579" MoveType="Location" Pathing="Navigator" Entry="0" />
+        <SellItemAction Sell="All" NpcEntry="5519" Location="-8366.22, 627.099, 95.19579" SellItemType="Whites" ItemID="" Count="0" />
+        <SellItemAction Sell="All" NpcEntry="5519" Location="-8366.22, 627.099, 95.19579" SellItemType="Greys" ItemID="" Count="0" />
+      </If>
+      <If Condition="!(bool)Settings[&quot;Sell Items&quot;]" IgnoreCanRun="True">
+        <CustomAction Code="Log(Colors.Red,&quot;Selling is disabled. Remember to clean up your bags manually&quot;);" />
       </If>
     </If>
   </SubRoutine>
