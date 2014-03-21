@@ -39,18 +39,23 @@
         <LootRadius>65</LootRadius>
         <MaxDistance>65</MaxDistance>
         <MaximumHotspotTime>20000</MaximumHotspotTime>
-        <RandomizeHotspots>True</RandomizeHotspots>
+        <RandomizeHotspots>False</RandomizeHotspots>
    
         <Hotspots>
-<Hotspot X="-5761.459" Y="-425.5734" Z="365.2238" />
-<Hotspot X="-5791.617" Y="-374.0712" Z="366.1819" />
-<Hotspot X="-5828.208" Y="-314.5554" Z="360.1938" />
-<Hotspot X="-5855.839" Y="-247.1218" Z="360.635" />
-<Hotspot X="-5881.525" Y="-180.6519" Z="361.2274" />
-<Hotspot X="-5865.659" Y="-110.6636" Z="361.6703" />
-<Hotspot X="-5807.092" Y="-170.912" Z="351.168" />
-<Hotspot X="-5722.524" Y="-262.8259" Z="356.7179" />
-<Hotspot X="-5757.798" Y="-355.5025" Z="366.3433" />
+<Hotspot X="-5839.542" Y="-476.1126" Z="408.4816" />
+<Hotspot X="-5785.898" Y="-493.3034" Z="402.9543" />
+<Hotspot X="-5847.234" Y="-561.3318" Z="398.9002" />
+<Hotspot X="-5907.022" Y="-542.3405" Z="398.272" />
+<Hotspot X="-5968.763" Y="-479.7641" Z="407.1909" />
+<Hotspot X="-6018.315" Y="-388.6283" Z="414.3119" />
+<Hotspot X="-6044.976" Y="-297.4645" Z="422.4492" />
+<Hotspot X="-5886.04" Y="-203.8948" Z="362.7671" />
+<Hotspot X="-5842.508" Y="-253.4733" Z="360.0718" />
+<Hotspot X="-5824.637" Y="-209.2633" Z="352.7891" />
+<Hotspot X="-5869.563" Y="-111.7102" Z="362.0502" />
+<Hotspot X="-5882.259" Y="-9.486601" Z="360.7403" />
+<Hotspot X="-5825.375" Y="57.05485" Z="358.0687" />
+<Hotspot X="-5785.597" Y="-232.4857" Z="353.3324" />
         </Hotspots>
     </GrindArea>
    
