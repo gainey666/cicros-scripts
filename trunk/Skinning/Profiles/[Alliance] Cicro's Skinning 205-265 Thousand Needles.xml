@@ -38,7 +38,7 @@
         <LootRadius>65</LootRadius>
         <MaxDistance>65</MaxDistance>
         <MaximumHotspotTime>20000</MaximumHotspotTime>
-        <RandomizeHotspots>True</RandomizeHotspots>
+        <RandomizeHotspots>False</RandomizeHotspots>
    
         <Hotspots>
 <Hotspot X="-5363.449" Y="-3908.033" Z="86.07233" />
