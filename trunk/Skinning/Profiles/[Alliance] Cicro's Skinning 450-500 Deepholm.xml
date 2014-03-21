@@ -1,0 +1,51 @@
+<HBProfile>
+	<Name>[Alliance] Cicro's Skinning 450-500 Deepholm</Name>
+	<MinLevel>80</MinLevel>
+	<MaxLevel>100</MaxLevel>
+  
+	<MinDurability>0.2</MinDurability>
+	<MinFreeBagSlots>0</MinFreeBagSlots>
+  
+	<MailGrey>False</MailGrey>
+	<MailWhite>True</MailWhite>
+	<MailGreen>True</MailGreen>
+	<MailBlue>True</MailBlue>
+	<MailPurple>True</MailPurple>
+  
+	<SellGrey>True</SellGrey>
+	<SellWhite>False</SellWhite>
+	<SellGreen>False</SellGreen>
+	<SellBlue>False</SellBlue>
+	<SellPurple>False</SellPurple>
+  
+	<TargetElites>True</TargetElites>
+
+	<Vendors>
+
+	</Vendors>
+
+      <Mailboxes>
+
+      </Mailboxes>
+
+	<AvoidMobs>
+
+	</AvoidMobs>
+    <GrindArea>
+        <Factions>14</Factions>
+   
+        <LootRadius>65</LootRadius>
+        <MaxDistance>65</MaxDistance>
+        <MaximumHotspotTime>20000</MaximumHotspotTime>
+        <RandomizeHotspots>True</RandomizeHotspots>
+   
+        <Hotspots>
+<Hotspot X="1905.042" Y="1232.526" Z="87.80345" />
+<Hotspot X="2036.086" Y="1231.246" Z="125.146" />
+<Hotspot X="2169.413" Y="1196.816" Z="143.9541" />
+<Hotspot X="2171.624" Y="1130.503" Z="136.3612" />
+<Hotspot X="2085.524" Y="1121.842" Z="119.8755" />
+        </Hotspots>
+    </GrindArea>
+   
+</HBProfile>

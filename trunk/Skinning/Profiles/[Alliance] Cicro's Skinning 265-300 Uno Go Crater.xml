@@ -1,0 +1,56 @@
+<HBProfile>
+	<Name>[Alliance] Cicro's Skinning 265-300 Uno Go Crater</Name>
+	<MinLevel>65</MinLevel>
+	<MaxLevel>100</MaxLevel>
+  
+	<MinDurability>0.2</MinDurability>
+	<MinFreeBagSlots>0</MinFreeBagSlots>
+  
+	<MailGrey>False</MailGrey>
+	<MailWhite>True</MailWhite>
+	<MailGreen>True</MailGreen>
+	<MailBlue>True</MailBlue>
+	<MailPurple>True</MailPurple>
+  
+	<SellGrey>True</SellGrey>
+	<SellWhite>False</SellWhite>
+	<SellGreen>False</SellGreen>
+	<SellBlue>False</SellBlue>
+	<SellPurple>False</SellPurple>
+  
+	<TargetElites>True</TargetElites>
+
+	<Vendors>
+
+	</Vendors>
+
+      <Mailboxes>
+
+      </Mailboxes>
+
+	<AvoidMobs>
+<Mob Name="Dragonmaw Whelpstealer" Entry="42041" />
+
+	</AvoidMobs>
+    <GrindArea>
+        <Factions>48 14 </Factions>
+   
+        <LootRadius>65</LootRadius>
+        <MaxDistance>65</MaxDistance>
+        <MaximumHotspotTime>20000</MaximumHotspotTime>
+        <RandomizeHotspots>True</RandomizeHotspots>
+   
+        <Hotspots>
+<Hotspot X="-7208.153" Y="-2018.656" Z="-271.7999" />
+<Hotspot X="-7217.173" Y="-1910.7" Z="-271.5191" />
+<Hotspot X="-7165.152" Y="-1856.779" Z="-272.6253" />
+<Hotspot X="-7288.078" Y="-1796.616" Z="-277.566" />
+<Hotspot X="-7433.261" Y="-1867.136" Z="-272.0122" />
+<Hotspot X="-7390.213" Y="-1985.099" Z="-270.765" />
+<Hotspot X="-7416.613" Y="-2099.531" Z="-272.1943" />
+<Hotspot X="-7516.216" Y="-2060.97" Z="-271.7649" />
+<Hotspot X="-7419.792" Y="-1956.657" Z="-271.0506" />
+        </Hotspots>
+    </GrindArea>
+   
+</HBProfile>

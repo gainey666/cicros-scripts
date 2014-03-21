@@ -1,0 +1,55 @@
+<HBProfile>
+	<Name>[Alliance] Cicro's Skinning 310-330 Hellfire Peninsula</Name>
+	<MinLevel>65</MinLevel>
+	<MaxLevel>100</MaxLevel>
+  
+	<MinDurability>0.2</MinDurability>
+	<MinFreeBagSlots>0</MinFreeBagSlots>
+  
+	<MailGrey>False</MailGrey>
+	<MailWhite>True</MailWhite>
+	<MailGreen>True</MailGreen>
+	<MailBlue>True</MailBlue>
+	<MailPurple>True</MailPurple>
+  
+	<SellGrey>True</SellGrey>
+	<SellWhite>False</SellWhite>
+	<SellGreen>False</SellGreen>
+	<SellBlue>False</SellBlue>
+	<SellPurple>False</SellPurple>
+  
+	<TargetElites>True</TargetElites>
+
+	<Vendors>
+
+	</Vendors>
+
+      <Mailboxes>
+
+      </Mailboxes>
+
+	<AvoidMobs>
+<Mob Name="Dragonmaw Whelpstealer" Entry="42041" />
+
+	</AvoidMobs>
+    <GrindArea>
+        <Factions>14 16</Factions>
+   
+        <LootRadius>65</LootRadius>
+        <MaxDistance>65</MaxDistance>
+        <MaximumHotspotTime>20000</MaximumHotspotTime>
+        <RandomizeHotspots>True</RandomizeHotspots>
+   
+        <Hotspots>
+<Hotspot X="-1394.276" Y="3368.658" Z="38.68611" />
+<Hotspot X="-1433.239" Y="3452.489" Z="42.23741" />
+<Hotspot X="-1508.191" Y="3467.996" Z="30.06236" />
+<Hotspot X="-1532.208" Y="3552.588" Z="34.95679" />
+<Hotspot X="-1587.456" Y="3581.003" Z="29.32084" />
+<Hotspot X="-1606.971" Y="3663.089" Z="34.79771" />
+<Hotspot X="-1679.206" Y="3773.796" Z="36.04419" />
+<Hotspot X="-1681.593" Y="3835.724" Z="34.15278" />
+        </Hotspots>
+    </GrindArea>
+   
+</HBProfile>

@@ -1,0 +1,54 @@
+<HBProfile>
+	<Name>[Alliance] Cicro's Skinning 360-395 Borean Tundra</Name>
+	<MinLevel>65</MinLevel>
+	<MaxLevel>100</MaxLevel>
+  
+	<MinDurability>0.2</MinDurability>
+	<MinFreeBagSlots>0</MinFreeBagSlots>
+  
+	<MailGrey>False</MailGrey>
+	<MailWhite>True</MailWhite>
+	<MailGreen>True</MailGreen>
+	<MailBlue>True</MailBlue>
+	<MailPurple>True</MailPurple>
+  
+	<SellGrey>True</SellGrey>
+	<SellWhite>False</SellWhite>
+	<SellGreen>False</SellGreen>
+	<SellBlue>False</SellBlue>
+	<SellPurple>False</SellPurple>
+  
+	<TargetElites>True</TargetElites>
+
+	<Vendors>
+
+	</Vendors>
+
+      <Mailboxes>
+
+      </Mailboxes>
+
+	<AvoidMobs>
+
+	</AvoidMobs>
+    <GrindArea>
+        <Factions>1917 15</Factions>
+   
+        <LootRadius>65</LootRadius>
+        <MaxDistance>65</MaxDistance>
+        <MaximumHotspotTime>20000</MaximumHotspotTime>
+        <RandomizeHotspots>True</RandomizeHotspots>
+   
+        <Hotspots>
+<Hotspot X="2087.576" Y="5766.557" Z="52.20004" />
+<Hotspot X="2076.369" Y="5878.631" Z="48.93385" />
+<Hotspot X="2080.21" Y="6009.64" Z="50.70848" />
+<Hotspot X="2075.406" Y="6133.334" Z="47.10842" />
+<Hotspot X="2146.57" Y="6027.64" Z="55.92463" />
+<Hotspot X="2177.874" Y="5901.248" Z="64.63461" />
+<Hotspot X="2163.419" Y="5791.922" Z="60.77475" />
+<Hotspot X="2289.744" Y="5703.407" Z="57.24498" />
+        </Hotspots>
+    </GrindArea>
+   
+</HBProfile>

@@ -1,0 +1,55 @@
+<HBProfile>
+	<Name>[Alliance] Cicro's Skinning 110-150 Wetlands</Name>
+	<MinLevel>65</MinLevel>
+	<MaxLevel>100</MaxLevel>
+  
+	<MinDurability>0.2</MinDurability>
+	<MinFreeBagSlots>0</MinFreeBagSlots>
+  
+	<MailGrey>False</MailGrey>
+	<MailWhite>True</MailWhite>
+	<MailGreen>True</MailGreen>
+	<MailBlue>True</MailBlue>
+	<MailPurple>True</MailPurple>
+  
+	<SellGrey>True</SellGrey>
+	<SellWhite>False</SellWhite>
+	<SellGreen>False</SellGreen>
+	<SellBlue>False</SellBlue>
+	<SellPurple>False</SellPurple>
+  
+	<TargetElites>True</TargetElites>
+
+	<Vendors>
+
+	</Vendors>
+
+      <Mailboxes>
+
+      </Mailboxes>
+
+	<AvoidMobs>
+
+	</AvoidMobs>
+    <GrindArea>
+        <Factions>2358 48</Factions>
+   
+        <LootRadius>65</LootRadius>
+        <MaxDistance>65</MaxDistance>
+        <MaximumHotspotTime>20000</MaximumHotspotTime>
+        <RandomizeHotspots>True</RandomizeHotspots>
+   
+        <Hotspots>
+<Hotspot X="-3450.899" Y="-1309.91" Z="9.642357" />
+<Hotspot X="-3461.112" Y="-1366.915" Z="11.1012" />
+<Hotspot X="-3475.715" Y="-1456.319" Z="9.193655" />
+<Hotspot X="-3547.243" Y="-1399.037" Z="9.673571" />
+<Hotspot X="-3612.866" Y="-1375.631" Z="11.3175" />
+<Hotspot X="-3686.676" Y="-1351.03" Z="16.78573" />
+<Hotspot X="-3587.047" Y="-1312.458" Z="10.21117" />
+<Hotspot X="-3534.04" Y="-1350.725" Z="11.46858" />
+<Hotspot X="-3469.211" Y="-1326.191" Z="10.7756" />
+        </Hotspots>
+    </GrindArea>
+   
+</HBProfile>

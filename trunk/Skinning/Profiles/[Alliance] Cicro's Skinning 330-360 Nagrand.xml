@@ -1,0 +1,54 @@
+<HBProfile>
+	<Name>[Alliance] Cicro's Skinning 330-360 Nagrand</Name>
+	<MinLevel>65</MinLevel>
+	<MaxLevel>100</MaxLevel>
+  
+	<MinDurability>0.2</MinDurability>
+	<MinFreeBagSlots>0</MinFreeBagSlots>
+  
+	<MailGrey>False</MailGrey>
+	<MailWhite>True</MailWhite>
+	<MailGreen>True</MailGreen>
+	<MailBlue>True</MailBlue>
+	<MailPurple>True</MailPurple>
+  
+	<SellGrey>True</SellGrey>
+	<SellWhite>False</SellWhite>
+	<SellGreen>False</SellGreen>
+	<SellBlue>False</SellBlue>
+	<SellPurple>False</SellPurple>
+  
+	<TargetElites>True</TargetElites>
+
+	<Vendors>
+
+	</Vendors>
+
+      <Mailboxes>
+
+      </Mailboxes>
+
+	<AvoidMobs>
+<Mob Name="Dragonmaw Whelpstealer" Entry="42041" />
+
+	</AvoidMobs>
+    <GrindArea>
+        <Factions>14 7</Factions>
+   
+        <LootRadius>65</LootRadius>
+        <MaxDistance>65</MaxDistance>
+        <MaximumHotspotTime>20000</MaximumHotspotTime>
+        <RandomizeHotspots>True</RandomizeHotspots>
+   
+        <Hotspots>
+<Hotspot X="-1465.898" Y="7490.317" Z="1.60771" />
+<Hotspot X="-1358.907" Y="7585.476" Z="3.334947" />
+<Hotspot X="-1178.069" Y="7547.419" Z="21.52184" />
+<Hotspot X="-1044.578" Y="7581.448" Z="31.45294" />
+<Hotspot X="-941.0128" Y="7626.76" Z="36.87019" />
+<Hotspot X="-937.4394" Y="7493.16" Z="36.57875" />
+<Hotspot X="-1021.762" Y="7402.078" Z="36.8152" />
+        </Hotspots>
+    </GrindArea>
+   
+</HBProfile>

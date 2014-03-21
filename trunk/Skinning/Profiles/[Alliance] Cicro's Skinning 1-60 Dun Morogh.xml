@@ -1,0 +1,57 @@
+<HBProfile>
+	<Name>[Alliance] Cicro's Skinning 1-60 Dun Morogh</Name>
+	<MinLevel>65</MinLevel>
+	<MaxLevel>100</MaxLevel>
+  
+	<MinDurability>0.2</MinDurability>
+	<MinFreeBagSlots>0</MinFreeBagSlots>
+  
+	<MailGrey>False</MailGrey>
+	<MailWhite>True</MailWhite>
+	<MailGreen>True</MailGreen>
+	<MailBlue>True</MailBlue>
+	<MailPurple>True</MailPurple>
+  
+	<SellGrey>True</SellGrey>
+	<SellWhite>False</SellWhite>
+	<SellGreen>False</SellGreen>
+	<SellBlue>False</SellBlue>
+	<SellPurple>False</SellPurple>
+  
+	<TargetElites>True</TargetElites>
+
+	<Vendors>
+
+	</Vendors>
+
+      <Mailboxes>
+
+      </Mailboxes>
+
+	<AvoidMobs>
+
+<Mob Name="Bloodfen Screecher" Entry="4352" />
+<Mob Name="Drywallow Crocolisk" Entry="4341" />
+	</AvoidMobs>
+    <GrindArea>
+        <Factions>38 189</Factions>
+   
+        <LootRadius>65</LootRadius>
+        <MaxDistance>65</MaxDistance>
+        <MaximumHotspotTime>20000</MaximumHotspotTime>
+        <RandomizeHotspots>True</RandomizeHotspots>
+   
+        <Hotspots>
+<Hotspot X="-5761.459" Y="-425.5734" Z="365.2238" />
+<Hotspot X="-5791.617" Y="-374.0712" Z="366.1819" />
+<Hotspot X="-5828.208" Y="-314.5554" Z="360.1938" />
+<Hotspot X="-5855.839" Y="-247.1218" Z="360.635" />
+<Hotspot X="-5881.525" Y="-180.6519" Z="361.2274" />
+<Hotspot X="-5865.659" Y="-110.6636" Z="361.6703" />
+<Hotspot X="-5807.092" Y="-170.912" Z="351.168" />
+<Hotspot X="-5722.524" Y="-262.8259" Z="356.7179" />
+<Hotspot X="-5757.798" Y="-355.5025" Z="366.3433" />
+        </Hotspots>
+    </GrindArea>
+   
+</HBProfile>

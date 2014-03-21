@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Professionbuddy>
+  <CustomAction Code="Log(Colors.Orange,&quot;Welcome to Cicro's Skinning profile 1-110 BETA v0.01&quot;);" />
+  <ChangeBotAction BotName="Combat Bot" />
+  <CustomAction Code="CharacterSettings.Instance.LootMobs = true;" />
+  <SubRoutine SubRoutineName="EmptyBagsInIronforge">
+    <CustomAction Code="Log(Colors.Green,&quot;Bags are getting full. Going to sell the leather on the AH in Ironforge&quot;);" />
+    <!--Front of Ironforge gates-->
+    <FlyToAction Dismount="False" Location="-5043.242, -805.4196, 504.7747" />
+    <FlyToAction Dismount="False" Location="-4982.075, -879.6846, 512.5381" />
+    <FlyToAction Dismount="False" Location="-5021.301, -943.3182, 509.3302" />
+    <FlyToAction Dismount="True" Location="-4908.107, -974.3073, 501.4522" />
+    <If Condition="(bool)Settings[&quot;AH Items&quot;]" IgnoreCanRun="True">
+      <SellItemOnAhAction Category="TradeGoods" SubCategoryType="WoWItemTradeGoodsClass" SubCategory="None" UseCategory="True" RunTime="_24_Hours" AmountType="Everything" ItemID="13466" MinBuyout="0g10s0c" MaxBuyout="60g0s0c" StackSize="20" IgnoreStackSizeBelow="1" Amount="10" BidPrecent="95" UndercutPrecent="0.001" AutoFindAh="True" PostPartialStacks="True" PostIfBelowMinBuyout="True" Location="0, 0, 0" />
+    </If>
+    <If Condition="!(bool)Settings[&quot;AH Items&quot;]" IgnoreCanRun="True">
+      <MailItemAction Category="TradeGoods" SubCategoryType="WoWItemTradeGoodsClass" SubCategory="None" Mail="All" UseCategory="True" ItemID="0" Amount="0" AutoFindMailBox="True" Location="0, 0, 0" />
+    </If>
+  </SubRoutine>
+  <SubRoutine SubRoutineName="EmptyBagsInStormwind">
+    <CustomAction Code="Log(Colors.Green,&quot;Bags are getting full. Going to sell the leather on the AH in Stormwind&quot;);" />
+    <!--Front of AH area-->
+    <FlyToAction Dismount="True" Location="-8355.722, 641.4622, 95.28886" />
+  </SubRoutine>
+  <SubRoutine SubRoutineName="Train">
+    <If Condition="Me.IsAlliance" IgnoreCanRun="True">
+      <CustomAction Code="Log(Colors.Blue,&quot;Going to Stormwind to train Skinning&quot;);" />
+      <FlyToAction Dismount="True" Location="-8722.357, 428.8217, 98.0647" />
+      <TrainSkillAction NpcEntry="1292" Location="-8716.408, 469.4141, 98.61302" />
+      <MoveToAction Location="-8722.741, 438.8223, 97.70684" MoveType="Location" Pathing="Navigator" Entry="0" />
+    </If>
+  </SubRoutine>
+  <!--While-->
+  <While Condition="Skinning.Level &gt;= Skinning.MaxLevel &amp;&amp; Skinning.Level &lt; 500 &amp;&amp; Me.MapId != 530 || Skinning.MaxLevel == 0" IgnoreCanRun="True">
+    <If Condition="Skinning.Level &gt;= Skinning.MaxLevel &amp;&amp; Skinning.Level &lt; 500 &amp;&amp; Skinning.Level != 0" IgnoreCanRun="True">
+      <CustomAction Code="Log(System.Drawing.Color.DarkOliveGreen,&quot;Skinning needs to be force trained. What went wrong??&quot;);" />
+    </If>
+    <If Condition="Skinning.MaxLevel == 0" IgnoreCanRun="True">
+      <CustomAction Code="Log(System.Drawing.Color.DarkOliveGreen,&quot;We do not know how to skin!! Lets find a trainer&quot;);" />
+    </If>
+    <CallSubRoutine SubRoutineName="Train" />
+  </While>
+  <!--Skinning-->
+  <If Condition="Skinning.Level &gt;= 1 &amp;&amp; Skinning.Level &lt; 65" IgnoreCanRun="True">
+    <CustomAction Code="Log(Colors.Orange,&quot;Going to Dun Morogh to level from 1-65&quot;);" />
+    <While Condition="Me.ZoneId != 1" IgnoreCanRun="True">
+      <FlyToAction Dismount="False" Location="-5761.459, -425.5734, 365.2238" />
+    </While>
+    <ChangeBotAction BotName="Grind Bot" />
+    <LoadProfileAction ProfileType="Honorbuddy" Path="Profiles\[Alliance] Cicro's Skinning 1-60 Dun Morogh.xml" IsLocal="True" />
+  </If>
+  <If Condition="Skinning.Level &gt;= 65 &amp;&amp; Skinning.Level &lt; 110" IgnoreCanRun="True">
+    <While Condition="Skinning.Level &gt;= Skinning.MaxLevel - 25 &amp;&amp; Skinning.Level &lt; 500" IgnoreCanRun="True">
+      <SubRoutine SubRoutineName="Train" />
+    </While>
+    <CustomAction Code="Log(Colors.Orange,&quot;Going to Loch Modan to level from 65-110&quot;);" />
+    <If Condition="Me.ZoneId != 38" IgnoreCanRun="True">
+      <FlyToAction Dismount="False" Location="-5655.124, -3349.164, 287.6958" />
+    </If>
+    <ChangeBotAction BotName="Grind Bot" />
+    <LoadProfileAction ProfileType="Honorbuddy" Path="Profiles\[Alliance] Cicro's Skinning 60-110 Loch Modan.xml" IsLocal="True" />
+  </If>
+  <!--End-->
+</Professionbuddy>
