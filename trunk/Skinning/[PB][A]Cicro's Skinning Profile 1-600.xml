@@ -243,202 +243,204 @@
     <CallSubRoutine SubRoutineName="Train" />
   </While>
   <!--Skinning-->
-  <If Condition="Skinning.Level &gt;= 1 &amp;&amp; Skinning.Level &lt; 65" IgnoreCanRun="True">
-    <CustomAction Code="Log(Colors.Orange,&quot;Going to Dun Morogh to level from 1-65&quot;);" />
-    <While Condition="Me.ZoneId != 1 || DistanceTo (-5761.459, -425.5734, 365.2238) &gt; 100" IgnoreCanRun="True">
-      <FlyToAction Dismount="False" Location="-5761.459, -425.5734, 365.2238" />
-    </While>
-    <ChangeBotAction BotName="Grind Bot" />
-    <LoadProfileAction ProfileType="Honorbuddy" Path="Profiles\[Alliance] Cicro's Skinning 1-60 Dun Morogh.xml" IsLocal="True" />
-  </If>
-  <If Condition="Skinning.Level &gt;= 65 &amp;&amp; Skinning.Level &lt; 110" IgnoreCanRun="True">
-    <CustomAction Code="Log(Colors.Orange,&quot;Next step.&quot;);" />
-    <While Condition="Skinning.Level &gt;= Skinning.MaxLevel - 25 &amp;&amp; Skinning.Level != 600" IgnoreCanRun="True">
-      <CustomAction Code="Log(Colors.Orange,&quot;Lets start with some training&quot;);" />
-      <CallSubRoutine SubRoutineName="Train" />
-    </While>
-    <CustomAction Code="Log(Colors.Orange,&quot;Going to Loch Modan to level from 65-110&quot;);" />
-    <If Condition="Me.ZoneId != 38 || DistanceTo (-5655.124, -3349.164, 287.6958) &gt; 100" IgnoreCanRun="True">
-      <FlyToAction Dismount="False" Location="-5655.124, -3349.164, 287.6958" />
+  <If Condition="!(bool)Settings[&quot;Level LW&quot;]" IgnoreCanRun="True">
+    <If Condition="Skinning.Level &gt;= 1 &amp;&amp; Skinning.Level &lt; 65" IgnoreCanRun="True">
+      <CustomAction Code="Log(Colors.Orange,&quot;Going to Dun Morogh to level from 1-65&quot;);" />
+      <While Condition="Me.ZoneId != 1 || DistanceTo (-5761.459, -425.5734, 365.2238) &gt; 100" IgnoreCanRun="True">
+        <FlyToAction Dismount="False" Location="-5761.459, -425.5734, 365.2238" />
+      </While>
+      <ChangeBotAction BotName="Grind Bot" />
+      <LoadProfileAction ProfileType="Honorbuddy" Path="Profiles\[Alliance] Cicro's Skinning 1-60 Dun Morogh.xml" IsLocal="True" />
     </If>
-    <ChangeBotAction BotName="Grind Bot" />
-    <LoadProfileAction ProfileType="Honorbuddy" Path="Profiles\[Alliance] Cicro's Skinning 60-110 Loch Modan.xml" IsLocal="True" />
-  </If>
-  <If Condition="Skinning.Level &gt;= 110 &amp;&amp; Skinning.Level &lt; 150" IgnoreCanRun="True">
-    <CustomAction Code="Log(Colors.Orange,&quot;Next step.&quot;);" />
-    <If Condition="Skinning.Level &gt;= Skinning.MaxLevel - 25 &amp;&amp; Skinning.Level != 600" IgnoreCanRun="True">
-      <CustomAction Code="Log(Colors.Orange,&quot;Lets start with some training&quot;);" />
-      <CallSubRoutine SubRoutineName="Train" />
+    <If Condition="Skinning.Level &gt;= 65 &amp;&amp; Skinning.Level &lt; 110" IgnoreCanRun="True">
+      <CustomAction Code="Log(Colors.Orange,&quot;Next step.&quot;);" />
+      <While Condition="Skinning.Level &gt;= Skinning.MaxLevel - 25 &amp;&amp; Skinning.Level != 600" IgnoreCanRun="True">
+        <CustomAction Code="Log(Colors.Orange,&quot;Lets start with some training&quot;);" />
+        <CallSubRoutine SubRoutineName="Train" />
+      </While>
+      <CustomAction Code="Log(Colors.Orange,&quot;Going to Loch Modan to level from 65-110&quot;);" />
+      <If Condition="Me.ZoneId != 38 || DistanceTo (-5655.124, -3349.164, 287.6958) &gt; 100" IgnoreCanRun="True">
+        <FlyToAction Dismount="False" Location="-5655.124, -3349.164, 287.6958" />
+      </If>
+      <ChangeBotAction BotName="Grind Bot" />
+      <LoadProfileAction ProfileType="Honorbuddy" Path="Profiles\[Alliance] Cicro's Skinning 60-110 Loch Modan.xml" IsLocal="True" />
     </If>
-    <CustomAction Code="Log(Colors.Orange,&quot;Going to Wetlands to level from 110-150&quot;);" />
-    <If Condition="Me.ZoneId != 11 || DistanceTo (-3450.899, -1309.91, 9.642357) &gt; 100" IgnoreCanRun="True">
-      <FlyToAction Dismount="True" Location="-3450.899, -1309.91, 9.642357" />
+    <If Condition="Skinning.Level &gt;= 110 &amp;&amp; Skinning.Level &lt; 150" IgnoreCanRun="True">
+      <CustomAction Code="Log(Colors.Orange,&quot;Next step.&quot;);" />
+      <If Condition="Skinning.Level &gt;= Skinning.MaxLevel - 25 &amp;&amp; Skinning.Level != 600" IgnoreCanRun="True">
+        <CustomAction Code="Log(Colors.Orange,&quot;Lets start with some training&quot;);" />
+        <CallSubRoutine SubRoutineName="Train" />
+      </If>
+      <CustomAction Code="Log(Colors.Orange,&quot;Going to Wetlands to level from 110-150&quot;);" />
+      <If Condition="Me.ZoneId != 11 || DistanceTo (-3450.899, -1309.91, 9.642357) &gt; 100" IgnoreCanRun="True">
+        <FlyToAction Dismount="True" Location="-3450.899, -1309.91, 9.642357" />
+      </If>
+      <ChangeBotAction BotName="Grind Bot" />
+      <LoadProfileAction ProfileType="Honorbuddy" Path="Profiles\[Alliance] Cicro's Skinning 110-150 Wetlands.xml" IsLocal="True" />
     </If>
-    <ChangeBotAction BotName="Grind Bot" />
-    <LoadProfileAction ProfileType="Honorbuddy" Path="Profiles\[Alliance] Cicro's Skinning 110-150 Wetlands.xml" IsLocal="True" />
-  </If>
-  <If Condition="Skinning.Level &gt;= 150 &amp;&amp; Skinning.Level &lt; 205" IgnoreCanRun="True">
-    <CustomAction Code="Log(Colors.Orange,&quot;Next step.&quot;);" />
-    <If Condition="Skinning.Level &gt;= Skinning.MaxLevel - 25 &amp;&amp; Skinning.Level != 600" IgnoreCanRun="True">
-      <CustomAction Code="Log(Colors.Orange,&quot;Lets start with some training&quot;);" />
-      <CallSubRoutine SubRoutineName="Train" />
+    <If Condition="Skinning.Level &gt;= 150 &amp;&amp; Skinning.Level &lt; 205" IgnoreCanRun="True">
+      <CustomAction Code="Log(Colors.Orange,&quot;Next step.&quot;);" />
+      <If Condition="Skinning.Level &gt;= Skinning.MaxLevel - 25 &amp;&amp; Skinning.Level != 600" IgnoreCanRun="True">
+        <CustomAction Code="Log(Colors.Orange,&quot;Lets start with some training&quot;);" />
+        <CallSubRoutine SubRoutineName="Train" />
+      </If>
+      <CustomAction Code="Log(Colors.Orange,&quot;Going to Wetlands to level from 150-205&quot;);" />
+      <If Condition="Me.ZoneId != 11 || DistanceTo (-3491.75, -3077.021, 21.89608) &gt; 100" IgnoreCanRun="True">
+        <FlyToAction Dismount="True" Location="-3491.75, -3077.021, 21.89608" />
+      </If>
+      <ChangeBotAction BotName="Grind Bot" />
+      <LoadProfileAction ProfileType="Honorbuddy" Path="Profiles\[Alliance] Cicro's Skinning 150-185 Wetlands.xml" IsLocal="True" />
     </If>
-    <CustomAction Code="Log(Colors.Orange,&quot;Going to Wetlands to level from 150-205&quot;);" />
-    <If Condition="Me.ZoneId != 11 || DistanceTo (-3491.75, -3077.021, 21.89608) &gt; 100" IgnoreCanRun="True">
-      <FlyToAction Dismount="True" Location="-3491.75, -3077.021, 21.89608" />
+    <If Condition="Skinning.Level &gt;= 205 &amp;&amp; Skinning.Level &lt; 265" IgnoreCanRun="True">
+      <CustomAction Code="Log(Colors.Orange,&quot;Next step.&quot;);" />
+      <If Condition="Skinning.Level &gt;= Skinning.MaxLevel - 25 &amp;&amp; Skinning.Level != 600" IgnoreCanRun="True">
+        <CustomAction Code="Log(Colors.Orange,&quot;Lets start with some training&quot;);" />
+        <CallSubRoutine SubRoutineName="Train" />
+      </If>
+      <CustomAction Code="Log(Colors.Orange,&quot;Going to Thousand Needles to level from 205-265&quot;);" />
+      <If Condition="Me.ZoneId != 400 || DistanceTo (-5363.449, -3908.033, 86.07233) &gt; 100" IgnoreCanRun="True">
+        <If Condition="Me.MapId != 1" IgnoreCanRun="True">
+          <CallSubRoutine SubRoutineName="EK to Kalimdor" />
+        </If>
+        <If Condition="Me.MapId == 1" IgnoreCanRun="True">
+          <FlyToAction Dismount="True" Location="-5363.449, -3908.033, 86.07233" />
+        </If>
+      </If>
+      <ChangeBotAction BotName="Grind Bot" />
+      <LoadProfileAction ProfileType="Honorbuddy" Path="Profiles\[Alliance] Cicro's Skinning 205-265 Thousand Needles.xml" IsLocal="True" />
     </If>
-    <ChangeBotAction BotName="Grind Bot" />
-    <LoadProfileAction ProfileType="Honorbuddy" Path="Profiles\[Alliance] Cicro's Skinning 150-185 Wetlands.xml" IsLocal="True" />
-  </If>
-  <If Condition="Skinning.Level &gt;= 205 &amp;&amp; Skinning.Level &lt; 265" IgnoreCanRun="True">
-    <CustomAction Code="Log(Colors.Orange,&quot;Next step.&quot;);" />
-    <If Condition="Skinning.Level &gt;= Skinning.MaxLevel - 25 &amp;&amp; Skinning.Level != 600" IgnoreCanRun="True">
-      <CustomAction Code="Log(Colors.Orange,&quot;Lets start with some training&quot;);" />
-      <CallSubRoutine SubRoutineName="Train" />
+    <If Condition="Skinning.Level &gt;= 265 &amp;&amp; Skinning.Level &lt; 300" IgnoreCanRun="True">
+      <CustomAction Code="Log(Colors.Orange,&quot;Next step.&quot;);" />
+      <CustomAction Code="Log(Colors.Orange,&quot;Going to Un'Go Crater to level from 265-300&quot;);" />
+      <If Condition="Me.ZoneId != 400 || DistanceTo (-7208.153, -2018.656, -271.7999) &gt; 100" IgnoreCanRun="True">
+        <If Condition="Me.MapId != 1" IgnoreCanRun="True">
+          <CallSubRoutine SubRoutineName="EK to Kalimdor" />
+        </If>
+        <If Condition="Me.MapId == 1" IgnoreCanRun="True">
+          <FlyToAction Dismount="True" Location="-7208.153, -2018.656, -271.7999" />
+        </If>
+      </If>
+      <ChangeBotAction BotName="Grind Bot" />
+      <LoadProfileAction ProfileType="Honorbuddy" Path="Profiles\[Alliance] Cicro's Skinning 265-300 Uno Go Crater.xml" IsLocal="True" />
     </If>
-    <CustomAction Code="Log(Colors.Orange,&quot;Going to Thousand Needles to level from 205-265&quot;);" />
-    <If Condition="Me.ZoneId != 400 || DistanceTo (-5363.449, -3908.033, 86.07233) &gt; 100" IgnoreCanRun="True">
-      <If Condition="Me.MapId != 1" IgnoreCanRun="True">
-        <CallSubRoutine SubRoutineName="EK to Kalimdor" />
+    <If Condition="Skinning.Level &gt;= 300 &amp;&amp; Skinning.Level &lt; 330" IgnoreCanRun="True">
+      <CustomAction Code="Log(Colors.Orange,&quot;Next step.&quot;);" />
+      <CustomAction Code="Log(Colors.Orange,&quot;Going to Hellfire Peninsula to level from 300-330&quot;);" />
+      <If Condition="Me.ZoneId != 3483 || DistanceTo (-1394.276, 3368.658, 38.68611) &gt; 100" IgnoreCanRun="True">
+        <If Condition="Me.MapId != 530" IgnoreCanRun="True">
+          <CallSubRoutine SubRoutineName="EK to Outland" />
+        </If>
+        <If Condition="Me.MapId == 530" IgnoreCanRun="True">
+          <FlyToAction Dismount="True" Location="-1394.276, 3368.658, 38.68611" />
+        </If>
       </If>
-      <If Condition="Me.MapId == 1" IgnoreCanRun="True">
-        <FlyToAction Dismount="True" Location="-5363.449, -3908.033, 86.07233" />
-      </If>
+      <ChangeBotAction BotName="Grind Bot" />
+      <LoadProfileAction ProfileType="Honorbuddy" Path="Profiles\[Alliance] Cicro's Skinning 310-330 Hellfire Peninsula.xml" IsLocal="True" />
     </If>
-    <ChangeBotAction BotName="Grind Bot" />
-    <LoadProfileAction ProfileType="Honorbuddy" Path="Profiles\[Alliance] Cicro's Skinning 205-265 Thousand Needles.xml" IsLocal="True" />
-  </If>
-  <If Condition="Skinning.Level &gt;= 265 &amp;&amp; Skinning.Level &lt; 300" IgnoreCanRun="True">
-    <CustomAction Code="Log(Colors.Orange,&quot;Next step.&quot;);" />
-    <CustomAction Code="Log(Colors.Orange,&quot;Going to Un'Go Crater to level from 265-300&quot;);" />
-    <If Condition="Me.ZoneId != 400 || DistanceTo (-7208.153, -2018.656, -271.7999) &gt; 100" IgnoreCanRun="True">
-      <If Condition="Me.MapId != 1" IgnoreCanRun="True">
-        <CallSubRoutine SubRoutineName="EK to Kalimdor" />
+    <If Condition="Skinning.Level &gt;= 330 &amp;&amp; Skinning.Level &lt; 360" IgnoreCanRun="True">
+      <CustomAction Code="Log(Colors.Orange,&quot;Next step.&quot;);" />
+      <CustomAction Code="Log(Colors.Orange,&quot;Going to Nagrand to level from 330-360&quot;);" />
+      <If Condition="Me.ZoneId != 3518 || DistanceTo (-1465.898, 7490.317, 1.60771) &gt; 100" IgnoreCanRun="True">
+        <If Condition="Me.MapId != 530" IgnoreCanRun="True">
+          <CallSubRoutine SubRoutineName="EK to Outland" />
+        </If>
+        <If Condition="Me.MapId == 530" IgnoreCanRun="True">
+          <FlyToAction Dismount="True" Location="-1465.898, 7490.317, 1.60771" />
+        </If>
       </If>
-      <If Condition="Me.MapId == 1" IgnoreCanRun="True">
-        <FlyToAction Dismount="True" Location="-7208.153, -2018.656, -271.7999" />
-      </If>
+      <ChangeBotAction BotName="Grind Bot" />
+      <LoadProfileAction ProfileType="Honorbuddy" Path="Profiles\[Alliance] Cicro's Skinning 330-360 Nagrand.xml" IsLocal="True" />
     </If>
-    <ChangeBotAction BotName="Grind Bot" />
-    <LoadProfileAction ProfileType="Honorbuddy" Path="Profiles\[Alliance] Cicro's Skinning 265-300 Uno Go Crater.xml" IsLocal="True" />
-  </If>
-  <If Condition="Skinning.Level &gt;= 300 &amp;&amp; Skinning.Level &lt; 330" IgnoreCanRun="True">
-    <CustomAction Code="Log(Colors.Orange,&quot;Next step.&quot;);" />
-    <CustomAction Code="Log(Colors.Orange,&quot;Going to Hellfire Peninsula to level from 300-330&quot;);" />
-    <If Condition="Me.ZoneId != 3483 || DistanceTo (-1394.276, 3368.658, 38.68611) &gt; 100" IgnoreCanRun="True">
-      <If Condition="Me.MapId != 530" IgnoreCanRun="True">
-        <CallSubRoutine SubRoutineName="EK to Outland" />
+    <If Condition="Skinning.Level &gt;= 360 &amp;&amp; Skinning.Level &lt; 395" IgnoreCanRun="True">
+      <CustomAction Code="Log(Colors.Orange,&quot;Next step.&quot;);" />
+      <CustomAction Code="Log(Colors.Orange,&quot;Going to Borean Tundra to level from 330-360&quot;);" />
+      <If Condition="Skinning.Level &gt;= Skinning.MaxLevel - 25 &amp;&amp; Skinning.Level != 600" IgnoreCanRun="True">
+        <CustomAction Code="Log(Colors.Orange,&quot;Lets start with some training&quot;);" />
+        <CallSubRoutine SubRoutineName="Train" />
       </If>
-      <If Condition="Me.MapId == 530" IgnoreCanRun="True">
-        <FlyToAction Dismount="True" Location="-1394.276, 3368.658, 38.68611" />
+      <If Condition="Me.ZoneId != 3537 || DistanceTo (2087.576, 5766.557, 52.20004) &gt; 100" IgnoreCanRun="True">
+        <If Condition="Me.MapId != 571" IgnoreCanRun="True">
+          <CallSubRoutine SubRoutineName="EK to Northern" />
+        </If>
+        <If Condition="Me.MapId == 571" IgnoreCanRun="True">
+          <FlyToAction Dismount="True" Location="2087.576, 5766.557, 52.20004" />
+        </If>
       </If>
+      <ChangeBotAction BotName="Grind Bot" />
+      <LoadProfileAction ProfileType="Honorbuddy" Path="Profiles\[Alliance] Cicro's Skinning 360-395 Borean Tundra.xml" IsLocal="True" />
     </If>
-    <ChangeBotAction BotName="Grind Bot" />
-    <LoadProfileAction ProfileType="Honorbuddy" Path="Profiles\[Alliance] Cicro's Skinning 310-330 Hellfire Peninsula.xml" IsLocal="True" />
-  </If>
-  <If Condition="Skinning.Level &gt;= 330 &amp;&amp; Skinning.Level &lt; 360" IgnoreCanRun="True">
-    <CustomAction Code="Log(Colors.Orange,&quot;Next step.&quot;);" />
-    <CustomAction Code="Log(Colors.Orange,&quot;Going to Nagrand to level from 330-360&quot;);" />
-    <If Condition="Me.ZoneId != 3518 || DistanceTo (-1465.898, 7490.317, 1.60771) &gt; 100" IgnoreCanRun="True">
-      <If Condition="Me.MapId != 530" IgnoreCanRun="True">
-        <CallSubRoutine SubRoutineName="EK to Outland" />
+    <If Condition="Skinning.Level &gt;= 395 &amp;&amp; Skinning.Level &lt; 450" IgnoreCanRun="True">
+      <CustomAction Code="Log(Colors.Orange,&quot;Next step.&quot;);" />
+      <CustomAction Code="Log(Colors.Orange,&quot;Going to Sholazar Basin to level from 395-450&quot;);" />
+      <If Condition="Me.ZoneId != 3711 || DistanceTo (5093.396, 4486.763, -98.74048) &gt; 100" IgnoreCanRun="True">
+        <If Condition="Me.MapId != 571" IgnoreCanRun="True">
+          <CallSubRoutine SubRoutineName="EK to Northern" />
+        </If>
+        <If Condition="Me.MapId == 571" IgnoreCanRun="True">
+          <FlyToAction Dismount="True" Location="5093.396, 4486.763, -98.74048" />
+        </If>
       </If>
-      <If Condition="Me.MapId == 530" IgnoreCanRun="True">
-        <FlyToAction Dismount="True" Location="-1465.898, 7490.317, 1.60771" />
-      </If>
+      <ChangeBotAction BotName="Grind Bot" />
+      <LoadProfileAction ProfileType="Honorbuddy" Path="Profiles\[Alliance] Cicro's Skinning 395-450 Sholazar Basin.xml" IsLocal="True" />
     </If>
-    <ChangeBotAction BotName="Grind Bot" />
-    <LoadProfileAction ProfileType="Honorbuddy" Path="Profiles\[Alliance] Cicro's Skinning 330-360 Nagrand.xml" IsLocal="True" />
-  </If>
-  <If Condition="Skinning.Level &gt;= 360 &amp;&amp; Skinning.Level &lt; 395" IgnoreCanRun="True">
-    <CustomAction Code="Log(Colors.Orange,&quot;Next step.&quot;);" />
-    <CustomAction Code="Log(Colors.Orange,&quot;Going to Borean Tundra to level from 330-360&quot;);" />
-    <If Condition="Skinning.Level &gt;= Skinning.MaxLevel - 25 &amp;&amp; Skinning.Level != 600" IgnoreCanRun="True">
-      <CustomAction Code="Log(Colors.Orange,&quot;Lets start with some training&quot;);" />
-      <CallSubRoutine SubRoutineName="Train" />
+    <If Condition="Skinning.Level &gt;= 450 &amp;&amp; Skinning.Level &lt; 500" IgnoreCanRun="True">
+      <CustomAction Code="Log(Colors.Orange,&quot;Next step.&quot;);" />
+      <CustomAction Code="Log(Colors.Orange,&quot;Going to Deepholm to level from 450-500&quot;);" />
+      <If Condition="Me.ZoneId != 5042 || DistanceTo (1905.042, 1232.526, 87.80345) &gt; 100" IgnoreCanRun="True">
+        <If Condition="Me.ZoneId != 5042" IgnoreCanRun="True">
+          <CallSubRoutine SubRoutineName="City to Deepholm" />
+        </If>
+        <If Condition="Me.ZoneId == 5042" IgnoreCanRun="True">
+          <FlyToAction Dismount="True" Location="1905.042, 1232.526, 87.80345" />
+        </If>
+      </If>
+      <ChangeBotAction BotName="Grind Bot" />
+      <LoadProfileAction ProfileType="Honorbuddy" Path="Profiles\[Alliance] Cicro's Skinning 450-500 Deepholm.xml" IsLocal="True" />
     </If>
-    <If Condition="Me.ZoneId != 3537 || DistanceTo (2087.576, 5766.557, 52.20004) &gt; 100" IgnoreCanRun="True">
-      <If Condition="Me.MapId != 571" IgnoreCanRun="True">
-        <CallSubRoutine SubRoutineName="EK to Northern" />
+    <If Condition="Skinning.Level &gt;= 500 &amp;&amp; Skinning.Level &lt; 560" IgnoreCanRun="True">
+      <If Condition="Skinning.Level &gt;= Skinning.MaxLevel - 25 &amp;&amp; Skinning.Level != 600" IgnoreCanRun="True">
+        <CustomAction Code="Log(Colors.Orange,&quot;Lets start with some training&quot;);" />
+        <CallSubRoutine SubRoutineName="Train" />
       </If>
-      <If Condition="Me.MapId == 571" IgnoreCanRun="True">
-        <FlyToAction Dismount="True" Location="2087.576, 5766.557, 52.20004" />
+      <CustomAction Code="Log(Colors.Orange,&quot;Next step.&quot;);" />
+      <CustomAction Code="Log(Colors.Orange,&quot;Going to Valley of the Four Winds to level from 500-560&quot;);" />
+      <If Condition="Me.ZoneId != 5805 || DistanceTo (400.0598, 66.25074, 150.1639) &gt; 100" IgnoreCanRun="True">
+        <If Condition="Me.MapId != 870" IgnoreCanRun="True">
+          <CallSubRoutine SubRoutineName="SW to Pandaria" />
+        </If>
+        <If Condition="Me.MapId == 870" IgnoreCanRun="True">
+          <FlyToAction Dismount="True" Location="400.0598, 66.25074, 150.1639" />
+        </If>
       </If>
+      <ChangeBotAction BotName="Grind Bot" />
+      <LoadProfileAction ProfileType="Honorbuddy" Path="Profiles\[Alliance] Cicro's Skinning 500-560 Valley of the Four Winds.xml" IsLocal="True" />
     </If>
-    <ChangeBotAction BotName="Grind Bot" />
-    <LoadProfileAction ProfileType="Honorbuddy" Path="Profiles\[Alliance] Cicro's Skinning 360-395 Borean Tundra.xml" IsLocal="True" />
-  </If>
-  <If Condition="Skinning.Level &gt;= 395 &amp;&amp; Skinning.Level &lt; 450" IgnoreCanRun="True">
-    <CustomAction Code="Log(Colors.Orange,&quot;Next step.&quot;);" />
-    <CustomAction Code="Log(Colors.Orange,&quot;Going to Sholazar Basin to level from 395-450&quot;);" />
-    <If Condition="Me.ZoneId != 3711 || DistanceTo (5093.396, 4486.763, -98.74048) &gt; 100" IgnoreCanRun="True">
-      <If Condition="Me.MapId != 571" IgnoreCanRun="True">
-        <CallSubRoutine SubRoutineName="EK to Northern" />
+    <If Condition="Skinning.Level &gt;= 560 &amp;&amp; Skinning.Level &lt; 600" IgnoreCanRun="True">
+      <CustomAction Code="Log(Colors.Orange,&quot;Next step.&quot;);" />
+      <CustomAction Code="Log(Colors.Orange,&quot;Going to Dread Wastes to level from 560-600&quot;);" />
+      <If Condition="Me.ZoneId != 6138 || DistanceTo (-370.8018, 4505.667, 61.58865) &gt; 100" IgnoreCanRun="True">
+        <If Condition="Me.MapId != 870" IgnoreCanRun="True">
+          <CallSubRoutine SubRoutineName="SW to Pandaria" />
+        </If>
+        <If Condition="Me.MapId == 870" IgnoreCanRun="True">
+          <FlyToAction Dismount="True" Location="-370.8018, 4505.667, 61.58865" />
+        </If>
       </If>
-      <If Condition="Me.MapId == 571" IgnoreCanRun="True">
-        <FlyToAction Dismount="True" Location="5093.396, 4486.763, -98.74048" />
-      </If>
+      <ChangeBotAction BotName="Grind Bot" />
+      <LoadProfileAction ProfileType="Honorbuddy" Path="Profiles\[Alliance] Cicro's Skinning 560-600 Dread Wastes.xml" IsLocal="True" />
     </If>
-    <ChangeBotAction BotName="Grind Bot" />
-    <LoadProfileAction ProfileType="Honorbuddy" Path="Profiles\[Alliance] Cicro's Skinning 395-450 Sholazar Basin.xml" IsLocal="True" />
-  </If>
-  <If Condition="Skinning.Level &gt;= 450 &amp;&amp; Skinning.Level &lt; 500" IgnoreCanRun="True">
-    <CustomAction Code="Log(Colors.Orange,&quot;Next step.&quot;);" />
-    <CustomAction Code="Log(Colors.Orange,&quot;Going to Deepholm to level from 450-500&quot;);" />
-    <If Condition="Me.ZoneId != 5042 || DistanceTo (1905.042, 1232.526, 87.80345) &gt; 100" IgnoreCanRun="True">
-      <If Condition="Me.ZoneId != 5042" IgnoreCanRun="True">
-        <CallSubRoutine SubRoutineName="City to Deepholm" />
-      </If>
-      <If Condition="Me.ZoneId == 5042" IgnoreCanRun="True">
-        <FlyToAction Dismount="True" Location="1905.042, 1232.526, 87.80345" />
-      </If>
-    </If>
-    <ChangeBotAction BotName="Grind Bot" />
-    <LoadProfileAction ProfileType="Honorbuddy" Path="Profiles\[Alliance] Cicro's Skinning 450-500 Deepholm.xml" IsLocal="True" />
-  </If>
-  <If Condition="Skinning.Level &gt;= 500 &amp;&amp; Skinning.Level &lt; 560" IgnoreCanRun="True">
-    <If Condition="Skinning.Level &gt;= Skinning.MaxLevel - 25 &amp;&amp; Skinning.Level != 600" IgnoreCanRun="True">
-      <CustomAction Code="Log(Colors.Orange,&quot;Lets start with some training&quot;);" />
-      <CallSubRoutine SubRoutineName="Train" />
-    </If>
-    <CustomAction Code="Log(Colors.Orange,&quot;Next step.&quot;);" />
-    <CustomAction Code="Log(Colors.Orange,&quot;Going to Valley of the Four Winds to level from 500-560&quot;);" />
-    <If Condition="Me.ZoneId != 5805 || DistanceTo (400.0598, 66.25074, 150.1639) &gt; 100" IgnoreCanRun="True">
-      <If Condition="Me.MapId != 870" IgnoreCanRun="True">
-        <CallSubRoutine SubRoutineName="SW to Pandaria" />
-      </If>
+    <If Condition="Skinning.Level == 600" IgnoreCanRun="True">
       <If Condition="Me.MapId == 870" IgnoreCanRun="True">
-        <FlyToAction Dismount="True" Location="400.0598, 66.25074, 150.1639" />
+        <CallSubRoutine SubRoutineName="Pandaria to SW" />
+      </If>
+      <If Condition="Me.MapId == 0" IgnoreCanRun="True">
+        <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Skinning level 600. Nothing more to do.&quot;); " />
+        <CustomAction Code="Log(&quot;Starting log out in 20sec&quot;);" />
+        <WaitAction Condition="false" Timeout="20000" />
+        <CustomAction Code=" Lua.DoString(&quot;Logout()&quot;);TreeRoot.Stop();" />
+        <WaitAction Condition="false" Timeout="35000" />
       </If>
     </If>
-    <ChangeBotAction BotName="Grind Bot" />
-    <LoadProfileAction ProfileType="Honorbuddy" Path="Profiles\[Alliance] Cicro's Skinning 500-560 Valley of the Four Winds.xml" IsLocal="True" />
-  </If>
-  <If Condition="Skinning.Level &gt;= 560 &amp;&amp; Skinning.Level &lt; 600" IgnoreCanRun="True">
-    <CustomAction Code="Log(Colors.Orange,&quot;Next step.&quot;);" />
-    <CustomAction Code="Log(Colors.Orange,&quot;Going to Dread Wastes to level from 560-600&quot;);" />
-    <If Condition="Me.ZoneId != 6138 || DistanceTo (-370.8018, 4505.667, 61.58865) &gt; 100" IgnoreCanRun="True">
-      <If Condition="Me.MapId != 870" IgnoreCanRun="True">
-        <CallSubRoutine SubRoutineName="SW to Pandaria" />
-      </If>
-      <If Condition="Me.MapId == 870" IgnoreCanRun="True">
-        <FlyToAction Dismount="True" Location="-370.8018, 4505.667, 61.58865" />
-      </If>
-    </If>
-    <ChangeBotAction BotName="Grind Bot" />
-    <LoadProfileAction ProfileType="Honorbuddy" Path="Profiles\[Alliance] Cicro's Skinning 560-600 Dread Wastes.xml" IsLocal="True" />
   </If>
   <!--End-->
-  <If Condition="Skinning.Level == 600" IgnoreCanRun="True">
-    <If Condition="Me.MapId == 870" IgnoreCanRun="True">
-      <CallSubRoutine SubRoutineName="Pandaria to SW" />
-    </If>
-    <If Condition="Me.MapId == 0" IgnoreCanRun="True">
-      <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Nothing more to do.&quot;); " />
-      <CustomAction Code="Log(&quot;Starting log out in 20sec&quot;);" />
-      <WaitAction Condition="false" Timeout="20000" />
-      <CustomAction Code=" Lua.DoString(&quot;Logout()&quot;);TreeRoot.Stop();" />
-      <WaitAction Condition="false" Timeout="35000" />
-    </If>
-  </If>
 </Professionbuddy>
