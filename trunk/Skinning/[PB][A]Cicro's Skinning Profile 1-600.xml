@@ -24,32 +24,53 @@
         <CallSubRoutine SubRoutineName="Deepholm to City" />
       </If>
       <If Condition="Me.MapId == 0" IgnoreCanRun="True">
-        <If Condition="(bool)Settings[&quot;Level LW&quot;]" IgnoreCanRun="True">
-          <If Condition="Leatherworking.Level &gt;= Leatherworking.MaxLevel - 25 &amp;&amp; Leatherworking.Level != 600 || Leatherworking.MaxLevel == 0" IgnoreCanRun="True">
-            <CustomAction Code="Log(Colors.Blue,&quot;Going to Stormwind to train Leatherworking&quot;);" />
+        <If Condition="Me.ZoneId == 1" IgnoreCanRun="True">
+          <If Condition="Skinning.Level &gt;= Skinning.MaxLevel - 25 &amp;&amp; Skinning.Level != 600 || Skinning.MaxLevel == 0" IgnoreCanRun="True">
+            <CustomAction Code="Log(Colors.Blue,&quot;Going to Ironforge to train Skinning&quot;);" />
+            <FlyToAction Dismount="False" Location="-5024.424, -829.3826, 495.3193" />
+            <MoveToAction Location="-4744.32, -1029.626, 504.4302" MoveType="Location" Pathing="Navigator" Entry="0" />
+            <TrainSkillAction NpcEntry="6291" Location="-4740.687, -1028.764, 504.4316" />
+            <WaitAction Condition="false" Timeout="2000" />
+            <MoveToAction Location="-5029.142, -823.5484, 495.2404" MoveType="Location" Pathing="Navigator" Entry="0" />
+          </If>
+          <If Condition="(bool)Settings[&quot;Level LW&quot;] &amp;&amp; Leatherworking.Level &gt;= Leatherworking.MaxLevel &amp;&amp; Leatherworking.Level != 600 || (bool)Settings[&quot;Level LW&quot;] &amp;&amp; Leatherworking.MaxLevel == 0" IgnoreCanRun="True">
+            <CustomAction Code="Log(Colors.Blue,&quot;Going to Ironforge to train Leatherworking&quot;);" />
+            <FlyToAction Dismount="False" Location="-5024.424, -829.3826, 495.3193" />
+            <MoveToAction Location="-4744.32, -1029.626, 504.4302" MoveType="Location" Pathing="Navigator" Entry="0" />
+            <TrainSkillAction NpcEntry="5127" Location="-4746.934, -1031.743, 504.4314" />
+            <WaitAction Condition="false" Timeout="2000" />
+            <MoveToAction Location="-5029.142, -823.5484, 495.2404" MoveType="Location" Pathing="Navigator" Entry="0" />
+          </If>
+        </If>
+        <If Condition="Me.ZoneId != 1" IgnoreCanRun="True">
+          <If Condition="(bool)Settings[&quot;Level LW&quot;]" IgnoreCanRun="True">
+            <If Condition="Leatherworking.Level &gt;= Leatherworking.MaxLevel - 25 &amp;&amp; Leatherworking.Level != 600 || Leatherworking.MaxLevel == 0" IgnoreCanRun="True">
+              <CustomAction Code="Log(Colors.Blue,&quot;Going to Stormwind to train Leatherworking&quot;);" />
+              <If Condition="DistanceTo (-8725.547, 477.4149, 98.61315) &gt; 25" IgnoreCanRun="True">
+                <FlyToAction Dismount="True" Location="-8722.357, 428.8217, 98.0647" />
+                <MoveToAction Location="-8725.547, 477.4149, 98.61315" MoveType="Location" Pathing="Navigator" Entry="0" />
+              </If>
+              <TrainSkillAction NpcEntry="5564" Location="-8725.547, 477.4149, 98.61315" />
+            </If>
+          </If>
+          <If Condition="Skinning.Level &gt;= Skinning.MaxLevel - 25 &amp;&amp; Skinning.Level != 600 || Skinning.MaxLevel == 0" IgnoreCanRun="True">
+            <CustomAction Code="Log(Colors.Blue,&quot;Going to Stormwind to train Skinning&quot;);" />
             <If Condition="DistanceTo (-8725.547, 477.4149, 98.61315) &gt; 25" IgnoreCanRun="True">
               <FlyToAction Dismount="True" Location="-8722.357, 428.8217, 98.0647" />
               <MoveToAction Location="-8725.547, 477.4149, 98.61315" MoveType="Location" Pathing="Navigator" Entry="0" />
             </If>
-            <TrainSkillAction NpcEntry="5564" Location="-8725.547, 477.4149, 98.61315" />
+            <TrainSkillAction NpcEntry="1292" Location="-8716.408, 469.4141, 98.61302" />
+            <If Condition="InbagCount(7005) == 0" IgnoreCanRun="True">
+              <BuyItemAction NpcEntry="5565" Location="-8722.868, 479.3223, 98.61379" ItemID="7005" BuyItemType="SpecificItem" Count="1" BuyAdditively="False" />
+            </If>
+            <MoveToAction Location="-8722.741, 438.8223, 97.70684" MoveType="Location" Pathing="Navigator" Entry="0" />
           </If>
-        </If>
-        <If Condition="Skinning.Level &gt;= Skinning.MaxLevel - 25 &amp;&amp; Skinning.Level != 600 || Skinning.MaxLevel == 0" IgnoreCanRun="True">
-          <If Condition="DistanceTo (-8725.547, 477.4149, 98.61315) &gt; 25" IgnoreCanRun="True">
-            <FlyToAction Dismount="True" Location="-8722.357, 428.8217, 98.0647" />
-            <MoveToAction Location="-8725.547, 477.4149, 98.61315" MoveType="Location" Pathing="Navigator" Entry="0" />
+          <If Condition="!(bool)Settings[&quot;Level LW&quot;]" IgnoreCanRun="True">
+            <CallSubRoutine SubRoutineName="SellLeather" />
           </If>
-          <TrainSkillAction NpcEntry="1292" Location="-8716.408, 469.4141, 98.61302" />
-          <If Condition="InbagCount(7005) == 0" IgnoreCanRun="True">
-            <BuyItemAction NpcEntry="5565" Location="-8722.868, 479.3223, 98.61379" ItemID="7005" BuyItemType="SpecificItem" Count="1" BuyAdditively="False" />
+          <If Condition="(bool)Settings[&quot;Level LW&quot;]" IgnoreCanRun="True">
+            <CallSubRoutine SubRoutineName="SellStuff" />
           </If>
-          <MoveToAction Location="-8722.741, 438.8223, 97.70684" MoveType="Location" Pathing="Navigator" Entry="0" />
-        </If>
-        <If Condition="!(bool)Settings[&quot;Level LW&quot;]" IgnoreCanRun="True">
-          <CallSubRoutine SubRoutineName="SellLeather" />
-        </If>
-        <If Condition="(bool)Settings[&quot;Level LW&quot;]" IgnoreCanRun="True">
-          <CallSubRoutine SubRoutineName="SellStuff" />
         </If>
       </If>
     </If>
@@ -382,13 +403,16 @@
     </If>
   </SubRoutine>
   <!--While-->
-  <While Condition="(bool)Settings[&quot;Level LW&quot;] &amp;&amp; Leatherworking.Level &gt;= Leatherworking.MaxLevel - 25 &amp;&amp; Leatherworking.Level != 600 || Leatherworking.MaxLevel == 0" IgnoreCanRun="True">
+  <While Condition="(bool)Settings[&quot;Level LW&quot;] &amp;&amp; Leatherworking.Level &gt;= Leatherworking.MaxLevel - 25 &amp;&amp; Leatherworking.Level != 600 || Leatherworking.MaxLevel == 0 || (bool)Settings[&quot;Level LW&quot;] &amp;&amp; Skinning.Level &gt;= Skinning.MaxLevel - 25 &amp;&amp; Skinning.Level != 600" IgnoreCanRun="True">
     <If Condition="Leatherworking.MaxLevel == 0" IgnoreCanRun="True">
       <CustomAction Code="Log(System.Drawing.Color.DarkOliveGreen,&quot;We do not know how to be a leatherworker!! Lets find a trainer&quot;);" />
     </If>
+    <If Condition="Skinning.Level &gt;= Skinning.MaxLevel - 25 &amp;&amp; Skinning.Level != 600" IgnoreCanRun="True">
+      <CustomAction Code="Log(System.Drawing.Color.DarkOliveGreen,&quot;Better train skinning.&quot;);" />
+    </If>
     <CallSubRoutine SubRoutineName="Train" />
   </While>
-  <While Condition="Skinning.Level &gt;= Skinning.MaxLevel &amp;&amp; Skinning.Level != 600 || Skinning.MaxLevel == 0" IgnoreCanRun="True">
+  <While Condition="!(bool)Settings[&quot;Level LW&quot;] &amp;&amp; Skinning.Level &gt;= Skinning.MaxLevel &amp;&amp; Skinning.Level != 600 || Skinning.MaxLevel == 0" IgnoreCanRun="True">
     <If Condition="Skinning.Level &gt;= Skinning.MaxLevel &amp;&amp; Skinning.Level &lt; 500 &amp;&amp; Skinning.Level != 0" IgnoreCanRun="True">
       <CustomAction Code="Log(System.Drawing.Color.DarkOliveGreen,&quot;Skinning needs to be force trained.&quot;);" />
     </If>
