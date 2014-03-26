@@ -32,7 +32,7 @@
 
 	</AvoidMobs>
     <GrindArea>
-        <Factions>16 189</Factions>
+        <Factions>2030 1999</Factions>
    
         <LootRadius>65</LootRadius>
         <MaxDistance>65</MaxDistance>
