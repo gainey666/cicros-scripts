@@ -230,7 +230,7 @@
       </If>
       <If Condition="Leatherworking.Level &gt;= 100" IgnoreCanRun="True">
         <SellItemAction Sell="All" NpcEntry="5565" Location="-8722.868, 479.3223, 98.61378" SellItemType="Specific" ItemID="4239" Count="0" />
-        <SellItemAction Sell="All" NpcEntry="5565" Location="-8722.868, 479.3223, 98.61378" SellItemType="Specific" ItemID="4246" Count="0" />
+        <PutItemInBankAction Category="TradeGoods" SubCategoryType="WoWItemTradeGoodsClass" SubCategory="None" Deposit="All" UseCategory="False" Bank="Personal" ItemID="4246" GuildTab="0" NpcEntry="0" Amount="0" AutoFindBank="True" Location="0,0,0" />
       </If>
     </If>
   </SubRoutine>
