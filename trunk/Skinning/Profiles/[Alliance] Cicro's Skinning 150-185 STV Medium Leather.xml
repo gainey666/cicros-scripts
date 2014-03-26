@@ -1,0 +1,65 @@
+<HBProfile>
+	<Name>[Alliance] Cicro's Skinning 150-185 STV Medium Leather</Name>
+	<MinLevel>65</MinLevel>
+	<MaxLevel>100</MaxLevel>
+  
+	<MinDurability>0.2</MinDurability>
+	<MinFreeBagSlots>0</MinFreeBagSlots>
+  
+	<MailGrey>False</MailGrey>
+	<MailWhite>True</MailWhite>
+	<MailGreen>True</MailGreen>
+	<MailBlue>True</MailBlue>
+	<MailPurple>True</MailPurple>
+  
+	<SellGrey>True</SellGrey>
+	<SellWhite>False</SellWhite>
+	<SellGreen>False</SellGreen>
+	<SellBlue>False</SellBlue>
+	<SellPurple>False</SellPurple>
+  
+	<TargetElites>True</TargetElites>
+
+	<Vendors>
+
+	</Vendors>
+
+      <Mailboxes>
+
+      </Mailboxes>
+
+	<AvoidMobs>
+
+
+	</AvoidMobs>
+    <GrindArea>
+        <Factions>49</Factions>
+   
+        <LootRadius>65</LootRadius>
+        <MaxDistance>65</MaxDistance>
+        <MaximumHotspotTime>20000</MaximumHotspotTime>
+        <RandomizeHotspots>False</RandomizeHotspots>
+   
+        <Hotspots>
+<Hotspot X="-13317.43" Y="-244.8934" Z="13.49699" />
+<Hotspot X="-13237.23" Y="-340.4982" Z="11.37682" />
+<Hotspot X="-13337.18" Y="-377.0118" Z="13.95752" />
+<Hotspot X="-13293.94" Y="-460.3101" Z="16.23079" />
+<Hotspot X="-13262.4" Y="-540.8165" Z="18.12274" />
+<Hotspot X="-13222.17" Y="-575.5588" Z="4.642913" />
+<Hotspot X="-13208.08" Y="-502.2546" Z="4.175404" />
+<Hotspot X="-13254.17" Y="-570.9992" Z="13.21678" />
+<Hotspot X="-13237.69" Y="-502.9014" Z="13.90575" />
+<Hotspot X="-13257.17" Y="-488.4859" Z="19.04411" />
+<Hotspot X="-13198.04" Y="-451.3185" Z="6.987704" />
+<Hotspot X="-13145.1" Y="-480.2179" Z="8.009054" />
+<Hotspot X="-13113.57" Y="-546.2975" Z="9.969877" />
+<Hotspot X="-13186.45" Y="-566.8696" Z="12.22166" />
+<Hotspot X="-13225.16" Y="-561.5955" Z="4.644355" />
+<Hotspot X="-13276.68" Y="-485.5964" Z="19.05726" />
+<Hotspot X="-13303.29" Y="-439.3588" Z="15.23868" />
+<Hotspot X="-13325.42" Y="-329.6613" Z="13.63247" />
+        </Hotspots>
+    </GrindArea>
+   
+</HBProfile>

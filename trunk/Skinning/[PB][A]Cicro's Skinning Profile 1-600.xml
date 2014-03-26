@@ -151,6 +151,74 @@
       <CustomAction Code="Log(Colors.Orange,&quot;Making [Fine Leather Belt]&quot;);" />
       <CastSpellAction RepeatType="Craftable" Repeat="1" Entry="3763" CastOnItem="False" ItemType="Chest" ItemId="0" />
     </While>
+    <While Condition="Leatherworking.Level &gt;= 100 &amp;&amp; InbagCount(4232) &gt;= 1 &amp;&amp; InbagCount(4289) &gt;= 1" IgnoreCanRun="True">
+      <If Condition="Me.FreeNormalBagSlots &lt; 4" IgnoreCanRun="True">
+        <CallSubRoutine SubRoutineName="SellStuff" />
+      </If>
+      <If Condition="!HasRecipe(3817)" IgnoreCanRun="True">
+        <CallSubRoutine SubRoutineName="LearnPattern" />
+      </If>
+      <If Condition="InbagCount(4289) &lt; 1" IgnoreCanRun="True">
+        <CallSubRoutine SubRoutineName="Buy" />
+      </If>
+      <CustomAction Code="Log(Colors.Orange,&quot;Making [Cured Medium Hide]&quot;);" />
+      <CastSpellAction RepeatType="Craftable" Repeat="1" Entry="3817" CastOnItem="False" ItemType="Chest" ItemId="0" />
+    </While>
+    <While Condition="Leatherworking.Level &gt;= 115 &amp;&amp; Leatherworking.Level &lt;= 129 &amp;&amp; InbagCount(2319) &gt;= 1 &amp;&amp; InbagCount(2321) &gt;= 2 &amp;&amp; InbagCount(4340) &gt;= 1" IgnoreCanRun="False">
+      <If Condition="Me.FreeNormalBagSlots &lt; 4" IgnoreCanRun="True">
+        <CallSubRoutine SubRoutineName="SellStuff" />
+      </If>
+      <If Condition="!HasRecipe(2167)" IgnoreCanRun="True">
+        <CallSubRoutine SubRoutineName="LearnPattern" />
+      </If>
+      <If Condition="InbagCount(2321) &lt; 2 &amp;&amp; InbagCount(4340) &lt; 1" IgnoreCanRun="True">
+        <CallSubRoutine SubRoutineName="Buy" />
+      </If>
+      <CustomAction Code="Log(Colors.Orange,&quot;Making [Dark Leather Boots]&quot;);" />
+      <CastSpellAction RepeatType="Craftable" Repeat="1" Entry="2167" CastOnItem="False" ItemType="Chest" ItemId="0" />
+    </While>
+    <While Condition="Leatherworking.Level &gt;= 130 &amp;&amp; Leatherworking.Level &lt;= 144 &amp;&amp; InbagCount(4233) &gt;= 1" IgnoreCanRun="False">
+      <If Condition="Me.FreeNormalBagSlots &lt; 4" IgnoreCanRun="True">
+        <CallSubRoutine SubRoutineName="SellStuff" />
+      </If>
+      <If Condition="!HasRecipe(3766)" IgnoreCanRun="True">
+        <CallSubRoutine SubRoutineName="LearnPattern" />
+      </If>
+      <If Condition="InbagCount(2321) &lt; 2 &amp;&amp; InbagCount(4340) &lt; 1" IgnoreCanRun="True">
+        <CallSubRoutine SubRoutineName="Buy" />
+      </If>
+      <If Condition="InbagCount(4246) &lt; 1" IgnoreCanRun="True">
+        <CustomAction Code="Log(Colors.Orange,&quot;Getting the belt we made before from our bank&quot;);" />
+        <GetItemfromBankAction Withdraw="Amount" Bank="Personal" MinFreeBagSlots="15" GetItemfromBankType="SpecificItem" ItemID="4246" NpcEntry="0" Amount="15" AutoFindBank="True" WithdrawAdditively="False" Location="0,0,0" />
+        <WaitAction Condition="false" Timeout="2000" />
+        <CallSubRoutine SubRoutineName="WorkingPlace" />
+      </If>
+      <CustomAction Code="Log(Colors.Orange,&quot;Making [Dark Leather Belt]&quot;);" />
+      <CastSpellAction RepeatType="Craftable" Repeat="1" Entry="2167" CastOnItem="False" ItemType="Chest" ItemId="0" />
+    </While>
+    <While Condition="Leatherworking.Level &gt;= 145 &amp;&amp; Leatherworking.Level &lt;= 149 &amp;&amp; InbagCount(2319) &gt;= 14" IgnoreCanRun="False">
+      <If Condition="Me.FreeNormalBagSlots &lt; 4" IgnoreCanRun="True">
+        <CallSubRoutine SubRoutineName="SellStuff" />
+      </If>
+      <If Condition="!HasRecipe(3764)" IgnoreCanRun="True">
+        <CallSubRoutine SubRoutineName="LearnPattern" />
+      </If>
+      <If Condition="InbagCount(2321) &lt; 2 &amp;&amp; InbagCount(4340) &lt; 1" IgnoreCanRun="True">
+        <CallSubRoutine SubRoutineName="Buy" />
+      </If>
+      <CustomAction Code="Log(Colors.Orange,&quot;Making [Hillman's Leather Gloves]&quot;);" />
+      <CastSpellAction RepeatType="Craftable" Repeat="1" Entry="3764" CastOnItem="False" ItemType="Chest" ItemId="0" />
+    </While>
+    <While Condition="Leatherworking.Level &gt;= 150 &amp;&amp; Leatherworking.Level &lt;= 154 &amp;&amp; InbagCount(2319) &gt;= 5" IgnoreCanRun="False">
+      <If Condition="Me.FreeNormalBagSlots &lt; 4" IgnoreCanRun="True">
+        <CallSubRoutine SubRoutineName="SellStuff" />
+      </If>
+      <If Condition="!HasRecipe(20649)" IgnoreCanRun="True">
+        <CallSubRoutine SubRoutineName="LearnPattern" />
+      </If>
+      <CustomAction Code="Log(Colors.Orange,&quot;Making [Heavy Leather]&quot;);" />
+      <CastSpellAction RepeatType="Craftable" Repeat="1" Entry="4234" CastOnItem="False" ItemType="Chest" ItemId="0" />
+    </While>
   </SubRoutine>
   <SubRoutine SubRoutineName="Remake Leather">
     <While Condition="InbagCount(2934) &gt;= 3" IgnoreCanRun="True">
@@ -166,6 +234,16 @@
       </If>
       <CustomAction Code="Log(Colors.Orange,&quot;Making Medium Leather&quot;);" />
       <CastSpellAction RepeatType="Craftable" Repeat="1" Entry="20648" CastOnItem="False" ItemType="Chest" ItemId="0" />
+    </While>
+    <While Condition="Leatherworking.Level &gt;= 155 &amp;&amp; InbagCount(2319) &gt;= 5" IgnoreCanRun="False">
+      <If Condition="Me.FreeNormalBagSlots &lt;= 4" IgnoreCanRun="True">
+        <CallSubRoutine SubRoutineName="SellStuff" />
+      </If>
+      <If Condition="!HasRecipe(20648)" IgnoreCanRun="True">
+        <CallSubRoutine SubRoutineName="LearnPattern" />
+      </If>
+      <CustomAction Code="Log(Colors.Orange,&quot;Making Heavy Leather&quot;);" />
+      <CastSpellAction RepeatType="Craftable" Repeat="1" Entry="20649" CastOnItem="False" ItemType="Chest" ItemId="0" />
     </While>
   </SubRoutine>
   <SubRoutine SubRoutineName="MoveToBuy">
@@ -200,6 +278,12 @@
       <CustomAction Code="Log(Colors.Blue,&quot;Buying needed mats from vendor&quot;);" />
       <CallSubRoutine SubRoutineName="MoveToBuy" />
       <BuyItemAction NpcEntry="5565" Location="-8722.868, 479.3223, 98.61378" ItemID="2320" BuyItemType="SpecificItem" Count="100" BuyAdditively="False" />
+    </If>
+    <If Condition="Leatherworking.Level &gt;= 100 &amp;&amp; Leatherworking.Level &lt; 155" IgnoreCanRun="True">
+      <CustomAction Code="Log(Colors.Blue,&quot;Buying needed mats from vendor&quot;);" />
+      <CallSubRoutine SubRoutineName="MoveToBuy" />
+      <BuyItemAction NpcEntry="5565" Location="-8722.868, 479.3223, 98.61378" ItemID="2320" BuyItemType="SpecificItem" Count="100" BuyAdditively="False" />
+      <BuyItemAction NpcEntry="5565" Location="-8722.868, 479.3223, 98.61378" ItemID="4340" BuyItemType="SpecificItem" Count="40" BuyAdditively="False" />
     </If>
   </SubRoutine>
   <SubRoutine SubRoutineName="LearnPattern">
@@ -237,7 +321,9 @@
         <SellItemAction Sell="All" NpcEntry="5565" Location="-8722.868, 479.3223, 98.61378" SellItemType="Specific" ItemID="4237" Count="0" />
       </If>
       <If Condition="Leatherworking.Level &gt;= 100" IgnoreCanRun="True">
+        <SellItemAction Sell="All" NpcEntry="5565" Location="-8722.868, 479.3223, 98.61378" SellItemType="Specific" ItemID="2320" Count="0" />
         <SellItemAction Sell="All" NpcEntry="5565" Location="-8722.868, 479.3223, 98.61378" SellItemType="Specific" ItemID="4239" Count="0" />
+        <CustomAction Code="Log(Colors.Orange,&quot;Putting this belt in our personal bank. We'll need it later&quot;);" />
         <PutItemInBankAction Category="TradeGoods" SubCategoryType="WoWItemTradeGoodsClass" SubCategory="None" Deposit="All" UseCategory="False" Bank="Personal" ItemID="4246" GuildTab="0" NpcEntry="0" Amount="0" AutoFindBank="True" Location="0, 0, 0" />
       </If>
     </If>
@@ -467,7 +553,27 @@
     <CallSubRoutine SubRoutineName="MakeStuff" />
   </While>
   <While Condition="(bool)Settings[&quot;Level LW&quot;] &amp;&amp; Skinning.Level &gt;= 150 &amp;&amp; Leatherworking.Level &gt;= 55 &amp;&amp; Leatherworking.Level &lt; 65 &amp;&amp; InbagCount(2318) + InbagCount(2934)/3 + InbagCount(4239)*3 + InbagCount(4246)*6 &gt;= 180 || (bool)Settings[&quot;Level LW&quot;] &amp;&amp; Skinning.Level &gt;= 110 &amp;&amp; Leatherworking.Level &gt;= 65 &amp;&amp; Leatherworking.Level &lt; 100 &amp;&amp; InbagCount(2318) + InbagCount(2934)/3 + InbagCount(4246)*6 &gt;= 90" IgnoreCanRun="True">
-    <CustomAction Code="Log(Colors.Orange,&quot;We now have mats for the first stage of the process&quot;);" />
+    <CustomAction Code="Log(Colors.Orange,&quot;We now have mats for the 2nd stage of the process&quot;);" />
+    <CallSubRoutine SubRoutineName="WorkingPlace" />
+    <CustomAction Code="Log(Colors.Orange,&quot;Remaking Leather&quot;);" />
+    <CallSubRoutine SubRoutineName="Remake Leather" />
+    <CustomAction Code="Log(Colors.Orange,&quot;Buying stuff from vendor&quot;);" />
+    <CallSubRoutine SubRoutineName="Buy" />
+    <CustomAction Code="Log(Colors.Orange,&quot;Time to make stuff&quot;);" />
+    <CallSubRoutine SubRoutineName="MakeStuff" />
+  </While>
+  <While Condition="(bool)Settings[&quot;Level LW&quot;] &amp;&amp; Skinning.Level &gt;= 205 &amp;&amp; Leatherworking.Level &gt;= 100 &amp;&amp; Leatherworking.Level &lt; 115 &amp;&amp; InbagCount(4232) + InbagCount(4233) + InbagCount(3766) &lt; 15 &amp;&amp; InbagCount(2319) + InbagCount(2167)*4 + InbagCount(4247)*14 + InbagCount(4234)*5 + InbagCount(2318)/4 &gt;= 160" IgnoreCanRun="True">
+    <CustomAction Code="Log(Colors.Orange,&quot;We now have mats for the 3rd stage of the process&quot;);" />
+    <CallSubRoutine SubRoutineName="WorkingPlace" />
+    <CustomAction Code="Log(Colors.Orange,&quot;Remaking Leather&quot;);" />
+    <CallSubRoutine SubRoutineName="Remake Leather" />
+    <CustomAction Code="Log(Colors.Orange,&quot;Buying stuff from vendor&quot;);" />
+    <CallSubRoutine SubRoutineName="Buy" />
+    <CustomAction Code="Log(Colors.Orange,&quot;Time to make stuff&quot;);" />
+    <CallSubRoutine SubRoutineName="MakeStuff" />
+  </While>
+  <While Condition="(bool)Settings[&quot;Level LW&quot;] &amp;&amp; Skinning.Level &gt;= 205 &amp;&amp; Leatherworking.Level &gt;= 115 &amp;&amp; Leatherworking.Level &lt; 155 &amp;&amp; InbagCount(2319) + InbagCount(2167)*4 + InbagCount(4247)*14 + InbagCount(4234)*5 + InbagCount(2318)/4 &gt;= 160 &amp;&amp; InbagCount(4233) + InbagCount(3766) &gt;= 15" IgnoreCanRun="True">
+    <CustomAction Code="Log(Colors.Orange,&quot;We now have mats for the 4th stage of the process&quot;);" />
     <CallSubRoutine SubRoutineName="WorkingPlace" />
     <CustomAction Code="Log(Colors.Orange,&quot;Remaking Leather&quot;);" />
     <CallSubRoutine SubRoutineName="Remake Leather" />
@@ -687,6 +793,21 @@
       <CustomAction Code=" Lua.DoString(&quot;Logout()&quot;);TreeRoot.Stop();" />
       <WaitAction Condition="false" Timeout="35000" />
     </If>
+  </If>
+  <If Condition="(bool)Settings[&quot;Level LW&quot;] &amp;&amp; Leatherworking.Level &gt;= 100 &amp;&amp; Leatherworking.Level &lt; 115 &amp;&amp; InbagCount(4232) + InbagCount(4233) + InbagCount(3766) &lt; 15 &amp;&amp; InbagCount(2319) + InbagCount(2167)*4 + InbagCount(4247)*14 + InbagCount(4234)*5 + InbagCount(2318)/4 &lt; 160 || (bool)Settings[&quot;Level LW&quot;] &amp;&amp; Leatherworking.Level &gt;= 115 &amp;&amp; Leatherworking.Level &lt; 155 &amp;&amp; InbagCount(2319) + InbagCount(2167)*4 + InbagCount(4247)*14 + InbagCount(4234)*5 + InbagCount(2318)/4 &lt; 160" IgnoreCanRun="True">
+    <If Condition="Skinning.Level &gt;= Skinning.MaxLevel - 25 &amp;&amp; Skinning.Level != 600" IgnoreCanRun="True">
+      <CustomAction Code="Log(Colors.Orange,&quot;Lets start with some training&quot;);" />
+      <CallSubRoutine SubRoutineName="Train" />
+    </If>
+    <CustomAction Code="Log(Colors.Orange,&quot;Going to STV for:&quot;);" />
+    <CustomAction Code="Log(Colors.Orange,&quot;Medium Leather&quot;);" />
+    <CustomAction Code="Log(Colors.Orange,&quot;Medium Hide&quot;);" />
+    <CustomAction Code="Log(Colors.Orange,&quot;Leveling Skinning to 205&quot;);" />
+    <If Condition="Me.ZoneId != 5287 || DistanceTo (-13317.43, -244.8934, 13.49699) &gt; 100" IgnoreCanRun="True">
+      <FlyToAction Dismount="True" Location="-13317.43, -244.8934, 13.49699" />
+    </If>
+    <ChangeBotAction BotName="Grind Bot" />
+    <LoadProfileAction ProfileType="Honorbuddy" Path="Profiles\[Alliance] Cicro's Skinning 150-185 STV Medium Leather.xml" IsLocal="True" />
   </If>
   <!--End-->
   <SubRoutine SubRoutineName="NotInUse">
