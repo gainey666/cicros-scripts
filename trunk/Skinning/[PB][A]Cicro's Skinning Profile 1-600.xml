@@ -21,14 +21,30 @@
         <CallSubRoutine SubRoutineName="Deepholm to City" />
       </If>
       <If Condition="Me.MapId == 0" IgnoreCanRun="True">
-        <CustomAction Code="Log(Colors.Blue,&quot;Going to Stormwind to train Skinning&quot;);" />
-        <FlyToAction Dismount="True" Location="-8722.357, 428.8217, 98.0647" />
-        <TrainSkillAction NpcEntry="1292" Location="-8716.408, 469.4141, 98.61302" />
-        <If Condition="InbagCount(7005) == 0" IgnoreCanRun="True">
-          <BuyItemAction NpcEntry="5565" Location="-8722.868, 479.3223, 98.61379" ItemID="7005" BuyItemType="SpecificItem" Count="1" BuyAdditively="False" />
+        <If Condition="Skinning.Level &gt;= Skinning.MaxLevel - 25 &amp;&amp; Skinning.Level != 600 || Skinning.MaxLevel == 0" IgnoreCanRun="True">
+          <If Condition="DistanceTo (-8725.547, 477.4149, 98.61315) &gt; 25" IgnoreCanRun="True">
+            <FlyToAction Dismount="True" Location="-8722.357, 428.8217, 98.0647" />
+            <MoveToAction Location="-8725.547, 477.4149, 98.61315" MoveType="Location" Pathing="Navigator" Entry="0" />
+          </If>
+          <TrainSkillAction NpcEntry="1292" Location="-8716.408, 469.4141, 98.61302" />
+          <If Condition="InbagCount(7005) == 0" IgnoreCanRun="True">
+            <BuyItemAction NpcEntry="5565" Location="-8722.868, 479.3223, 98.61379" ItemID="7005" BuyItemType="SpecificItem" Count="1" BuyAdditively="False" />
+          </If>
+          <MoveToAction Location="-8722.741, 438.8223, 97.70684" MoveType="Location" Pathing="Navigator" Entry="0" />
         </If>
-        <MoveToAction Location="-8722.741, 438.8223, 97.70684" MoveType="Location" Pathing="Navigator" Entry="0" />
-        <CallSubRoutine SubRoutineName="Sell" />
+        <If Condition="(bool)Settings[&quot;Level LW&quot;]" IgnoreCanRun="True">
+          <If Condition="Leatherworking.Level &gt;= Leatherworking.MaxLevel - 25 &amp;&amp; Leatherworking.Level != 600 || Leatherworking.MaxLevel == 0" IgnoreCanRun="True">
+            <CustomAction Code="Log(Colors.Blue,&quot;Going to Stormwind to train Leatherworking&quot;);" />
+            <If Condition="DistanceTo (-8725.547, 477.4149, 98.61315) &gt; 25" IgnoreCanRun="True">
+              <FlyToAction Dismount="True" Location="-8722.357, 428.8217, 98.0647" />
+              <MoveToAction Location="-8725.547, 477.4149, 98.61315" MoveType="Location" Pathing="Navigator" Entry="0" />
+            </If>
+            <TrainSkillAction NpcEntry="5564" Location="-8725.547, 477.4149, 98.61315" />
+          </If>
+        </If>
+        <If Condition="!(bool)Settings[&quot;Level LW&quot;]" IgnoreCanRun="True">
+          <CallSubRoutine SubRoutineName="SellLeather" />
+        </If>
       </If>
     </If>
   </SubRoutine>
@@ -45,6 +61,61 @@
         <CustomAction Code="Log(Colors.Red,&quot;Selling is disabled. Remember to clean up your bags manually&quot;);" />
       </If>
     </If>
+  </SubRoutine>
+  <SubRoutine SubRoutineName="MakeStuff">
+    <While Condition="InbagCount(2318) &gt;= 1 &amp;&amp; Leatherworking.Level &lt; 30" IgnoreCanRun="True">
+      <CastSpellAction RepeatType="Craftable" Repeat="1" Entry="2152" CastOnItem="False" ItemType="Chest" ItemId="0" />
+    </While>
+    <While Condition="InbagCount(2318) &gt;= 1 &amp;&amp; InbagCount(2320) &gt;= 1 &amp;&amp; Leatherworking.Level &gt;= 30 &amp;&amp; Leatherworking.Level &lt; 50" IgnoreCanRun="True">
+      <CastSpellAction RepeatType="Craftable" Repeat="1" Entry="9058" CastOnItem="False" ItemType="Chest" ItemId="0" />
+    </While>
+    <While Condition="InbagCount(2318) &gt;= 1 &amp;&amp; InbagCount(2320) &gt;= 1 &amp;&amp;  Leatherworking.Level &gt;= 50 &amp;&amp; Leatherworking.Level &lt; 55" IgnoreCanRun="True">
+      <If Condition="!HasRecipe(3753)" IgnoreCanRun="True">
+        <CallSubRoutine SubRoutineName="LearnPattern" />
+      </If>
+      <CastSpellAction RepeatType="Craftable" Repeat="1" Entry="3753" CastOnItem="False" ItemType="Chest" ItemId="0" />
+    </While>
+  </SubRoutine>
+  <SubRoutine SubRoutineName="Remake Leather">
+    <While Condition="InbagCount(2934) &gt;= 1 &amp;&amp; Leatherworking.Level &lt; 100" IgnoreCanRun="True">
+      <CastSpellAction RepeatType="Craftable" Repeat="1" Entry="2881" CastOnItem="False" ItemType="Chest" ItemId="0" />
+    </While>
+  </SubRoutine>
+  <SubRoutine SubRoutineName="MoveToBuy">
+    <CustomAction Code="Log(Colors.Blue,&quot;In Stormwind&quot;);" />
+    <If Condition="DistanceTo (-8722.813, 475.9209, 98.61398) &gt; 25" IgnoreCanRun="True">
+      <FlyToAction Dismount="True" Location="-8722.357, 428.8217, 98.0647" />
+      <MoveToAction Location="-8722.813, 475.9209, 98.61398" MoveType="Location" Pathing="Navigator" Entry="0" />
+    </If>
+  </SubRoutine>
+  <SubRoutine SubRoutineName="WorkingPlace">
+    <CustomAction Code="Log(Colors.Blue,&quot;Time to get busy with some leatherworking. Going to my working place in SW&quot;);" />
+    <If Condition="DistanceTo (-8722.813, 475.9209, 98.61398) &gt; 25" IgnoreCanRun="True">
+      <FlyToAction Dismount="True" Location="-8722.357, 428.8217, 98.0647" />
+      <MoveToAction Location="-8722.813, 475.9209, 98.61398" MoveType="Location" Pathing="Navigator" Entry="0" />
+    </If>
+  </SubRoutine>
+  <SubRoutine SubRoutineName="Buy">
+    <If Condition="Leatherworking.Level &lt; 30 &amp;&amp; InbagCount(2320) &lt; 25" IgnoreCanRun="True">
+      <CustomAction Code="Log(Colors.Blue,&quot;Buying needed mats from vendor&quot;);" />
+      <CallSubRoutine SubRoutineName="MoveToBuy" />
+      <BuyItemAction NpcEntry="5565" Location="-8722.868, 479.3223, 98.61378" ItemID="2320" BuyItemType="SpecificItem" Count="25" BuyAdditively="False" />
+    </If>
+  </SubRoutine>
+  <SubRoutine SubRoutineName="LearnPattern">
+    <CustomAction Code="Log(Colors.Blue,&quot;Learning new patterns&quot;);" />
+    <If Condition="DistanceTo (-8725.547, 477.4149, 98.61315) &gt; 25" IgnoreCanRun="True">
+      <FlyToAction Dismount="True" Location="-8722.357, 428.8217, 98.0647" />
+      <MoveToAction Location="-8725.547, 477.4149, 98.61315" MoveType="Location" Pathing="Navigator" Entry="0" />
+    </If>
+    <TrainSkillAction NpcEntry="5564" Location="-8725.547, 477.4149, 98.61315" />
+  </SubRoutine>
+  <SubRoutine SubRoutineName="SellStuff">
+    <CallSubRoutine SubRoutineName="MoveToBuy" />
+    <SellItemAction Sell="All" NpcEntry="5565" Location="-8722.868, 479.3223, 98.61378" SellItemType="Greys" ItemID="" Count="0" />
+    <SellItemAction Sell="All" NpcEntry="5565" Location="-8722.868, 479.3223, 98.61378" SellItemType="Specific" ItemID="2304" Count="0" />
+    <SellItemAction Sell="All" NpcEntry="5565" Location="-8722.868, 479.3223, 98.61378" SellItemType="Specific" ItemID="7276" Count="0" />
+    <SellItemAction Sell="All" NpcEntry="5565" Location="-8722.868, 479.3223, 98.61378" SellItemType="Specific" ItemID="4237" Count="0" />
   </SubRoutine>
   <!--Travling Subs-->
   <SubRoutine SubRoutineName="Northren to EK">
@@ -234,6 +305,15 @@
   </SubRoutine>
   <!--While-->
   <While Condition="Skinning.Level &gt;= Skinning.MaxLevel &amp;&amp; Skinning.Level != 600 || Skinning.MaxLevel == 0" IgnoreCanRun="True">
+    <If Condition="Skinning.Level &gt;= Skinning.MaxLevel &amp;&amp; Skinning.Level &lt; 500 &amp;&amp; Skinning.Level != 0" IgnoreCanRun="True">
+      <CustomAction Code="Log(System.Drawing.Color.DarkOliveGreen,&quot;Skinning needs to be force trained.&quot;);" />
+    </If>
+    <If Condition="Skinning.MaxLevel == 0" IgnoreCanRun="True">
+      <CustomAction Code="Log(System.Drawing.Color.DarkOliveGreen,&quot;We do not know how to skin!! Lets find a trainer&quot;);" />
+    </If>
+    <CallSubRoutine SubRoutineName="Train" />
+  </While>
+  <While Condition="(bool)Settings[&quot;Level LW&quot;] &amp;&amp; Leatherworking.Level &gt;= Leatherworking.MaxLevel &amp;&amp; Leatherworking.Level != 600 || Leatherworking.MaxLevel == 0" IgnoreCanRun="True">
     <If Condition="Skinning.Level &gt;= Skinning.MaxLevel &amp;&amp; Skinning.Level &lt; 500 &amp;&amp; Skinning.Level != 0" IgnoreCanRun="True">
       <CustomAction Code="Log(System.Drawing.Color.DarkOliveGreen,&quot;Skinning needs to be force trained.&quot;);" />
     </If>
@@ -442,5 +522,29 @@
       </If>
     </If>
   </If>
+  <!--Leatherworking-->
+  <If Condition="(bool)Settings[&quot;Level LW&quot;]" IgnoreCanRun="True">
+    <CustomAction Code="Log(Colors.Green,&quot;Leveling Leatherworking is enabled&quot;);" />
+    <!--Craft-->
+    <While Condition="Leatherworking.Level &gt;= 1 &amp;&amp; Leatherworking.Level &lt; 30 &amp;&amp; InbagCount(2304) + InbagCount(7276)*2 + InbagCount(4237)*6 + InbagCount(2318) + InbagCount(2934)/3 &gt;= 100 || Leatherworking.Level &gt;= 30 &amp;&amp; Leatherworking.Level &lt; 50 &amp;&amp; InbagCount(7276)*2 + InbagCount(4237)*6 + InbagCount(2318) + InbagCount(2934)/3 &gt;= 70 || Leatherworking.Level &gt;= 50 &amp;&amp; Leatherworking.Level &lt; 55 &amp;&amp; InbagCount(4237)*6 + InbagCount(2318) + InbagCount(2934)/3 &gt;= 30" IgnoreCanRun="True">
+      <CustomAction Code="Log(Colors.Orange,&quot;We now have mats for the first stage of the process&quot;);" />
+      <CallSubRoutine SubRoutineName="Remake Leather" />
+      <CallSubRoutine SubRoutineName="Buy" />
+      <CallSubRoutine SubRoutineName="MakeStuff" />
+    </While>
+    <!--Gather-->
+    <If Condition="Skinning.Level &gt;= 1 &amp;&amp; Skinning.Level &lt; 65 || Leatherworking.Level &gt;= 1 &amp;&amp; Leatherworking.Level &lt; 30 &amp;&amp; InbagCount(2318) + InbagCount(2934)/3 &lt; 100 || Leatherworking.Level &gt;= 30 &amp;&amp; Leatherworking.Level &lt; 50 &amp;&amp; InbagCount(2318) + InbagCount(2934)/3 &lt; 70 || Leatherworking.Level &gt;= 50 &amp;&amp; Leatherworking.Level &lt; 55 &amp;&amp; InbagCount(2318) + InbagCount(2934)/3 &lt; 30" IgnoreCanRun="True">
+      <CustomAction Code="Log(Colors.Orange,&quot;Going to Dun Morogh to:&quot;);" />
+      <CustomAction Code="Log(Colors.Orange,&quot;Get Ruined Leather Scraps&quot;);" />
+      <CustomAction Code="Log(Colors.Orange,&quot;Get Light Leather&quot;);" />
+      <CustomAction Code="Log(Colors.Orange,&quot;Level skinning 1-65&quot;);" />
+      <While Condition="Me.ZoneId != 1 || DistanceTo (-5761.459, -425.5734, 365.2238) &gt; 100" IgnoreCanRun="True">
+        <FlyToAction Dismount="False" Location="-5761.459, -425.5734, 365.2238" />
+      </While>
+      <ChangeBotAction BotName="Grind Bot" />
+      <LoadProfileAction ProfileType="Honorbuddy" Path="Profiles\[Alliance] Cicro's Skinning 1-60 Dun Morogh.xml" IsLocal="True" />
+    </If>
+  </If>
   <!--End-->
+  <CustomAction Code="Log(Colors.Red,&quot;Fail. What went wrong?&quot;);" />
 </Professionbuddy>
