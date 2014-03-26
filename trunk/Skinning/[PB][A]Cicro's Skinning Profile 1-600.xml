@@ -149,6 +149,16 @@
       <CustomAction Code="Log(Colors.Orange,&quot;Making Light Leather from Ruined Leather Scraps&quot;);" />
       <CastSpellAction RepeatType="Craftable" Repeat="1" Entry="2881" CastOnItem="False" ItemType="Chest" ItemId="0" />
     </While>
+    <While Condition="Leatherworking.Level &lt;= 100 &amp;&amp; InbagCount(2318) &gt;= 4" IgnoreCanRun="False">
+      <If Condition="Me.FreeNormalBagSlots &lt;= 4" IgnoreCanRun="True">
+        <CallSubRoutine SubRoutineName="SellStuff" />
+      </If>
+      <If Condition="!HasRecipe(20648)" IgnoreCanRun="True">
+        <CallSubRoutine SubRoutineName="LearnPattern" />
+      </If>
+      <CustomAction Code="Log(Colors.Orange,&quot;Making Medium Leather&quot;);" />
+      <CastSpellAction RepeatType="Craftable" Repeat="1" Entry="20648" CastOnItem="False" ItemType="Chest" ItemId="0" />
+    </While>
   </SubRoutine>
   <SubRoutine SubRoutineName="MoveToBuy">
     <If Condition="Me.ZoneId == 1" IgnoreCanRun="True">
