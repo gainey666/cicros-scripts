@@ -6,9 +6,9 @@
   <ChangeBotAction BotName="Combat Bot" />
   <CustomAction Code="CharacterSettings.Instance.LootMobs = true;" />
   <CustomAction Code="var1 = false;" />
-  <If Condition="Me.FreeNormalBagSlots &lt; 6" IgnoreCanRun="True">
+  <While Condition="Me.FreeNormalBagSlots &lt; 6" IgnoreCanRun="True">
     <CallSubRoutine SubRoutineName="SellStuff" />
-  </If>
+  </While>
   <SubRoutine SubRoutineName="Train">
     <If Condition="Me.IsAlliance" IgnoreCanRun="True">
       <If Condition="Me.MapId == 1" IgnoreCanRun="True">
@@ -195,19 +195,32 @@
   <SubRoutine SubRoutineName="SellStuff">
     <CustomAction Code="Log(Colors.Orange,&quot;Selling stuff to vendor&quot;);" />
     <If Condition="Me.ZoneId == 1" IgnoreCanRun="True">
+      <CallSubRoutine SubRoutineName="MoveToBuy" />
+      <SellItemAction Sell="All" NpcEntry="1692" Location="-5633.44, -496.477, 396.6902" SellItemType="Specific" ItemID="3685" Count="0" />
       <SellItemAction Sell="All" NpcEntry="1692" Location="-5633.44, -496.477, 396.6902" SellItemType="Specific" ItemID="117" Count="0" />
       <SellItemAction Sell="All" NpcEntry="1692" Location="-5633.44, -496.477, 396.6902" SellItemType="Specific" ItemID="2886" Count="0" />
       <SellItemAction Sell="All" NpcEntry="1692" Location="-5633.44, -496.477, 396.6902" SellItemType="Greys" ItemID="" Count="0" />
+      <SellItemAction Sell="All" NpcEntry="1692" Location="-5633.44, -496.477, 396.6902" SellItemType="Specific" ItemID="7286" Count="0" />
+      <SellItemAction Sell="All" NpcEntry="1692" Location="-5633.44, -496.477, 396.6902" SellItemType="Specific" ItemID="2924" Count="0" />
+      <SellItemAction Sell="All" NpcEntry="1692" Location="-5633.44, -496.477, 396.6902" SellItemType="Specific" ItemID="2672" Count="0" />
     </If>
     <If Condition="Me.ZoneId != 1" IgnoreCanRun="True">
       <CallSubRoutine SubRoutineName="MoveToBuy" />
       <SellItemAction Sell="All" NpcEntry="5565" Location="-8722.868, 479.3223, 98.61378" SellItemType="Greys" ItemID="" Count="0" />
       <SellItemAction Sell="All" NpcEntry="5565" Location="-8722.868, 479.3223, 98.61378" SellItemType="Specific" ItemID="117" Count="0" />
+      <SellItemAction Sell="All" NpcEntry="5565" Location="-8722.868, 479.3223, 98.61378" SellItemType="Specific" ItemID="2672" Count="0" />
       <SellItemAction Sell="All" NpcEntry="5565" Location="-8722.868, 479.3223, 98.61378" SellItemType="Specific" ItemID="2886" Count="0" />
+      <SellItemAction Sell="All" NpcEntry="5565" Location="-8722.868, 479.3223, 98.61378" SellItemType="Specific" ItemID="3685" Count="0" />
+      <SellItemAction Sell="All" NpcEntry="5565" Location="-8722.868, 479.3223, 98.61378" SellItemType="Specific" ItemID="7286" Count="0" />
+      <SellItemAction Sell="All" NpcEntry="5565" Location="-8722.868, 479.3223, 98.61378" SellItemType="Specific" ItemID="2924" Count="0" />
       <If Condition="Leatherworking.Level &gt;= 55" IgnoreCanRun="True">
         <SellItemAction Sell="All" NpcEntry="5565" Location="-8722.868, 479.3223, 98.61378" SellItemType="Specific" ItemID="2304" Count="0" />
         <SellItemAction Sell="All" NpcEntry="5565" Location="-8722.868, 479.3223, 98.61378" SellItemType="Specific" ItemID="7276" Count="0" />
         <SellItemAction Sell="All" NpcEntry="5565" Location="-8722.868, 479.3223, 98.61378" SellItemType="Specific" ItemID="4237" Count="0" />
+      </If>
+      <If Condition="Leatherworking.Level &gt;= 100" IgnoreCanRun="True">
+        <SellItemAction Sell="All" NpcEntry="5565" Location="-8722.868, 479.3223, 98.61378" SellItemType="Specific" ItemID="4239" Count="0" />
+        <SellItemAction Sell="All" NpcEntry="5565" Location="-8722.868, 479.3223, 98.61378" SellItemType="Specific" ItemID="4246" Count="0" />
       </If>
     </If>
   </SubRoutine>
@@ -435,7 +448,7 @@
     <CustomAction Code="Log(Colors.Orange,&quot;Time to make stuff&quot;);" />
     <CallSubRoutine SubRoutineName="MakeStuff" />
   </While>
-  <While Condition="(bool)Settings[&quot;Level LW&quot;] &amp;&amp; Skinning.Level &gt;= 110 &amp;&amp; Leatherworking.Level &gt;= 55 &amp;&amp; Leatherworking.Level &lt; 65 &amp;&amp; InbagCount(2318) + InbagCount(2934)/3 + InbagCount(4239)*3 + InbagCount(4246)*6 &gt;= 180 || (bool)Settings[&quot;Level LW&quot;] &amp;&amp; Skinning.Level &gt;= 110 &amp;&amp; Leatherworking.Level &gt;= 65 &amp;&amp; Leatherworking.Level &lt; 100 &amp;&amp; InbagCount(2318) + InbagCount(2934)/3 + InbagCount(4246)*6 &gt;= 90" IgnoreCanRun="True">
+  <While Condition="(bool)Settings[&quot;Level LW&quot;] &amp;&amp; Skinning.Level &gt;= 150 &amp;&amp; Leatherworking.Level &gt;= 55 &amp;&amp; Leatherworking.Level &lt; 65 &amp;&amp; InbagCount(2318) + InbagCount(2934)/3 + InbagCount(4239)*3 + InbagCount(4246)*6 &gt;= 180 || (bool)Settings[&quot;Level LW&quot;] &amp;&amp; Skinning.Level &gt;= 110 &amp;&amp; Leatherworking.Level &gt;= 65 &amp;&amp; Leatherworking.Level &lt; 100 &amp;&amp; InbagCount(2318) + InbagCount(2934)/3 + InbagCount(4246)*6 &gt;= 90" IgnoreCanRun="True">
     <CustomAction Code="Log(Colors.Orange,&quot;We now have mats for the first stage of the process&quot;);" />
     <CallSubRoutine SubRoutineName="WorkingPlace" />
     <CustomAction Code="Log(Colors.Orange,&quot;Remaking Leather&quot;);" />
