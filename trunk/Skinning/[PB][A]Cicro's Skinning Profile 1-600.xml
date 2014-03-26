@@ -63,17 +63,20 @@
     </If>
   </SubRoutine>
   <SubRoutine SubRoutineName="MakeStuff">
-    <While Condition="Leatherworking.Level &lt; 30 &amp;&amp; InbagCount(2318) &gt;= 1" IgnoreCanRun="False">
+    <While Condition="Leatherworking.Level &lt;= 29 &amp;&amp; InbagCount(2318) &gt;= 1" IgnoreCanRun="False">
       <CustomAction Code="Log(Colors.Orange,&quot;Making Light Armor Kit&quot;);" />
       <CastSpellAction RepeatType="Craftable" Repeat="1" Entry="2152" CastOnItem="False" ItemType="Chest" ItemId="0" />
     </While>
-    <While Condition="Leatherworking.Level &gt;= 30 &amp;&amp; Leatherworking.Level &lt; 50 &amp;&amp; InbagCount(2318) &gt;= 2 &amp;&amp; InbagCount(2320) &gt;= 1" IgnoreCanRun="False">
+    <While Condition="Leatherworking.Level &gt;= 30 &amp;&amp; Leatherworking.Level &lt;= 49 &amp;&amp; InbagCount(2318) &gt;= 2 &amp;&amp; InbagCount(2320) &gt;= 1" IgnoreCanRun="False">
       <CustomAction Code="Log(Colors.Orange,&quot;Making [Handstitched Leather Cloak]&quot;);" />
       <CastSpellAction RepeatType="Craftable" Repeat="1" Entry="9058" CastOnItem="False" ItemType="Chest" ItemId="0" />
     </While>
-    <While Condition="Leatherworking.Level &gt;= 50 &amp;&amp; Leatherworking.Level &lt; 55 &amp;&amp; InbagCount(2318) &gt;= 6 &amp;&amp; InbagCount(2320) &gt;= 1" IgnoreCanRun="False">
+    <While Condition="Leatherworking.Level &gt;= 50 &amp;&amp; Leatherworking.Level &lt;= 54 &amp;&amp; InbagCount(2318) &gt;= 6 &amp;&amp; InbagCount(2320) &gt;= 1" IgnoreCanRun="False">
       <If Condition="!HasRecipe(3753)" IgnoreCanRun="True">
         <CallSubRoutine SubRoutineName="LearnPattern" />
+      </If>
+      <If Condition="InbagCount(2320) &lt; 1" IgnoreCanRun="True">
+        <CallSubRoutine SubRoutineName="Buy" />
       </If>
       <CustomAction Code="Log(Colors.Orange,&quot;Making [Handstitched Leather Belt]&quot;);" />
       <CastSpellAction RepeatType="Craftable" Repeat="1" Entry="3753" CastOnItem="False" ItemType="Chest" ItemId="0" />
