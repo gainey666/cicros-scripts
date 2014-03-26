@@ -216,8 +216,22 @@
       <WaitAction Condition="Me.MapId == 0" Timeout="30000" />
     </If>
   </SubRoutine>
-  <SubRoutine SubRoutineName="SW to Pandaria" />
-  <SubRoutine SubRoutineName="Pandaria to SW" />
+  <SubRoutine SubRoutineName="SW to Pandaria">
+    <If Condition="Me.MapId == 0 &amp;&amp; Me.IsAlliance" IgnoreCanRun="True">
+      <CustomAction Code="Log(Colors.Orange,&quot;Going to the spacy world of Pandaria&quot;);" />
+      <FlyToAction Dismount="True" Location="-8197.572, 530.7333, 117.3759" />
+      <InteractionAction InteractType="GameObject" Entry="215457" InteractDelay="2000" GameObjectType="Transport" SpellFocus="Anvil" />
+      <WaitAction Condition="Me.MapId == 870" Timeout="30000" />
+    </If>
+  </SubRoutine>
+  <SubRoutine SubRoutineName="Pandaria to SW">
+    <If Condition="Me.MapId == 870 &amp;&amp; Me.IsAlliance" IgnoreCanRun="True">
+      <CustomAction Code="Log(Colors.Orange,&quot;Going back to Stormwind. This makes me a sad panda to leave the wonderful world..&quot;);" />
+      <FlyToAction Dismount="True" Location="-308.7356, -1775.349, 62.49599" />
+      <InteractionAction InteractType="GameObject" Entry="210805" InteractDelay="2000" GameObjectType="Transport" SpellFocus="Anvil" />
+      <WaitAction Condition="Me.MapId == 0" Timeout="30000" />
+    </If>
+  </SubRoutine>
   <!--While-->
   <While Condition="Skinning.Level &gt;= Skinning.MaxLevel &amp;&amp; Skinning.Level != 600 || Skinning.MaxLevel == 0" IgnoreCanRun="True">
     <If Condition="Skinning.Level &gt;= Skinning.MaxLevel &amp;&amp; Skinning.Level &lt; 500 &amp;&amp; Skinning.Level != 0" IgnoreCanRun="True">
@@ -383,6 +397,10 @@
     <LoadProfileAction ProfileType="Honorbuddy" Path="Profiles\[Alliance] Cicro's Skinning 450-500 Deepholm.xml" IsLocal="True" />
   </If>
   <If Condition="Skinning.Level &gt;= 500 &amp;&amp; Skinning.Level &lt; 560" IgnoreCanRun="True">
+    <If Condition="Skinning.Level &gt;= Skinning.MaxLevel - 25 &amp;&amp; Skinning.Level != 600" IgnoreCanRun="True">
+      <CustomAction Code="Log(Colors.Orange,&quot;Lets start with some training&quot;);" />
+      <CallSubRoutine SubRoutineName="Train" />
+    </If>
     <CustomAction Code="Log(Colors.Orange,&quot;Next step.&quot;);" />
     <CustomAction Code="Log(Colors.Orange,&quot;Going to Valley of the Four Winds to level from 500-560&quot;);" />
     <If Condition="Me.ZoneId != 5805 || DistanceTo (400.0598, 66.25074, 150.1639) &gt; 100" IgnoreCanRun="True">
