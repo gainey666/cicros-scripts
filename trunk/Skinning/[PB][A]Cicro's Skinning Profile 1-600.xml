@@ -528,6 +528,7 @@
     <!--Craft-->
     <While Condition="Leatherworking.Level &gt;= 1 &amp;&amp; Leatherworking.Level &lt; 30 &amp;&amp; InbagCount(2304) + InbagCount(7276)*2 + InbagCount(4237)*6 + InbagCount(2318) + InbagCount(2934)/3 &gt;= 100 || Leatherworking.Level &gt;= 30 &amp;&amp; Leatherworking.Level &lt; 50 &amp;&amp; InbagCount(7276)*2 + InbagCount(4237)*6 + InbagCount(2318) + InbagCount(2934)/3 &gt;= 70 || Leatherworking.Level &gt;= 50 &amp;&amp; Leatherworking.Level &lt; 55 &amp;&amp; InbagCount(4237)*6 + InbagCount(2318) + InbagCount(2934)/3 &gt;= 30" IgnoreCanRun="True">
       <CustomAction Code="Log(Colors.Orange,&quot;We now have mats for the first stage of the process&quot;);" />
+      <CallSubRoutine SubRoutineName="WorkingPlace" />
       <CallSubRoutine SubRoutineName="Remake Leather" />
       <CallSubRoutine SubRoutineName="Buy" />
       <CallSubRoutine SubRoutineName="MakeStuff" />
