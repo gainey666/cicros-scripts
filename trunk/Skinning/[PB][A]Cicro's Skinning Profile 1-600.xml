@@ -81,17 +81,17 @@
       <If Condition="(Me.MapId == 1)" IgnoreCanRun="True">
         <CallSubRoutine SubRoutineName="Kalimdor to EK" />
       </If>
-      <If Condition="Me.ZoneId != 4 || (Me.ZoneId != 44)" IgnoreCanRun="True">
+      <If Condition="Me.ZoneId != 4" IgnoreCanRun="True">
         <FlyToAction Dismount="True" Location="-9000.289, 863.0194, 129.6055" />
         <MoveToAction Location="-9006.661, 870.9152, 129.6924" MoveType="Location" Pathing="Navigator" Entry="0" />
         <WaitAction Condition="false" Timeout="1898" />
         <InteractionAction InteractType="GameObject" Entry="195141" InteractDelay="2000" GameObjectType="Transport" SpellFocus="Anvil" />
         <WaitAction Condition="Me.ZoneId == 4" Timeout="25000" />
       </If>
-      <FlyToAction Dismount="False" Location="-11895.9, -3206.984, -6.04731" />
-      <CustomAction Code="MessageBox.Show(&quot;Please watch me while im going thru the portal. Sometimes I do crazy things here. Incase of crazyness, stop the bot and move me manually&quot;);" />
-      <MoveToAction Location="-11930.31, -3209.613, -1.836873" MoveType="Location" Pathing="ClickToMove" Entry="0" />
+      <FlyToAction Dismount="False" Location="-11893.42, -3205.508, -14.22633" />
+      <CustomAction Code="CTM (-11930.31,-3209.613,-1.836873);" />
       <WaitAction Condition="Me.MapId == 530" Timeout="25000" />
+      <MoveToAction Location="-248.3487, 947.3008, 84.3497" MoveType="Location" Pathing="Navigator" Entry="0" />
     </If>
   </SubRoutine>
   <SubRoutine SubRoutineName="Northrend to City">
