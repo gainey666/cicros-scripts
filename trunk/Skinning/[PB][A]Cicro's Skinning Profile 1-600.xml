@@ -562,7 +562,7 @@
     <CustomAction Code="Log(Colors.Orange,&quot;Time to make stuff&quot;);" />
     <CallSubRoutine SubRoutineName="MakeStuff" />
   </While>
-  <While Condition="(bool)Settings[&quot;Level LW&quot;] &amp;&amp; Skinning.Level &gt;= 205 &amp;&amp; Leatherworking.Level &gt;= 100 &amp;&amp; Leatherworking.Level &lt; 115 &amp;&amp; InbagCount(4232) + InbagCount(4233) + InbagCount(3766) &lt; 15 &amp;&amp; InbagCount(2319) + InbagCount(2315)*4 + InbagCount(4247)*14 &gt;= 160" IgnoreCanRun="True">
+  <While Condition="(bool)Settings[&quot;Level LW&quot;] &amp;&amp; Skinning.Level &gt;= 205 &amp;&amp; Leatherworking.Level &gt;= 100 &amp;&amp; Leatherworking.Level &lt; 115 &amp;&amp; InbagCount(4232) + InbagCount(4233) + InbagCount(3766) &gt;= 15 &amp;&amp; InbagCount(2319) + InbagCount(2315)*4 + InbagCount(4247)*14 &gt;= 160" IgnoreCanRun="True">
     <CustomAction Code="Log(Colors.Orange,&quot;We now have mats for the 3rd stage of the process&quot;);" />
     <CallSubRoutine SubRoutineName="WorkingPlace" />
     <CustomAction Code="Log(Colors.Orange,&quot;Remaking Leather&quot;);" />
