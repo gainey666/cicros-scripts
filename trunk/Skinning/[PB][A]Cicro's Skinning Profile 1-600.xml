@@ -794,7 +794,7 @@
       <WaitAction Condition="false" Timeout="35000" />
     </If>
   </If>
-  <If Condition="(bool)Settings[&quot;Level LW&quot;] &amp;&amp; Leatherworking.Level &gt;= 100 &amp;&amp; Leatherworking.Level &lt; 115 &amp;&amp; InbagCount(4232) + InbagCount(4233) + InbagCount(3766) &lt; 15 &amp;&amp; InbagCount(2319) + InbagCount(2315)*4 + InbagCount(4247)*14 + InbagCount(2318)/4 &lt; 160 || (bool)Settings[&quot;Level LW&quot;] &amp;&amp; Leatherworking.Level &gt;= 115 &amp;&amp; Leatherworking.Level &lt; 155 &amp;&amp; InbagCount(2319) + InbagCount(2315)*4 + InbagCount(4247)*14 + InbagCount(2318)/4 &lt; 160" IgnoreCanRun="True">
+  <If Condition="(bool)Settings[&quot;Level LW&quot;] &amp;&amp; Leatherworking.Level &gt;= 100 &amp;&amp; Leatherworking.Level &lt; 115 &amp;&amp; InbagCount(4232) + InbagCount(4233) + InbagCount(3766) &lt; 15 || (bool)Settings[&quot;Level LW&quot;] &amp;&amp; Leatherworking.Level &gt;= 100 &amp;&amp; Leatherworking.Level &lt; 115 &amp;&amp; InbagCount(2319) + InbagCount(2315)*4 + InbagCount(4247)*14 + InbagCount(2318)/4 &lt; 160 || (bool)Settings[&quot;Level LW&quot;] &amp;&amp; Leatherworking.Level &gt;= 115 &amp;&amp; Leatherworking.Level &lt; 155 &amp;&amp; InbagCount(2319) + InbagCount(2315)*4 + InbagCount(4247)*14 + InbagCount(2318)/4 &lt; 160" IgnoreCanRun="True">
     <If Condition="Skinning.Level &gt;= Skinning.MaxLevel - 25 &amp;&amp; Skinning.Level != 600" IgnoreCanRun="True">
       <CustomAction Code="Log(Colors.Orange,&quot;Lets start with some training&quot;);" />
       <CallSubRoutine SubRoutineName="Train" />
