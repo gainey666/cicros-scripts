@@ -81,6 +81,26 @@
       <CustomAction Code="Log(Colors.Orange,&quot;Making [Handstitched Leather Belt]&quot;);" />
       <CastSpellAction RepeatType="Craftable" Repeat="1" Entry="3753" CastOnItem="False" ItemType="Chest" ItemId="0" />
     </While>
+    <While Condition="Leatherworking.Level &gt;= 55 &amp;&amp; Leatherworking.Level &lt;= 84 &amp;&amp; InbagCount(2318) &gt;= 3 &amp;&amp; InbagCount(2320) &gt;= 2" IgnoreCanRun="False">
+      <If Condition="!HasRecipe(3756)" IgnoreCanRun="True">
+        <CallSubRoutine SubRoutineName="LearnPattern" />
+      </If>
+      <If Condition="InbagCount(2320) &lt; 2" IgnoreCanRun="True">
+        <CallSubRoutine SubRoutineName="Buy" />
+      </If>
+      <CustomAction Code="Log(Colors.Orange,&quot;Making [Embossed Leather Gloves]&quot;);" />
+      <CastSpellAction RepeatType="Craftable" Repeat="1" Entry="3756" CastOnItem="False" ItemType="Chest" ItemId="0" />
+    </While>
+    <While Condition="Leatherworking.Level &gt;= 50 &amp;&amp; Leatherworking.Level &lt;= 54 &amp;&amp; InbagCount(2318) &gt;= 6 &amp;&amp; InbagCount(2320) &gt;= 2" IgnoreCanRun="False">
+      <If Condition="!HasRecipe(3763)" IgnoreCanRun="True">
+        <CallSubRoutine SubRoutineName="LearnPattern" />
+      </If>
+      <If Condition="InbagCount(2320) &lt; 2" IgnoreCanRun="True">
+        <CallSubRoutine SubRoutineName="Buy" />
+      </If>
+      <CustomAction Code="Log(Colors.Orange,&quot;Making [Fine Leather Belt]&quot;);" />
+      <CastSpellAction RepeatType="Craftable" Repeat="1" Entry="3763" CastOnItem="False" ItemType="Chest" ItemId="0" />
+    </While>
   </SubRoutine>
   <SubRoutine SubRoutineName="Remake Leather">
     <While Condition="InbagCount(2934) &gt;= 3" IgnoreCanRun="True">
@@ -312,23 +332,17 @@
     </If>
   </SubRoutine>
   <!--While-->
-  <While Condition="Skinning.Level &gt;= Skinning.MaxLevel &amp;&amp; Skinning.Level != 600 || Skinning.MaxLevel == 0" IgnoreCanRun="True">
-    <If Condition="Skinning.Level &gt;= Skinning.MaxLevel &amp;&amp; Skinning.Level &lt; 500 &amp;&amp; Skinning.Level != 0" IgnoreCanRun="True">
-      <CustomAction Code="Log(System.Drawing.Color.DarkOliveGreen,&quot;Skinning needs to be force trained.&quot;);" />
-    </If>
-    <If Condition="Skinning.MaxLevel == 0" IgnoreCanRun="True">
-      <CustomAction Code="Log(System.Drawing.Color.DarkOliveGreen,&quot;We do not know how to skin!! Lets find a trainer&quot;);" />
-    </If>
-    <CallSubRoutine SubRoutineName="Train" />
-  </While>
-  <While Condition="(bool)Settings[&quot;Level LW&quot;] &amp;&amp; Leatherworking.Level &gt;= Leatherworking.MaxLevel - 25 &amp;&amp; Leatherworking.Level != 600 || Leatherworking.MaxLevel == 0" IgnoreCanRun="True">
-    <If Condition="Leatherworking.MaxLevel == 0" IgnoreCanRun="True">
-      <CustomAction Code="Log(System.Drawing.Color.DarkOliveGreen,&quot;We do not know how to be a leatherworker!! Lets find a trainer&quot;);" />
-    </If>
-    <CallSubRoutine SubRoutineName="Train" />
-  </While>
   <!--Skinning-->
   <If Condition="!(bool)Settings[&quot;Level LW&quot;]" IgnoreCanRun="True">
+    <While Condition="Skinning.Level &gt;= Skinning.MaxLevel &amp;&amp; Skinning.Level != 600 || Skinning.MaxLevel == 0" IgnoreCanRun="True">
+      <If Condition="Skinning.Level &gt;= Skinning.MaxLevel &amp;&amp; Skinning.Level &lt; 500 &amp;&amp; Skinning.Level != 0" IgnoreCanRun="True">
+        <CustomAction Code="Log(System.Drawing.Color.DarkOliveGreen,&quot;Skinning needs to be force trained.&quot;);" />
+      </If>
+      <If Condition="Skinning.MaxLevel == 0" IgnoreCanRun="True">
+        <CustomAction Code="Log(System.Drawing.Color.DarkOliveGreen,&quot;We do not know how to skin!! Lets find a trainer&quot;);" />
+      </If>
+      <CallSubRoutine SubRoutineName="Train" />
+    </While>
     <If Condition="Skinning.Level &gt;= 1 &amp;&amp; Skinning.Level &lt; 65" IgnoreCanRun="True">
       <CustomAction Code="Log(Colors.Orange,&quot;Going to Dun Morogh to level from 1-65&quot;);" />
       <While Condition="Me.ZoneId != 1 || DistanceTo (-5761.459, -425.5734, 365.2238) &gt; 100" IgnoreCanRun="True">
@@ -530,6 +544,12 @@
   <!--Leatherworking-->
   <If Condition="(bool)Settings[&quot;Level LW&quot;]" IgnoreCanRun="True">
     <CustomAction Code="Log(Colors.Green,&quot;Leveling Leatherworking is enabled&quot;);" />
+    <While Condition="(bool)Settings[&quot;Level LW&quot;] &amp;&amp; Leatherworking.Level &gt;= Leatherworking.MaxLevel - 25 &amp;&amp; Leatherworking.Level != 600 || Leatherworking.MaxLevel == 0 || (bool)Settings[&quot;Level LW&quot;] &amp;&amp; Skinning.Level &gt;= Skinning.MaxLevel - 25 &amp;&amp; Skinning.Level != 600 || Skinning.MaxLevel == 0" IgnoreCanRun="True">
+      <If Condition="Leatherworking.MaxLevel == 0" IgnoreCanRun="True">
+        <CustomAction Code="Log(System.Drawing.Color.DarkOliveGreen,&quot;We do not know how to be a leatherworker!! Lets find a trainer&quot;);" />
+      </If>
+      <CallSubRoutine SubRoutineName="Train" />
+    </While>
     <!--Craft-->
     <While Condition="Leatherworking.Level &gt;= 1 &amp;&amp; Leatherworking.Level &lt; 30 &amp;&amp; InbagCount(2304) + InbagCount(7276)*2 + InbagCount(4237)*6 + InbagCount(2318) + InbagCount(2934)/3 &gt;= 100 || Leatherworking.Level &gt;= 30 &amp;&amp; Leatherworking.Level &lt; 50 &amp;&amp; InbagCount(7276)*2 + InbagCount(4237)*6 + InbagCount(2318) + InbagCount(2934)/3 &gt;= 70 || Leatherworking.Level &gt;= 50 &amp;&amp; Leatherworking.Level &lt; 55 &amp;&amp; InbagCount(4237)*6 + InbagCount(2318) + InbagCount(2934)/3 &gt;= 30" IgnoreCanRun="True">
       <CustomAction Code="Log(Colors.Orange,&quot;We now have mats for the first stage of the process&quot;);" />
@@ -541,17 +561,36 @@
       <CustomAction Code="Log(Colors.Orange,&quot;Time to make stuff&quot;);" />
       <CallSubRoutine SubRoutineName="MakeStuff" />
     </While>
+    <While Condition="Skinning.Level &gt;= 110 &amp;&amp; Leatherworking.Level &gt;= 55 &amp;&amp; Leatherworking.Level &lt; 65 &amp;&amp; InbagCount(2318) + InbagCount(2934)/3 + InbagCount(4239)*3 + InbagCount(4246)*6 &gt;= 180 || Skinning.Level &gt;= 110 &amp;&amp; Leatherworking.Level &gt;= 65 &amp;&amp; Leatherworking.Level &lt; 100 &amp;&amp; InbagCount(2318) + InbagCount(2934)/3 + InbagCount(4246)*6 &gt;= 90" IgnoreCanRun="True">
+      <CustomAction Code="Log(Colors.Orange,&quot;We now have mats for the first stage of the process&quot;);" />
+      <CallSubRoutine SubRoutineName="WorkingPlace" />
+      <CustomAction Code="Log(Colors.Orange,&quot;Remaking Leather&quot;);" />
+      <CallSubRoutine SubRoutineName="Remake Leather" />
+      <CustomAction Code="Log(Colors.Orange,&quot;Buying stuff from vendor&quot;);" />
+      <CallSubRoutine SubRoutineName="Buy" />
+      <CustomAction Code="Log(Colors.Orange,&quot;Time to make stuff&quot;);" />
+      <CallSubRoutine SubRoutineName="MakeStuff" />
+    </While>
     <!--Gather-->
     <If Condition="Skinning.Level &gt;= 1 &amp;&amp; Skinning.Level &lt; 65 || Leatherworking.Level &gt;= 1 &amp;&amp; Leatherworking.Level &lt; 30 &amp;&amp; InbagCount(2318) + InbagCount(2934)/3 &lt; 100 || Leatherworking.Level &gt;= 30 &amp;&amp; Leatherworking.Level &lt; 50 &amp;&amp; InbagCount(2318) + InbagCount(2934)/3 &lt; 70 || Leatherworking.Level &gt;= 50 &amp;&amp; Leatherworking.Level &lt; 55 &amp;&amp; InbagCount(2318) + InbagCount(2934)/3 &lt; 30" IgnoreCanRun="True">
-      <CustomAction Code="Log(Colors.Orange,&quot;Going to Dun Morogh to:&quot;);" />
-      <CustomAction Code="Log(Colors.Orange,&quot;Get Ruined Leather Scraps&quot;);" />
-      <CustomAction Code="Log(Colors.Orange,&quot;Get Light Leather&quot;);" />
+      <CustomAction Code="Log(Colors.Orange,&quot;Going to Dun Morogh for:&quot;);" />
+      <CustomAction Code="Log(Colors.Orange,&quot;Light Leather&quot;);" />
       <CustomAction Code="Log(Colors.Orange,&quot;Level skinning 1-65&quot;);" />
       <While Condition="Me.ZoneId != 1 || DistanceTo (-5761.459, -425.5734, 365.2238) &gt; 100" IgnoreCanRun="True">
         <FlyToAction Dismount="False" Location="-5761.459, -425.5734, 365.2238" />
       </While>
       <ChangeBotAction BotName="Grind Bot" />
       <LoadProfileAction ProfileType="Honorbuddy" Path="Profiles\[Alliance] Cicro's Skinning 1-60 Dun Morogh.xml" IsLocal="True" />
+    </If>
+    <If Condition="Skinning.Level &gt;= 65 &amp;&amp; Skinning.Level &lt; 110 || Leatherworking.Level &gt;= 55 &amp;&amp; Leatherworking.Level &lt; 65 &amp;&amp; InbagCount(2318) + InbagCount(2934)/3 + InbagCount(4239)*3 + InbagCount(4246)*6 &lt; 180 || Leatherworking.Level &gt;= 65 &amp;&amp; Leatherworking.Level &lt; 100 &amp;&amp; InbagCount(2318) + InbagCount(2934)/3 + InbagCount(4246)*6 &lt; 90" IgnoreCanRun="True">
+      <CustomAction Code="Log(Colors.Orange,&quot;Going to Loch Modan for:&quot;);" />
+      <CustomAction Code="Log(Colors.Orange,&quot;Light Leather&quot;);" />
+      <CustomAction Code="Log(Colors.Orange,&quot;Level skinning 65-110&quot;);" />
+      <If Condition="Me.ZoneId != 38 || DistanceTo (-5655.124, -3349.164, 287.6958) &gt; 100" IgnoreCanRun="True">
+        <FlyToAction Dismount="False" Location="-5655.124, -3349.164, 287.6958" />
+      </If>
+      <ChangeBotAction BotName="Grind Bot" />
+      <LoadProfileAction ProfileType="Honorbuddy" Path="Profiles\[Alliance] Cicro's Skinning 60-110 Loch Modan.xml" IsLocal="True" />
     </If>
   </If>
   <!--End-->
