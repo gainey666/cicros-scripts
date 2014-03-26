@@ -118,7 +118,7 @@
       <CastSpellAction RepeatType="Craftable" Repeat="1" Entry="3753" CastOnItem="False" ItemType="Chest" ItemId="0" />
     </While>
     <While Condition="Leatherworking.Level &gt;= 55 &amp;&amp; Leatherworking.Level &lt;= 84 &amp;&amp; InbagCount(2318) &gt;= 3 &amp;&amp; InbagCount(2320) &gt;= 2" IgnoreCanRun="False">
-      <If Condition="Me.FreeNormalBagSlots &lt;= 4" IgnoreCanRun="True">
+      <If Condition="Me.FreeNormalBagSlots &lt; 4" IgnoreCanRun="True">
         <CallSubRoutine SubRoutineName="SellStuff" />
       </If>
       <If Condition="!HasRecipe(3756)" IgnoreCanRun="True">
@@ -130,8 +130,8 @@
       <CustomAction Code="Log(Colors.Orange,&quot;Making [Embossed Leather Gloves]&quot;);" />
       <CastSpellAction RepeatType="Craftable" Repeat="1" Entry="3756" CastOnItem="False" ItemType="Chest" ItemId="0" />
     </While>
-    <While Condition="Leatherworking.Level &gt;= 50 &amp;&amp; Leatherworking.Level &lt;= 54 &amp;&amp; InbagCount(2318) &gt;= 6 &amp;&amp; InbagCount(2320) &gt;= 2" IgnoreCanRun="False">
-      <If Condition="Me.FreeNormalBagSlots &lt;= 4" IgnoreCanRun="True">
+    <While Condition="Leatherworking.Level &gt;= 85 &amp;&amp; Leatherworking.Level &lt;= 99 &amp;&amp; InbagCount(2318) &gt;= 6 &amp;&amp; InbagCount(2320) &gt;= 2" IgnoreCanRun="False">
+      <If Condition="Me.FreeNormalBagSlots &lt; 4" IgnoreCanRun="True">
         <CallSubRoutine SubRoutineName="SellStuff" />
       </If>
       <If Condition="!HasRecipe(3763)" IgnoreCanRun="True">
@@ -149,7 +149,7 @@
       <CustomAction Code="Log(Colors.Orange,&quot;Making Light Leather from Ruined Leather Scraps&quot;);" />
       <CastSpellAction RepeatType="Craftable" Repeat="1" Entry="2881" CastOnItem="False" ItemType="Chest" ItemId="0" />
     </While>
-    <While Condition="Leatherworking.Level &lt;= 100 &amp;&amp; InbagCount(2318) &gt;= 4" IgnoreCanRun="False">
+    <While Condition="Leatherworking.Level &gt;= 100 &amp;&amp; InbagCount(2318) &gt;= 4" IgnoreCanRun="False">
       <If Condition="Me.FreeNormalBagSlots &lt;= 4" IgnoreCanRun="True">
         <CallSubRoutine SubRoutineName="SellStuff" />
       </If>
