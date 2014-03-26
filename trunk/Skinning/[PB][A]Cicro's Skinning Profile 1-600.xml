@@ -189,7 +189,7 @@
       </If>
       <If Condition="InbagCount(4246) &lt; 1" IgnoreCanRun="True">
         <CustomAction Code="Log(Colors.Orange,&quot;Getting the belt we made before from our bank&quot;);" />
-        <GetItemfromBankAction Withdraw="Amount" Bank="Personal" MinFreeBagSlots="15" GetItemfromBankType="SpecificItem" ItemID="4246" NpcEntry="0" Amount="15" AutoFindBank="True" WithdrawAdditively="False" Location="0,0,0" />
+        <GetItemfromBankAction Withdraw="Amount" Bank="Personal" MinFreeBagSlots="15" GetItemfromBankType="SpecificItem" ItemID="4246" NpcEntry="0" Amount="15" AutoFindBank="True" WithdrawAdditively="False" Location="0, 0, 0" />
         <WaitAction Condition="false" Timeout="2000" />
         <CallSubRoutine SubRoutineName="WorkingPlace" />
       </If>
@@ -562,7 +562,7 @@
     <CustomAction Code="Log(Colors.Orange,&quot;Time to make stuff&quot;);" />
     <CallSubRoutine SubRoutineName="MakeStuff" />
   </While>
-  <While Condition="(bool)Settings[&quot;Level LW&quot;] &amp;&amp; Skinning.Level &gt;= 205 &amp;&amp; Leatherworking.Level &gt;= 100 &amp;&amp; Leatherworking.Level &lt; 115 &amp;&amp; InbagCount(4232) + InbagCount(4233) + InbagCount(3766) &lt; 15 &amp;&amp; InbagCount(2319) + InbagCount(2167)*4 + InbagCount(4247)*14 + InbagCount(4234)*5 + InbagCount(2318)/4 &gt;= 160" IgnoreCanRun="True">
+  <While Condition="(bool)Settings[&quot;Level LW&quot;] &amp;&amp; Skinning.Level &gt;= 205 &amp;&amp; Leatherworking.Level &gt;= 100 &amp;&amp; Leatherworking.Level &lt; 115 &amp;&amp; InbagCount(4232) + InbagCount(4233) + InbagCount(3766) &lt; 15 &amp;&amp; InbagCount(2319) + InbagCount(2315)*4 + InbagCount(4247)*14 &gt;= 160" IgnoreCanRun="True">
     <CustomAction Code="Log(Colors.Orange,&quot;We now have mats for the 3rd stage of the process&quot;);" />
     <CallSubRoutine SubRoutineName="WorkingPlace" />
     <CustomAction Code="Log(Colors.Orange,&quot;Remaking Leather&quot;);" />
@@ -572,7 +572,7 @@
     <CustomAction Code="Log(Colors.Orange,&quot;Time to make stuff&quot;);" />
     <CallSubRoutine SubRoutineName="MakeStuff" />
   </While>
-  <While Condition="(bool)Settings[&quot;Level LW&quot;] &amp;&amp; Skinning.Level &gt;= 205 &amp;&amp; Leatherworking.Level &gt;= 115 &amp;&amp; Leatherworking.Level &lt; 155 &amp;&amp; InbagCount(2319) + InbagCount(2167)*4 + InbagCount(4247)*14 + InbagCount(4234)*5 + InbagCount(2318)/4 &gt;= 160 &amp;&amp; InbagCount(4233) + InbagCount(3766) &gt;= 15" IgnoreCanRun="True">
+  <While Condition="(bool)Settings[&quot;Level LW&quot;] &amp;&amp; Skinning.Level &gt;= 205 &amp;&amp; Leatherworking.Level &gt;= 115 &amp;&amp; Leatherworking.Level &lt; 150 &amp;&amp; InbagCount(2319) + InbagCount(2315)*4 + InbagCount(4247)*14 + InbagCount(2318)/4 &gt;= 160 &amp;&amp; InbagCount(4233) + InbagCount(3766) &gt;= 15" IgnoreCanRun="True">
     <CustomAction Code="Log(Colors.Orange,&quot;We now have mats for the 4th stage of the process&quot;);" />
     <CallSubRoutine SubRoutineName="WorkingPlace" />
     <CustomAction Code="Log(Colors.Orange,&quot;Remaking Leather&quot;);" />
@@ -794,7 +794,7 @@
       <WaitAction Condition="false" Timeout="35000" />
     </If>
   </If>
-  <If Condition="(bool)Settings[&quot;Level LW&quot;] &amp;&amp; Leatherworking.Level &gt;= 100 &amp;&amp; Leatherworking.Level &lt; 115 &amp;&amp; InbagCount(4232) + InbagCount(4233) + InbagCount(3766) &lt; 15 &amp;&amp; InbagCount(2319) + InbagCount(2167)*4 + InbagCount(4247)*14 + InbagCount(4234)*5 + InbagCount(2318)/4 &lt; 160 || (bool)Settings[&quot;Level LW&quot;] &amp;&amp; Leatherworking.Level &gt;= 115 &amp;&amp; Leatherworking.Level &lt; 155 &amp;&amp; InbagCount(2319) + InbagCount(2167)*4 + InbagCount(4247)*14 + InbagCount(4234)*5 + InbagCount(2318)/4 &lt; 160" IgnoreCanRun="True">
+  <If Condition="(bool)Settings[&quot;Level LW&quot;] &amp;&amp; Leatherworking.Level &gt;= 100 &amp;&amp; Leatherworking.Level &lt; 115 &amp;&amp; InbagCount(4232) + InbagCount(4233) + InbagCount(3766) &lt; 15 &amp;&amp; InbagCount(2319) + InbagCount(2315)*4 + InbagCount(4247)*14 + InbagCount(2318)/4 &lt; 160 || (bool)Settings[&quot;Level LW&quot;] &amp;&amp; Leatherworking.Level &gt;= 115 &amp;&amp; Leatherworking.Level &lt; 155 &amp;&amp; InbagCount(2319) + InbagCount(2315)*4 + InbagCount(4247)*14 + InbagCount(2318)/4 &lt; 160" IgnoreCanRun="True">
     <If Condition="Skinning.Level &gt;= Skinning.MaxLevel - 25 &amp;&amp; Skinning.Level != 600" IgnoreCanRun="True">
       <CustomAction Code="Log(Colors.Orange,&quot;Lets start with some training&quot;);" />
       <CallSubRoutine SubRoutineName="Train" />
