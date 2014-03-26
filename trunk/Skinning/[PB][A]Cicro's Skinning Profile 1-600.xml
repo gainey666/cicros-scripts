@@ -164,7 +164,7 @@
       <CustomAction Code="Log(Colors.Orange,&quot;Making [Cured Medium Hide]&quot;);" />
       <CastSpellAction RepeatType="Craftable" Repeat="1" Entry="3817" CastOnItem="False" ItemType="Chest" ItemId="0" />
     </While>
-    <While Condition="Leatherworking.Level &gt;= 115 &amp;&amp; Leatherworking.Level &lt;= 129 &amp;&amp; InbagCount(2319) &gt;= 1 &amp;&amp; InbagCount(2321) &gt;= 2 &amp;&amp; InbagCount(4340) &gt;= 1" IgnoreCanRun="False">
+    <While Condition="Leatherworking.Level &gt;= 115 &amp;&amp; Leatherworking.Level &lt;= 129 &amp;&amp; InbagCount(2319) &gt;= 4" IgnoreCanRun="False">
       <If Condition="Me.FreeNormalBagSlots &lt; 4" IgnoreCanRun="True">
         <CallSubRoutine SubRoutineName="SellStuff" />
       </If>
@@ -189,12 +189,14 @@
       </If>
       <If Condition="InbagCount(4246) &lt; 1" IgnoreCanRun="True">
         <CustomAction Code="Log(Colors.Orange,&quot;Getting the belt we made before from our bank&quot;);" />
-        <GetItemfromBankAction Withdraw="Amount" Bank="Personal" MinFreeBagSlots="15" GetItemfromBankType="SpecificItem" ItemID="4246" NpcEntry="0" Amount="15" AutoFindBank="True" WithdrawAdditively="False" Location="0, 0, 0" />
+        <MoveToAction Location="-8721.296, 433.7113, 97.81357" MoveType="Location" Pathing="Navigator" Entry="0" />
+        <FlyToAction Dismount="True" Location="-8348.855, 623.3845, 95.38995" />
+        <GetItemfromBankAction Withdraw="Amount" Bank="Personal" MinFreeBagSlots="15" GetItemfromBankType="SpecificItem" ItemID="4246" NpcEntry="43840" Amount="15" AutoFindBank="False" WithdrawAdditively="False" Location="-8309.03, 575.934, 100.3061" />
         <WaitAction Condition="false" Timeout="2000" />
         <CallSubRoutine SubRoutineName="WorkingPlace" />
       </If>
       <CustomAction Code="Log(Colors.Orange,&quot;Making [Dark Leather Belt]&quot;);" />
-      <CastSpellAction RepeatType="Craftable" Repeat="1" Entry="2167" CastOnItem="False" ItemType="Chest" ItemId="0" />
+      <CastSpellAction RepeatType="Craftable" Repeat="1" Entry="3766" CastOnItem="False" ItemType="Chest" ItemId="0" />
     </While>
     <While Condition="Leatherworking.Level &gt;= 145 &amp;&amp; Leatherworking.Level &lt;= 149 &amp;&amp; InbagCount(2319) &gt;= 14" IgnoreCanRun="False">
       <If Condition="Me.FreeNormalBagSlots &lt; 4" IgnoreCanRun="True">
@@ -217,7 +219,7 @@
         <CallSubRoutine SubRoutineName="LearnPattern" />
       </If>
       <CustomAction Code="Log(Colors.Orange,&quot;Making [Heavy Leather]&quot;);" />
-      <CastSpellAction RepeatType="Craftable" Repeat="1" Entry="4234" CastOnItem="False" ItemType="Chest" ItemId="0" />
+      <CastSpellAction RepeatType="Craftable" Repeat="1" Entry="20649" CastOnItem="False" ItemType="Chest" ItemId="0" />
     </While>
   </SubRoutine>
   <SubRoutine SubRoutineName="Remake Leather">
@@ -279,11 +281,12 @@
       <CallSubRoutine SubRoutineName="MoveToBuy" />
       <BuyItemAction NpcEntry="5565" Location="-8722.868, 479.3223, 98.61378" ItemID="2320" BuyItemType="SpecificItem" Count="100" BuyAdditively="False" />
     </If>
-    <If Condition="Leatherworking.Level &gt;= 100 &amp;&amp; Leatherworking.Level &lt; 155" IgnoreCanRun="True">
+    <If Condition="Leatherworking.Level &gt;= 100 &amp;&amp; Leatherworking.Level &lt; 155 &amp;&amp; InbagCount(2321) &lt; 1 || Leatherworking.Level &gt;= 100 &amp;&amp; Leatherworking.Level &lt; 155 &amp;&amp; InbagCount(4289) &lt; 1 || Leatherworking.Level &gt;= 100 &amp;&amp; Leatherworking.Level &lt; 155 &amp;&amp; InbagCount(4340) &lt; 1" IgnoreCanRun="True">
       <CustomAction Code="Log(Colors.Blue,&quot;Buying needed mats from vendor&quot;);" />
       <CallSubRoutine SubRoutineName="MoveToBuy" />
-      <BuyItemAction NpcEntry="5565" Location="-8722.868, 479.3223, 98.61378" ItemID="2320" BuyItemType="SpecificItem" Count="100" BuyAdditively="False" />
+      <BuyItemAction NpcEntry="5565" Location="-8722.868, 479.3223, 98.61378" ItemID="2321" BuyItemType="SpecificItem" Count="100" BuyAdditively="False" />
       <BuyItemAction NpcEntry="5565" Location="-8722.868, 479.3223, 98.61378" ItemID="4340" BuyItemType="SpecificItem" Count="40" BuyAdditively="False" />
+      <BuyItemAction NpcEntry="5565" Location="-8722.868, 479.3223, 98.61378" ItemID="4289" BuyItemType="SpecificItem" Count="20" BuyAdditively="False" />
     </If>
   </SubRoutine>
   <SubRoutine SubRoutineName="LearnPattern">
@@ -325,6 +328,11 @@
         <SellItemAction Sell="All" NpcEntry="5565" Location="-8722.868, 479.3223, 98.61378" SellItemType="Specific" ItemID="4239" Count="0" />
         <CustomAction Code="Log(Colors.Orange,&quot;Putting this belt in our personal bank. We'll need it later&quot;);" />
         <PutItemInBankAction Category="TradeGoods" SubCategoryType="WoWItemTradeGoodsClass" SubCategory="None" Deposit="All" UseCategory="False" Bank="Personal" ItemID="4246" GuildTab="0" NpcEntry="0" Amount="0" AutoFindBank="True" Location="0, 0, 0" />
+      </If>
+      <If Condition="Leatherworking.Level &gt;= 150" IgnoreCanRun="True">
+        <SellItemAction Sell="All" NpcEntry="5564" Location="-8722.868, 479.3223, 98.61378" SellItemType="Specific" ItemID="4247" Count="0" />
+        <SellItemAction Sell="All" NpcEntry="5565" Location="-8722.868, 479.3223, 98.61378" SellItemType="Specific" ItemID="2315" Count="0" />
+        <SellItemAction Sell="All" NpcEntry="4247" Location="-8722.868, 479.3223, 98.61378" SellItemType="Specific" ItemID="4249" Count="0" />
       </If>
     </If>
   </SubRoutine>
