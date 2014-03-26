@@ -1,0 +1,52 @@
+<HBProfile>
+	<Name>[Alliance] Cicro's Skinning 500-560 Valley of the Four Winds</Name>
+	<MinLevel>80</MinLevel>
+	<MaxLevel>100</MaxLevel>
+  
+	<MinDurability>0.2</MinDurability>
+	<MinFreeBagSlots>0</MinFreeBagSlots>
+  
+	<MailGrey>False</MailGrey>
+	<MailWhite>True</MailWhite>
+	<MailGreen>True</MailGreen>
+	<MailBlue>True</MailBlue>
+	<MailPurple>True</MailPurple>
+  
+	<SellGrey>True</SellGrey>
+	<SellWhite>False</SellWhite>
+	<SellGreen>False</SellGreen>
+	<SellBlue>False</SellBlue>
+	<SellPurple>False</SellPurple>
+  
+	<TargetElites>True</TargetElites>
+
+	<Vendors>
+
+	</Vendors>
+
+      <Mailboxes>
+
+      </Mailboxes>
+
+	<AvoidMobs>
+<Mob Name="Twitchheel Hoarder" Entry="56538" />
+	</AvoidMobs>
+    <GrindArea>
+        <Factions>190 2588</Factions>
+   
+        <LootRadius>65</LootRadius>
+        <MaxDistance>65</MaxDistance>
+        <MaximumHotspotTime>20000</MaximumHotspotTime>
+        <RandomizeHotspots>True</RandomizeHotspots>
+   
+        <Hotspots>
+<Hotspot X="400.0598" Y="66.25074" Z="150.1639" />
+<Hotspot X="344.5513" Y="18.11036" Z="152.4492" />
+<Hotspot X="278.033" Y="31.53546" Z="166.6061" />
+<Hotspot X="215.181" Y="70.43817" Z="154.8747" />
+<Hotspot X="295.0131" Y="-10.80848" Z="163.0442" />
+<Hotspot X="364.9271" Y="14.29703" Z="164.5196" />
+        </Hotspots>
+    </GrindArea>
+   
+</HBProfile>
