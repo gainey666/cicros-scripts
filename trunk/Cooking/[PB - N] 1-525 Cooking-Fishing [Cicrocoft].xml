@@ -10,19 +10,15 @@
         <FlyToAction Dismount="True" Location="-9254.536, -2147.145, 64.07043" />
       </If>
       <While Condition="DistanceTo (-9254.536, -2147.145, 64.07043) &lt; 40 &amp;&amp; StyxWoW.Me.HearthstoneAreaId != 69" IgnoreCanRun="True">
-        <ChangeBotAction BotName="Questing" />
-        <LoadProfileAction ProfileType="Honorbuddy" Path="HBProfiles\[A - Cooking]Set_HS.xml" IsLocal="True" />
+        <MoveToAction Location="-9226.671, -2155.255, 63.73111" MoveType="Location" Pathing="Navigator" Entry="0" />
+        <InteractionAction InteractType="NPC" Entry="6727" InteractDelay="0" GameObjectType="Mailbox" SpellFocus="Anvil" />
+        <CustomAction Code="Lua.DoString(&quot;RunMacroText('/click GossipTitleButton1','0')&quot;);" />
+        <WaitAction Condition="false" Timeout="2000" />
+        <CustomAction Code="Lua.DoString(&quot;RunMacroText('/click StaticPopup1Button1','0')&quot;);" />
         <If Condition="StyxWoW.Me.HearthstoneAreaId == 69" IgnoreCanRun="True">
           <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;The hearthstone is now set for Lakeshire, lets level some fishing and cooking&quot;); " />
-          <ChangeBotAction BotName="Combat Bot" />
-          <LoadProfileAction ProfileType="Professionbuddy" Path="[PB - N] 1-525 Cooking-Fishing [Cicrocoft].xml" IsLocal="True" />
         </If>
       </While>
-      <If Condition="StyxWoW.Me.HearthstoneAreaId == 69" IgnoreCanRun="True">
-        <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;The hearthstone is now set for Lakeshire, lets level some fishing and cooking&quot;); " />
-        <ChangeBotAction BotName="Combat Bot" />
-        <LoadProfileAction ProfileType="Professionbuddy" Path="[PB - A] 1-525 Cooking-Fishing [Cicrocoft].xml" IsLocal="True" />
-      </If>
     </If>
     <If Condition="Me.IsHorde" IgnoreCanRun="True">
       <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Seems like our Hearthstone not are set for Bloodhoof Village.. Lets do that before we do anything else.&quot;); " />
@@ -31,12 +27,12 @@
         <MoveToAction Location="-2363.075, -348.9611, -8.956995" MoveType="Location" Pathing="ClickToMove" Entry="0" />
       </If>
       <While Condition="DistanceTo (-2363.075, -348.9611, -8.956995) &lt; 5 &amp;&amp; StyxWoW.Me.HearthstoneAreaId != 222" IgnoreCanRun="True">
-        <ChangeBotAction BotName="Questing" />
-        <LoadProfileAction ProfileType="Honorbuddy" Path="HBProfiles\[H - Cooking]Set_HS.xml" IsLocal="True" />
+        <InteractionAction InteractType="NPC" Entry="6747" InteractDelay="0" GameObjectType="Mailbox" SpellFocus="Anvil" />
+        <CustomAction Code="Lua.DoString(&quot;RunMacroText('/click GossipTitleButton1','0')&quot;);" />
+        <WaitAction Condition="false" Timeout="2000" />
+        <CustomAction Code="Lua.DoString(&quot;RunMacroText('/click StaticPopup1Button1','0')&quot;);" />
         <If Condition="StyxWoW.Me.HearthstoneAreaId == 222" IgnoreCanRun="True">
           <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;The hearthstone is now set for Bloodhoof Village, lets level some fishing and cooking&quot;); " />
-          <ChangeBotAction BotName="Combat Bot" />
-          <LoadProfileAction ProfileType="Professionbuddy" Path="[PB - N] 1-525 Cooking-Fishing [Cicrocoft].xml" IsLocal="True" />
         </If>
       </While>
     </If>
@@ -911,17 +907,17 @@
       <If Condition="(Me.MapId == 1)" IgnoreCanRun="True">
         <CallSubRoutine SubRoutineName="Kalimdor to EK" />
       </If>
-      <If Condition="Me.ZoneId != 4 || (Me.ZoneId != 44)" IgnoreCanRun="True">
+      <If Condition="Me.ZoneId != 4" IgnoreCanRun="True">
         <FlyToAction Dismount="True" Location="-9000.289, 863.0194, 129.6055" />
         <MoveToAction Location="-9006.661, 870.9152, 129.6924" MoveType="Location" Pathing="Navigator" Entry="0" />
         <WaitAction Condition="false" Timeout="1898" />
         <InteractionAction InteractType="GameObject" Entry="195141" InteractDelay="2000" GameObjectType="Transport" SpellFocus="Anvil" />
         <WaitAction Condition="Me.ZoneId == 4" Timeout="25000" />
       </If>
-      <FlyToAction Dismount="False" Location="-11895.9, -3206.984, -6.04731" />
-      <CustomAction Code="MessageBox.Show(&quot;Please watch me while im going thru the portal. Sometimes I do crazy things here. Incase of crazyness, stop the bot and move me manually&quot;);" />
-      <MoveToAction Location="-11930.31, -3209.613, -1.836873" MoveType="Location" Pathing="ClickToMove" Entry="0" />
+      <FlyToAction Dismount="False" Location="-11893.42, -3205.508, -14.22633" />
+      <CustomAction Code="CTM (-11930.31,-3209.613,-1.836873);" />
       <WaitAction Condition="Me.MapId == 530" Timeout="25000" />
+      <MoveToAction Location="-248.3487, 947.3008, 84.3497" MoveType="Location" Pathing="Navigator" Entry="0" />
     </If>
   </SubRoutine>
   <SubRoutine SubRoutineName="Northrend to City">
@@ -1353,6 +1349,14 @@
   </If>
   <If Condition="(InbagCount (27666) + InbagCount (27438)) &lt; 15 &amp;&amp; Cooking.Level &gt;= 325 &amp;&amp; Cooking.Level &lt; 350 || (InbagCount (33048) + InbagCount (27422)) &lt; 50 &amp;&amp; Cooking.Level &gt;= 325 &amp;&amp; Cooking.Level &lt; 350" IgnoreCanRun="False">
     <CustomAction Code="Log(System.Drawing.Color.YellowGreen,&quot;Time to catch some 15x Golden Darter and 50x Barbed Gill Trout.&quot;); " />
+    <While Condition="Me.MapId != 530 &amp;&amp; Me.MapId == 0 &amp;&amp; Me.IsAlliance || Me.MapId != 530 &amp;&amp; Me.MapId == 1 &amp;&amp; Me.IsHorde" IgnoreCanRun="True">
+      <If Condition="Me.IsAlliance" IgnoreCanRun="True">
+        <CallSubRoutine SubRoutineName="EK to Outland" />
+      </If>
+      <If Condition="Me.IsHorde" IgnoreCanRun="True">
+        <CallSubRoutine SubRoutineName="Kalimdor to Outland" />
+      </If>
+    </While>
     <While Condition="Me.MapId == 530" IgnoreCanRun="True">
       <If Condition="Me.IsAlliance" IgnoreCanRun="True">
         <If Condition="!HasRecipe(33295) &amp;&amp; (InbagCount(27699) == 0)" IgnoreCanRun="True">
@@ -1379,14 +1383,6 @@
           <CallSubRoutine SubRoutineName="UF" />
         </If>
         <CallSubRoutine SubRoutineName="DoFishing" />
-      </If>
-    </While>
-    <While Condition="Me.MapId != 530 &amp;&amp; Me.MapId == 0 &amp;&amp; Me.IsAlliance || Me.MapId != 530 &amp;&amp; Me.MapId == 1 &amp;&amp; Me.IsHorde" IgnoreCanRun="True">
-      <If Condition="Me.IsAlliance" IgnoreCanRun="True">
-        <CallSubRoutine SubRoutineName="EK to Outland" />
-      </If>
-      <If Condition="Me.IsHorde" IgnoreCanRun="True">
-        <CallSubRoutine SubRoutineName="Kalimdor to Outland" />
       </If>
     </While>
   </If>
